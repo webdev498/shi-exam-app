@@ -75,14 +75,12 @@ Once you have those, you should install these globals with `npm install --global
 * `typescript` (`npm install --global typescript`)
 
 ## Installing
-* `fork` this repo
-* `clone` your fork
 * `npm install` to install all dependencies
 * `typings install` to install necessary typings
 * `npm run server` to start the dev server in another tab
 
 ## Running the app
-After you have installed all dependencies you can now run the app. Run `npm run server` to start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://0.0.0.0:3000` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3000/`).
+After you have installed all dependencies you can now run the app. Run `npm run server` to start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://0.0.0.0:3000` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3001/`).
 
 ### server
 ```bash
@@ -136,10 +134,6 @@ npm run webdriver:start
 # in another terminal
 npm run e2e:live
 ```
-
-
-# Contributing
-You can include more examples as components but they must introduce a new concept such as `Home` component (separate folders), and Todo (services). I'll accept pretty much everything so feel free to open a Pull-Request
 
 # TypeScript
 > To take full advantage of TypeScript with autocomplete you would have to install it globally and use an editor with the correct TypeScript plugins.
