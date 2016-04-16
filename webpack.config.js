@@ -11,10 +11,10 @@ var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 var HMR = helpers.hasProcessFlag('hot');
 
 var metadata = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
+  title: 'CGI Exam and Study App',
   baseUrl: '/',
   host: 'localhost',
-  port: 3000,
+  port: 3001,
   ENV: ENV,
   HMR: HMR
 };
