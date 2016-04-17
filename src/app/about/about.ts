@@ -18,7 +18,7 @@ export class About {
   }
 
   ngOnInit() {
-    console.log('hello `About` component');
+    
   }
 
 }
