@@ -1,3 +1,5 @@
+[ ![Codeship Status for josh_king_/cgi-she-exam-app](https://codeship.com/projects/0fcbfdd0-f564-0133-28be-1ef9ae27d679/status?branch=master)](https://codeship.com/projects/150359)
+
 ### Quick start
 ```bash
 # add required global libraries
