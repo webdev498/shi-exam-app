@@ -192,12 +192,6 @@ module.exports = {
       compress : { screw_ie8 : true },//prod
       comments: false//prod
 
-    }),
-   // include uglify in production
-    new CompressionPlugin({
-      algorithm: helpers.gzipMaxLevel,
-      regExp: /\.css$|\.html$|\.js$|\.map$/,
-      threshold: 2 * 1024
     })
   ],
   // Other module loader config
