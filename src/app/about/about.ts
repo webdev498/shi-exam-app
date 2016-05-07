@@ -10,9 +10,10 @@ console.log('`About` component loaded asynchronously');
 
 @Component({
   selector: 'about',
-  template: `patrick@AngularClass.com`
+  template: require('./about.html')
 })
 export class About {
+  server = process.env.API_HOST;
   constructor() {
 
   }

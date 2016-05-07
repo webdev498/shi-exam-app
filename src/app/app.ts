@@ -28,6 +28,7 @@ import {Home} from './home/home';
 ])
 export class App{
   url = 'http://www.commongroundinternational.com';
+  currentYear = new Date().getFullYear();
   constructor() {
 
   }
