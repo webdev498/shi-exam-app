@@ -14,12 +14,6 @@ console.log('`About` component loaded asynchronously');
 })
 export class About {
   server = process.env.API_HOST;
-  constructor() {
-
-  }
-
-  ngOnInit() {
-    
-  }
-
+  constructor() {}
+  ngOnInit() {}
 }

@@ -26,7 +26,7 @@ import {Home} from './home/home';
   { path: '/about', loader: () => require('es6-promise!./about/about')('About'), name: 'About' },
   { path: '/**', redirectTo: ['Index'] }
 ])
-export class App{
+export class App {
   url = 'http://www.commongroundinternational.com';
   currentYear = new Date().getFullYear();
   constructor() {
