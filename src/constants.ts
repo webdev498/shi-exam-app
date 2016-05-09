@@ -1,0 +1,1 @@
+export const RootApiUrl = process.env.API_HOST;
