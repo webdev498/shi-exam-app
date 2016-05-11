@@ -43,6 +43,8 @@
                 <button class="btn btn-sm btn-primary" 
                     [disabled]="loginButtonState()"
                     (click)="submitLogin()">Submit</button>
+                    
+                    <span [innerText]="errorMessage" class="error"></span>
             </div>
         </div>
     </div>

@@ -7,15 +7,7 @@
     "sourceMap": true
   },
   "exclude": [
-    "node_modules",
-    "typings/main.d.ts",
-    "typings/main",
-    "typings/browser.d.ts",
-    "typings/browser",
-    "typings/browser/ambient/webpack/index.d.ts",
-    "typings/browser/ambient/zone.js/index.d.ts",
-    "typings/browser/ambient/webpack/webpack.d.ts",
-    "typings/browser/ambient/selenium-webdriver/selenium-webdriver.d.ts"
+    "node_modules"
   ],
   "filesGlob": [
     "./src/**/*.ts",

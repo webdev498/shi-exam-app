@@ -1,5 +1,5 @@
 import { Injectable } from 'angular2/core';
-import { Http, Response } from 'angular2/http';
+import { Http, Headers, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
 import { RootApiUrl } from "./../../Constants";
 import { LoginResponse} from "./../model/LoginResponse"
@@ -8,13 +8,15 @@ import { LoginResponse} from "./../model/LoginResponse"
 export class LoginService {
   constructor(private _http: Http) { }
 
-  postLogin(username, password) {
-    return this._http.post(RootApiUrl + '\login',
-    JSON.stringify({
-        username: username,
-        password: password
-    }))
-      .map((response: Response) => <LoginResponse[]>response.json().data)
+  postLogin(username:string, password:string) {
+    var headers = new Headers();
+    headers.append('Content-Type','application/json');
+    var credentials = JSON.stringify({email: username, password: password});
+    
+    return this._http.post(RootApiUrl + '/login',credentials, {
+      headers: headers
+    })
+      .map((response: Response) => <LoginResponse>response.json())
       .do(data => console.log(data))
       .catch(this.handleError);
   }

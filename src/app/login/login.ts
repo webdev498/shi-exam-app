@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
-
 import {LoginService} from './login.service';
+import {LoginResponse} from "./../model/LoginResponse"
 
 @Component({
   selector: 'login',  // <home></home>
@@ -19,17 +19,31 @@ import {LoginService} from './login.service';
 })
 export class Login {
   // Set our default values
-  username: String;
-  password: String;
-  submitted: Boolean;
+  username: string;
+  password: string;
+  submitted: boolean;
+  errorMessage: string;
   // TypeScript public modifiers
-  constructor() {
-
+  constructor(private _loginService: LoginService) {
+    this.errorMessage = '';
   }
 
   submitLogin() {
-    console.log(this.username);
-    console.log(this.password);    
+   this._loginService.postLogin(this.username, this.password)
+    .subscribe(
+      response => this._handleResponse(response),
+      error => this._handleError(error)
+    )
+  }
+  
+  _handleResponse(lr) {
+    console.log(lr);
+  }
+  
+  _handleError(e) {
+    if (e.status == 401) {
+      this.errorMessage = "Login Failed";
+    }
   }
   
   loginButtonState() {
