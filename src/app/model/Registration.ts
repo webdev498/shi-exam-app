@@ -1,3 +1,5 @@
+import {Address} from "./Address"
+
 export class Registration {
   
   public firstName: string;
@@ -8,6 +10,7 @@ export class Registration {
   public passwordConfirmation: string;
   public nationality: string;
   public gender: string;
+  public address: Address;
   
   constructor() { }
 }
