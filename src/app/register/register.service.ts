@@ -1,7 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { Http, Headers, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
-import { RootApiUrl } from "./../../constants";
+import { RootApiUrl } from "./../model/Constants";
 import { Registration} from "./../model/Registration"
 import { User} from "./../model/User"
 
