@@ -2,9 +2,9 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {LoginService} from './login.service';
 import {LoginResponse} from "./../model/LoginResponse"
-import { UserTokenKey } from "./../../Constants";
-import { UserInfoKey } from "./../../Constants";
-import jwtDecode from 'jwt-decode';
+import { UserTokenKey } from "./../../constants";
+import { UserInfoKey } from "./../../constants";
+import jwtDecode from 'jwtDecode';
 
 @Component({
   selector: 'login',  // <home></home>
