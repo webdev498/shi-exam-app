@@ -2,7 +2,7 @@ export class YearService {
     constructor() {}
     
     years() {
-        var list = [];
+        var list : string[]= [];
         
         return list;
     }
