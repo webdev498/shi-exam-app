@@ -4,7 +4,7 @@ import {LoginService} from './login.service';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserTokenKey} from './../model/Constants';
 import {UserInfoKey} from './../model/Constants';
-import {jwtDecode} from 'jwt-Decode';
+import {JwtHelper} from 'angular2-jwt';
 
 @Component({
   selector: 'login',  // <home></home>
@@ -26,6 +26,8 @@ export class Login {
   password: string;
   submitted: boolean;
   errorMessage: string;
+  jwt: JwtHelper = new JwtHelper();
+  
   // TypeScript public modifiers
   constructor(private _loginService: LoginService) {
     this.errorMessage = '';
@@ -41,7 +43,7 @@ export class Login {
   
   _handleResponse(lr) {
     localStorage[UserTokenKey] = JSON.stringify(lr);
-    localStorage[UserInfoKey] = JSON.stringify(jwtDecode(lr.token));
+    localStorage[UserInfoKey] = JSON.stringify(this.jwt.decodeToken(lr.token));
     
     //Route to main screen
   }
