@@ -38,7 +38,7 @@ export class Login {
     .subscribe(
       response => this._handleResponse(response),
       error => this._handleError(error)
-    )
+    );
   }
   
   _handleResponse(lr) {
@@ -49,8 +49,8 @@ export class Login {
   }
   
   _handleError(e) {
-    if (e.status == 401) {
-      this.errorMessage = "Login Failed";
+    if (e.status === 401) {
+      this.errorMessage = 'Login Failed';
     }
   }
   
