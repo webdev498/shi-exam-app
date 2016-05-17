@@ -1,8 +1,8 @@
 import { Injectable } from 'angular2/core';
 import { Http, Headers, Response } from 'angular2/http';
 import { Observable } from 'rxjs/Rx';
-import { RootApiUrl } from "./../model/Constants";
-import { LoginResponse} from "./../model/LoginResponse"
+import { RootApiUrl } from './../model/Constants';
+import { LoginResponse} from './../model/LoginResponse';
 
 @Injectable()
 export class LoginService {
