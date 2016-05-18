@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
-import {Registration} from "./../model/Registration"
+import {Registration} from './../model/Registration';
 
 @Component({
   selector: 'register', 
