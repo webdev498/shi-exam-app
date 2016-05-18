@@ -1,5 +1,10 @@
 import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
+import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+
+import {Register} from './../register/register';
+import {ForgotPassword} from './../forgotpassword/forgotpassword';
+
 import {LoginService} from './login.service';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserTokenKey} from './../model/Constants';
@@ -7,19 +12,21 @@ import {UserInfoKey} from './../model/Constants';
 import {JwtHelper} from 'angular2-jwt';
 
 @Component({
-  selector: 'login',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
+  selector: 'login',  
   providers: [
     LoginService
   ],
-
-  // We need to tell Angular's compiler which custom pipes are in our template.
+  directives: [
+    ...ROUTER_DIRECTIVES
+  ],
   pipes: [ ],
-  // Our list of styles in our component. We may add more to compose many styles together
   styles: [ require('./login.css') ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: require('./login.html')
 })
+@RouteConfig([
+  { path: '../register', component: Register, name: 'Register'},
+  { path: '../forgotpassword', component: ForgotPassword, name: 'ForgotPassword'}
+])
 export class Login {
   // Set our default values
   username: string;

@@ -15,7 +15,7 @@ import {Registration} from "./../model/Registration"
 
   template: require('./register.html')
 })
-export class Account {
+export class Register {
   // Set our default values
   validationMessage: string;
   ur: Registration;

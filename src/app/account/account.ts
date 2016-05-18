@@ -1,6 +1,5 @@
 import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
-import { UserInfoKey } from "./../../Constants";
+import { UserInfoKey } from "./../model/Constants";
 import { User } from "./../model/User"
 
 @Component({

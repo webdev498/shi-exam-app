@@ -1,3 +1,5 @@
+import {State} from './../model/State';
+
 export class StateService {
    constructor() {}
    
