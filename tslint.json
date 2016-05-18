@@ -2,7 +2,7 @@
   "rules": {
     "class-name": true,
     "curly": false,
-    "eofline": true,
+    "eofline": false,
     "indent": [
       true,
       "spaces"
@@ -24,7 +24,7 @@
     "no-empty": false,
     "no-eval": true,
     "trailing-comma": true,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": false,
     "no-unused-expression": true,
     "no-unused-variable": false,
     "no-unreachable": true,
@@ -33,8 +33,7 @@
       true,
       "check-open-brace",
       "check-catch",
-      "check-else",
-      "check-whitespace"
+      "check-else"
     ],
     "quotemark": [
       true,
@@ -47,7 +46,7 @@
     ],
     "variable-name": false,
     "whitespace": [
-      true,
+      false,
       "check-branch",
       "check-decl",
       "check-operator",

@@ -2,20 +2,16 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img alt="Brand" src="">
+      <a class="navbar-brand" [routerLink]=" ['Index'] ">
+        CGI Sweet Logo
       </a>
     </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="router-active"><a [routerLink]=" ['Index'] ">Index</a></li>
-        <li class="router-active"><a [routerLink]=" ['Home'] ">Home</a></li>
-        <li class="router-active"><a [routerLink]=" ['About'] ">About</a></li>
      </ul>
 
-    </div><!-- /.navbar-collapse -->
+    </div>
     
   </div>
 </nav>

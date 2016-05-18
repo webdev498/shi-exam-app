@@ -18,15 +18,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackMd5Hash    = require('webpack-md5-hash');
 var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-var HOST = process.env.HOST || 'localhost';
-var PORT = process.env.PORT || 8080;
 
 var metadata = {
   title: 'CGI Exam and Study Application',
-  baseUrl: '/',
-  host: HOST,
-  port: PORT,
-  ENV: ENV
+  baseUrl: '/'
 };
 
 /*
@@ -197,12 +192,6 @@ module.exports = {
       compress : { screw_ie8 : true },//prod
       comments: false//prod
 
-    }),
-   // include uglify in production
-    new CompressionPlugin({
-      algorithm: helpers.gzipMaxLevel,
-      regExp: /\.css$|\.html$|\.js$|\.map$/,
-      threshold: 2 * 1024
     })
   ],
   // Other module loader config

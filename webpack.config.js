@@ -88,8 +88,8 @@ module.exports = {
 
   // our Webpack Development Server config
   tslint: {
-    emitErrors: false,
-    failOnHint: false,
+    emitErrors: true,
+    failOnHint: true,
     resourcePath: 'src',
   },
   devServer: {
@@ -99,7 +99,8 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
-    }
+    },
+    outputPath: '../dist'
   },
   node: {
     global: 'window',
