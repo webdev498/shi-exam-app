@@ -1,14 +1,11 @@
-import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
-import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-
-import {Register} from './../register/register';
-import {ForgotPassword} from './../forgotpassword/forgotpassword';
+import {Component} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {LoginService} from './login.service';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserTokenKey} from './../model/Constants';
 import {UserInfoKey} from './../model/Constants';
+import {User} from './../model/User';
 import {JwtHelper} from 'angular2-jwt';
 
 @Component({
@@ -23,11 +20,7 @@ import {JwtHelper} from 'angular2-jwt';
   styles: [ require('./login.css') ],
   template: require('./login.html')
 })
-@RouteConfig([
-  { path: '../register', component: Register, name: 'Register'},
-  { path: '../forgotpassword', component: ForgotPassword, name: 'ForgotPassword'}
-])
-export class Login {
+export class LoginComponent {
   // Set our default values
   username: string;
   password: string;
@@ -49,8 +42,8 @@ export class Login {
   }
   
   _handleResponse(lr) {
-    localStorage[UserTokenKey] = JSON.stringify(lr);
-    localStorage[UserInfoKey] = JSON.stringify(this.jwt.decodeToken(lr.token));
+    localStorage[UserTokenKey] = JSON.stringify(lr.token);
+    localStorage[UserInfoKey] = JSON.stringify(<User>this.jwt.decodeToken(lr.token));
     
     //Route to main screen
   }

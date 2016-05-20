@@ -1,6 +1,4 @@
-export class Nationality {
-    public id: string;
-    public name: string;
-    
-    constructor() {}
+export class Nationality {    
+    constructor(public id: string,
+                public name: string) {}
 }

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'forgotpassword', 
@@ -7,6 +7,6 @@ import {Component} from 'angular2/core';
   styles: [ require('./forgotpassword.css') ],
   template: require('./forgotpassword.html')
 })
-export class ForgotPassword {
+export class ForgotPasswordComponent {
     constructor() {}
 }

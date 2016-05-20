@@ -1,5 +1,4 @@
-import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
 import {Registration} from './../model/Registration';
 
 @Component({
@@ -15,7 +14,7 @@ import {Registration} from './../model/Registration';
 
   template: require('./register.html')
 })
-export class Register {
+export class RegisterComponent {
   // Set our default values
   validationMessage: string;
   ur: Registration;
