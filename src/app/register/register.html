@@ -14,7 +14,10 @@
   </div>
  <div class="form-group">
     <label for="email">Phone</label>
-    <input type="text" [(ngModel)]="ur.phone" class="form-control" id="phone">
+    <input type="text" 
+    [(ngModel)]="ur.phone" 
+    [mask]="(***) ***-****"  
+    class="form-control" id="phone">
   </div>
    <div class="form-group">
     <label for="gender">Gender</label>

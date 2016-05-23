@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {Registration} from './../model/Registration';
+import {MaskDirective} from './../directives/MaskDirective';
 
 @Component({
   selector: 'register', 
 
-  providers: [
-    
+  directives: [
+    MaskDirective
   ],
 
   pipes: [ ],
