@@ -1,5 +1,7 @@
 import {CountryCode} from './../model/CountryCode';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class CountryCodeService {
     constructor() {}
     

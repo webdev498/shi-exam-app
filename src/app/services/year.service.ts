@@ -1,6 +1,8 @@
-import {YoungestAgeFromCurrent} from './../model/Constants';
-import {YearsAvailable} from './../model/Constants';
+import { YoungestAgeFromCurrent } from './../model/Constants';
+import { YearsAvailable } from './../model/Constants';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class YearService {
     constructor() {}
     
