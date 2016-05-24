@@ -14,9 +14,9 @@ export class MaskDirective{
     modelValue: string;
     viewValue: string;
     
-    constructor(public model:NgModel, @Attribute("mask")maskPattern: string){
-        this.dividers = maskPattern.replace(/\*/g,"").split("");
-        this.dividers.push(" ");
+    constructor(public model:NgModel, @Attribute('mask')maskPattern: string){
+        this.dividers = maskPattern.replace(/\*/g,'').split('');
+        this.dividers.push(' ');
         this.generatePattern(maskPattern);
     }
     
@@ -35,7 +35,7 @@ export class MaskDirective{
     generatePattern(patternString){
         this.placeHolderCounts = (patternString.match(/\*/g) || []).length;
         for(var i = 0; i < this.placeHolderCounts; i++){
-            patternString = patternString.replace('*',"{" + i + "}");
+            patternString = patternString.replace('*','{' + i + '}');
         }
         this.maskPattern = patternString;
     }
@@ -43,13 +43,13 @@ export class MaskDirective{
     format(s) {
         var formattedString = this.maskPattern;
         for(var i = 0; i < this.placeHolderCounts; i++){
-            formattedString = formattedString.replace("{" + i + "}", s.charAt(i));
+            formattedString = formattedString.replace('{' + i + '}', s.charAt(i));
         }
         return formattedString;
     }
     
     padString(s){
-        var pad = "          ";
+        var pad = '          ';
         return (s + pad).substring(0, pad.length);
     }
     
@@ -57,7 +57,7 @@ export class MaskDirective{
         var modelValue = this.model.value;
         for(var i = 0; i < this.dividers.length; i++){
             while(modelValue.indexOf(this.dividers[i]) > -1){
-                modelValue = modelValue.replace(this.dividers[i], "");
+                modelValue = modelValue.replace(this.dividers[i], '');
             }
         }
         return modelValue;
