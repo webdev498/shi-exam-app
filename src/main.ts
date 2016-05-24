@@ -3,6 +3,7 @@
  */
 import * as ngCore from '@angular/core';
 import * as browser from '@angular/platform-browser';
+import { bootstrap } from '@angular/platform-browser-dynamic';
 import {ROUTER_PROVIDERS} from '@angular/router';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {HTTP_PROVIDERS} from '@angular/http';
@@ -32,7 +33,7 @@ import {App} from './app/app';
  * our Services and Providers into Angular's dependency injection
  */
 export function main() {
-  return browser.bootstrapStatic(App, [
+  return bootstrap(App, [
     ...ENV_PROVIDERS,
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,

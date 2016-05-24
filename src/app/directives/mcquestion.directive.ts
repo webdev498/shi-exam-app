@@ -1,4 +1,4 @@
-import {Directive, Attribute} from 'angular2/core';
+import {Directive, Attribute} from '@angular/core';
 import {MultipleChoiceQuestion} from './../model/question/MultipleChoiceQuestion';
  
 @Directive({ 

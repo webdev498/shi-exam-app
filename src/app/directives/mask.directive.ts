@@ -1,5 +1,5 @@
-import {Directive, Attribute} from 'angular2/core';
-import {NgModel} from 'angular2/common';
+import {Directive, Attribute} from '@angular/core';
+import {NgModel} from '@angular/common';
  
 @Directive({ 
     selector: '[mask]', 
@@ -9,7 +9,7 @@ import {NgModel} from 'angular2/common';
 })
 export class MaskDirective{
     maskPattern: string;
-    placeHolderCounts:int;
+    placeHolderCounts: number;
     dividers: string[];
     modelValue: string;
     viewValue: string;

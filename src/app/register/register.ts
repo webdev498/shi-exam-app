@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Registration} from './../model/Registration';
-import {MaskDirective} from './../directives/MaskDirective';
+import {MaskDirective} from './../directives/mask.directive';
 
 @Component({
   selector: 'register', 
