@@ -29,7 +29,7 @@ export class MaskDirective{
         
         this.viewValue = this.format(stringToFormat);
         this.model.viewToModelUpdate(this.modelValue);
-        this.model.valueAccessor.writeValue(this.viewValue)
+        this.model.valueAccessor.writeValue(this.viewValue);
     }
     
     generatePattern(patternString){
