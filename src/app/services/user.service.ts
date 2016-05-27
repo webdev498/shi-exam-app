@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { RootApiUrl } from "./../model/Constants";
-import { Nationality } from "./../model/Nationality";
+import { RootApiUrl } from './../model/Constants';
+import { User } from './../model/User';
 
 @Injectable()
-export class NationalityService {
+export class UserService {
   constructor(private _http: Http) { }
 
-  getNationalities() {    
-    return this._http.get(RootApiUrl + '/nationalities')
-      .map((response: Response) => <Nationality>response.json())
-      .do(data => console.log(data))
+  getUser(id) {    
+    return this._http.get(RootApiUrl + '/users')
+      .map((response: Response) => <User>response.json())
+      //.do(data => console.log(data))
       .catch(this.handleError);
   }
 
