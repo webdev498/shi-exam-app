@@ -34,15 +34,7 @@
       "check-open-brace",
       "check-catch"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
     "semicolon": true,
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
     "variable-name": false,
     "whitespace": [
       false,
