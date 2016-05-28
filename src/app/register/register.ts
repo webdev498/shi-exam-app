@@ -4,6 +4,7 @@ import {MaskDirective} from './../directives/mask.directive';
 import {PasswordMinLength} from './../model/Constants';
 import {NationalityService} from './../services/nationality.service';
 import {CountryCodeService} from './../services/countrycode.service';
+import {StateService} from './../services/state.service';
 import {DayService} from './../services/day.service';
 import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
@@ -19,7 +20,7 @@ import {Month} from './../model/Month';
   ],
 
   providers: [NationalityService, CountryCodeService, DayService,
-    MonthService, YearService],
+    MonthService, YearService, StateService],
 
   styles: [ require('./register.css') ],
 
@@ -31,6 +32,7 @@ export class RegisterComponent {
   ur: Registration;
   countryCodes: CountryCode[];
   years: string[];
+  states: string[];
   months: Month[];
   days: Day[];
 
@@ -39,13 +41,15 @@ export class RegisterComponent {
               private countryCodeService: CountryCodeService,
               private dayService: DayService,
               private monthService: MonthService,
-              private yearService: YearService) {
+              private yearService: YearService,
+              private stateService: StateService) {
       this.validationMessage = '';
       this.ur = new Registration();
       this.countryCodes = countryCodeService.countryCodes();
       this.years = yearService.years();
       this.months = monthService.months();
       this.days = dayService.days();
+      this.states = stateService.states();
   }
   
   submitButtonState() {
