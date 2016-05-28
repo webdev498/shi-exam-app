@@ -8,6 +8,7 @@ import {StateService} from './../services/state.service';
 import {DayService} from './../services/day.service';
 import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
+import {RegistrationService} from './register.service';
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
 import {Month} from './../model/Month';
@@ -20,7 +21,7 @@ import {Month} from './../model/Month';
   ],
 
   providers: [NationalityService, CountryCodeService, DayService,
-    MonthService, YearService, StateService],
+    MonthService, YearService, StateService, RegistrationService],
 
   styles: [ require('./register.css') ],
 
@@ -42,7 +43,8 @@ export class RegisterComponent {
               private dayService: DayService,
               private monthService: MonthService,
               private yearService: YearService,
-              private stateService: StateService) {
+              private stateService: StateService,
+              private regService: RegistrationService) {
       this.validationMessage = '';
       this.ur = new Registration();
       this.countryCodes = countryCodeService.countryCodes();

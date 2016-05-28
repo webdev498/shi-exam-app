@@ -9,7 +9,7 @@ import { User} from "./../model/User"
 export class RegistrationService {
   constructor(private _http: Http) { }
 
-  postLogin(reg:Registration) {
+  postRegistration(reg:Registration) {
     var headers = new Headers();
     headers.append('Content-Type','application/json');
     var newUser = JSON.stringify(reg);
