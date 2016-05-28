@@ -7,6 +7,9 @@ import {CountryCodeService} from './../services/countrycode.service';
 import {DayService} from './../services/day.service';
 import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
+import {CountryCode} from './../model/CountryCode';
+import {Day} from './../model/Day';
+import {Month} from './../model/Month';
 
 @Component({
   selector: 'register', 
@@ -26,6 +29,10 @@ export class RegisterComponent {
   // Set our default values
   validationMessage: string;
   ur: Registration;
+  countryCodes: CountryCode[];
+  years: string[];
+  months: Month[];
+  days: Day[];
 
   // TypeScript public modifiers
   constructor(private nationalityService: NationalityService,
@@ -35,6 +42,10 @@ export class RegisterComponent {
               private yearService: YearService) {
       this.validationMessage = '';
       this.ur = new Registration();
+      this.countryCodes = countryCodeService.countryCodes();
+      this.years = yearService.years();
+      this.months = monthService.months();
+      this.days = dayService.days();
   }
   
   submitButtonState() {
