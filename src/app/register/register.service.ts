@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { RootApiUrl } from "./../model/Constants";
-import { Registration} from "./../model/Registration"
-import { User} from "./../model/User"
+import { RootApiUrl } from './../model/Constants';
+import { Registration} from './../model/Registration';
+import { User} from './../model/User';
 
 @Injectable()
 export class RegistrationService {
