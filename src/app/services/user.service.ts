@@ -9,7 +9,7 @@ export class UserService {
   constructor(private _http: Http) { }
 
   getUser(id) {    
-    return this._http.get(RootApiUrl + '/users')
+    return this._http.get(RootApiUrl + '/users/' + id)
       .map((response: Response) => <User>response.json())
       //.do(data => console.log(data))
       .catch(this.handleError);

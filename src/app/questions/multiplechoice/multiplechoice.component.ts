@@ -1,18 +1,16 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from '@angular/core';
 import {MultipleChoiceQuestion} from './../../model/question/MultipleChoiceQuestion';
-import {MCQuestionDirective} from './../../directives/MCQuestionDirective';
  
 @Component({ 
     selector: 'multipleChoice', 
-    template: [require('./multipleChoice.html')],
-    styles: [require('./multipleChoice.css')],
-    directives: [MCQuestionDirective]
+    template: require('./multipleChoice.html'),
+    styles: [require('./multipleChoice.css')]
 })
 export class MultipleChoiceComponent {
+    @Input() model : MultipleChoiceQuestion;
     
     constructor() {
         
-    }
+    }    
     
-    //TODO:  get and set data from MCQuestionDirective question attribute
 }

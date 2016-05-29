@@ -25,7 +25,7 @@ import {AuthService} from './services/auth.service';
 export class App {
   url = 'http://www.commongroundinternational.com';
   currentYear = new Date().getFullYear();
-  constructor(private authService: AuthService) {
+  constructor(private _authService: AuthService) {
     
   }
 }
