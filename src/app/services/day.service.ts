@@ -1,5 +1,7 @@
 import {Day} from './../model/Day';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class DayService {
     
     constructor() {}

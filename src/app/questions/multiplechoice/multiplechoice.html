@@ -1,0 +1,10 @@
+<div class="mcFrame">
+    <div class="mcTitle">
+        {{question}}
+    </div>
+    <div *nfFor="#c in choices" class="mc">
+        <p>
+        <input type="radio" name="question" [(ngModel)]="c.selected" /> {{c.text}}
+        </p>
+    </div>
+</div>

@@ -1,5 +1,7 @@
 import {CountryCode} from './../model/CountryCode';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class CountryCodeService {
     constructor() {}
     
@@ -18,6 +20,17 @@ export class CountryCodeService {
     
     countryCodes() {
         var list: CountryCode[] = []; 
+        //First add the good ones
+        list.push({
+            code: '1',
+            name: 'USA (+1)'
+        });
+        list.push({
+            code: '44',
+            name: 'UK (+44)'
+        });
+        
+        //Then the rest
         list.push({ code: '213',name: 'Algeria (+213)'});
         list.push({ code: '376',name: 'Andorra (+376)'});
         list.push({ code: '244',name: 'Angola (+244)'});

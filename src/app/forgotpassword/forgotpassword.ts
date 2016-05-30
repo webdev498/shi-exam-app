@@ -1,12 +1,17 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
+import {UserInfoKey} from './../model/Constants';
 
 @Component({
-  selector: 'forgotpassword', 
-  providers: [],
-  pipes: [],
+  selector: 'forgotpassword',
   styles: [ require('./forgotpassword.css') ],
   template: require('./forgotpassword.html')
 })
-export class ForgotPassword {
+export class ForgotPasswordComponent {
+    emailAdress: string;
+    
     constructor() {}
+    
+    submit() {
+      
+    }
 }

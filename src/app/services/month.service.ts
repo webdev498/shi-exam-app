@@ -1,5 +1,7 @@
-import {Month} from './../model/Month';
+import { Month } from './../model/Month';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class MonthService {
     
     constructor() {

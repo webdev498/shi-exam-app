@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import { UserInfoKey } from "./../model/Constants";
 import { User } from "./../model/User"
 

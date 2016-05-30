@@ -1,36 +1,31 @@
-/*
- * Angular 2 decorators and services
- */
-import {Component} from 'angular2/core';
-import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {FORM_PROVIDERS} from 'angular2/common';
+import {Component} from '@angular/core';
+import {Routes, Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {FORM_PROVIDERS} from '@angular/common';
 
-import {RouterActive} from './directives/router-active';
 import {Home} from './home/home';
-import {Login} from './login/login';
-import {Register} from './register/register';
+import {LoginComponent} from './login/login';
+import {RegisterComponent} from './register/register';
+import {ForgotPasswordComponent} from './forgotpassword/forgotpassword';
 
-/*
- * App Component
- * Top Level Component
- */
+import {AuthService} from './services/auth.service';
+
 @Component({
   selector: 'app',
-  providers: [ ...FORM_PROVIDERS ],
-  directives: [ ...ROUTER_DIRECTIVES, RouterActive ],
+  providers: [ ...FORM_PROVIDERS, AuthService ],
+  directives: [ ...ROUTER_DIRECTIVES ],
   pipes: [],
   template: require('./app.html')
 })
-@RouteConfig([
-  { path: '/', component: Home, name: 'Index' },
-  { path: '/login/...', component: Login, name: 'Login'},
-  { path: '/register/...', component: Register, name: 'Register'},
-  { path: '/**', redirectTo: ['Index'] }
+@Routes([
+  { path: '/', component: Home},
+  { path: '/login', component: LoginComponent},
+  { path: '/register', component: RegisterComponent},
+  { path: '/forgotpassword', component: ForgotPasswordComponent}
 ])
 export class App {
   url = 'http://www.commongroundinternational.com';
   currentYear = new Date().getFullYear();
-  constructor() {
-
+  constructor(private _authService: AuthService) {
+    
   }
 }
