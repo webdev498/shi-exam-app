@@ -3,12 +3,14 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" [routerLink]=" ['Index'] ">
-        CGI Sweet Logo
+        <img src="https://commongroundinternational.com/wp-content/uploads/2014/07/cgi-logo.jpg"
+        height="35px" />
       </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="router-active"><a [routerLink]=" ['Index'] ">Index</a></li>
+        <li class="router-active"><a [routerLink]=" ['/login'] ">Login</a></li>
+        <li class="router-active"><a [routerLink]=" ['/register'] ">Registration</a></li>
      </ul>
 
     </div>
