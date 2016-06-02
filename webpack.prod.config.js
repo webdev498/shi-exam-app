@@ -99,6 +99,12 @@ module.exports = {
         loader: 'raw-loader',
         exclude: [ helpers.root('node_modules') ]
       },
+      
+      // Support for LESS
+      {
+         test: /\.less$/,
+         loader: 'style!css!less'
+      },
 
       // support for .html as raw text
       {

@@ -5,7 +5,7 @@ import {FORM_PROVIDERS} from '@angular/common';
 import {Home} from './home/home';
 import {LoginComponent} from './login/login';
 import {RegisterComponent} from './register/register';
-import {ForgotPasswordComponent} from './forgotpassword/forgotpassword';
+import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 
 import {AuthService} from './services/auth.service';
 
