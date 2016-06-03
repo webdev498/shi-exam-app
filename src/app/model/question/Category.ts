@@ -1,6 +1,6 @@
 import { ChoiceInterface } from './../interface/Choice.interface';
 
-export class Choice implements ChoiceInterface {
+export class Category implements ChoiceInterface {
     constructor(public text: string,
                 public id: string) {}
                 

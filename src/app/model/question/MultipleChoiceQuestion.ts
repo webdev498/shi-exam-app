@@ -1,7 +1,8 @@
 import {Choice} from './Choice';
+import {Question} from './Question';
 
 export class MultipleChoiceQuestion {
-    constructor(public question: string,
+    constructor(public question: Question,
                 public choices: Choice[]) {}
                 
 }
