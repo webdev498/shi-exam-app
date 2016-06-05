@@ -11,7 +11,9 @@ export class AuthService {
     
     loggedIn() {
         if (localStorage[UserTokenKey] !== null) {
-            //Check if it's expired
+            if (this.jwt.isTokenExpired(localStorage[UserTokenKey]))
+                return false;
+                
             return true;    
         }
         
