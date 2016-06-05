@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { RootApiUrl } from './../model/Constants';
-import { Registration} from './../model/Registration';
-import { User} from './../model/User';
+import { UserAccount } from './../model/dto/UserAccount';
+import { User } from './../model/User';
 
 @Injectable()
 export class RegistrationService {
   constructor(private _http: Http) { }
 
-  postRegistration(reg:Registration) {
+  postRegistration(ua:UserAccount) {
     var headers = new Headers();
     headers.append('Content-Type','application/json');
-    var newUser = JSON.stringify(reg);
+    var userObject = JSON.stringify(ua.getPayload());
     
-    return this._http.post(RootApiUrl + '/user',newUser, {
+    return this._http.post(RootApiUrl + '/user',userObject, {
       headers: headers
     })
       .map((response: Response) => <User>response.json())
