@@ -50,17 +50,17 @@
         <div class="form-inline">
           <div class="form-group">
             <select [(ngModel)]="ur.dobMonth" class="form-control" style="width: 100px" id="month">
-            <option *ngFor="let month of months" value= {{month.index}>
+            <option *ngFor="let month of months" value="{{month.index}}">
               {{month.name}}
             </option>
           </select>
             <select [(ngModel)]="ur.dobDay" class="form-control" style="width: 60px" id="dob">
-            <option *ngFor="let day of days" value= {{day.index}>
+            <option *ngFor="let day of days" value="{{day.index}}">
               {{day.name}}
             </option>
           </select>
             <select [(ngModel)]="ur.dobYear" class="form-control" style="width: 60px" id="dob">
-            <option *ngFor="let year of years" value= {{year}>
+            <option *ngFor="let year of years" value="{{year}}">
               {{year}}
             </option>
           </select>

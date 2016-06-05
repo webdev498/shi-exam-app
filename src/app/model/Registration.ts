@@ -6,9 +6,9 @@ export class Registration {
   public lastName: string = '';
   public email: string = '';
   public phone: string = '';
-  public dobMonth: string = '';
-  public dobDay: string = '';
-  public dobYear: string = '';
+  public dobMonth: number;
+  public dobDay: number;
+  public dobYear: number;
   public countryCode: string = '';
   public password: string = '';
   public passwordConfirmation: string = '';
