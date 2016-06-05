@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Registration} from './../model/Registration';
 import {MaskDirective} from './../directives/mask.directive';
 import {PasswordMinLength} from './../model/Constants';
@@ -23,11 +23,11 @@ import {Month} from './../model/Month';
   providers: [NationalityService, CountryCodeService, DayService,
     MonthService, YearService, StateService, RegistrationService],
 
-  styles: [ require('./register.css') ],
+  styles: [ require('./register.less') ],
 
   template: require('./register.html')
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   // Set our default values
   validationMessage: string;
   ur: Registration;
@@ -36,6 +36,7 @@ export class RegisterComponent {
   states: string[];
   months: Month[];
   days: Day[];
+  updatePasswordEnabled: boolean = true;
 
   // TypeScript public modifiers
   constructor(private nationalityService: NationalityService,
