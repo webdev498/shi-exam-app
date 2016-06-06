@@ -1,9 +1,12 @@
 import {Question} from './Question';
 import {ChoiceTerm} from './ChoiceTerm';
+import {QuestionInterface} from './../interface/Question.interface';
 
-export class MatchingQuestion {
-    constructor(public question: Question,
-                public choices: ChoiceTerm[]) 
-                {}
+export class MatchingQuestion implements QuestionInterface{
+    public question: Question;
+    public choices: ChoiceTerm[];
+    public questionType: string;
+    
+    constructor() {}
     
 }
