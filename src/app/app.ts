@@ -3,8 +3,8 @@ import {Routes, Router, ROUTER_DIRECTIVES} from '@angular/router';
 import {FORM_PROVIDERS} from '@angular/common';
 
 import {Home} from './home/home';
-import {LoginComponent} from './login/login';
-import {RegisterComponent} from './register/register';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 
 import {AuthService} from './services/auth.service';

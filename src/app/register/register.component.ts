@@ -57,9 +57,7 @@ export class RegisterComponent implements OnInit {
   
   submitButtonState() {
       if (this.ur.firstName.length > 0
-          && this.ur.lastName.length > 0
-          && this.ur.email.length > 0
-          && this.ur.password.length >= PasswordMinLength)
+          && this.ur.lastName.length > 0)
           return false;
       else
         return true;

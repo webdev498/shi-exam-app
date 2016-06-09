@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="center">
+    <form role="form" style="max-width: 400px">
+      <div class="form-group">
+        <label for="rsEmail">Email Address</label>
+        <input type="email" [(ngModel)]="rs.email" 
+            class="form-control" placeholder="email address" id="rsEmail">
+      </div>
+      <div class="form-group">
+          <label for="rsPassword"><em>Password must be at least 8 characters long</em></label>
+        <input type="password" [(ngModel)]="rs.password" 
+            class="form-control" placeholder="password" id="rsPassword">
+      </div>
+      <div class="form-group">
+        <input type="password" [(ngModel)]="rs.passwordConfirmation" 
+            class="form-control" placeholder="password confirmation">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-sm btn-primary"
+        (click)="register()" 
+        [disabled]="submitButtonState()">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
