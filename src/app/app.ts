@@ -20,7 +20,7 @@ import {AuthService} from './services/auth.service';
 @Routes([
   { path: '/', component: HomeComponent},
   { path: '/login', component: LoginComponent},
-  { path: './registerstart', component: RegisterStartComponent}
+  { path: './registerstart', component: RegisterStartComponent},
   { path: '/register', component: RegisterComponent},
   { path: '/forgotpassword', component: ForgotPasswordComponent}
 ])
