@@ -15,7 +15,8 @@ import {AuthService} from './services/auth.service';
   providers: [ ...FORM_PROVIDERS, AuthService ],
   directives: [ ...ROUTER_DIRECTIVES ],
   pipes: [],
-  template: require('./app.html')
+  template: require('./app.html'),
+  styles: [ require('./app.less') ]
 })
 @Routes([
   { path: '/', component: HomeComponent},

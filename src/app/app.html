@@ -1,21 +1,18 @@
 <header>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="navbar navbar-default navbar-custom">
     <div class="navbar-header">
       <a class="navbar-brand" [routerLink]=" ['/'] ">
         <img src="https://commongroundinternational.com/wp-content/uploads/2014/07/cgi-logo.jpg"
         height="35px" />
       </a>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="router-active"><a [routerLink]=" ['/login'] ">Login</a></li>
-        <li class="router-active"><a [routerLink]=" ['/register'] ">Registration</a></li>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-link"><a [routerLink]=" ['/login'] ">Login</a></li>
+        <li class="nav-link"><a [routerLink]=" ['/register'] ">Registration</a></li>
      </ul>
 
     </div>
-    
-  </div>
 </nav>
 </header>
 <div class="container">
@@ -24,11 +21,3 @@
       <router-outlet></router-outlet>
     </main>
 </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">
-      &#169; <span [innerText]="currentYear"></span> <a [href]="url">Common Ground International Inc.</a>
-      </p>
-        </div>
-    </footer>
