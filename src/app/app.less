@@ -17,6 +17,23 @@
 @app-font-size-medium: 18pt;
 @app-font-size-large: 24pt;
 
+body
+{
+    font-family: @app-font-small;    
+}
+
+h3 
+{
+    font-family: @app-font-medium-large;
+    color: @app-dark-gray;        
+}
+
+h5 
+{
+    font-family: @app-font-size-small;
+    color: @app-dark-gray;        
+}
+
 .nav-link a {color: white;
         &hover {text-decoration: underline}
         }
@@ -28,5 +45,14 @@
 }
 
 .row {margin-top: 5px}
-.autocenter {margin-left: auto; margin-right: auto}
+.autocenter {margin: 0 auto;
+    width:80% }
 .center {text-align: center}
+
+.cgiLogo {height: 55px; margin-top: -18px}
+
+.socialButton {
+    .imgLink;
+    height: 50px
+}
+.imgLink {cursor: pointer}

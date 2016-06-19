@@ -17,7 +17,7 @@ import {User} from './../model/User';
     ...ROUTER_DIRECTIVES
   ],
   pipes: [ ],
-  styles: [ require('./login.less') ] ,
+  styles: [ require('./login.less'), require('./../app.less') ] ,
   template: require('./login.html')
 })
 export class LoginComponent implements OnInit {

@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
   styles: [ require('./examstart.less') ],
   template: require('./examstart.html')
 })
-export class ExamStart {
+export class ExamStartComponent {
     
     constructor() {}
     

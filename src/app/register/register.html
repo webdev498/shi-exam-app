@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="autocenter">
+    <div class="col-md-4 col-md-offset-4">
     <form role="form" style="max-width: 400px">
       <div class="form-group">
         <label for="firstName">First Name *</label>
@@ -33,8 +33,8 @@
         <div class="form-inline">
           <div class="form-group">
             <input type="text" [(ngModel)]="ur.address.city" class="form-control" style="width: 100px" placeholder="city">
-            <select class="form-control" [(ngModel)]="ur.address.city" style="width: 40px">
-      <option *ngFor="let state of states" value= {{state}>
+            <select class="form-control" [(ngModel)]="ur.address.state" style="width: 40px">
+      <option *ngFor="let state of states" value="{{state}}">
         {{state}}
       </option>
       </select>

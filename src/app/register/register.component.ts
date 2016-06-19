@@ -23,7 +23,7 @@ import {Month} from './../model/Month';
   providers: [NationalityService, CountryCodeService, DayService,
     MonthService, YearService, StateService, RegistrationService],
 
-  styles: [ require('./register.less') ],
+  styles: [ require('./register.less'), require('./../app.less') ],
 
   template: require('./register.html')
 })
