@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {NgModel} from '@angular/common';
+
 import {Registration} from './../model/Registration';
 import {MaskDirective} from './../directives/mask.directive';
 import {PasswordMinLength} from './../model/Constants';
