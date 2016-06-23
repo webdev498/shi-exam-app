@@ -1,1 +1,26 @@
 @import '../app.less';
+
+.examIconBackground {
+    background-image: url('../assets/img/examcircleicon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: table;
+    width: 240px;
+    height: 240px;
+    }
+
+.quickexam {.examIconBackground; }
+.normalexam {.examIconBackground; }
+.longexam {.examIconBackground; }
+
+.centerAlign {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.examIcon img {
+    height: 180px;
+    width: 180px;
+    cursor: pointer;
+}

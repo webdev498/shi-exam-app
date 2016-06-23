@@ -18,16 +18,17 @@
     <form role="form" style="max-width: 400px">
       <div class="form-group">
         <label for="rsEmail">Email Address</label>
-        <input type="email" [(ngModel)]="rs.email" 
+        <input type="email" [(ngModel)]="rs.email" name="email"
             class="form-control" placeholder="email address" id="rsEmail">
       </div>
       <div class="form-group">
           <label for="rsPassword"><em>Password must be at least 8 characters long</em></label>
-        <input type="password" [(ngModel)]="rs.password" 
+        <input type="password" [(ngModel)]="rs.password" name="password"
             class="form-control" placeholder="password" id="rsPassword">
       </div>
       <div class="form-group">
         <input type="password" [(ngModel)]="rs.passwordConfirmation" 
+            name="passwordConfirmation"
             class="form-control" placeholder="password confirmation">
       </div>
       <div class="form-group">
