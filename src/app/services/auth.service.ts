@@ -10,7 +10,7 @@ export class AuthService {
     constructor() {}
     
     loggedIn() {
-        if (localStorage[UserTokenKey] !== null) {
+        if (localStorage[UserTokenKey] != null) {
             if (this.jwt.isTokenExpired(localStorage[UserTokenKey]))
                 return false;
                 
@@ -29,6 +29,10 @@ export class AuthService {
     }
     
     tokenUserInfo() {
+        if (localStorage[UserTokenKey] != null) {
         return <User>this.jwt.decodeToken(JSON.parse(localStorage[UserTokenKey]));
+        } else {
+            return null;
+        }
     }
 }

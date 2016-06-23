@@ -4,6 +4,8 @@ import {RegistrationStartInfo} from './../model/Constants';
 import {RegistrationService} from './register.service';
 import {RegistrationStart} from './../model/RegistrationStart';
 
+import {Router} from '@angular/router';
+
 @Component({
   directives: [
   ],
@@ -15,7 +17,8 @@ export class RegisterStartComponent implements OnInit {
   validationMessage: string;
   rs: RegistrationStart;
 
-  constructor(private regService: RegistrationService) {
+  constructor(private _regService: RegistrationService,
+                private _router: Router) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
   }
@@ -36,6 +39,7 @@ export class RegisterStartComponent implements OnInit {
       //Set data for usage later
       sessionStorage.setItem(RegistrationStartInfo, JSON.stringify(this.rs));
       //Redirect to register.component
+      this._router.navigateByUrl('register');
   }
   
   ngOnInit() {
