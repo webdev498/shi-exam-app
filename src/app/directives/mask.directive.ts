@@ -1,5 +1,5 @@
 import {Directive, Attribute, ElementRef, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
-import {NgModel} from '@angular/common';
+import { NgModel } from '@angular/common';
 
 @Directive({
     selector: '[mask-input]',

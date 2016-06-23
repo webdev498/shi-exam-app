@@ -1,4 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {NgModel} from '@angular/common';
+
 import {Registration} from './../model/Registration';
 import {MaskDirective} from './../directives/mask.directive';
 import {PasswordMinLength} from './../model/Constants';
@@ -23,11 +26,11 @@ import {Month} from './../model/Month';
   providers: [NationalityService, CountryCodeService, DayService,
     MonthService, YearService, StateService, RegistrationService],
 
-  styles: [ require('./register.css') ],
+  styles: [ require('./register.less'), require('./../app.less') ],
 
   template: require('./register.html')
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   // Set our default values
   validationMessage: string;
   ur: Registration;
@@ -36,6 +39,7 @@ export class RegisterComponent {
   states: string[];
   months: Month[];
   days: Day[];
+  updatePasswordEnabled: boolean = true;
 
   // TypeScript public modifiers
   constructor(private nationalityService: NationalityService,
@@ -56,9 +60,7 @@ export class RegisterComponent {
   
   submitButtonState() {
       if (this.ur.firstName.length > 0
-          && this.ur.lastName.length > 0
-          && this.ur.email.length > 0
-          && this.ur.password.length >= PasswordMinLength)
+          && this.ur.lastName.length > 0)
           return false;
       else
         return true;
