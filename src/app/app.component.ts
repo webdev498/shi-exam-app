@@ -2,7 +2,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
 
 import {AuthService} from './services/auth.service';
 import {AppState} from './app.service';
-import {User} from './model/user';
 
 @Component({
   selector: 'app',
