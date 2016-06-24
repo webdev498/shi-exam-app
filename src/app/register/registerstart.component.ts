@@ -5,6 +5,7 @@ import {RegistrationService} from './register.service';
 import {RegistrationStart} from './../model/RegistrationStart';
 
 import {Router} from '@angular/router';
+import {NgForm, Validators} from '@angular/forms';
 
 @Component({
   directives: [
@@ -21,6 +22,14 @@ export class RegisterStartComponent implements OnInit {
                 private _router: Router) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
+  }
+
+  facebook() {
+
+  }
+
+  google() {
+
   }
   
   submitButtonState() {

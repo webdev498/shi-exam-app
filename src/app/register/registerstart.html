@@ -1,21 +1,33 @@
 <div class="container-fluid">
   <div class="autocenter">
-      <div>
-        <h3>Register for an account</h3>
+      <div style="margin-bottom: 18px">
+        <h2>Register for an account</h2>
       </div>
       <div>
         <span>Register with one of the following providers</span>
         <div>
-            
-        </div>    
+                <img src="../assets/img/facebook.png" 
+                    (click)="facebook()" 
+                    class="socialButton"
+                    alt="facebook authentication" 
+                    title="facebook authentication" />
+                    
+                <img src="../assets/img/google.png" 
+                    (click)="google()" 
+                    class="socialButton"
+                    alt="google authentication" 
+                    title="google authentication" />
+          
       </div>
-      <p class="center">
+      <div style="margin-top: 12px; margin-bottom: 17px">
+      <p>
         OR    
       </p>
-      <p class="center">
+      <p>
         Create your own CGI account    
       </p>
-    <form role="form" style="max-width: 400px">
+      </div>
+    <form #f="ngForm" role="form" style="max-width: 400px">
       <div class="form-group">
         <label for="rsEmail">Email Address</label>
         <input type="email" [(ngModel)]="rs.email" name="email"
