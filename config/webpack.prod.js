@@ -181,7 +181,7 @@ module.exports = webpackMerge(commonConfig, {
      * See: http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin
      */
 
-    // new IgnorePlugin(/angular2-hmr/),
+    new IgnorePlugin(/angular2-hmr/),
 
     /**
      * Plugin: CompressionPlugin
