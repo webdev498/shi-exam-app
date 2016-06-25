@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 
 import {AuthService} from './services/auth.service';
-import { AppState } from './app.service';
+import {AppState} from './app.service';
 
 @Component({
   selector: 'app',
@@ -19,4 +19,14 @@ export class App {
               public appState: AppState) {
     
   }
+
+  loggedIn() {
+    return this._authService.loggedIn();
+  }
+
+    loggedInUser() {
+      var user = this._authService.tokenUserInfo();
+      if (user !== null)
+        return user.firstName + ' ' + user.lastName;
+    }
 }

@@ -11,11 +11,11 @@ import { User } from "./../model/User"
 
   pipes: [ ],
 
-  styles: [ require('./account.css') ],
+  styles: [ require('./account.less'), require('./../app.less') ],
 
   template: require('./account.html')
 })
-export class Account {
+export class AccountComponent {
   // Set our default values
   firstName: string;
   lastName: string;

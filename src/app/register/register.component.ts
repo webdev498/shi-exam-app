@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
-import {NgModel} from '@angular/common';
+import {NgForm} from '@angular/common';
 
 import {Registration} from './../model/Registration';
 import {MaskDirective} from './../directives/mask.directive';
@@ -12,6 +12,7 @@ import {DayService} from './../services/day.service';
 import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
 import {RegistrationService} from './register.service';
+
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
 import {Month} from './../model/Month';
@@ -20,11 +21,14 @@ import {Month} from './../model/Month';
   selector: 'register', 
 
   directives: [
-    MaskDirective
+    MaskDirective,
+    ...ROUTER_DIRECTIVES
   ],
 
-  providers: [NationalityService, CountryCodeService, DayService,
-    MonthService, YearService, StateService, RegistrationService],
+  providers: [
+    NationalityService, CountryCodeService, DayService,
+    MonthService, YearService, StateService, RegistrationService
+    ],
 
   styles: [ require('./register.less'), require('./../app.less') ],
 
@@ -42,20 +46,20 @@ export class RegisterComponent implements OnInit {
   updatePasswordEnabled: boolean = true;
 
   // TypeScript public modifiers
-  constructor(private nationalityService: NationalityService,
-              private countryCodeService: CountryCodeService,
-              private dayService: DayService,
-              private monthService: MonthService,
-              private yearService: YearService,
-              private stateService: StateService,
-              private regService: RegistrationService) {
+  constructor(private _nationalityService: NationalityService,
+              private _countryCodeService: CountryCodeService,
+              private _dayService: DayService,
+              private _monthService: MonthService,
+              private _yearService: YearService,
+              private _stateService: StateService,
+              private _regService: RegistrationService) {
       this.validationMessage = '';
       this.ur = new Registration();
-      this.countryCodes = countryCodeService.countryCodes();
-      this.years = yearService.years();
-      this.months = monthService.months();
-      this.days = dayService.days();
-      this.states = stateService.states();
+      this.countryCodes = _countryCodeService.countryCodes();
+      this.years = _yearService.years();
+      this.months = _monthService.months();
+      this.days = _dayService.days();
+      this.states = _stateService.states();
   }
   
   submitButtonState() {

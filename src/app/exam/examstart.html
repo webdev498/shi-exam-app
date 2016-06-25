@@ -1,11 +1,59 @@
-<div class="row">
-    <div class="col-xs-4 col-md-4">
-        
-    </div>  
-    <div class="col-xs-4 col-md-4">
-        
-    </div>   
-    <div class="col-xs-4 col-md-4">
-        
-    </div>     
+<div class="container-fluid">
+    <div class="row">
+        <div class="autocenter" style="width: 60%">
+            <h2 style="margin-bottom: 25px">Test your medical Spanish terminology skills</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="quickexam">
+                <div class="centerAlign examIcon">
+                    <img src="../assets/img/quickexamicon.png" alt="Quick Exam" title="Quick Exam"
+                    (click)="quickTest()" />
+                </div>
+            </div>
+        </div>  
+        <div class="col-xs-4">
+            <div class="normalexam">
+                <div class="centerAlign examIcon">
+                    <img src="../assets/img/normalexamicon.png" alt="Normal Exam" title="Normal Exam"
+                    (click)="normalTest()"  />
+                </div>
+            </div>
+        </div>   
+        <div class="col-xs-4">
+            <div class="longexam">
+                <div class="centerAlign examIcon">
+                    <img src="../assets/img/longexamicon.png" alt="Long Exam" title="Long Exam" 
+                    (click)="longTest()" />
+                </div> 
+            </div>
+        </div>     
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="examtextCenter">
+                <span class="greenText fontSizeSmall">Quick Test</span>
+            </div>
+            <div class="examtextCenter">
+                <span class="mainGrayText">20 Questions = 5 minutes</span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="examtextCenter">
+                <span class="greenText fontSizeSmall">Normal Test</span>
+            </div>
+            <div class="examtextCenter">
+                <span class="mainGrayText">50 Questions = 15 minutes</span>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="examtextCenter">
+                <span class="greenText fontSizeSmall">Long Test</span>
+            </div>
+            <div class="examtextCenter">
+                <span class="mainGrayText">100 Questions = 30 minutes</span>
+            </div>
+        </div>
+    </div>
 </div>

@@ -28,11 +28,27 @@ h3
     color: @app-dark-gray;        
 }
 
+h2
+{
+    font-family: @app-font-medium-large;
+    font-size: @app-font-size-large;
+    color: @app-dark-gray;        
+}
+
 h5 
 {
     font-family: @app-font-size-small;
     color: @app-dark-gray;        
 }
+
+//text colors
+.greenText {color: @app-green;}
+.lightBlueText {color: @app-light-blue;}
+.tealBlueText {color: @app-teal-blue;}
+.mainGrayText {color: @app-main-gray;}
+
+//text size
+.fontSizeSmall {font-size: @app-font-size-small;}
 
 .nav-link a {color: white;
         &hover {text-decoration: underline}
@@ -56,3 +72,12 @@ h5
     height: 50px
 }
 .imgLink {cursor: pointer}
+
+//Validation
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}

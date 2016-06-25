@@ -4,6 +4,9 @@ import {RegistrationStartInfo} from './../model/Constants';
 import {RegistrationService} from './register.service';
 import {RegistrationStart} from './../model/RegistrationStart';
 
+import {Router} from '@angular/router';
+import {NgForm, Validators} from '@angular/forms';
+
 @Component({
   directives: [
   ],
@@ -15,9 +18,18 @@ export class RegisterStartComponent implements OnInit {
   validationMessage: string;
   rs: RegistrationStart;
 
-  constructor(private regService: RegistrationService) {
+  constructor(private _regService: RegistrationService,
+                private _router: Router) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
+  }
+
+  facebook() {
+
+  }
+
+  google() {
+
   }
   
   submitButtonState() {
@@ -36,6 +48,7 @@ export class RegisterStartComponent implements OnInit {
       //Set data for usage later
       sessionStorage.setItem(RegistrationStartInfo, JSON.stringify(this.rs));
       //Redirect to register.component
+      this._router.navigateByUrl('register');
   }
   
   ngOnInit() {

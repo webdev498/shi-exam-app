@@ -1,5 +1,6 @@
 import {Directive, Attribute, ElementRef, OnInit, OnChanges, Input, SimpleChange } from '@angular/core';
 import { NgModel } from '@angular/common';
+//import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 
 @Directive({
     selector: '[mask-input]',
