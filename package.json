@@ -87,7 +87,7 @@
     "angular2-jwt": "^0.1.16"
   },
   "devDependencies": {
-    "angular2-hmr": "~0.8.0",
+    "angular2-hmr": "~0.7.0",
     "gh-pages": "^0.11.0",
     "parse5": "^1.5.1",
     "rimraf": "^2.5.2",
