@@ -9,6 +9,7 @@ import {ExamStartComponent} from './exam/examstart.component';
 import {AccountComponent} from './account/account.component';
 
 export const routes: RouterConfig =[
+  { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registerstart', component: RegisterStartComponent},
