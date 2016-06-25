@@ -21,8 +21,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
  * Webpack Constants
  */
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-const HOST = process.env.HOST || 'http://cgisheexam.s3-website-us-east-1.amazonaws.com';
-const PORT = process.env.PORT || '';
+const HOST = process.env.HOST || 'http://localhost';
+const PORT = process.env.PORT || '8080';
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: HOST,
   port: PORT,
@@ -171,7 +171,7 @@ module.exports = webpackMerge(commonConfig, {
 
     new NormalModuleReplacementPlugin(
       /angular2-hmr/,
-      helpers.root('node_modules/angular2-hmr/prod.js')
+      helpers.root('config/angular2-hmr/prod.js')
     ),
 
     /**
