@@ -52,10 +52,11 @@ export class RegisterStartComponent implements OnInit {
             this.emailValid = false;
             this.validationMessage = 'Email address is invalid';
           }
-      } else {
-          this.emailValid = true;
-          this.validationMessage = '';
-      }
+          else {
+            this.emailValid = true;
+            this.validationMessage = '';
+         } 
+      } 
   }
   
   register() {
