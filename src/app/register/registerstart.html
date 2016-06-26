@@ -31,7 +31,9 @@
       <div class="form-group">
         <label for="rsEmail">Email Address</label>
         <input type="email" [(ngModel)]="rs.email" name="email"
+            (blur)="emailValidation()"
             class="form-control" placeholder="email address" id="rsEmail">
+        <div *ngIf="validationMessage != ''" class="errorMessage">{{validationMessage}}</div>    
       </div>
       <div class="form-group">
           <label for="rsPassword"><em>Password must be at least 8 characters long</em></label>
