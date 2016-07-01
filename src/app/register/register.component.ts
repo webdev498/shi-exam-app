@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
   years: string[];
   states: string[];
   months: Month[];
+  nationalities: any[];
   days: Day[];
   updatePasswordEnabled: boolean = true;
 
@@ -100,7 +101,7 @@ export class RegisterComponent implements OnInit {
   }
 
   _handleNationalityResponse(response) {
-    console.log(response);
+    this.nationalities = response;
   }
   
   ngOnInit() {

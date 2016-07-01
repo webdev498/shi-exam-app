@@ -3,6 +3,7 @@
 // rc2 workaround
 import { enableDebugTools, disableDebugTools } from '@angular/platform-browser';
 import { enableProdMode } from '@angular/core';
+import {RootApiUrl} from './..//app/model/Constants';
 // Environment Providers
 let PROVIDERS = [
   // common env directives
