@@ -1,38 +1,41 @@
 import {Component} from '@angular/core';
-import { UserInfoKey } from "./../model/Constants";
-import { User } from "./../model/User"
+import { UserInfoKey } from './../model/Constants';
+import { User } from './../model/User';
+import { Registration } from './../model/Registration';
 
 @Component({
   selector: 'account', 
-
   providers: [
     
   ],
-
   pipes: [ ],
-
   styles: [ require('./account.less'), require('./../app.less') ],
-
   template: require('./account.html')
 })
 export class AccountComponent {
-  // Set our default values
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-  user: User;
-  // TypeScript public modifiers
+  registration: Registration;
+  updatePassword: boolean = false;
+  validationMessage: string = '';
+
   constructor() {
+
+  }
+
+  submitButtonState() {
+    if (this.registration.email.length > 0 &&
+        this.registration.firstName.length > 0 &&
+        this.registration.lastName.length > 0) {
+          return true;
+        }
+  }
+
+  submitAccount() {
 
   }
   
   ngOnInit() {
-      this.user = <User>JSON.parse(localStorage[UserInfoKey]);
-      this.firstName = this.user.firstName;
-      this.lastName = this.user.lastName;
-      this.email = this.user.email;
+      let user = <User>JSON.parse(localStorage[UserInfoKey]);
+      this.registration = user.getRegistration();
   }
 
 }

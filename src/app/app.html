@@ -11,7 +11,10 @@
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!loggedIn()" class="nav-link"><a [routerLink]=" ['login'] ">Login</a></li>
         <li *ngIf="!loggedIn()" class="nav-link"><a [routerLink]=" ['registerstart'] ">Sign Up</a></li>
-        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['account'] ">{{loggedInUser()}}</a>
+        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['account'] ">
+              <i class="fa fa-user" aria-hidden="true"></i> {{loggedInUser()}}
+          </a>
+        </li>
      </ul>
 
     </div>
