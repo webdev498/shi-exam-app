@@ -1,4 +1,6 @@
 import {UserRegistration} from './UserRegistration';
+import {Registration} from './../Registration';
+import {Telephone} from './../Telephone';
 var _ = require('lodash');
 
 export class UserAccount extends UserRegistration{    
@@ -6,9 +8,42 @@ export class UserAccount extends UserRegistration{
     
     constructor() {
         super();
+
+        this.addresses = new Array();
+        this.telephones = new Array();
+    }
+
+    setPayload(registration: Registration):this {
+
+        if (registration.dobYear != null && 
+            registration.dobDay != null &&
+            registration.dobDay != null) {
+            this.dateOfBirth = new Date(registration.dobYear + '/' + registration.dobMonth+
+                '/' + registration.dobDay).toString();
+        }
+
+        this.email = registration.email;
+        this.gender = registration.gender;
+        this.firstName = registration.firstName;
+        this.lastName = registration.lastName;
+        this.password = registration.password;
+        this.passwordConfirmation = registration.passwordConfirmation;
+        this.addresses.push(registration.address);
+        
+        let areaCode = null;
+        let phNumber = null;
+        if (registration.phone.length == 10) {
+            areaCode = registration.phone.substring(0,3);
+            phNumber = registration.password.substring(3,10);
+        }
+
+        let phone = new Telephone(registration.countryCode,areaCode,phNumber,null);
+        this.telephones.push(phone);
+        this.nationalityId = registration.nationality;
+        return this;
     }
     
-    getPayload() {
+    getPayload():any {
         var payload = _.cloneDeep(this);
         
         if (payload.password == null || payload.password.length == 0) {
@@ -18,6 +53,21 @@ export class UserAccount extends UserRegistration{
         
         if (payload.id == null || payload.id.length == 0)
             delete payload.id;
+
+        if (payload.gender == '')
+            delete payload.gender;
+
+        if (payload.nationalityId == '')
+            delete payload.nationalityId;
+
+        if (payload.dateOfBirth == null)
+            delete payload.dateOfBirth;
+
+        if (payload.telelphones.length == 0)
+            delete payload.telephones;
+
+        if (payload.addresses.length == 0)
+            delete payload.addresses;
         
         return payload;
     }

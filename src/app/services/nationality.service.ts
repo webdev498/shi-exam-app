@@ -11,7 +11,6 @@ export class NationalityService {
   getNationalities() {    
     return this._http.get(RootApiUrl + '/nationalities')
       .map((response: Response) => <Nationality>response.json())
-      .do(data => console.log(data))
       .catch(this.handleError);
   }
 
