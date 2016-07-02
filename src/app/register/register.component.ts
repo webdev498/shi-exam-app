@@ -20,6 +20,7 @@ import {AuthService} from './../services/auth.service';
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
 import {Month} from './../model/Month';
+import {Address} from './../model/Address';
 
 @Component({
   selector: 'register', 
@@ -62,6 +63,7 @@ export class RegisterComponent implements OnInit {
               private _authService: AuthService) {
       this.validationMessage = '';
       this.ur = new Registration();
+      this.ur.address = new Address();
       this.countryCodes = _countryCodeService.countryCodes();
       this.years = _yearService.years();
       this.months = _monthService.months();
@@ -106,7 +108,10 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
     if (sessionStorage[RegistrationStartInfo] != null) {
-      this.ur = <Registration>JSON.parse(sessionStorage.getItem(RegistrationStartInfo));
+      const startInfo = <RegistrationStart>JSON.parse(sessionStorage.getItem(RegistrationStartInfo));
+      this.ur.email = startInfo.email;
+      this.ur.password = startInfo.password;
+      this.ur.passwordConfirmation = startInfo.passwordConfirmation;
       
       this._nationalityService.getNationalities()
         .subscribe(

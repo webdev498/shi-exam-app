@@ -15,14 +15,12 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
  * Webpack Constants
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const API_HOST = process.env.API_HOST || 'http://cgi-she-server-d412b26a.6f78d14c.svc.dockerapp.io:8001';
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: 'localhost',
   port: 3001,
   ENV: ENV,
-  HMR: HMR,
-  API_HOST: API_HOST
+  HMR: HMR
 });
 
 /**
