@@ -9,16 +9,15 @@ import { User } from './../model/User';
 export class RegistrationService {
   constructor(private _http: Http) { }
 
-  postRegistration(ua:UserAccount) {
+  postRegistration(ua:any) {
     var headers = new Headers();
     headers.append('Content-Type','application/json');
-    var userObject = JSON.stringify(ua.getPayload());
+    var userObject = JSON.stringify(ua);
     
     return this._http.post(RootApiUrl + '/user',userObject, {
       headers: headers
     })
       .map((response: Response) => <User>response.json())
-      .do(data => console.log(data))
       .catch(this.handleError);
   }
 

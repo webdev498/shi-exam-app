@@ -22,6 +22,8 @@ import {Day} from './../model/Day';
 import {Month} from './../model/Month';
 import {Address} from './../model/Address';
 
+var _ = require('lodash');
+
 @Component({
   selector: 'register', 
 
@@ -104,6 +106,8 @@ export class RegisterComponent implements OnInit {
 
   _handleNationalityResponse(response) {
     this.nationalities = response;
+    let american = _.find(this.nationalities, function(o) { return o.name === 'American'; });
+    this.ur.nationality = american.id;
   }
   
   ngOnInit() {
