@@ -63,7 +63,7 @@ export class UserAccount extends UserRegistration{
         if (payload.dateOfBirth == null)
             delete payload.dateOfBirth;
 
-        if (payload.telelphones.length == 0)
+        if (payload.telephones.length == 0)
             delete payload.telephones;
 
         if (payload.addresses.length == 0)
