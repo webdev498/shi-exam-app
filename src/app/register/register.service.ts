@@ -14,7 +14,7 @@ export class RegistrationService {
     headers.append('Content-Type','application/json');
     var userObject = JSON.stringify(ua);
     
-    return this._http.post(RootApiUrl + '/user',userObject, {
+    return this._http.post(RootApiUrl + '/users',userObject, {
       headers: headers
     })
       .map((response: Response) => <User>response.json())
