@@ -16,6 +16,7 @@ import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
 import {RegistrationService} from './register.service';
 import {AuthService} from './../services/auth.service';
+import {EventService} from './../services/event.service';
 
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
@@ -52,6 +53,7 @@ export class RegisterComponent implements OnInit {
   nationalities: any[];
   days: Day[];
   updatePasswordEnabled: boolean = true;
+  showSuccess: boolean = false;
 
   // TypeScript public modifiers
   constructor(private _nationalityService: NationalityService,
@@ -62,7 +64,8 @@ export class RegisterComponent implements OnInit {
               private _stateService: StateService,
               private _regService: RegistrationService,
               private _router: Router,
-              private _authService: AuthService) {
+              private _authService: AuthService,
+              private _eventService: EventService) {
       this.validationMessage = '';
       this.ur = new Registration();
       this.ur.address = new Address();
@@ -94,13 +97,14 @@ export class RegisterComponent implements OnInit {
 
   _handleRegistrationResponse(response) {
     console.log(response);
-    //this._authService.saveUser(response);
+
+    this._authService.saveUser(response);
     //show confirmation and tell user to login
-    //this._router.navigateByUrl('login');
+    this.showSuccess = true;
   }
 
   _handleError(error, message) {
-    this.validationMessage = message;
+    this._eventService.broadcast('error', message);
     console.error(error);
   }
 
@@ -123,6 +127,10 @@ export class RegisterComponent implements OnInit {
             error => this._handleError(error, 'There was an error retrieving the nationalities')
         );
     }
+  }
+
+  goToLogin() {
+    this._router.navigateByUrl('login');
   }
 
 }

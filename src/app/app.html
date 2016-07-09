@@ -21,8 +21,14 @@
 </nav>
 </header>
 <div class="container">
-
     <main>
       <router-outlet></router-outlet>
     </main>
+</div>
+
+<div *ngIf="showErrorModal" class="cgiModal">
+  <div class="cgiModal-content">
+    <span class="modalClose" (click)="closeErrorModal()">×</span>
+    <p class="errorMessage">{{errorMessage}}</p>
+  </div>
 </div>

@@ -103,9 +103,22 @@
       <div class="form-group">
         <button type="button" [disabled]="submitButtonState()" (click)="submitRegistration()" class="btn btn-sm btn-primary">Submit Registration</button>
       </div>
-      <div class="row">
-        <span [innerText]="validationMessage" class="error"></span>
-      </div>
     </form>
+
+    <div *ngIf="showSuccess" class="cgiModal">
+
+      <!-- Modal content -->
+      <div class="cgiModal-content">
+        <p>You have successfully registered.  Please login with the credentials you used to register with.</p>
+        <p>
+          <button class="btn btn-sm btn-default"
+            (click)="goToLogin()">
+            Continue to login
+          </button>
+      </p>
+      </div>
+
+    </div>
+
   </div>
 </div>
