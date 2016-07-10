@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit {
   _handleRegistrationResponse(response) {
     console.log(response);
 
-    this._authService.saveUser(response);
+    this._authService.saveToken(response);
     //show confirmation and tell user to login
     this.showSuccess = true;
   }
@@ -129,8 +129,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  goToLogin() {
-    this._router.navigateByUrl('login');
+  goToExam() {
+    this._router.navigateByUrl('examstart');
   }
 
 }
