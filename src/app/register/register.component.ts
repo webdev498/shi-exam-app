@@ -33,8 +33,7 @@ var _ = require('lodash');
 
   providers: [
     NationalityService, CountryCodeService, DayService,
-    MonthService, YearService, StateService, RegistrationService,
-    AuthService
+    MonthService, YearService, StateService, RegistrationService
     ],
 
   styles: [ require('./register.less'), require('./../app.less') ],

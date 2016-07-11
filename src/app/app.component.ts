@@ -8,7 +8,7 @@ import {EventService} from './services/event.service';
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  providers: [ AuthService ],
+  providers: [],
   pipes: [],
   template: require('./app.html'),
   styles: [ require('./app.less') ]
