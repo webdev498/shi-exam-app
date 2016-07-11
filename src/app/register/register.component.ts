@@ -126,6 +126,8 @@ export class RegisterComponent implements OnInit {
             response => this._handleNationalityResponse(response),
             error => this._handleError(error, 'There was an error retrieving the nationalities')
         );
+    } else {
+      this._router.navigateByUrl('registerstart');
     }
   }
 

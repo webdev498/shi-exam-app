@@ -7,6 +7,7 @@ import {RegisterComponent} from './register/register.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 import {ExamStartComponent} from './exam/examstart.component';
 import {AccountComponent} from './account/account.component';
+import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
 export const routes: RouterConfig =[
   { path: '', component: HomeComponent},
@@ -16,5 +17,6 @@ export const routes: RouterConfig =[
   { path: 'register', component: RegisterComponent},
   { path: 'forgotpassword', component: ForgotPasswordComponent},
   { path: 'examstart', component: ExamStartComponent},
-  { path: 'account', component: AccountComponent }
+  { path: 'account', component: AccountComponent },
+  { path: 'confirmation', component: AccountConfirmationComponent }
 ];
