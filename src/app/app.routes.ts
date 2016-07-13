@@ -9,6 +9,8 @@ import {ExamStartComponent} from './exam/examstart.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
+import {AuthGuardService} from './services/authguard.service';
+
 export const routes: RouterConfig =[
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
@@ -16,7 +18,7 @@ export const routes: RouterConfig =[
   { path: 'registerstart', component: RegisterStartComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'forgotpassword', component: ForgotPasswordComponent},
-  { path: 'examstart', component: ExamStartComponent},
-  { path: 'account', component: AccountComponent },
-  { path: 'confirmation', component: AccountConfirmationComponent }
+  { path: 'examstart', component: ExamStartComponent, canActivate: [AuthGuardService]},
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
+  { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];
