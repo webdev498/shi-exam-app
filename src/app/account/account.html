@@ -126,6 +126,10 @@
         <button type="button" [disabled]="submitButtonState()" (click)="submitAccount()" 
             class="btn btn-sm btn-primary">Update Account</button>
       </div>
+      <div class="form-group">
+        <button type="button" (click)="logout($event)" 
+            class="btn btn-sm btn-primary">Logout</button>
+      </div>
       <div class="row">
         <span [innerText]="validationMessage" class="error"></span>
       </div>

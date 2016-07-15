@@ -10,6 +10,7 @@ export class ExamStartComponent {
     
     constructor(private _examService: ExamService) {}
     
+
     quickTest() {
 
     }

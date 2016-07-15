@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import { UserInfoKey } from './../model/Constants';
 import { User } from './../model/User';
 import { Registration } from './../model/Registration';
+import {AuthService} from './../services/auth.service';
 
 @Component({
   selector: 'account', 
@@ -17,7 +18,7 @@ export class AccountComponent {
   updatePassword: boolean = false;
   validationMessage: string = '';
 
-  constructor() {
+  constructor(private _authService: AuthService) {
 
   }
 
@@ -31,6 +32,12 @@ export class AccountComponent {
 
   submitAccount() {
 
+  }
+
+  logout(event) {
+      this._authService.logout();
+      event.preventDefault();
+      event.stopPropagation();
   }
   
   ngOnInit() {

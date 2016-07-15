@@ -59,13 +59,15 @@ export class RegisterStartComponent implements OnInit {
       } 
   }
   
-  register() {
+  register(event) {
       //Verify email address is unique
       
       //Set data for usage later
       sessionStorage.setItem(RegistrationStartInfo, JSON.stringify(this.rs));
       //Redirect to register.component
-      this._router.navigateByUrl('register');
+      this._router.navigate(['register']);
+      event.preventDefault();
+      event.stopPropagation();
   }
   
   ngOnInit() {

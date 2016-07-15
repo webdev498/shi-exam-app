@@ -1,24 +1,30 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, Inject} from '@angular/core';
 
 import {AuthService} from './services/auth.service';
 import {AppState} from './app.service';
 
+import {EventService} from './services/event.service';
+
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  providers: [ AuthService ],
+  providers: [],
   pipes: [],
   template: require('./app.html'),
   styles: [ require('./app.less') ]
 })
 
-export class App {
+export class App implements OnInit {
   url = 'http://www.commongroundinternational.com';
   currentYear = new Date().getFullYear();
+  showErrorModal: boolean = false;
+  errorMessage: string = '';
+
   constructor(private _authService: AuthService,
+              private _eventService: EventService,
               public appState: AppState) {
     
-  }
+              }
 
   loggedIn() {
     return this._authService.loggedIn();
@@ -29,4 +35,16 @@ export class App {
       if (user !== null)
         return user.firstName + ' ' + user.lastName;
     }
+
+  ngOnInit() {
+   let appInstance = this;
+        this._eventService.on('error', function(message) {
+            appInstance.showErrorModal = true;
+            appInstance.errorMessage = message;
+        });
+  }
+
+  closeErrorModal() {
+    this.showErrorModal = false;
+  }
 }
