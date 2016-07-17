@@ -43,8 +43,7 @@ var _ = require('lodash');
   template: require('./register.html')
 })
 export class RegisterComponent implements OnInit {
-  // Set our default values
-  validationMessage: string;
+  // Set default values
   ur: Registration;
   rs: RegistrationStart;
   countryCodes: CountryCode[];
@@ -68,7 +67,6 @@ export class RegisterComponent implements OnInit {
               private _authService: AuthService,
               private _eventService: EventService,
               private _userService: UserService) {
-      this.validationMessage = '';
       this.ur = new Registration();
       this.ur.address = new Address();
       this.countryCodes = _countryCodeService.countryCodes();
@@ -87,7 +85,6 @@ export class RegisterComponent implements OnInit {
   }
   
   submitRegistration() {
-      this.validationMessage = '';
       let userAccount = new UserAccount().setPayload(this.ur);
       let payload = userAccount.getPayload();
       this._regService.postRegistration(payload)
