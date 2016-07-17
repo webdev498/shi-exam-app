@@ -9,20 +9,19 @@ export class LoginService {
   constructor(private _http: Http) { }
 
   postLogin(username:string, password:string) {
-    var headers = new Headers();
-    headers.append('Content-Type','application/json');
+    let instance = this;
+    let header = new Headers();
+    header.append('Content-Type','application/json');
     var credentials = JSON.stringify({email: username, password: password});
     
     return this._http.post(RootApiUrl + '/login',credentials, {
-      headers: headers
+      headers: header
     })
       .map((response: Response) => <LoginResponse>response.json())
-      .do(data => console.log(data))
       .catch(this.handleError);
   }
 
   private handleError(error: Response) {
-    console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error);
   }
 }

@@ -9,6 +9,8 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['examstart'] ">Exams</a></li>
+        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['study'] ">Study</a></li>
         <li *ngIf="!loggedIn()" class="nav-link"><a [routerLink]=" ['login'] ">Login</a></li>
         <li *ngIf="!loggedIn()" class="nav-link"><a [routerLink]=" ['registerstart'] ">Sign Up</a></li>
         <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['account'] ">

@@ -7,3 +7,5 @@ export const RegistrationStartInfo = 'rsStartInfo';
 export const YoungestAgeFromCurrent = 14;
 export const YearsAvailable = 100;
 export const PasswordMinLength = 8;
+export const AuthHeaderKey = 'Authorization';
+export const NationalitiesKey = 'Nationalalties';

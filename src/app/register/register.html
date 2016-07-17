@@ -41,7 +41,8 @@
             <input type="text" [(ngModel)]="ur.address.city" 
             name="city"
             class="form-control" style="width: 100px" placeholder="city">
-            <select class="form-control" name="state" [(ngModel)]="ur.address.state" style="width: 40px">
+            <select class="form-control" name="state" [(ngModel)]="ur.address.state" 
+            style="width: 48px">
       <option *ngFor="let state of states" value="{{state}}">
         {{state}}
       </option>

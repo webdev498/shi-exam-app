@@ -6,6 +6,7 @@ import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 import {ExamStartComponent} from './exam/examstart.component';
+import {StudyComponent} from './study/study.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
@@ -19,6 +20,7 @@ export const routes: RouterConfig =[
   { path: 'register', component: RegisterComponent},
   { path: 'forgotpassword', component: ForgotPasswordComponent},
   { path: 'examstart', component: ExamStartComponent, canActivate: [AuthGuardService]},
+  { path: 'study', component: StudyComponent, canActivate: [AuthGuardService]},
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];

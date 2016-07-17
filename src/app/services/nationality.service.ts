@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { RootApiUrl } from './../model/Constants';
+import { RootApiUrl, NationalitiesKey } from './../model/Constants';
 import { Nationality } from './../model/Nationality';
 
 @Injectable()
@@ -11,6 +11,9 @@ export class NationalityService {
   getNationalities() {    
     return this._http.get(RootApiUrl + '/nationalities')
       .map((response: Response) => <Nationality>response.json())
+      .do(data => {
+        localStorage.setItem(NationalitiesKey, JSON.stringify(data))
+      })
       .catch(this.handleError);
   }
 

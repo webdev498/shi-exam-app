@@ -7,7 +7,7 @@ export class User {
                public lastName: string,
                public email: string,
                public gender: string,
-               public dateOfBirth: Date,
+               public dateOfBirth: string,
                public relations: UserRelations) { }
                
       getRegistration() {
@@ -27,6 +27,7 @@ export class User {
           registration.firstName = this.firstName;
           registration.lastName = this.lastName;
           registration.gender = this.gender;
+          registration.email = this.email;
           
           if (this.relations &&
               this.relations.nationality &&
@@ -34,9 +35,10 @@ export class User {
             registration.nationality = this.relations.nationality.id;
             
           if (this.dateOfBirth) {
-            registration.dobDay = this.dateOfBirth.getUTCDate();
-            registration.dobMonth = this.dateOfBirth.getUTCMonth() + 1;
-            registration.dobYear = this.dateOfBirth.getUTCFullYear();
+            let dob = new Date(Date.parse(this.dateOfBirth));
+            registration.dobDay = dob.getUTCDate();
+            registration.dobMonth = dob.getUTCMonth() + 1;
+            registration.dobYear = dob.getUTCFullYear();
           }
           
           return registration;

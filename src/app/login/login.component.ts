@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
   // TypeScript public modifiers
   constructor(private _loginService: LoginService,
               private _userService: UserService,
-              private _authService: AuthService) {
+              private _authService: AuthService,
+              private _router: Router) {
     this.errorMessage = '';
   }
 
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
   
   _handleLoginResponse(lr: LoginResponse) {
-    this._authService.saveToken(lr.token);
+    this._authService.saveToken(lr);
     
     this._userService.getUser(this._authService.tokenUserInfo().id)
       .subscribe(
@@ -56,10 +57,9 @@ export class LoginComponent implements OnInit {
   }
   
   _handleUserResponse(user) {
-    this.processing = false;
-    
+    this.processing = false;  
     this._authService.saveUser(user);   
-        //TODO: Route to main screen
+    this._router.navigate(['examstart']);
   }
   
   _handleError(e) {

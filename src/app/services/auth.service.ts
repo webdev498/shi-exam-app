@@ -25,6 +25,18 @@ export class AuthService {
         localStorage.clear();
         this._router.navigate['home'];
     }
+
+    getToken() :string {
+        if (localStorage[UserTokenKey] != null) {
+            return JSON.parse(localStorage[UserTokenKey]).token;
+        } else {
+            return null;
+        }
+    }
+
+    getUser() :User {
+        return <User>JSON.parse(localStorage[UserInfoKey]);
+    }
     
     saveToken(token) {
         localStorage.setItem(UserTokenKey, JSON.stringify(token));
@@ -34,7 +46,7 @@ export class AuthService {
         localStorage.setItem(UserInfoKey, JSON.stringify(user));
     }
     
-    tokenUserInfo() {
+    tokenUserInfo() :User {
         if (localStorage[UserTokenKey] != null) {
         return <User>this.jwt.decodeToken(JSON.parse(localStorage[UserTokenKey]).token);
         } else {
