@@ -18,8 +18,8 @@ export class UserAccount extends UserRegistration{
         if (registration.dobYear != null && 
             registration.dobDay != null &&
             registration.dobDay != null) {
-            this.dateOfBirth = new Date(registration.dobYear + '/' + registration.dobMonth+
-                '/' + registration.dobDay).toString();
+            this.dateOfBirth = registration.dobYear + '/' + registration.dobMonth+
+                '/' + registration.dobDay;
         }
 
         this.email = registration.email;

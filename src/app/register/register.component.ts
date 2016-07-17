@@ -17,6 +17,7 @@ import {YearService} from './../services/year.service';
 import {RegistrationService} from './register.service';
 import {AuthService} from './../services/auth.service';
 import {EventService} from './../services/event.service';
+import {UserService} from './../services/user.service';
 
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
@@ -33,7 +34,8 @@ var _ = require('lodash');
 
   providers: [
     NationalityService, CountryCodeService, DayService,
-    MonthService, YearService, StateService, RegistrationService
+    MonthService, YearService, StateService, RegistrationService,
+    UserService
     ],
 
   styles: [ require('./register.less'), require('./../app.less') ],
@@ -64,7 +66,8 @@ export class RegisterComponent implements OnInit {
               private _regService: RegistrationService,
               private _router: Router,
               private _authService: AuthService,
-              private _eventService: EventService) {
+              private _eventService: EventService,
+              private _userService: UserService) {
       this.validationMessage = '';
       this.ur = new Registration();
       this.ur.address = new Address();
@@ -95,11 +98,18 @@ export class RegisterComponent implements OnInit {
   }
 
   _handleRegistrationResponse(response) {
-    console.log(response);
-
     this._authService.saveToken(response);
-    //show confirmation and tell user to login
-    this.showSuccess = true;
+    
+    this._userService.getUser(this._authService.tokenUserInfo().id)
+      .subscribe(
+          response => this._handleUserResponse(response)
+      );
+  }
+
+  _handleUserResponse(user) {
+    //show success confirmation
+    this.showSuccess = true;   
+    this._authService.saveUser(user);   
   }
 
   _handleError(error, message) {

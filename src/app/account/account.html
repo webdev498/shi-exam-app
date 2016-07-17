@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="updatePassword">Update password</label>
         <input type="checkbox" [(ngModel)]="updatePassword"
-            name="updatePassword" id="updatePassword" class="form-control" />
+            name="updatePassword" id="updatePassword" />
       </div>
       <div class="form-group" *ngIf="updatePassword">
           <label for="rsPassword"><em>Password must be at least 8 characters long</em></label>
@@ -63,7 +63,7 @@
             name="city"
             class="form-control" style="width: 100px" placeholder="city">
             <select class="form-control" name="state" [(ngModel)]="registration.address.state" 
-                style="width: 40px">
+                style="width: 48px">
       <option *ngFor="let state of states" value="{{state}}">
         {{state}}
       </option>
