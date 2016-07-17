@@ -131,7 +131,7 @@ export class AccountComponent {
   }
 
   _validation(message) {
-    this._eventService.broadcast('validation',message);
+    this._eventService.broadcast('error',message);
   }
 
  _handleError(error, message) {
