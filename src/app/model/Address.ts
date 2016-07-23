@@ -3,6 +3,7 @@ export class Address {
     public city: string = '';
     public state: string = '';
     public postalCode: string = '';
+    public id: string;
     
     constructor() {}
 }

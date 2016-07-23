@@ -22,6 +22,7 @@
       <div class="form-group">
         <label for="updatePassword">Update password</label>
         <input type="checkbox" [(ngModel)]="updatePassword"
+            (click)="updatePasswordClick()"
             name="updatePassword" id="updatePassword" />
       </div>
       <div class="form-group" *ngIf="updatePassword">
@@ -38,7 +39,8 @@
         <label for="phone">Phone</label>
         <div class="form-inline">
           <div class="form-group">
-            <select class="form-control" [(ngModel)]="registration.countryCode" name="countryCode" style="width: 73px">
+            <select class="form-control" [(ngModel)]="registration.countryCode" name="countryCode" 
+            style="width: 93px">
         <option *ngFor="let country of countryCodes" value="{{country.code}}">
         {{country.name}}
       </option>
@@ -125,13 +127,11 @@
       <div class="form-group">
         <button type="button" [disabled]="submitButtonState()" (click)="submitAccount()" 
             class="btn btn-sm btn-primary">Update Account</button>
+            <span class="updateSuccess" [innerText]="accountMessage"></span>
       </div>
       <div class="form-group">
         <button type="button" (click)="logout($event)" 
             class="btn btn-sm btn-primary">Logout</button>
-      </div>
-      <div class="row">
-        <span [innerText]="validationMessage" class="error"></span>
       </div>
         </form>
     </div>

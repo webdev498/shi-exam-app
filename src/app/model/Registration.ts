@@ -5,6 +5,7 @@ export class Registration extends RegistrationStart {
   public firstName: string = '';
   public lastName: string = '';
   public phone: string = '';
+  public phoneId: string;
   public dobMonth: number;
   public dobDay: number;
   public dobYear: number;

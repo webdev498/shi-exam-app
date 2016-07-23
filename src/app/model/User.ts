@@ -24,6 +24,7 @@ export class User {
           registration.countryCode = this.relations.telephones[0].countryCode;
           registration.phone = this.relations.telephones[0].areaCode +
             this.relations.telephones[0].number;
+          registration.phoneId = this.relations.telephones[0].id;
           registration.firstName = this.firstName;
           registration.lastName = this.lastName;
           registration.gender = this.gender;

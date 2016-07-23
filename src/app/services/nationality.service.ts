@@ -14,7 +14,8 @@ export class NationalityService {
       .do(data => {
         localStorage.setItem(NationalitiesKey, JSON.stringify(data))
       })
-      .catch(this.handleError);
+      .catch(this.handleError)
+      .cache();
   }
 
   private handleError(error: Response) {

@@ -2,23 +2,30 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
-import { User } from './../model/User';
-import { AuthService } from './../services/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
-export class UserService {
+export class LoggingService {
   constructor(private _http: Http,
               private _authService: AuthService) { }
 
-  getUser(id) {    
+  postError(error: any) {
     let header = new Headers();
+    header.append('Content-Type','application/json');
     header.append(AuthHeaderKey,this._authService.getToken());
 
-    return this._http.get(RootApiUrl + '/users/' + id, {
+    let errorObject = {message: '', stacktrace: '', useragent: navigator.userAgent}
+    if (error.hasOwnProperty('message')) {
+        errorObject.message = error.message;
+    }
+
+    if (error.hasOwnProperty('stacktrace')) {
+        errorObject.stacktrace = error.stacktrace;
+    }
+ 
+    return this._http.post(RootApiUrl + '/logging',JSON.stringify(errorObject), {
       headers: header
     })
-      .map((response: Response) => <User>response.json())
-      //.do(data => console.log(data))
       .catch(this.handleError);
   }
 
