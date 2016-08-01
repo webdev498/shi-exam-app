@@ -2,7 +2,7 @@ import {Category} from './category';
 import {Spanish} from './spanish';
 
 export class CategoryTerm {
-    cateory: Category;
+    category: Category;
     spanish: Spanish;
     
     constructor() {}
