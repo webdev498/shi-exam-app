@@ -1,0 +1,97 @@
+[
+  {
+    "id": "examid",
+    "time": "timeexamcreated",
+    "questions": [
+      {
+        "type": "1",
+        "id": "questionid",
+        "text": "The multiple choice question",
+        "choices": [
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          }
+        ]
+      },
+      {
+        "type": "2",
+        "id": "questionid",
+        "text": "The matching questions/instructions",
+        "english": [
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          }
+        ],
+        "spanish": [
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          }
+        ]
+      },
+      {
+        "type": "3",
+        "id": "questionid",
+        "text": "The grouping questions/instructions",
+        "choices": [
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          }
+        ],
+        "categories": [
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          },
+          {
+            "id": "choiceid",
+            "text": "choicetext"
+          }
+        ]
+      }
+    ]
+  }
+]

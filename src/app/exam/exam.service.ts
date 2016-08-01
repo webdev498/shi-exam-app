@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { RootApiUrl } from './../model/Constants';
-import { Exam } from './../model/exam/Exam';
 import { ExamResponse } from './../model/exam/ExamResponse';
 import { AnswerInterface } from './../model/interface/Answer.interface';
 
@@ -15,11 +14,11 @@ export class ExamService {
     headers.append('Content-Type','application/json');
     var payload = JSON.stringify({userid: userid, type: examType});
     
-    return this._http.post(RootApiUrl + '/exam',payload, {
+ /*   return this._http.post(RootApiUrl + '/exam',payload, {
       headers: headers
-    })
-      .map((response: Response) => <Exam>response.json())
-      .do(data => console.log(data))
+    })*/
+    return this._http.get('/exam.json')
+      .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }
   
@@ -32,7 +31,6 @@ export class ExamService {
       headers: headers
     })
       .map((response: Response) => <ExamResponse>response.json())
-      .do(data => console.log(data))
       .catch(this.handleError);
   }
 
