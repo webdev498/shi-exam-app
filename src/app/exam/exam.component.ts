@@ -35,7 +35,7 @@ export class ExamComponent implements OnInit {
     }
     
     ngOnInit() {
-      let typeParam = this._route.snapshot.params.ExamStartParam;
+      let typeParam = this._route.snapshot.params["ExamStartParam"];
       this._examService.createExam(this._authService.getUser().id,typeParam)
           .subscribe(
           response => this._handleExamResponse(response),
