@@ -1,5 +1,5 @@
-import {Category} from './category';
-import {Spanish} from './spanish';
+import {Category} from './Category';
+import {Spanish} from './Spanish';
 
 export class CategoryTerm {
     category: Category;
