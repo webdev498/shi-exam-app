@@ -5,5 +5,21 @@
             <div style="margin-top: 5px"></div>
             <i class="fa fa-refresh fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
+
+        <div class="row" *ngIf="!processing">
+            <div>
+                <h3>{{currentQuestion.question.text}}</h3>
+            </div>    
+            <div [ngSwitch]="currentQuestionType">
+                <multipleChoice *ngSwitchCase="'1'" [choices]="currentQuestion.choices"></multipleChoice>
+                <matching *ngSwitchCase="'2'" model="currentQuestion"></matching>
+                <grouping *ngSwitchCase="'3'" model="currentQuestion"></grouping>
+            </div>
+            <div style="margin-top: 15px">
+                <button class="btn btn-sm examSubmit">
+                    Next Question
+                </button>
+            </div>
+        </div>
     </div>
 </div>

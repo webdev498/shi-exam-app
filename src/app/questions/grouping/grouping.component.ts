@@ -1,11 +1,11 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
  
 @Component({ 
     selector: 'grouping', 
-    template: [require('./grouping.html')],
+    template: require('./grouping.html'),
     styles: [require('./grouping.css')]
 })
-export class GroupingComponent {
+export class Grouping {
     
     constructor() {
         

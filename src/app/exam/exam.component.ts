@@ -8,15 +8,23 @@ import {EventService} from './../services/event.service';
 import {Exam} from './../model/exam/Exam';
 import {ExamStartParam} from './../model/Constants';
 
+import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
+import {Matching} from './../questions/matching/matching.component';
+import {Grouping} from './../questions/grouping/grouping.component';
+import {Choice} from './../model/question/Choice';
+
 @Component({
   selector: 'exam',  
   styles: [ require('./exam.less'), require('./../app.less') ],
   template: require('./exam.html'),
-  providers: [ExamService]
+  providers: [ExamService],
+  directives: [MultipleChoice, Matching, Grouping]
 })
 export class ExamComponent implements OnInit {
     processing: boolean = true;
     exam: Exam;
+    currentQuestion: any;
+    currentQuestionType: string;
 
     constructor(private _examService: ExamService,
               private _authService: AuthService,
@@ -39,6 +47,10 @@ export class ExamComponent implements OnInit {
       this.exam = new Exam();
       this.exam.mapExam(response[0]);
       console.log(this.exam);
+
+      this.currentQuestionType = this.exam.questions[0].questionType;
+      this.currentQuestion = this.exam.questions[0];
+
       this.processing = false;
     }
 

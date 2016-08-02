@@ -1,13 +1,13 @@
 import {Component, Input} from '@angular/core';
-import {MultipleChoiceQuestion} from './../../model/question/MultipleChoiceQuestion';
+import {Choice} from './../../model/question/Choice';
  
 @Component({ 
     selector: 'multipleChoice', 
     template: require('./multipleChoice.html'),
     styles: [require('./multipleChoice.css')]
 })
-export class MultipleChoiceComponent {
-    @Input() model : MultipleChoiceQuestion;
+export class MultipleChoice {
+    @Input() choices : Choice[];
     
     constructor() {
         

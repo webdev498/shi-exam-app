@@ -1,11 +1,11 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
  
 @Component({ 
     selector: 'matching', 
-    template: [require('./matching.html')],
+    template: require('./matching.html'),
     styles: [require('./matching.css')]
 })
-export class MatchingComponent {
+export class Matching {
     
     constructor() {
         
