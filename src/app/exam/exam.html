@@ -11,12 +11,15 @@
                 <h3>{{currentQuestion.question.text}}</h3>
             </div>    
             <div [ngSwitch]="currentQuestionType">
-                <multipleChoice *ngSwitchCase="'1'" [choices]="currentQuestion.choices"></multipleChoice>
+                <multipleChoice *ngSwitchCase="'1'" 
+                (answerChosen)="choiceSelected($event)"
+                [choices]="currentQuestion.choices"></multipleChoice>
                 <matching *ngSwitchCase="'2'" model="currentQuestion"></matching>
                 <grouping *ngSwitchCase="'3'" model="currentQuestion"></grouping>
             </div>
             <div style="margin-top: 15px">
-                <button class="btn btn-sm examSubmit">
+                <button class="btn btn-sm examSubmit" (click)="nextQuestion()"
+                    [disabled]="nextDisabled()">
                     Next Question
                 </button>
             </div>

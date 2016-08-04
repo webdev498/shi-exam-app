@@ -25,6 +25,7 @@ export class ExamComponent implements OnInit {
     exam: Exam;
     currentQuestion: any;
     currentQuestionType: string;
+    answer: any;
 
     constructor(private _examService: ExamService,
               private _authService: AuthService,
@@ -52,6 +53,18 @@ export class ExamComponent implements OnInit {
       this.currentQuestion = this.exam.questions[0];
 
       this.processing = false;
+    }
+
+    nextQuestion() {
+      console.log(this.currentQuestion);
+    }
+
+    choiceSelected(event: any) {
+      this.answer = event.id;
+    }
+
+    nextDisabled() {
+      return this.answer == null;
     }
 
     _handleError(error: any) {

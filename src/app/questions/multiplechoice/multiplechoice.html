@@ -1,7 +1,8 @@
 <div class="mcFrame">
     <div *ngFor="let c of choices" class="mc">
         <div style="margin-bottom: 7px">
-        <input type="radio" name="question" [(ngModel)]="c.selected" /> &nbsp;&nbsp; {{c.text}}
+        <input type="radio" name="question" 
+            (click)="answer(c)" /> &nbsp;&nbsp; {{c.text}}
         </div>
     </div>
 </div>
