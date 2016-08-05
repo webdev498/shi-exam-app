@@ -4,6 +4,8 @@ import {MatchingQuestion} from './../question/MatchingQuestion';
 import {GroupingQuestion} from './../question/GroupingQuestion';
 import {Question} from './../question/Question';
 
+import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../Constants';
+
 export class Exam {
     public id: string;
     public time: string;
@@ -25,7 +27,7 @@ export class Exam {
             question.text = q.text;
 
             switch (q.type) {
-                case '1':
+                case MultipleChoiceQuestionType:
                 //Multiple Choice
                     let mcq = new MultipleChoiceQuestion();
                     mcq.question = question;
@@ -33,7 +35,7 @@ export class Exam {
                     mcq.choices = q.choices;
                     this.questions.push(mcq);
                     break;
-                case '2':
+                case MatchingQuestionType:
                 //Matching
                     let mq = new MatchingQuestion();
                     mq.question = question;
@@ -42,7 +44,7 @@ export class Exam {
                     mq.spanish = q.spanish;
                     this.questions.push(mq);
                     break;
-                case '3':
+                case GroupingQuestionType:
                 //Grouping
                     let gq = new GroupingQuestion();
                     gq.question = question;

@@ -18,9 +18,8 @@
                 <grouping *ngSwitchCase="'3'" model="currentQuestion"></grouping>
             </div>
             <div style="margin-top: 15px">
-                <button class="btn btn-sm examSubmit" (click)="nextQuestion()"
-                    [disabled]="nextDisabled()">
-                    Next Question
+                <button class="btn btn-sm examSubmit" (click)="saveResponse()"
+                    [disabled]="nextDisabled()" [innerText]="submitButtonText()">
                 </button>
             </div>
         </div>

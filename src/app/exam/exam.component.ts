@@ -7,6 +7,7 @@ import {EventService} from './../services/event.service';
 
 import {Exam} from './../model/exam/Exam';
 import {ExamStartParam} from './../model/Constants';
+import {ExamProgressService} from './../services/examprogress.service';
 
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
 import {Matching} from './../questions/matching/matching.component';
@@ -17,7 +18,7 @@ import {Choice} from './../model/question/Choice';
   selector: 'exam',  
   styles: [ require('./exam.less'), require('./../app.less') ],
   template: require('./exam.html'),
-  providers: [ExamService],
+  providers: [ExamService, ExamProgressService],
   directives: [MultipleChoice, Matching, Grouping]
 })
 export class ExamComponent implements OnInit {
@@ -30,12 +31,17 @@ export class ExamComponent implements OnInit {
     constructor(private _examService: ExamService,
               private _authService: AuthService,
               private _eventService: EventService,
-              private _route: ActivatedRoute) 
+              private _route: ActivatedRoute,
+              private _examProgress: ExamProgressService) 
     {
 
     }
     
     ngOnInit() {
+      if (this._examProgress.getProgress() != null) {
+        //TODO:  Ask user if they want to continue where they left off
+      }
+
       let typeParam = this._route.snapshot.params["ExamStartParam"];
       this._examService.createExam(this._authService.getUser().id,typeParam)
           .subscribe(
@@ -48,23 +54,38 @@ export class ExamComponent implements OnInit {
       this.exam = new Exam();
       this.exam.mapExam(response[0]);
       console.log(this.exam);
+      this._examProgress.setCurrentExam(this.exam);
+      this._nextQuestion();
+    }
 
-      this.currentQuestionType = this.exam.questions[0].questionType;
-      this.currentQuestion = this.exam.questions[0];
+    saveResponse() {
+      this.processing = true;
+      this._examProgress.saveProgress(this.currentQuestion.id, 
+      this.currentQuestionType,
+      this.answer);
 
+      this._nextQuestion();
+    }
+
+    _nextQuestion() {
+      this.currentQuestionType = this._examProgress.nextQuestion().questionType;
+      this.currentQuestion = this._examProgress.nextQuestion();
       this.processing = false;
     }
 
-    nextQuestion() {
-      console.log(this.currentQuestion);
-    }
-
     choiceSelected(event: any) {
-      this.answer = event.id;
+      this.answer = event;
     }
 
     nextDisabled() {
       return this.answer == null;
+    }
+
+    submitButtonText() {
+      if (!this._examProgress.isLastQuestion())
+        return 'Next Question';
+      else
+        return 'Submit Answers';
     }
 
     _handleError(error: any) {
