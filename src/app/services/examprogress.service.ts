@@ -1,5 +1,7 @@
 import {ExamProgress} from './../model/Constants';
 import {Exam} from './../model/exam/Exam';
+import {ExamCompleteComponent} from './../exam/examcomplete.component';
+import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {QuestionInterface} from './../model/interface/Question.interface';
 import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../model/Constants';
