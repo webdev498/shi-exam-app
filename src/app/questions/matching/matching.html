@@ -1,13 +1,16 @@
 <div class="mFrame">
-    <div *ngFor="let c of choices; let i = index" class="m">
-        <div *ngIf="i < 3" class="topgroup">
-            <div class="toptext">{{c.text}}</div>
-        </div>
-    </div>
-        <hr />
-    <div *ngFor="let c of choices; let i = index" class="m">
-        <div *ngIf="i >= 3" class="bottomgroup">
+    <div *ngFor="let c of choices" class="m">
+        <div *ngIf="!c.matched">
+        <div class="bottomgroup" 
+                draggable="true"
+                (dragstart)="dragstart($event, c.id)"
+                (drop)="dropped($event, c.id)"
+                (dragover)="dragover($event)">
             <div class="bottomtext">{{c.text}}</div>
+            <div *ngIf="c.matchedchoice != null" class="bottommatchedtext">
+                {{c.matchedchoice.text}}
+            </div>
+        </div>
         </div>
     </div>
 </div>

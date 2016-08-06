@@ -2,7 +2,18 @@
 
 .mFrame {border: 1px solid lightgray; padding: 8px; border-radius: 4px; margin-top: 15px}
 
-.topgroup {margin-bottom: 7px; display: table; text-align: center}
-.bottomgroup{margin-bottom: 7px; display: table; text-align: center}
-.toptext {display: table-cell; vertical-align: middle}
-.bottomtext {display: table-cell; vertical-align: middle}
+.mtext {display: table-cell; vertical-align: middle; padding: 4px; cursor: pointer}
+
+.topgroup {margin-bottom: 7px; display: table; text-align: center; width: 100%}
+.bottomgroup{margin-bottom: 7px; display: table; text-align: center; width: 100%}
+.toptext {.mtext;
+            background-color: darkslateblue; color: white}
+.bottomtext {
+    .mtext;
+            background-color: yellow; color: black
+}
+
+.bottommatchedtext {
+    .mtext;
+    background-color: forestgreen; color: white
+}
