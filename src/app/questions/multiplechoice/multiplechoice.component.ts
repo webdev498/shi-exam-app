@@ -4,7 +4,7 @@ import {Choice} from './../../model/question/Choice';
 @Component({ 
     selector: 'multipleChoice', 
     template: require('./multiplechoice.html'),
-    styles: [require('./multiplechoice.css')]
+    styles: [require('./multiplechoice.less')]
 })
 export class MultipleChoice {
     @Input() choices : Choice[];

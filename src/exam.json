@@ -42,17 +42,9 @@
           {
             "id": "choiceid",
             "text": "choicetext"
-          },
-          {
-            "id": "choiceid",
-            "text": "choicetext"
           }
         ],
         "spanish": [
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          },
           {
             "id": "choiceid",
             "text": "choicetext"
@@ -72,10 +64,6 @@
         "id": "questionid",
         "text": "The grouping questions/instructions",
         "choices": [
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          },
           {
             "id": "choiceid",
             "text": "choicetext"

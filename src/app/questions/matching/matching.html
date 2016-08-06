@@ -1,0 +1,13 @@
+<div class="mFrame">
+    <div *ngFor="let c of choices; let i = index" class="m">
+        <div *ngIf="i < 3" class="topgroup">
+            <div class="toptext">{{c.text}}</div>
+        </div>
+    </div>
+        <hr />
+    <div *ngFor="let c of choices; let i = index" class="m">
+        <div *ngIf="i >= 3" class="bottomgroup">
+            <div class="bottomtext">{{c.text}}</div>
+        </div>
+    </div>
+</div>

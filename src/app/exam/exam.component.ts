@@ -6,7 +6,7 @@ import {AuthService} from './../services/auth.service';
 import {EventService} from './../services/event.service';
 
 import {Exam} from './../model/exam/Exam';
-import {ExamStartParam} from './../model/Constants';
+import {ExamStartParam, MatchingQuestionType, MultipleChoiceQuestionType} from './../model/Constants';
 import {ExamProgressService} from './../services/examprogress.service';
 
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
@@ -78,7 +78,19 @@ export class ExamComponent implements OnInit {
     }
 
     nextDisabled() {
-      return this.answer == null;
+      let disabled = true;
+
+      switch (this.currentQuestionType)
+      {
+        case MultipleChoiceQuestionType:
+          disabled = this.answer == null ? true : false;
+          break;
+        case MatchingQuestionType:
+          
+        break;
+      }
+
+      return disabled;
     }
 
     submitButtonText() {

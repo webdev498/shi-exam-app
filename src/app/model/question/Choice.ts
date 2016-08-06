@@ -5,6 +5,10 @@ export class Choice implements ChoiceInterface {
     public text: string;
     public id: string;
 
-    constructor() {}
+    constructor(text: string, id: string)
+     {
+         this.text = text;
+         this.id = id;
+     }
                 
 }

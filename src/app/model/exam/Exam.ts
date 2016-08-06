@@ -3,6 +3,8 @@ import {MultipleChoiceQuestion} from './../question/MultipleChoiceQuestion';
 import {MatchingQuestion} from './../question/MatchingQuestion';
 import {GroupingQuestion} from './../question/GroupingQuestion';
 import {Question} from './../question/Question';
+import {Choice} from './../question/Choice';
+var _ = require('lodash');
 
 import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../Constants';
 
@@ -42,6 +44,19 @@ export class Exam {
                     mq.questionType = q.type;
                     mq.english = q.english;
                     mq.spanish = q.spanish;
+
+                    //randomize english and spanish choices into one array
+                    mq.choices = new Array();
+                    for (let i = 0; i < mq.english.length; i++) {
+                        mq.choices.push(new Choice(mq.english[i].text, mq.english[i].id));
+                    }
+
+                    for (let i = 0; i < mq.spanish.length; i++) {
+                        mq.choices.push(new Choice(mq.spanish[i].text, mq.spanish[i].id));
+                    }
+
+                    //lodash randomize
+                    mq.choices = _.shuffle(mq.choices);
                     this.questions.push(mq);
                     break;
                 case GroupingQuestionType:
