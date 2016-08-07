@@ -29,7 +29,7 @@
       {
         "type": "2",
         "id": "questionid",
-        "text": "The matching questions/instructions",
+        "text": "The matching questions / instructions",
         "english": [
           {
             "id": "1",
@@ -51,11 +51,11 @@
           },
           {
             "id": "5",
-            "text": "bana"
+            "text": "baño"
           },
           {
             "id": "6",
-            "text": "javo"
+            "text": "árbol"
           }
         ]
       },
