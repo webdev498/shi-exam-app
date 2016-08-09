@@ -8,7 +8,7 @@ import {EventService} from './../services/event.service';
 import {Exam} from './../model/exam/Exam';
 import {ExamStartParam, MatchingQuestionType, 
         MultipleChoiceQuestionType, GroupingQuestionType, 
-        TermsShown} from './../model/Constants';
+        MatchingTermsShown, GroupingTermsShown} from './../model/Constants';
 import {ExamProgressService} from './../services/examprogress.service';
 
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
@@ -106,10 +106,10 @@ export class ExamComponent implements OnInit {
           disabled = this.answer == null ? true : false;
           break;
         case MatchingQuestionType:
-          disabled = this.answer.length !== TermsShown ? true : false;
+          disabled = this.answer.length !== MatchingTermsShown ? true : false;
         break;
         case GroupingQuestionType:
-          console.log(this.answer);
+          disabled = this.answer.length !== GroupingTermsShown ? true : false;
         break;
       }
 

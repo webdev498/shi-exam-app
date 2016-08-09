@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Choice} from './../../model/question/Choice';
 import {Category} from './../../model/question/Category';
+import {GroupingTermsShown} from './../../model/Constants';
 var _ = require('lodash');
 
 @Component({ 
@@ -12,9 +13,14 @@ export class Grouping {
     @Input() choices : Choice[];
     @Input() categories: Category[];
 
-    @Output() choiceMatched = new EventEmitter();
+    @Output() choiceGrouped = new EventEmitter();
+
+    termsshown : number;
+    grouped: number = 0;
     
-    constructor() {}
+    constructor() {
+        this.termsshown = GroupingTermsShown;
+    }
 
     dragstart(ev, id) {
         ev.dataTransfer.setData('choice', id);
@@ -32,7 +38,21 @@ export class Grouping {
     }
 
     _grouped(id: string, droppedid: string) {
+        this.choiceGrouped.emit({
+            id: id,
+            groupedid: droppedid
+        });
 
+        let choice = <Choice>this._getChoice(droppedid);
+        choice.matched = true;
+
+        let category = <Category>this._getCategory(id);
+        
+        if (category.groupedchoices == null)
+            category.groupedchoices = new Array();
+
+        category.groupedchoices.push(choice);
+        this.grouped++;
     }
 
     _getChoice(id) {

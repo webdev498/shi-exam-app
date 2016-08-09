@@ -20,8 +20,10 @@
                     (choiceMatched)="choiceSelected($event)">
                 </matching>
                 <grouping *ngSwitchCase="'3'" 
-                    [categories]="currentQuestion.categories"
-                    [choices]="currentQuestion.choices"></grouping>
+                    [categories]="currentQuestion.categories""
+                    [choices]="currentQuestion.choices"
+                    (choiceGrouped)="choiceSelected($event)"
+                </grouping>
             </div>
             <div style="margin-top: 15px">
                 <button class="btn btn-sm examSubmit" (click)="saveResponse()"
