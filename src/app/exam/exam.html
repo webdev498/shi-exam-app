@@ -20,9 +20,9 @@
                     (choiceMatched)="choiceSelected($event)">
                 </matching>
                 <grouping *ngSwitchCase="'3'" 
-                    [categories]="currentQuestion.categories""
+                    [categories]="currentQuestion.categories"
                     [choices]="currentQuestion.choices"
-                    (choiceGrouped)="choiceSelected($event)"
+                    (choiceGrouped)="choiceSelected($event)">
                 </grouping>
             </div>
             <div style="margin-top: 15px">
