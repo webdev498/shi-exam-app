@@ -19,7 +19,9 @@
                     [choices]="currentQuestion.choices"
                     (choiceMatched)="choiceSelected($event)">
                 </matching>
-                <grouping *ngSwitchCase="'3'" model="currentQuestion.choices"></grouping>
+                <grouping *ngSwitchCase="'3'" 
+                    [categories]="currentQuestion.categories"
+                    [choices]="currentQuestion.choices"></grouping>
             </div>
             <div style="margin-top: 15px">
                 <button class="btn btn-sm examSubmit" (click)="saveResponse()"

@@ -21,3 +21,4 @@ export const ExamProgress = 'examprogress';
 export const MultipleChoiceQuestionType = '1';
 export const MatchingQuestionType = '2';
 export const GroupingQuestionType = '3';
+export const TermsShown = 3;

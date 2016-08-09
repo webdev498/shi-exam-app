@@ -6,7 +6,9 @@ import {AuthService} from './../services/auth.service';
 import {EventService} from './../services/event.service';
 
 import {Exam} from './../model/exam/Exam';
-import {ExamStartParam, MatchingQuestionType, MultipleChoiceQuestionType} from './../model/Constants';
+import {ExamStartParam, MatchingQuestionType, 
+        MultipleChoiceQuestionType, GroupingQuestionType, 
+        TermsShown} from './../model/Constants';
 import {ExamProgressService} from './../services/examprogress.service';
 
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
@@ -53,7 +55,6 @@ export class ExamComponent implements OnInit {
     _handleExamResponse(response: any) {
       this.exam = new Exam();
       this.exam.mapExam(response[0]);
-      console.log(this.exam);
       this._examProgress.setCurrentExam(this.exam);
       this._nextQuestion();
     }
@@ -71,10 +72,29 @@ export class ExamComponent implements OnInit {
       this.currentQuestionType = this._examProgress.nextQuestion().questionType;
       this.currentQuestion = this._examProgress.nextQuestion();
       this.processing = false;
+
+      switch (this.currentQuestionType)
+      {
+        case MultipleChoiceQuestionType:
+          this.answer = null;
+        case MatchingQuestionType:
+        case GroupingQuestionType:
+           this.answer = new Array();
+        break;
+      }
     }
 
     choiceSelected(event: any) {
-      this.answer = event;
+      switch (this.currentQuestionType)
+      {
+        case MultipleChoiceQuestionType:
+          this.answer = event;
+          break;
+        case MatchingQuestionType:
+        case GroupingQuestionType:
+           this.answer.push(event);
+        break;
+      }
     }
 
     nextDisabled() {
@@ -86,7 +106,10 @@ export class ExamComponent implements OnInit {
           disabled = this.answer == null ? true : false;
           break;
         case MatchingQuestionType:
-          
+          disabled = this.answer.length !== TermsShown ? true : false;
+        break;
+        case GroupingQuestionType:
+          console.log(this.answer);
         break;
       }
 

@@ -42,8 +42,8 @@ export class ExamProgressService {
             case MatchingQuestionType:
                 newAnswer.response = [];
                 for (let i = 0; i < answer.matches.length; i++) {
-                    answer.matches.push({english: answer.matches[i].english,
-                        spanish: answer.matches[i].spanish});
+                    answer.matches.push({id: answer.matches[i].id,
+                        matchedid: answer.matches[i].matchedid});
                 }
             break;
             case GroupingQuestionType:

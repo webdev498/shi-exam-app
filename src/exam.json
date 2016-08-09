@@ -3,6 +3,46 @@
     "id": "examid",
     "time": "timeexamcreated",
     "questions": [
+            {
+        "type": "3",
+        "id": "questionid",
+        "text": "Group each term into its related category",
+        "choices": [
+          {
+            "id": "1",
+            "text": "text1"
+          },
+          {
+            "id": "2",
+            "text": "text2"
+          },
+          {
+            "id": "3",
+            "text": "text3"
+          },{
+            "id": "4",
+            "text": "text4"
+          },
+          {
+            "id": "5",
+            "text": "text5"
+          }
+        ],
+        "categories": [
+          {
+            "id": "1",
+            "text": "category 1"
+          },
+          {
+            "id": "2",
+            "text": "category 2"
+          },
+          {
+            "id": "3",
+            "text": "category 3"
+          }
+        ]
+      },
       {
         "type": "1",
         "id": "questionid",
@@ -56,39 +96,6 @@
           {
             "id": "6",
             "text": "árbol"
-          }
-        ]
-      },
-      {
-        "type": "3",
-        "id": "questionid",
-        "text": "The grouping questions/instructions",
-        "choices": [
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          },
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          },
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          }
-        ],
-        "categories": [
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          },
-          {
-            "id": "choiceid",
-            "text": "choicetext"
-          },
-          {
-            "id": "choiceid",
-            "text": "choicetext"
           }
         ]
       }

@@ -22,6 +22,8 @@ export class Exam {
         this.time = exam.time;
 
         this.questions = new Array();
+        //randomize the questions from the server
+        //exam.questions = _.shuffle(exam.questions);
 
         for (var q of exam.questions) {
             let question = new Question();
