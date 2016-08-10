@@ -1,11 +1,11 @@
-[
+
   {
-    "id": "examid",
-    "time": "timeexamcreated",
+    "id": "1004",
+    "time": "Tue Aug 09 2016 20:33:10 GMT-0600 (MDT)",
     "questions": [
             {
         "type": "3",
-        "id": "questionid",
+        "id": "1",
         "text": "Group each term into its related category",
         "choices": [
           {
@@ -45,30 +45,30 @@
       },
       {
         "type": "1",
-        "id": "questionid",
-        "text": "The multiple choice question",
+        "id": "2",
+        "text": "Choose the Spanish term for house",
         "choices": [
           {
-            "id": "choiceid",
-            "text": "choicetext"
+            "id": "10",
+            "text": "art"
           },
           {
-            "id": "choiceid",
-            "text": "choicetext"
+            "id": "11",
+            "text": "casa"
           },
                     {
-            "id": "choiceid",
-            "text": "choicetext"
+            "id": "12",
+            "text": "bano"
           },
                     {
-            "id": "choiceid",
-            "text": "choicetext"
+            "id": "13",
+            "text": "java"
           }
         ]
       },
       {
         "type": "2",
-        "id": "questionid",
+        "id": "3",
         "text": "The matching questions / instructions",
         "english": [
           {
@@ -101,4 +101,3 @@
       }
     ]
   }
-]

@@ -12,7 +12,7 @@ export class ExamProgressService {
     exam: Exam;
     questionsComplete: number = 0;
 
-    constructor() {
+    constructor(private _router: Router) {
         this.answers = new Array();
     }
 
@@ -32,25 +32,25 @@ export class ExamProgressService {
         return this.exam.questions.length - 1 === this.questionsComplete;
     }
 
-    saveProgress(questionId: string, questionType: string, answer: any) {
-        let newAnswer = {questionId: questionId, response: {}}
+    saveProgress(questionId: string, questionType: string, answer: any):boolean {
+        let newAnswer = {questionId: questionId, response: null}
         switch (questionType)
         {
             case MultipleChoiceQuestionType:
                 newAnswer.response = answer.id;
             break;
             case MatchingQuestionType:
-                newAnswer.response = [];
-                for (let i = 0; i < answer.matches.length; i++) {
-                    answer.matches.push({id: answer.matches[i].id,
-                        matchedid: answer.matches[i].matchedid});
+                newAnswer.response = new Array();
+                for (let i = 0; i < answer.length; i++) {
+                    newAnswer.response.push({id: answer[i].id,
+                        matchedid: answer[i].matchedid});
                 }
             break;
             case GroupingQuestionType:
-                newAnswer.response = [];
-                for (let i = 0; i < answer.matches.length; i++) {
-                    answer.matches.push({choice: answer.matches[i].choice,
-                        category: answer.matches[i].category});
+                newAnswer.response = new Array();
+                for (let i = 0; i < answer.length; i++) {
+                    newAnswer.response.push({choice: answer[i].id,
+                        category: answer[i].groupedid});
                 }
             break;
         }
@@ -58,6 +58,15 @@ export class ExamProgressService {
         this.answers.push(newAnswer);
         sessionStorage.setItem(ExamProgress,JSON.stringify(this.answers));
         this.questionsComplete = this.answers.length;
+
+        if (this.exam.questions.length === this.questionsComplete) {
+            this._router.navigate(['examcomplete']);
+            let examDTO = {examid: this.exam.id, time: null, answers: this.answers}
+            console.log(JSON.stringify(examDTO));
+            return false;
+        }
+
+        return true;
     }
 
     getProgress() {

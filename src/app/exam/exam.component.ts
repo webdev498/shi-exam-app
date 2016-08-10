@@ -54,18 +54,19 @@ export class ExamComponent implements OnInit {
 
     _handleExamResponse(response: any) {
       this.exam = new Exam();
-      this.exam.mapExam(response[0]);
+      this.exam.mapExam(response);
       this._examProgress.setCurrentExam(this.exam);
       this._nextQuestion();
     }
 
     saveResponse() {
       this.processing = true;
-      this._examProgress.saveProgress(this.currentQuestion.id, 
+      let next = this._examProgress.saveProgress(this.currentQuestion.question.id, 
       this.currentQuestionType,
       this.answer);
 
-      this._nextQuestion();
+      if (next)
+        this._nextQuestion();
     }
 
     _nextQuestion() {
