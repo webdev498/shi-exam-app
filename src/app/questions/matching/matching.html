@@ -1,0 +1,16 @@
+<div class="mFrame">
+    <div *ngFor="let c of choices" class="m">
+        <div *ngIf="!c.matched">
+        <div class="group" 
+                draggable="true"
+                (dragstart)="dragstart($event, c.id)"
+                (drop)="dropped($event, c.id)"
+                (dragover)="dragover($event)">
+            <div class="text">{{c.text}}</div>
+            <div *ngIf="c.matchedchoice != null" class="bottommatchedtext">
+                {{c.matchedchoice.text}}
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

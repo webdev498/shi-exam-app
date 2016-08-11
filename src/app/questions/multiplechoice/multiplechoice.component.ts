@@ -1,16 +1,22 @@
-import {Component, Input} from '@angular/core';
-import {MultipleChoiceQuestion} from './../../model/question/MultipleChoiceQuestion';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Choice} from './../../model/question/Choice';
  
 @Component({ 
     selector: 'multipleChoice', 
-    template: require('./multipleChoice.html'),
-    styles: [require('./multipleChoice.css')]
+    template: require('./multiplechoice.html'),
+    styles: [require('./multiplechoice.less')]
 })
-export class MultipleChoiceComponent {
-    @Input() model : MultipleChoiceQuestion;
+export class MultipleChoice {
+    @Input() choices : Choice[];
+    @Output() answerChosen = new EventEmitter();
     
     constructor() {
         
     }    
     
+    answer(choice: Choice) {
+        this.answerChosen.emit({
+            id: choice.id
+        })
+    }
 }
