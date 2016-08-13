@@ -20,6 +20,10 @@ export class ExamProgressService {
         this.answers = this.getProgress();
     }
 
+    examComplete() {
+        sessionStorage[ExamProgress] = null;
+    }
+
     setCurrentExam(exam: Exam) {
         this.exam = exam;
     }
@@ -30,6 +34,10 @@ export class ExamProgressService {
 
     isLastQuestion() {
         return this.exam.questions.length - 1 === this.questionsComplete;
+    }
+
+    progress():string {
+        return 'Question ' + (this.questionsComplete + 1).toString() + ' / ' + this.exam.questions.length.toString();
     }
 
     saveProgress(questionId: string, questionType: string, answer: any):boolean {

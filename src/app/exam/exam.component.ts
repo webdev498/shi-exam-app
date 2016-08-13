@@ -29,6 +29,12 @@ export class ExamComponent implements OnInit {
     currentQuestion: any;
     currentQuestionType: string;
     answer: any;
+    questionsComplete: string;
+    timePassed: string = '00:00:00';
+    private _seconds: number = 0;
+    private _minutes: number = 0; 
+    private _hours: number = 0;
+    private _t: any;
 
     constructor(private _examService: ExamService,
               private _authService: AuthService,
@@ -36,7 +42,9 @@ export class ExamComponent implements OnInit {
               private _route: ActivatedRoute,
               private _examProgress: ExamProgressService) 
     {
-
+      this._seconds = 0;
+      this._minutes = 0;
+      this._hours = 0;
     }
     
     ngOnInit() {
@@ -57,6 +65,8 @@ export class ExamComponent implements OnInit {
       this.exam.mapExam(response);
       this._examProgress.setCurrentExam(this.exam);
       this._nextQuestion();
+
+      this._questionTimer();
     }
 
     saveResponse() {
@@ -67,6 +77,31 @@ export class ExamComponent implements OnInit {
 
       if (next)
         this._nextQuestion();
+    }
+
+   _add(context: any) {
+      context._seconds++;
+      if (context._seconds >= 60) {
+          context._seconds = 0;
+          context._minutes++;
+          if (context._minutes >= 60) {
+              context._minutes = 0;
+              context._hours++;
+          }
+      }
+      
+      context.timePassed = (context._hours ? (context._hours > 9 ? context._hours : "0" + context._hours) : "00") + ":" + 
+          (context._minutes ? (context._minutes > 9 ? context._minutes : "0" + context._minutes) : "00") + ":" + 
+          (context._seconds > 9 ? context._seconds : "0" + context._seconds);
+
+      context._questionTimer();
+    }
+
+    _questionTimer() {
+      let that = this;
+      this._t = setTimeout(function() {
+        that._add(that);
+      }, 1000);
     }
 
     _nextQuestion() {
@@ -83,6 +118,8 @@ export class ExamComponent implements OnInit {
            this.answer = new Array();
         break;
       }
+
+      this.questionsComplete = this._examProgress.progress();
     }
 
     choiceSelected(event: any) {
