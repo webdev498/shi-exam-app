@@ -25,10 +25,18 @@
                     (choiceGrouped)="choiceSelected($event)">
                 </grouping>
             </div>
-            <div style="margin-top: 15px">
-                <button class="btn btn-sm examSubmit" (click)="saveResponse()"
+            <div style="margin-top: 15px; text-align: center">
+                <button class="btn btn-sm examSubmit" 
+                    style="width: 55%"
+                    (click)="saveResponse()"
                     [disabled]="nextDisabled()" [innerText]="submitButtonText()">
                 </button>
+            </div>
+            <div style="margin-top: 10px; text-align: center" class="progressText">
+                <span>{{questionsComplete}}</span>
+            </div>
+            <div style="margin-top: 3px; text-align: center" class="progressText">
+                <span>{{timePassed}}</span>
             </div>
         </div>
     </div>
