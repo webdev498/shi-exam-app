@@ -4,14 +4,19 @@ import {RegistrationStartInfo} from './../model/Constants';
 import {RegistrationService} from './register.service';
 import {ValidationService} from './../services/validation.service';
 import {RegistrationStart} from './../model/RegistrationStart';
+import {LoginResponse} from './../model/LoginResponse';
+import {UserService} from './../services/user.service';
+import {AuthService} from './../services/auth.service';
 
 import {Router} from '@angular/router';
 import {NgForm, Validators} from '@angular/forms';
+import {Auth} from 'ng2-ui-auth';
+import {Response} from '@angular/http';
 
 @Component({
   directives: [
   ],
-  providers: [RegistrationService, ValidationService],
+  providers: [RegistrationService, ValidationService, AuthService, UserService],
   styles: [ require('./register.less') ],
   template: require('./registerstart.html')
 })
@@ -22,17 +27,41 @@ export class RegisterStartComponent implements OnInit {
 
   constructor(private _regService: RegistrationService,
                 private _router: Router,
-                private _validator: ValidationService) {
+                private _validator: ValidationService,
+                private _oauth: Auth,
+                private _userService: UserService,
+                private _authService: AuthService) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
   }
 
-  facebook() {
-
+    _handleLoginResponse(lr: LoginResponse) {
+    this._authService.saveToken(lr);
+    
+    this._userService.getUser(this._authService.tokenUserInfo().id)
+      .subscribe(
+          response => this._handleUserResponse(response)
+      );
   }
 
-  google() {
+    _handleUserResponse(user) {
+    this._authService.saveUser(user);   
+    this._router.navigate(['examstart']);
+  }
 
+  facebook() {
+     this._oauthAuthenticate('facebook');
+  }
+  
+  google() {
+      this._oauthAuthenticate('google');
+  }
+
+  _oauthAuthenticate(provider: string) {
+      let context = this;
+      this._oauth.authenticate(provider)
+        .subscribe(
+            (response: Response) => context._handleLoginResponse(response.json()));
   }
   
   submitButtonState() {

@@ -15,8 +15,8 @@ import {NG2_UI_AUTH_PROVIDERS, JwtHttp} from 'ng2-ui-auth';
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
 };
-const GOOGLE_CLIENT_ID = '******************************.apps.googleusercontent.com';
-const FACEBOOK_CLIENT_ID = '';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID;
 
 /*
 * App Component
@@ -35,7 +35,8 @@ export function main(initialHmrState?: any): Promise<any> {
     ...APP_PROVIDERS,
     HTTP_PROVIDERS,
     NG2_UI_AUTH_PROVIDERS({defaultHeaders: DEFAULT_POST_HEADER, 
-      providers: {google: {clientId: GOOGLE_CLIENT_ID}, facebook: {clientId: FACEBOOK_CLIENT_ID}}})
+      providers: {google: {clientId: GOOGLE_CLIENT_ID, url: process.env.API_HOST + '/login/google'}, 
+      facebook: {clientId: FACEBOOK_CLIENT_ID, url: process.env.API_HOST + '/login/facebook'}}})
   ])
   .then(decorateComponentRef)
   .catch(err => console.error(err));

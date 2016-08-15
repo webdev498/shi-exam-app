@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {Auth} from 'ng2-ui-auth';
+import {Response} from '@angular/http';
 
 import {LoginService} from './login.service';
 import {UserService} from './../services/user.service';
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit {
   constructor(private _loginService: LoginService,
               private _userService: UserService,
               private _authService: AuthService,
-              private _router: Router) {
+              private _router: Router,
+              private _oauth: Auth) {
     this.errorMessage = '';
   }
 
@@ -77,11 +80,18 @@ export class LoginComponent implements OnInit {
   }
   
   facebook() {
-      
+     this._oauthAuthenticate('facebook');
   }
   
   google() {
-      
+      this._oauthAuthenticate('google');
+  }
+
+  _oauthAuthenticate(provider: string) {
+      let context = this;
+      this._oauth.authenticate(provider)
+        .subscribe(
+            (response: Response) => context._handleLoginResponse(response.json()));
   }
   
   ngOnInit() {
