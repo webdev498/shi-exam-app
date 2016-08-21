@@ -5,7 +5,7 @@ import { enableDebugTools, disableDebugTools } from '@angular/platform-browser';
 import { enableProdMode } from '@angular/core';
 // Environment Providers
 let PROVIDERS = {
-  'API_HOST': process.env.API_HOST
+  'API_HOST': API_HOST
 };
 
 // Angular debug tools in the dev console

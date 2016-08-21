@@ -9,6 +9,12 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import { PLATFORM_PROVIDERS } from './platform/browser';
 import { decorateComponentRef } from './platform/environment';
 
+import {HTTP_PROVIDERS} from '@angular/http';
+import {NG2_UI_AUTH_PROVIDERS, JwtHttp} from 'ng2-ui-auth';
+
+const DEFAULT_POST_HEADER: {[name: string]: string} = {
+  'Content-Type': 'application/json'
+};
 
 /*
 * App Component
@@ -25,6 +31,10 @@ export function main(initialHmrState?: any): Promise<any> {
   return bootstrap(App, [
     ...PLATFORM_PROVIDERS,
     ...APP_PROVIDERS,
+    HTTP_PROVIDERS,
+    NG2_UI_AUTH_PROVIDERS({defaultHeaders: DEFAULT_POST_HEADER, 
+      providers: {google: {clientId: GOOGLE_CLIENT_ID, url: API_HOST + '/login/google'}, 
+      facebook: {clientId: FACEBOOK_CLIENT_ID, url: API_HOST + '/login/facebook'}}})
   ])
   .then(decorateComponentRef)
   .catch(err => console.error(err));
