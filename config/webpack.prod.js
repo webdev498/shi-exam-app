@@ -23,13 +23,17 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'http://localhost';
 const PORT = process.env.PORT || '8080';
-const API_HOST = process.env.API_HOST || 'http://cgi-she-server-d412b26a.6f78d14c.svc.dockerapp.io:8001';
+const API_HOST = process.env.API_HOST || '"http://cgi-she-server-d412b26a.6f78d14c.svc.dockerapp.io:8001"';
+const GOOGLE_CLIENT_ID = '"584302945146-hf91k8glaa97agv0mbi5d61mm2kglkau.apps.googleusercontent.com"';
+const FACEBOOK_CLIENT_ID = '"228791194154793"';
 const METADATA = webpackMerge(commonConfig.metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
   HMR: false,
-  API_HOST: API_HOST
+  API_HOST: API_HOST,
+  GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID,
+  FACEBOOK_CLIENT_ID: FACEBOOK_CLIENT_ID
 });
 
 module.exports = webpackMerge(commonConfig, {
@@ -127,10 +131,16 @@ module.exports = webpackMerge(commonConfig, {
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.ENV),
       'HMR': METADATA.HMR,
+      'API_HOST': METADATA.API_HOST,
+      'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID,
+      'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID,
       'process.env': {
         'ENV': JSON.stringify(METADATA.ENV),
         'NODE_ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'API_HOST': METADATA.API_HOST,
+        'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID,
+        'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID
       }
     }),
 

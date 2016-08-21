@@ -27,7 +27,7 @@ import { App, APP_PROVIDERS } from './app';
  * our Services and Providers into Angular's dependency injection
  */
 export function main(initialHmrState?: any): Promise<any> {
-  
+
   return bootstrap(App, [
     ...PLATFORM_PROVIDERS,
     ...APP_PROVIDERS,

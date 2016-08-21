@@ -16,7 +16,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HMR = helpers.hasProcessFlag('hot');
-const API_HOST = '"http://localhost:3001"';
+const API_HOST = '"http://localhost:3000"';
 const GOOGLE_CLIENT_ID = '"584302945146-hf91k8glaa97agv0mbi5d61mm2kglkau.apps.googleusercontent.com"';
 const FACEBOOK_CLIENT_ID = '"228791194154793"';
 const METADATA = webpackMerge(commonConfig.metadata, {
@@ -26,7 +26,7 @@ const METADATA = webpackMerge(commonConfig.metadata, {
   HMR: HMR,
   API_HOST: API_HOST,
   GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID,
-  FACEBOOK_CLIENT_UD: FACEBOOK_CLIENT_UD
+  FACEBOOK_CLIENT_ID: FACEBOOK_CLIENT_ID
 });
 
 /**
@@ -114,14 +114,14 @@ module.exports = webpackMerge(commonConfig, {
       'HMR': METADATA.HMR,
       'API_HOST' : METADATA.API_HOST,
       'GOOGLE_CLIENT_ID' : METADATA.GOOGLE_CLIENT_ID,
-      'FACEBOOK_CLIENT_UD' : METADATA.FACEBOOK_CLIENT_ID,
+      'FACEBOOK_CLIENT_ID' : METADATA.FACEBOOK_CLIENT_ID,
       'process.env': {
         'ENV': JSON.stringify(METADATA.ENV),
         'NODE_ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
         'API_HOST': METADATA.API_HOST,
         'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID,
-        'FACEBOOK_CLIENT_UD': METADATA.FACEBOOK_CLIENT_ID
+        'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID
       }
     }),
   ],
