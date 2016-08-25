@@ -1,67 +1,71 @@
-/*
- * Providers provided by Angular
- */
-import { bootstrap } from '@angular/platform-browser-dynamic';
-/*
-* Platform and Environment
-* our providers/directives/pipes
-*/
-import { PLATFORM_PROVIDERS } from './platform/browser';
-import { decorateComponentRef } from './platform/environment';
 
-import {HTTP_PROVIDERS} from '@angular/http';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { removeNgStyles, createNewHosts, bootloader } from '@angularclass/hmr';
+
 import {NG2_UI_AUTH_PROVIDERS, JwtHttp} from 'ng2-ui-auth';
 
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
 };
 
-/*
-* App Component
-* our top level component that holds all of our components
-*/
 import { App, APP_PROVIDERS } from './app';
+import { AppStore } from './app/app.store';
+import { AppModule } from './app/app.module';
 
-/*
- * Bootstrap our Angular app with a top level component `App` and inject
- * our Services and Providers into Angular's dependency injection
- */
-export function main(initialHmrState?: any): Promise<any> {
-
-  return bootstrap(App, [
-    ...PLATFORM_PROVIDERS,
+@NgModule({
+  boostrap: [App],
+  declarations: [App],
+  imports: [
+    HttpModule,
+    RouterModule,
+    // app
+    AppModule
+    // vendors
+  ],
+  providers: [
     ...APP_PROVIDERS,
-    HTTP_PROVIDERS,
+    AppStore,
     NG2_UI_AUTH_PROVIDERS({defaultHeaders: DEFAULT_POST_HEADER, 
       providers: {google: {clientId: GOOGLE_CLIENT_ID, url: API_HOST + '/login/google'}, 
       facebook: {clientId: FACEBOOK_CLIENT_ID, url: API_HOST + '/login/facebook'}}})
-  ])
-  .then(decorateComponentRef)
-  .catch(err => console.error(err));
+  ]
+})
+
+class MainModule {
+  constructor(public appRef: ApplicationRef, public appStore: AppStore) {
+
+  }
+
+  hmrOnInit(store) {
+    console.log('HMR store', store);
+    if (store) {
+      let newState = Object.assign({}, store);
+      this.appStore.setState(store);
+    }
+  }
+  hmrOnDestroy(store) {
+    var cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    var currentState = this.appStore.getState();
+    Object.assign(store, currentState);
+    // recreate elements
+    store.disposeOldHosts = createNewHosts(cmpLocation)
+    // remove styles
+    removeNgStyles();
+  }
+  hmrAfterDestroy(store) {
+    // display new elements
+    store.disposeOldHosts()
+    delete store.disposeOldHosts;
+  }
 
 }
 
-
-
-
-
-/*
- * Vendors
- * For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
- * You can also import them in vendors to ensure that they are bundled in one file
- * Also see custom-typings.d.ts as you also need to do `typings install x` where `x` is your module
- */
-
-
-/*
- * Hot Module Reload
- * experimental version by @gdi2290
- */
-if ('development' === ENV && HMR === true) {
-  // activate hot module reload
-  let ngHmr = require('angular2-hmr');
-  ngHmr.hotModuleReplacement(main, module);
-} else {
-  // bootstrap when document is ready
-  document.addEventListener('DOMContentLoaded', () => main());
+export function main() {
+  return platformBrowserDynamic().bootstrapModule(AppModule);
 }
+
+// boot on document ready
+bootloader(main);

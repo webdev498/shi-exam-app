@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
       </button>  
 
-     <a class="navbar-brand" [routerLink]=" ['home'] ">
+     <a class="navbar-brand" routerLink="home">
         <img src="../assets/img/cgi-logo.png" 
           class="cgiLogo"
           alt="Commong Ground International" title="Common Ground International" />
@@ -18,11 +18,11 @@
 
     <div class="collapse navbar-collapse" id="navbarLinks">
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['examstart'] ">Exams</a></li>
-        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['study'] ">Study</a></li>
-        <li *ngIf="!loggedIn()" class="nav-link"><a [routerLink]=" ['login'] ">Login</a></li>
-        <li *ngIf="!loggedIn()" class="nav-link"><a [routerLink]=" ['registerstart'] ">Sign Up</a></li>
-        <li *ngIf="loggedIn()" class="nav-link"><a [routerLink]=" ['account'] ">
+        <li *ngIf="loggedIn()" class="nav-link"><a routerLink="examstart">Exams</a></li>
+        <li *ngIf="loggedIn()" class="nav-link"><a routerLink="study">Study</a></li>
+        <li *ngIf="!loggedIn()" class="nav-link"><a routerLink="login">Login</a></li>
+        <li *ngIf="!loggedIn()" class="nav-link"><a routerLink="registerstart">Sign Up</a></li>
+        <li *ngIf="loggedIn()" class="nav-link"><a routerLink="account">
               <i class="fa fa-user" aria-hidden="true"></i> {{loggedInUser()}}
           </a>
         </li>

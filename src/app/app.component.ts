@@ -1,15 +1,11 @@
 import {Component, ViewEncapsulation, OnInit, Inject} from '@angular/core';
 
 import {AuthService} from './services/auth.service';
-import {AppState} from './app.service';
 
 import {EventService} from './services/event.service';
 
 @Component({
   selector: 'app',
-  encapsulation: ViewEncapsulation.None,
-  providers: [],
-  pipes: [],
   template: require('./app.html'),
   styles: [ require('./app.less') ]
 })
@@ -21,8 +17,7 @@ export class App implements OnInit {
   errorMessage: string = '';
 
   constructor(private _authService: AuthService,
-              private _eventService: EventService,
-              public appState: AppState) {
+              private _eventService: EventService) {
     
               }
 
