@@ -37,6 +37,14 @@ interface GlobalEnvironment {
   API_HOST;
   GOOGLE_CLIENT_ID;
   FACEBOOK_CLIENT_ID;
+  SystemJS: SystemJS;
+  System: SystemJS;
+}
+
+declare var System: SystemJS;
+
+interface SystemJS {
+  import: (path?: string) => Promise<any>;
 }
 
 interface WebpackModule {
@@ -44,7 +52,7 @@ interface WebpackModule {
     data?: any,
     idle: any,
     accept(dependencies?: string | string[], callback?: (updatedDependencies?: any) => void): void;
-    decline(dependencies?: string | string[]): void;
+    decline(dependencies?: any | string | string[]): void;
     dispose(callback?: (data?: any) => void): void;
     addDisposeHandler(callback?: (data?: any) => void): void;
     removeDisposeHandler(callback?: (data?: any) => void): void;
@@ -54,20 +62,18 @@ interface WebpackModule {
     removeStatusHandler(callback?: (status?: string) => void): void;
   };
 }
-
-interface WebpackRequire {
+interface WebpackRequire extends NodeRequireFunction {
   context(file: string, flag?: boolean, exp?: RegExp): any;
 }
 
 
-interface ErrorStackTraceLimit {
-  stackTraceLimit: number;
-}
-
+// interface ErrorStackTraceLimit {
+//   stackTraceLimit: number;
+// }
 
 
 // Extend typings
 interface NodeRequire extends WebpackRequire {}
-interface ErrorConstructor extends ErrorStackTraceLimit {}
+// interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}

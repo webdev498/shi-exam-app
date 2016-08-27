@@ -1,4 +1,4 @@
-import { RouterConfig } from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
 
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
@@ -14,7 +14,7 @@ import {AccountConfirmationComponent} from './account/accountconfirmation.compon
 
 import {AuthGuardService} from './services/authguard.service';
 
-export const routes: RouterConfig =[
+const routes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -28,3 +28,5 @@ export const routes: RouterConfig =[
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];
+
+export const routing = RouterModule.forRoot(routes);

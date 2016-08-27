@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {Router} from '@angular/router';
 import {Auth} from 'ng2-ui-auth';
 import {Response} from '@angular/http';
 
@@ -15,11 +15,7 @@ import {User} from './../model/User';
   providers: [
     LoginService, UserService, AuthService
   ],
-  directives: [
-    ...ROUTER_DIRECTIVES
-  ],
-  pipes: [ ],
-  styles: [ require('./login.less'), require('./../app.less') ] ,
+  styles: [ require('./login.less') ] ,
   template: require('./login.html')
 })
 export class LoginComponent implements OnInit {

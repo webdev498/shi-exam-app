@@ -2,12 +2,12 @@
 <html lang="">
 <head>
 
-  <title><%= webpackConfig.metadata.title %></title>
+  <title>CGI Exam and Study App</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="<%= webpackConfig.metadata.title %>">
+  <meta name="description" content="CGI Exam and Study App">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/icon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/assets/icon/apple-icon-60x60.png">
@@ -27,19 +27,13 @@
   <meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   
-  <% if (webpackConfig.htmlElements.headTags) { %>
-  <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
-  
   <!-- base url -->
-  <base href="<%= webpackConfig.metadata.baseUrl %>">
+  <base href="/">
   
   <!-- CDN References -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 <link rel="stylesheet" href="/assets/css/main.css" />
-<link rel="stylesheet" href="/assets/css/please-wait.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,700,700italic,500italic,600italic' rel='stylesheet' type='text/css'>
   
@@ -60,10 +54,8 @@
       </div>
   </app>
 
-  <% if (webpackConfig.metadata.isDevServer) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
-
+  <script src="/dll/polyfills.js"></script>
+  <script src="/dll/vendors.js"></script>
+  <script src="/main.bundle.js"></script>
 </body>
 </html>
