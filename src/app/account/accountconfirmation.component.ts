@@ -4,7 +4,6 @@ import {Component} from '@angular/core';
   providers: [
     
   ],
-  pipes: [ ],
   styles: [ ],
   template: require('./accountconfirmation.html')
 })

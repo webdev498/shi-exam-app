@@ -30,6 +30,11 @@ declare var HMR: boolean;
 declare var API_HOST: string;
 declare var GOOGLE_CLIENT_ID: string;
 declare var FACEBOOK_CLIENT_ID: string;
+declare var System: SystemJS;
+
+interface SystemJS {
+  import: (path?: string) => Promise<any>;
+}
 
 interface GlobalEnvironment {
   ENV;
@@ -39,12 +44,6 @@ interface GlobalEnvironment {
   FACEBOOK_CLIENT_ID;
   SystemJS: SystemJS;
   System: SystemJS;
-}
-
-declare var System: SystemJS;
-
-interface SystemJS {
-  import: (path?: string) => Promise<any>;
 }
 
 interface WebpackModule {

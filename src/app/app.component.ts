@@ -1,8 +1,7 @@
 import {Component, ViewEncapsulation, OnInit, Inject} from '@angular/core';
-
 import {AuthService} from './services/auth.service';
-
 import {EventService} from './services/event.service';
+import { AppStore } from './app.store';
 
 @Component({
   selector: 'app',
@@ -17,7 +16,8 @@ export class App implements OnInit {
   errorMessage: string = '';
 
   constructor(private _authService: AuthService,
-              private _eventService: EventService) {
+              private _eventService: EventService,
+              public appStore: AppStore) {
     
               }
 

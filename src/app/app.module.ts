@@ -1,11 +1,14 @@
 import { NgModule }      from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, provideForms, disableDeprecatedForms } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { removeNgStyles, createNewHosts, bootloader } from '@angularclass/hmr';
+
+import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+
+import { ApplicationRef }      from '@angular/core';
 
 import {NG2_UI_AUTH_PROVIDERS, JwtHttp} from 'ng2-ui-auth';
 
@@ -28,6 +31,9 @@ import {ExamCompleteComponent} from './exam/examcomplete.component';
 import {StudyComponent} from './study/study.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
+import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
+import {Matching} from './questions/matching/matching.component';
+import {Grouping} from './questions/grouping/grouping.component';
 
 import { routing } from './app.routes';
 
@@ -36,10 +42,9 @@ import { routing } from './app.routes';
     imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
-                    StudyComponent, AccountComponent, AccountConfirmationComponent, App],
+                    StudyComponent, AccountComponent, AccountConfirmationComponent, 
+                    MultipleChoice, Matching, Grouping, App],
     providers: [
-        disableDeprecatedForms(),
-        provideForms(),
     ...APP_PROVIDERS,
     AppStore,
     NG2_UI_AUTH_PROVIDERS({defaultHeaders: DEFAULT_POST_HEADER, 
@@ -47,4 +52,32 @@ import { routing } from './app.routes';
       facebook: {clientId: FACEBOOK_CLIENT_ID, url: API_HOST + '/login/facebook'}}})
   ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(public appRef: ApplicationRef, public appStore: AppStore) {}
+  hmrOnInit(store) {
+    if (!store || !store.state) return;
+    console.log('HMR store', JSON.stringify(store, null, 2));
+    // restore state
+    this.appStore.setState(store.state);
+    // restore input values
+    if ('restoreInputValues' in store) { store.restoreInputValues(); }
+    this.appRef.tick();
+    Object.keys(store).forEach(prop => delete store[prop]);
+  }
+  hmrOnDestroy(store) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    const currentState = this.appStore.getState();
+    store.state = currentState;
+    // recreate elements
+    store.disposeOldHosts = createNewHosts(cmpLocation);
+    // save input values
+    store.restoreInputValues  = createInputTransfer();
+    // remove styles
+    removeNgStyles();
+  }
+  hmrAfterDestroy(store) {
+    // display new elements
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
+  }
+}

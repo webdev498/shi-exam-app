@@ -1,6 +1,3 @@
-/**
- * @author: @AngularClass
- */
 const {
   ContextReplacementPlugin,
   HotModuleReplacementPlugin,
@@ -34,7 +31,7 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
 
   const CONSTANTS = {
     ENV: JSON.stringify(options.ENV),
-    HMR: options.HMR,
+    HMR: Boolean(options.HMR),
     PORT: 3001,
     HOST: 'localhost',
     HTTPS: false,
@@ -42,6 +39,8 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
     GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID,
     FACEBOOK_CLIENT_ID: FACEBOOK_CLIENT_ID
   };
+
+  const isProd = options.ENV.indexOf('prod') !== -1;
   const DLL = require(root('./src/dll'));
   const polyfills = DLL.polyfills(options);
   const rxjs = DLL.rxjs(options);
@@ -64,14 +63,13 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
     },
 
     module: {
-      // allowSyntheticDefaultImports for System.import
-      preLoaders: [
+     preLoaders: [
         {
           test: /\.ts$/,
           loader: 'string-replace-loader',
           query: {
             search: '(System|SystemJS)(.*[\\n\\r]\\s*\\.|\\.)import\\((.+)\\)',
-            replace: '$1.import($3).then(mod => mod.__esModule ? mod.default : mod)',
+            replace: '$1.import($3).then(mod => (mod.__esModule && mod.default) ? mod.default : mod)',
             flags: 'g'
           },
           include: [root('src')]
@@ -82,9 +80,9 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
         {
           test: /\.ts$/,
           loaders: [
+            '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
             'awesome-typescript-loader',
             '@angularclass/conventions-loader',
-            '@angularclass/hmr-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/],
           include: [root('./src')]
@@ -92,13 +90,12 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
         { test: /\.json$/, loader: 'json-loader', include: [root('./src')] },
         { test: /\.html/,  loader: 'raw-loader', include: [root('./src')] },
         { test: /\.css$/,  loader: 'raw-loader', include: [root('./src')] },
-        { test: /.less$/, loader: 'raw-loader!less-loader', include: [root('./src')] },
+        { test: /.less$/, loader: 'raw-loader!less-loader', include: [root('./src')] }
       ]
 
     },
 
-
-    plugins: [
+ plugins: [
       new AssetsPlugin({
         path: root('dist'),
         filename: 'webpack-assets.json',
@@ -136,7 +133,10 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
         app.get('/dll/*', (req, res) => {
           var files = req.path.split('/');
           var chunk = files[files.length -1].replace('.js', '');
-          res.sendFile(root('dist/dll/'+ getDllAssets(chunk)));
+          if(chunk.split('.').length<2)
+            res.sendFile(root('dist/dll/'+ getDllAssets(chunk)));
+          else
+            res.sendFile(root('dist/dll/'+chunk));
         });
       },
       compress: true,
@@ -179,10 +179,12 @@ function getManifest(__path) {
 }
 function getDllAssets(chunk) {
   var assets =  tryDll(() => require(root('./dist/dll/webpack-assets.json')));
+  // {"vendors":{"js":"vendors.js"},"polyfills":{"js":"polyfills.js"}}
   return assets[chunk]['js']
 }
 function getAssets(chunk) {
   var assets =  tryDll(() => require(root('./dist/webpack-assets.json')));
+  // {"vendors":{"js":"vendors.js"},"polyfills":{"js":"polyfills.js"}}
   return assets[chunk]['js']
 }
 function tryDll(cb) {

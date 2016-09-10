@@ -14,8 +14,6 @@ import {Auth} from 'ng2-ui-auth';
 import {Response} from '@angular/http';
 
 @Component({
-  directives: [
-  ],
   providers: [RegistrationService, ValidationService, AuthService, UserService],
   styles: [ require('./register.less') ],
   template: require('./registerstart.html')

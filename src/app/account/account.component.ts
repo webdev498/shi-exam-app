@@ -28,7 +28,6 @@ import {Address} from './../model/Address';
     DayService, MonthService, YearService, EventService,
     ValidationService, AccountService
   ],
-  pipes: [ ],
   styles: [ require('./account.less'), require('./../app.less') ],
   template: require('./account.html')
 })

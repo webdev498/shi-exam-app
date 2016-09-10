@@ -1,3 +1,13 @@
+/*
+ * README
+ * any changes to this file and you have to run `npm run dll` to generate the bundle
+ *
+ * Polyfills
+ * Vendors
+ * RxJS
+ */
+
+// Polyfills
 export function polyfills(env?: any) {
   return [
     // 'ie-shim',

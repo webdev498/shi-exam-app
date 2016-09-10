@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {NgForm} from '@angular/common';
 
 import {Registration} from './../model/Registration';
 import {RegistrationStartInfo} from './../model/Constants';
@@ -28,9 +27,6 @@ var _ = require('lodash');
 
 @Component({
   selector: 'register', 
-
-  directives: [
-  ],
 
   providers: [
     NationalityService, CountryCodeService, DayService,

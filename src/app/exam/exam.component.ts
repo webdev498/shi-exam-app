@@ -20,8 +20,7 @@ import {Choice} from './../model/question/Choice';
   selector: 'exam',  
   styles: [ require('./exam.less') ],
   template: require('./exam.html'),
-  providers: [ExamService, ExamProgressService],
-  directives: [MultipleChoice, Matching, Grouping]
+  providers: [ExamService, ExamProgressService]
 })
 export class ExamComponent implements OnInit {
     processing: boolean = true;
