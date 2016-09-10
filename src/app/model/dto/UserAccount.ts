@@ -34,7 +34,7 @@ export class UserAccount extends UserRegistration{
         let phNumber = null;
         if (registration.phone.length == 10) {
             areaCode = registration.phone.substring(0,3);
-            phNumber = registration.password.substring(3,10);
+            phNumber = registration.phone.substring(3,10);
 
             let phone = new Telephone(registration.countryCode,areaCode,phNumber,null);
             phone.id = registration.phoneId;
