@@ -18,7 +18,7 @@ import {Choice} from './../model/question/Choice';
 
 @Component({
   selector: 'exam',  
-  styles: [ require('./exam.less'), require('./../app.less') ],
+  styles: [ require('./exam.less') ],
   template: require('./exam.html'),
   providers: [ExamService, ExamProgressService],
   directives: [MultipleChoice, Matching, Grouping]
