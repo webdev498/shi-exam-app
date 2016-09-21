@@ -29,6 +29,7 @@ build/Release
 ehthumbs.db
 Icon?
 Thumbs.db
+.awcache
 
 # Node Files #
 /node_modules

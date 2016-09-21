@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="col-md-4 col-md-offset-4">
-        <form #f="ngForm" role="form" style="max-width: 400px">
+        <form #f="ngForm" role="form" style="max-width: 400px; border: none">
       <div class="form-group">
         <label for="email">Email *</label>
         <input type="text" [(ngModel)]="registration.email" class="form-control" id="email"
@@ -131,7 +131,7 @@
       </div>
       <div class="form-group">
         <button type="button" (click)="logout($event)" 
-            class="btn btn-sm btn-primary">Logout</button>
+            class="btn btn-sm btn-default">Logout</button>
       </div>
         </form>
     </div>

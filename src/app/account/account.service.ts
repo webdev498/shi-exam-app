@@ -24,6 +24,19 @@ export class AccountService {
       .catch(this.handleError);
   }
 
+  putUserTelephone(telephone: any) {
+    let header = new Headers();
+    header.append(AuthHeaderKey,this._authService.getToken());
+    header.append('Content-Type','application/json');
+    let authUser = this._authService.tokenUserInfo();
+    let telData = JSON.stringify(telephone);
+    return this._http.put(RootApiUrl + '/users/' + authUser.id + '/telephones/' + telephone.id, telData, {
+      headers: header
+    })
+      .map((response: Response) => <User>response.json())
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error);
   }

@@ -14,6 +14,8 @@ const {
 const { ConcatSource } = require('webpack-sources');
 const { ForkCheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const AssetsPlugin = require('assets-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 
@@ -31,7 +33,7 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
 
   const CONSTANTS = {
     ENV: JSON.stringify(options.ENV),
-    HMR: Boolean(options.HMR),
+    HMR: options.ENV == 'development' ? true : false,
     PORT: 3001,
     HOST: 'localhost',
     HTTPS: false,
@@ -109,14 +111,19 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
         context: '.',
         manifest: getManifest('polyfills'),
       }),
+      new CopyPlugin([
+            { from: 'src/assets', to: 'assets' }
+        ]),
+      new HtmlPlugin({
+        template: 'src/index.html',
+        chunksSortMode: 'dependency'
+      }),
 
       new TsConfigPathsPlugin(/* { tsconfig, compiler } */),
       new HotModuleReplacementPlugin(),
       new ForkCheckerPlugin(),
       new DefinePlugin(CONSTANTS),
-      new ProgressPlugin({}),
-
-
+      new ProgressPlugin({})
     ],
 
     resolve: {

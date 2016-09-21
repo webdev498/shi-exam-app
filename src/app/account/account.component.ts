@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 import { UserInfoKey } from './../model/Constants';
 import { User } from './../model/User';
 import { Registration } from './../model/Registration';
@@ -52,7 +53,8 @@ export class AccountComponent {
              private _yearService: YearService,
              private _eventService: EventService,
              private _validationService: ValidationService,
-             private _accountService: AccountService) {
+             private _accountService: AccountService,
+             private _router: Router) {
       this.countryCodes = _countryCodeService.countryCodes();
       this.years = _yearService.years();
       this.months = _monthService.months();
@@ -108,6 +110,12 @@ export class AccountComponent {
             response => this._handleAccountResponse(response),
             error => this._handleError(error, 'There was an error updating your account')
         );
+
+      this._accountService.putUserTelephone(payload.telephones[0])
+        .subscribe(
+            response => {},
+            error => this._handleError(error, 'There was an error updating your account')
+        );
   }
 
   _handleAccountResponse(user) {
@@ -127,6 +135,7 @@ export class AccountComponent {
       this._authService.logout();
       event.preventDefault();
       event.stopPropagation();
+      this._router.navigate(['home']);
   }
 
   _validation(message) {

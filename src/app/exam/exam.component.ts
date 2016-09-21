@@ -14,7 +14,7 @@ import {ExamProgressService} from './../services/examprogress.service';
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
 import {Matching} from './../questions/matching/matching.component';
 import {Grouping} from './../questions/grouping/grouping.component';
-import {Choice} from './../model/question/Choice';
+import {Term} from './../model/question/Term';
 
 @Component({
   selector: 'exam',  
@@ -104,7 +104,7 @@ export class ExamComponent implements OnInit {
     }
 
     _nextQuestion() {
-      this.currentQuestionType = this._examProgress.nextQuestion().questionType;
+      this.currentQuestionType = this._examProgress.nextQuestion().type;
       this.currentQuestion = this._examProgress.nextQuestion();
       this.processing = false;
 
@@ -140,7 +140,7 @@ export class ExamComponent implements OnInit {
       switch (this.currentQuestionType)
       {
         case MultipleChoiceQuestionType:
-          disabled = this.answer == null ? true : false;
+          disabled = this.answer == undefined || this.answer.length == 0 ? true : false;
           break;
         case MatchingQuestionType:
           disabled = this.answer.length !== MatchingTermsShown ? true : false;

@@ -18,8 +18,8 @@ export const ExamLong = 'long';
 export const ExamProgress = 'examprogress';
 
 //question constants
-export const MultipleChoiceQuestionType = '1';
-export const MatchingQuestionType = '2';
-export const GroupingQuestionType = '3';
-export const MatchingTermsShown = 3;
+export const MultipleChoiceQuestionType = 'Multiple Choice';
+export const MatchingQuestionType = 'Term Matching';
+export const GroupingQuestionType = 'Category Matching';
+export const MatchingTermsShown = 5;
 export const GroupingTermsShown = 5;

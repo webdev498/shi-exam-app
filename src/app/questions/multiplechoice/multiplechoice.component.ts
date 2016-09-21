@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Choice} from './../../model/question/Choice';
+import {Term} from './../../model/question/Term';
  
 @Component({ 
     selector: 'multipleChoice', 
@@ -7,16 +7,16 @@ import {Choice} from './../../model/question/Choice';
     styles: [require('./multiplechoice.less')]
 })
 export class MultipleChoice {
-    @Input() choices : Choice[];
+    @Input() terms : Term[];
     @Output() answerChosen = new EventEmitter();
     
     constructor() {
         
     }    
     
-    answer(choice: Choice) {
+    answer(term: Term) {
         this.answerChosen.emit({
-            id: choice.id
+            id: term.id
         })
     }
 }

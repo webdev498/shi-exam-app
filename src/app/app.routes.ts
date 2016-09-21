@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
+import {RegisterConfirmComponent} from './register/registerconfirm.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 import {ExamStartComponent} from './exam/examstart.component';
 import {ExamComponent} from './exam/exam.component';
@@ -20,6 +21,7 @@ const routes: Routes =[
   { path: 'login', component: LoginComponent},
   { path: 'registerstart', component: RegisterStartComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'registerconfirm', component: RegisterConfirmComponent, canActivate: [AuthGuardService]},
   { path: 'forgotpassword', component: ForgotPasswordComponent},
   { path: 'examstart', component: ExamStartComponent, canActivate: [AuthGuardService]},
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuardService]},
@@ -29,4 +31,6 @@ const routes: Routes =[
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, {
+      useHash: true
+    });
