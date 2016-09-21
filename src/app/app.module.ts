@@ -10,7 +10,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 
 import { ApplicationRef }      from '@angular/core';
 
-import {NG2_UI_AUTH_PROVIDERS, JwtHttp} from 'ng2-ui-auth';
+import {Ng2UiAuthModule, CustomConfig, JwtHttp} from 'ng2-ui-auth';
 
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
@@ -37,19 +37,25 @@ import {Grouping} from './questions/grouping/grouping.component';
 
 import { routing } from './app.routes';
 
+export class MyAuthConfig extends CustomConfig {
+    defaultHeaders = {'Content-Type': 'application/json'};
+    providers = {
+          google: {clientId: GOOGLE_CLIENT_ID, url: API_HOST + '/login/google'}, 
+          facebook: {clientId: FACEBOOK_CLIENT_ID, url: API_HOST + '/login/facebook'}}
+}
+
 @NgModule({
     bootstrap: [App],
-    imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing ],
+    imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing, 
+    Ng2UiAuthModule.getWithConfig(MyAuthConfig),
+    ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     MultipleChoice, Matching, Grouping, App],
     providers: [
     ...APP_PROVIDERS,
-    AppStore,
-    NG2_UI_AUTH_PROVIDERS({defaultHeaders: DEFAULT_POST_HEADER, 
-      providers: {google: {clientId: GOOGLE_CLIENT_ID, url: API_HOST + '/login/google'}, 
-      facebook: {clientId: FACEBOOK_CLIENT_ID, url: API_HOST + '/login/facebook'}}})
+    AppStore
   ]
 })
 export class AppModule {

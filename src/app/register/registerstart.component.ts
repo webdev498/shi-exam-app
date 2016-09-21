@@ -6,15 +6,15 @@ import {ValidationService} from './../services/validation.service';
 import {RegistrationStart} from './../model/RegistrationStart';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserService} from './../services/user.service';
-import {AuthService} from './../services/auth.service';
+import {AuthService as CGIAuth} from './../services/auth.service';
 
 import {Router} from '@angular/router';
 import {NgForm, Validators} from '@angular/forms';
-import {Auth} from 'ng2-ui-auth';
+import {AuthService} from 'ng2-ui-auth';
 import {Response} from '@angular/http';
 
 @Component({
-  providers: [RegistrationService, ValidationService, AuthService, UserService],
+  providers: [RegistrationService, ValidationService, CGIAuth, AuthService, UserService],
   styles: [ require('./register.less') ],
   template: require('./registerstart.html')
 })
@@ -26,9 +26,9 @@ export class RegisterStartComponent implements OnInit {
   constructor(private _regService: RegistrationService,
                 private _router: Router,
                 private _validator: ValidationService,
-                private _oauth: Auth,
+                private _oauth: AuthService,
                 private _userService: UserService,
-                private _authService: AuthService) {
+                private _authService: CGIAuth) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
   }

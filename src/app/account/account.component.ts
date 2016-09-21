@@ -108,6 +108,12 @@ export class AccountComponent {
             response => this._handleAccountResponse(response),
             error => this._handleError(error, 'There was an error updating your account')
         );
+
+      this._accountService.putUserTelephone(payload.telephones[0])
+        .subscribe(
+            response => {},
+            error => this._handleError(error, 'There was an error updating your account')
+        );
   }
 
   _handleAccountResponse(user) {

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Auth} from 'ng2-ui-auth';
+import {AuthService} from 'ng2-ui-auth';
 import {Response} from '@angular/http';
 
 import {LoginService} from './login.service';
 import {UserService} from './../services/user.service';
-import {AuthService} from './../services/auth.service';
+import {AuthService as CGIAuth} from './../services/auth.service';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserTokenKey} from './../model/Constants';
 import {UserInfoKey} from './../model/Constants';
@@ -13,7 +13,7 @@ import {User} from './../model/User';
 
 @Component({
   providers: [
-    LoginService, UserService, AuthService
+    LoginService, UserService, CGIAuth, AuthService
   ],
   styles: [ require('./login.less') ] ,
   template: require('./login.html')
@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
   // TypeScript public modifiers
   constructor(private _loginService: LoginService,
               private _userService: UserService,
-              private _authService: AuthService,
+              private _authService: CGIAuth,
               private _router: Router,
-              private _oauth: Auth) {
+              private _oauth: AuthService) {
     this.errorMessage = '';
   }
 
