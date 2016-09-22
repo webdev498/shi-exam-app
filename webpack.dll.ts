@@ -42,8 +42,8 @@ function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
     output: {
       path: root('dist/dll'),
-      filename: '[name].[hash].js',
-      sourceMapFilename: '[name].[hash].map',
+      filename: '[name].js',
+      sourceMapFilename: '[name].map',
       library: "__[name]"
     },
 
