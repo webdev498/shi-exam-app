@@ -35,7 +35,7 @@
     "@angularclass/hmr": "~1.2.0",
     "core-js": "^2.4.1",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "~0.6.23",
+    "zone.js": "~0.6.25",
     "ng2-ui-auth": "^4.0.0",
     "angular2-jwt": "^0.1.23"
   },
@@ -61,7 +61,7 @@
     "ts-helpers": "github:gdi2290/ts-helpers",
     "ts-loader": "^0.8.2",
     "ts-node": "^1.2.2",
-    "typescript": "^2.0.0-beta",
+    "typescript": "^2.0.3",
     "webpack": "^2.1.0-beta.22",
     "webpack-dashboard": "0.0.1",
     "webpack-dev-middleware": "^1.6.1",
