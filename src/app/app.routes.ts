@@ -29,4 +29,6 @@ const routes: Routes =[
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, {
+      useHash: true
+    });
