@@ -21,7 +21,7 @@ const routes: Routes =[
   { path: 'login', component: LoginComponent},
   { path: 'registerstart', component: RegisterStartComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'registerconfirm', component: RegisterConfirmComponent},
+  { path: 'registerconfirm', component: RegisterConfirmComponent, canActivate: [AuthGuardService]},
   { path: 'forgotpassword', component: ForgotPasswordComponent},
   { path: 'examstart', component: ExamStartComponent, canActivate: [AuthGuardService]},
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuardService]},
