@@ -1,9 +1,9 @@
-import { ChoiceInterface } from './../interface/Choice.interface';
+import { TermInterface } from './../interface/Term.interface';
 
-export class Question implements ChoiceInterface {
+export class Question implements TermInterface {
     public text: string;
     public id: string;
-    
+
     constructor() {}
                 
 }

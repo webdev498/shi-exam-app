@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Choice} from './../../model/question/Choice';
+import {Term} from './../../model/question/Choice';
 var _ = require('lodash');
  
 @Component({ 
@@ -8,7 +8,7 @@ var _ = require('lodash');
     styles: [require('./matching.less')]
 })
 export class Matching {
-    @Input() choices : Choice[];
+    @Input() choices : Term[];
     @Output() choiceMatched = new EventEmitter();
 
     constructor() {
@@ -36,8 +36,8 @@ export class Matching {
             matchedid: droppedid
         });
 
-        let choice = <Choice>this._getChoice(id);
-        let droppedChoice = <Choice>this._getChoice(droppedid);
+        let choice = <Term>this._getChoice(id);
+        let droppedChoice = <Term>this._getChoice(droppedid);
         choice.matchedchoice = droppedChoice;
         droppedChoice.matched = true;
     }

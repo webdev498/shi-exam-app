@@ -17,7 +17,7 @@ export class ExamService {
  /*   return this._http.post(RootApiUrl + '/exam',payload, {
       headers: headers
     })*/
-    return this._http.get('/exam.json')
+    return this._http.get('/realexam.json')
       .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }

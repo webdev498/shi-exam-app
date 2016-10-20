@@ -1,11 +1,15 @@
-import {Choice} from './Choice';
+import {Term} from './Term';
 import {Question} from './Question';
+import {Section} from './../exam/Section';
 import {QuestionInterface} from './../interface/Question.interface';
 
 export class MultipleChoiceQuestion implements QuestionInterface {
-    public choices: Choice[];
+    public choices: Term[];
     public question: Question;
-    public questionType: string;
+    public section: Section;
+    public type: string;
+    public id: string;
+    public text: string;
     
     constructor() {}
                 
