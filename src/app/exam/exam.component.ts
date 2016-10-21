@@ -14,7 +14,7 @@ import {ExamProgressService} from './../services/examprogress.service';
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
 import {Matching} from './../questions/matching/matching.component';
 import {Grouping} from './../questions/grouping/grouping.component';
-import {Term} from './../model/question/Choice';
+import {Term} from './../model/question/Term';
 
 @Component({
   selector: 'exam',  

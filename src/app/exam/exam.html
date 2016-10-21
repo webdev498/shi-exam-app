@@ -7,19 +7,22 @@
         </div>
 
         <div class="row" *ngIf="!processing">
-            <div>
+            <div style="margin-bottom: 6px; text-align: center; font-style: italic">
+                <span>{{currentQuestion.section.instructions}}</span>
+            </div>
+            <div *ngIf="currentQuestion.question.text !== ''">
                 <h3>{{currentQuestion.question.text}}</h3>
             </div>    
             <div [ngSwitch]="currentQuestionType">
-                <multipleChoice *ngSwitchCase="'1'" 
+                <multipleChoice *ngSwitchCase="'Multiple Choice'" 
                     (answerChosen)="choiceSelected($event)"
                     [choices]="currentQuestion.choices">
                 </multipleChoice>
-                <matching *ngSwitchCase="'2'" 
+                <matching *ngSwitchCase="'Term Matching'" 
                     [choices]="currentQuestion.choices"
                     (choiceMatched)="choiceSelected($event)">
                 </matching>
-                <grouping *ngSwitchCase="'3'" 
+                <grouping *ngSwitchCase="'Category Matching'" 
                     [categories]="currentQuestion.categories"
                     [choices]="currentQuestion.choices"
                     (choiceGrouped)="choiceSelected($event)">
