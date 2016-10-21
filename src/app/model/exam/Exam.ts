@@ -3,7 +3,7 @@ import {MultipleChoiceQuestion} from './../question/MultipleChoiceQuestion';
 import {MatchingQuestion} from './../question/MatchingQuestion';
 import {GroupingQuestion} from './../question/GroupingQuestion';
 import {Question} from './../question/Question';
-import {Term} from './../question/Choice';
+import {Term} from './../question/Term';
 import {Section} from './Section';
 var _ = require('lodash');
 
@@ -50,8 +50,8 @@ export class Exam {
                         mq.question = question;
                         mq.section = section;
                         mq.type = q.type;
-                        mq.english = q.english;
-                        mq.spanish = q.spanish;
+                        mq.english = q.candidates;
+                        mq.spanish = q.terms;
     
                         //randomize english and spanish choices into one array
                         mq.terms = new Array();
@@ -65,6 +65,7 @@ export class Exam {
     
                         //lodash randomize
                         mq.terms = _.shuffle(mq.terms);
+
                         this.questions.push(mq);
                         break;
                     case GroupingQuestionType:
@@ -72,8 +73,8 @@ export class Exam {
                         gq.question = question;
                         gq.section = section;
                         gq.type = q.type;
-                        gq.categories = q.categories;
-                        gq.choices = q.choices;
+                        gq.categories = _.shuffle(q.categories);
+                        gq.choices = _.shuffle(q.terms);
                         this.questions.push(gq);
                         break;
                 }

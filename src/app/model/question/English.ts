@@ -1,6 +1,6 @@
-import { ChoiceInterface } from './../interface/Choice.interface';
+import { TermInterface } from './../interface/Term.interface';
 
-export class English implements ChoiceInterface {
+export class English implements TermInterface {
     constructor(public text: string,
                 public id: string) {}
                 
