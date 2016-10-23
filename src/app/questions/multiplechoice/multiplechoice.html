@@ -2,7 +2,7 @@
     <div *ngFor="let t of terms" class="mc">
         <div style="margin-bottom: 7px">
         <input type="radio" name="question" 
-            (click)="answer(t)" /> &nbsp;&nbsp; {{c.text}}
+            (click)="answer(t)" /> &nbsp;&nbsp; {{t.text}}
         </div>
     </div>
 </div>

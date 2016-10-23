@@ -42,7 +42,7 @@ export class Exam {
                         mcq.question = question;
                         mcq.section = section;
                         mcq.type = q.type;
-                        mcq.choices = q.terms;
+                        mcq.choices = _.shuffle(q.terms);
                         this.questions.push(mcq);
                         break;
                     case MatchingQuestionType:

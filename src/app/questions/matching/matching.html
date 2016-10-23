@@ -3,12 +3,12 @@
         <div *ngIf="!t.matched">
         <div class="group" 
                 draggable="true"
-                (dragstart)="dragstart($event, c.id)"
+                (dragstart)="dragstart($event, t.id)"
                 (drop)="dropped($event, t.id)"
                 (dragover)="dragover($event)">
             <div class="text">{{t.text}}</div>
             <div *ngIf="t.matchedchoice != null" class="bottommatchedtext">
-                {{c.matchedchoice.text}}
+                {{t.matchedchoice.text}}
             </div>
         </div>
         </div>

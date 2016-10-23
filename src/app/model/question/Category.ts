@@ -1,5 +1,5 @@
 import { TermInterface } from './../interface/Term.interface';
-import { Term } from './Choice';
+import { Term } from './Term';
 
 export class Category implements TermInterface {
     public groupedterms: Term[];

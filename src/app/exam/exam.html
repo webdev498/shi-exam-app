@@ -16,15 +16,15 @@
             <div [ngSwitch]="currentQuestionType">
                 <multipleChoice *ngSwitchCase="'Multiple Choice'" 
                     (answerChosen)="choiceSelected($event)"
-                    [choices]="currentQuestion.choices">
+                    [terms]="currentQuestion.choices">
                 </multipleChoice>
                 <matching *ngSwitchCase="'Term Matching'" 
-                    [choices]="currentQuestion.choices"
+                    [terms]="currentQuestion.choices"
                     (choiceMatched)="choiceSelected($event)">
                 </matching>
                 <grouping *ngSwitchCase="'Category Matching'" 
                     [categories]="currentQuestion.categories"
-                    [choices]="currentQuestion.choices"
+                    [terms]="currentQuestion.choices"
                     (choiceGrouped)="choiceSelected($event)">
                 </grouping>
             </div>
