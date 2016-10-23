@@ -1,3 +1,8 @@
+import {Section} from './../exam/Section';
+
 export interface QuestionInterface {
-    questionType: string;
+    type: string;
+    id: string;
+    text: string;
+    section: Section;
 }

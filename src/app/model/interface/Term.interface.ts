@@ -1,4 +1,4 @@
-export interface ChoiceInterface {
+export interface TermInterface {
     text: string;
     id: string;
 }

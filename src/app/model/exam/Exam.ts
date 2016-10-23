@@ -3,73 +3,96 @@ import {MultipleChoiceQuestion} from './../question/MultipleChoiceQuestion';
 import {MatchingQuestion} from './../question/MatchingQuestion';
 import {GroupingQuestion} from './../question/GroupingQuestion';
 import {Question} from './../question/Question';
-import {Choice} from './../question/Choice';
+import {Term} from './../question/Term';
+import {Category} from './../question/Category';
+import {Section} from './Section';
 var _ = require('lodash');
 
 import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../Constants';
 
 export class Exam {
     public id: string;
-    public time: string;
-    public questions: QuestionInterface[];
-    
+    public sections: Section[];
+    public questions : QuestionInterface[];
+
     constructor() {}
 
     mapExam(exam: any):this {
         let instance = this;
 
         this.id = exam.id;
-        this.time = exam.time;
-
+        this.sections = exam.sections;
         this.questions = new Array();
         //randomize the questions from the server
         //exam.questions = _.shuffle(exam.questions);
 
-        for (var q of exam.questions) {
-            let question = new Question();
-            question.id = q.id;
-            question.text = q.text;
+        for (var s of exam.sections) {
+            for (var q of s.questions) {
+                let question = new Question();
+                question.id = q.id;
+                question.text = q.text;
 
-            switch (q.type) {
-                case MultipleChoiceQuestionType:
-                //Multiple Choice
-                    let mcq = new MultipleChoiceQuestion();
-                    mcq.question = question;
-                    mcq.questionType = q.type;
-                    mcq.choices = q.choices;
-                    this.questions.push(mcq);
-                    break;
-                case MatchingQuestionType:
-                //Matching
-                    let mq = new MatchingQuestion();
-                    mq.question = question;
-                    mq.questionType = q.type;
-                    mq.english = q.english;
-                    mq.spanish = q.spanish;
+                let section = new Section();
+                section.instructions = s.instructions;
+                section.id = s.id;
+                section.type = s.type;
+    
+                switch (q.type) {
+                    case MultipleChoiceQuestionType:
+                        let mcq = new MultipleChoiceQuestion();
+                        mcq.question = question;
+                        mcq.section = section;
+                        mcq.type = q.type;
+                        mcq.choices = _.shuffle(q.terms);
+                        this.questions.push(mcq);
+                        break;
+                    case MatchingQuestionType:
+                        let mq = new MatchingQuestion();
+                        mq.question = question;
+                        mq.section = section;
+                        mq.type = q.type;
+                        mq.english = q.candidates;
+                        mq.spanish = q.terms;
+    
+                        //randomize english and spanish choices into one array
+                        mq.terms = new Array();
+                        for (let i = 0; i < mq.english.length; i++) {
+                            mq.terms.push(new Term(mq.english[i].text, mq.english[i].id));
+                        }
+    
+                        for (let i = 0; i < mq.spanish.length; i++) {
+                            mq.terms.push(new Term(mq.spanish[i].text, mq.spanish[i].id));
+                        }
+    
+                        //lodash randomize
+                        mq.terms = _.shuffle(mq.terms);
 
-                    //randomize english and spanish choices into one array
-                    mq.choices = new Array();
-                    for (let i = 0; i < mq.english.length; i++) {
-                        mq.choices.push(new Choice(mq.english[i].text, mq.english[i].id));
-                    }
+                        this.questions.push(mq);
+                        break;
+                    case GroupingQuestionType:
+                        let gq = new GroupingQuestion();
+                        gq.question = question;
+                        gq.section = section;
+                        gq.type = q.type;
 
-                    for (let i = 0; i < mq.spanish.length; i++) {
-                        mq.choices.push(new Choice(mq.spanish[i].text, mq.spanish[i].id));
-                    }
+                        gq.categories = new Array();
+                        let sc = _.shuffle(q.categories);
 
-                    //lodash randomize
-                    mq.choices = _.shuffle(mq.choices);
-                    this.questions.push(mq);
-                    break;
-                case GroupingQuestionType:
-                //Grouping
-                    let gq = new GroupingQuestion();
-                    gq.question = question;
-                    gq.questionType = q.type;
-                    gq.categories = q.categories;
-                    gq.choices = q.choices;
-                    this.questions.push(gq);
-                    break;
+                        for (let g = 0; g < sc.length; g++) {
+                            gq.categories.push(new Category(sc[g].text,
+                                sc[g].id));
+                        }
+
+                        gq.choices = new Array();
+                        let gt = _.shuffle(q.terms);
+
+                        for (let t = 0; t < gt.length; t++) {
+                            gq.choices.push(new Term(gt[t].text, gt[t].id));
+                        }
+
+                        this.questions.push(gq);
+                        break;
+                }
             }
         }
 

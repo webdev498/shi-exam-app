@@ -1,10 +1,10 @@
 <div class="gFrame">
-    <div *ngFor="let c of choices" class="g">
-        <div *ngIf="!c.matched">
+    <div *ngFor="let t of terms" class="g">
+        <div *ngIf="!t.matched">
         <div class="group" 
                 draggable="true"
-                (dragstart)="dragstart($event, c.id)">
-            <div class="text">{{c.text}}</div>
+                (dragstart)="dragstart($event, t.id)">
+            <div class="text">{{t.text}}</div>
         </div>
         </div>
     </div>
@@ -14,9 +14,9 @@
                 (drop)="dropped($event, c.id)"
                 (dragover)="dragover($event)">
             <div class="categorytext">{{c.text}}</div>
-            <div *ngIf="c.groupedchoices != null && c.groupedchoices.length > 0" 
+            <div *ngIf="c.groupedterms != null && c.groupedterms.length > 0" 
                     class="groupedchoices">
-                <div *ngFor="let g of c.groupedchoices" class="groupedtext">
+                <div *ngFor="let g of c.groupedterms" class="groupedtext">
                     {{g.text}}
                 </div>
             </div>

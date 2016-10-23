@@ -1,9 +1,8 @@
-import {English} from './English';
-import {Spanish} from './Spanish';
+import {Term} from './Term';
 
 export class ChoiceTerm {
-    english: English;
-    spanish: Spanish;
+    english: Term;
+    spanish: Term;
     
     constructor() {}
 }

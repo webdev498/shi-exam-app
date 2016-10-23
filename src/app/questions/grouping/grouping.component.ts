@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Choice} from './../../model/question/Choice';
+import {Term} from './../../model/question/Term';
 import {Category} from './../../model/question/Category';
 import {GroupingTermsShown} from './../../model/Constants';
 var _ = require('lodash');
@@ -10,7 +10,7 @@ var _ = require('lodash');
     styles: [require('./grouping.less')]
 })
 export class Grouping {
-    @Input() choices : Choice[];
+    @Input() terms : Term[];
     @Input() categories: Category[];
 
     @Output() choiceGrouped = new EventEmitter();
@@ -43,20 +43,24 @@ export class Grouping {
             groupedid: droppedid
         });
 
-        let choice = <Choice>this._getChoice(droppedid);
+        let choice = <Term>this._getChoice(droppedid);
+        if (!choice.hasOwnProperty('matched')) {
+            choice['matched'] = false;
+        }
+
         choice.matched = true;
 
         let category = <Category>this._getCategory(id);
         
-        if (category.groupedchoices == null)
-            category.groupedchoices = new Array();
+        if (category.groupedterms == null)
+            category.groupedterms = new Array();
 
-        category.groupedchoices.push(choice);
+        category.groupedterms.push(choice);
         this.grouped++;
     }
 
     _getChoice(id) {
-        return _.find(this.choices, {id: id});
+        return _.find(this.terms, {id: id});
     }
 
     _getCategory(id) {
