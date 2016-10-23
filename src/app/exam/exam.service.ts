@@ -17,10 +17,10 @@ export class ExamService {
     headers.append(AuthHeaderKey,this._authService.getToken());
     var payload = JSON.stringify({tier: 1, type: examType});
     
-      //return this._http.post(RootApiUrl + '/exams',payload, {
-      //headers: headers
-      //})
-      return this._http.get('/realexam.json')
+      return this._http.post(RootApiUrl + '/exams',payload, {
+        headers: headers
+      })
+      //return this._http.get('/realexam.json')
       .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }

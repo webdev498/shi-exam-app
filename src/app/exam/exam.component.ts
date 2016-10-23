@@ -140,7 +140,7 @@ export class ExamComponent implements OnInit {
       switch (this.currentQuestionType)
       {
         case MultipleChoiceQuestionType:
-          disabled = this.answer == undefined ? true : false;
+          disabled = this.answer == undefined || this.answer.length == 0 ? true : false;
           break;
         case MatchingQuestionType:
           disabled = this.answer.length !== MatchingTermsShown ? true : false;
