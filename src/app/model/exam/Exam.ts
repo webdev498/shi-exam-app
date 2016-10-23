@@ -4,6 +4,7 @@ import {MatchingQuestion} from './../question/MatchingQuestion';
 import {GroupingQuestion} from './../question/GroupingQuestion';
 import {Question} from './../question/Question';
 import {Term} from './../question/Term';
+import {Category} from './../question/Category';
 import {Section} from './Section';
 var _ = require('lodash');
 
@@ -73,8 +74,22 @@ export class Exam {
                         gq.question = question;
                         gq.section = section;
                         gq.type = q.type;
-                        gq.categories = _.shuffle(q.categories);
-                        gq.choices = _.shuffle(q.terms);
+
+                        gq.categories = new Array();
+                        let sc = _.shuffle(q.categories);
+
+                        for (let g = 0; g < sc.length; g++) {
+                            gq.categories.push(new Category(sc[g].text,
+                                sc[g].id));
+                        }
+
+                        gq.choices = new Array();
+                        let gt = _.shuffle(q.terms);
+
+                        for (let t = 0; t < gt.length; t++) {
+                            gq.choices.push(new Term(gt[t].text, gt[t].id));
+                        }
+
                         this.questions.push(gq);
                         break;
                 }

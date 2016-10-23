@@ -14,9 +14,9 @@
                 (drop)="dropped($event, c.id)"
                 (dragover)="dragover($event)">
             <div class="categorytext">{{c.text}}</div>
-            <div *ngIf="c.groupedchoices != null && c.groupedchoices.length > 0" 
+            <div *ngIf="c.groupedterms != null && c.groupedterms.length > 0" 
                     class="groupedchoices">
-                <div *ngFor="let g of c.groupedchoices" class="groupedtext">
+                <div *ngFor="let g of c.groupedterms" class="groupedtext">
                     {{g.text}}
                 </div>
             </div>

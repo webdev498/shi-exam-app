@@ -44,6 +44,10 @@ export class Grouping {
         });
 
         let choice = <Term>this._getChoice(droppedid);
+        if (!choice.hasOwnProperty('matched')) {
+            choice['matched'] = false;
+        }
+
         choice.matched = true;
 
         let category = <Category>this._getCategory(id);

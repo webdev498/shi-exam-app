@@ -19,7 +19,7 @@
                     [terms]="currentQuestion.choices">
                 </multipleChoice>
                 <matching *ngSwitchCase="'Term Matching'" 
-                    [terms]="currentQuestion.choices"
+                    [terms]="currentQuestion.terms"
                     (choiceMatched)="choiceSelected($event)">
                 </matching>
                 <grouping *ngSwitchCase="'Category Matching'" 

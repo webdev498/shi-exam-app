@@ -21,5 +21,5 @@ export const ExamProgress = 'examprogress';
 export const MultipleChoiceQuestionType = 'Multiple Choice';
 export const MatchingQuestionType = 'Term Matching';
 export const GroupingQuestionType = 'Category Matching';
-export const MatchingTermsShown = 3;
+export const MatchingTermsShown = 5;
 export const GroupingTermsShown = 5;
