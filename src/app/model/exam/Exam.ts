@@ -18,6 +18,8 @@ export class Exam {
     constructor() {}
 
     mapExam(exam: any):this {
+        //save the exam
+
         let instance = this;
 
         this.id = exam.id;

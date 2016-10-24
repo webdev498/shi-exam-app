@@ -1,18 +1,28 @@
-import {ExamProgress} from './../model/Constants';
+import { GroupingResponse } from './../model/question/response/GroupingResponse';
+import { MatchingResponse } from './../model/question/response/MatchingResponse';
+import { MultipleChoiceResponse } from './../model/question/response/MultipleChoiceResponse';
+import { QuestionResponse } from './../model/question/response/QuestionResponse';
+import { ExamSubmission } from './../model/exam/ExamSubmission';
+
 import {Exam} from './../model/exam/Exam';
 import {ExamCompleteComponent} from './../exam/examcomplete.component';
 import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {QuestionInterface} from './../model/interface/Question.interface';
-import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../model/Constants';
+import {MultipleChoiceQuestionType, MatchingQuestionType, ExamResponse,
+     GroupingQuestionType, ExamProgress, CurrentExam} from './../model/Constants';
+
+import {ExamService} from './../exam/exam.service';
 
 @Injectable()
 export class ExamProgressService {
     answers: any[];
     exam: Exam;
     questionsComplete: number = 0;
+    examSubmission: ExamSubmission;
 
-    constructor(private _router: Router) {
+    constructor(private _router: Router,
+                private _examService: ExamService) {
         this.answers = new Array();
     }
 
@@ -26,6 +36,10 @@ export class ExamProgressService {
 
     setCurrentExam(exam: Exam) {
         this.exam = exam;
+        sessionStorage[CurrentExam] = this.exam;
+
+        this.examSubmission = new ExamSubmission();
+        this.examSubmission.examId = this.exam.id;
     }
 
     nextQuestion() :QuestionInterface {
@@ -68,13 +82,22 @@ export class ExamProgressService {
         this.questionsComplete = this.answers.length;
 
         if (this.exam.questions.length === this.questionsComplete) {
-            this._router.navigate(['examcomplete']);
-            let examDTO = {examid: this.exam.id, time: null, answers: this.answers}
-            console.log(JSON.stringify(examDTO));
+            this._examService.submitExam(this.examSubmission)
+                .subscribe(
+                response => { 
+                    sessionStorage[ExamResponse] = response;
+                    this._router.navigate(['examcomplete']); 
+                },
+                error => this._handleSubmissionError(error)
+            );
             return false;
         }
 
         return true;
+    }
+
+    _handleSubmissionError(error) {
+        console.error(error);
     }
 
     getProgress() {
