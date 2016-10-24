@@ -1,5 +1,4 @@
 export class MultipleChoiceResponse {
-    constructor() {}
+    constructor(public termId: string) {}
 
-    termId: string;
 }

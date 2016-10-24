@@ -1,6 +1,4 @@
 export class GroupingResponse {
-    constructor() {}
-
-    categoryId: string;
-    termId: string;
+    constructor(public categoryId: string,
+        public termId: string) {}
 }

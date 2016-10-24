@@ -1,6 +1,4 @@
 export class MatchingResponse {
-    constructor() {}
-
-    candidateId: string;
-    termId: string;
+    constructor(public candidateId: string,
+                public termId: string) {}
 }
