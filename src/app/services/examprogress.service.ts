@@ -13,6 +13,7 @@ import {MultipleChoiceQuestionType, MatchingQuestionType, ExamResponse,
      GroupingQuestionType, ExamProgress, CurrentExam} from './../model/Constants';
 
 import {ExamService} from './../exam/exam.service';
+import {EventService} from './event.service';
 
 @Injectable()
 export class ExamProgressService {
@@ -22,7 +23,8 @@ export class ExamProgressService {
     examSubmission: ExamSubmission;
 
     constructor(private _router: Router,
-                private _examService: ExamService) {
+                private _examService: ExamService,
+                private _eventService: EventService) {
         this.answers = new Array();
     }
 
@@ -90,7 +92,7 @@ export class ExamProgressService {
             this._examService.submitExam(this.examSubmission)
                 .subscribe(
                 response => { 
-                    sessionStorage[ExamResponse] = response;
+                    sessionStorage[ExamResponse] = JSON.stringify(response);
                     this._router.navigate(['examcomplete']); 
                 },
                 error => this._handleSubmissionError(error)
@@ -103,6 +105,7 @@ export class ExamProgressService {
 
     _handleSubmissionError(error) {
         console.error(error);
+        this._eventService.broadcast('There was an error when submitting your exam for grading');
     }
 
     getProgress() {
