@@ -38,7 +38,7 @@ export class ExamProgressService {
 
     setCurrentExam(exam: Exam) {
         this.exam = exam;
-        sessionStorage[CurrentExam] = this.exam;
+        sessionStorage[CurrentExam] = JSON.stringify(this.exam);
 
         this.examSubmission = new ExamSubmission();
         this.examSubmission.examId = this.exam.id;
