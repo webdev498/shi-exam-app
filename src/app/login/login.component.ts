@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   // Set our default values
   username: string;
   password: string;
-  submitted: boolean;
   errorMessage: string;
   processing: boolean = false;
   
@@ -43,6 +42,12 @@ export class LoginComponent implements OnInit {
       response => this._handleLoginResponse(response),
       error => this._handleError(error)
     );
+  }
+
+  formKeyup(e) {
+    //submit on enter keyCode 
+    if (e.keyCode === 13)
+      this.submitLogin();
   }
   
   _handleLoginResponse(lr: LoginResponse) {
@@ -72,7 +77,7 @@ export class LoginComponent implements OnInit {
       return this.password == null ||
         this.password.length < 8 || 
         this.username == null ||
-        this.submitted;
+        this.processing;
   }
   
   facebook() {
