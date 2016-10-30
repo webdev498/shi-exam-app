@@ -141,6 +141,11 @@ export class ExamComponent implements OnInit {
       }
     }
 
+    termDeselected(event: any) {
+      let index = this.answer.indexOf(event);
+      this.answer.splice(index,1);
+    }
+
     nextDisabled() {
       let disabled = true;
 

@@ -82,7 +82,7 @@ export class Exam {
                         let sc = _.shuffle(q.categories);
 
                         for (let g = 0; g < sc.length; g++) {
-                            gq.categories.push(new Category(sc[g].text.toLower() === GeneralCategory ? GeneralAlias :
+                            gq.categories.push(new Category(sc[g].text.toLowerCase() === GeneralCategory ? GeneralAlias :
                                 sc[g].text,
                                 sc[g].id));
                         }

@@ -28,12 +28,14 @@
                 </multipleChoice>
                 <matching *ngSwitchCase="'Term Matching'" 
                     [terms]="currentQuestion.terms"
-                    (choiceMatched)="choiceSelected($event)">
+                    (choiceMatched)="choiceSelected($event)"
+                    (termUndo)="termDeselected($event)">
                 </matching>
                 <grouping *ngSwitchCase="'Category Matching'" 
                     [categories]="currentQuestion.categories"
                     [terms]="currentQuestion.choices"
-                    (choiceGrouped)="choiceSelected($event)">
+                    (choiceGrouped)="choiceSelected($event)"
+                    (termUndo)="termDeselected($event)">
                 </grouping>
             </div>
             <div style="margin-top: 15px; margin-left: 5px; margin-right: 5px">

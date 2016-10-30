@@ -9,7 +9,9 @@ var _ = require('lodash');
 })
 export class Matching {
     @Input() terms : Term[];
+
     @Output() choiceMatched = new EventEmitter();
+    @Output() termUndo = new EventEmitter();
 
     constructor() {
         
@@ -40,6 +42,16 @@ export class Matching {
         let droppedChoice = <Term>this._getChoice(droppedid);
         choice.matchedchoice = droppedChoice;
         droppedChoice.matched = true;
+    }
+
+    undo(term: Term) {
+        this.termUndo.emit({
+            id: term.id,
+            matchedid: term.matchedchoice.id
+        });
+
+        term.matchedchoice.matched = false;
+        term.matchedchoice = null;
     }
 
     _getChoice(id) {

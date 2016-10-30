@@ -8,7 +8,10 @@
                 (dragover)="dragover($event)">
             <div class="text">{{t.text}}</div>
             <div *ngIf="t.matchedchoice != null" class="bottommatchedtext">
-                {{t.matchedchoice.text}}
+                <div [innerText]="t.matchedchoice.text" style="display: table-cell"></div>
+                <div class="undo" (click)="undo(t)">
+                        undo
+                </div>
             </div>
         </div>
         </div>

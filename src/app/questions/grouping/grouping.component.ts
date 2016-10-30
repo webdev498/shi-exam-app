@@ -14,6 +14,7 @@ export class Grouping {
     @Input() categories: Category[];
 
     @Output() choiceGrouped = new EventEmitter();
+    @Output() termUndo = new EventEmitter();
 
     termsshown : number;
     grouped: number = 0;
@@ -35,6 +36,18 @@ export class Grouping {
     dragover(ev) {
         ev.preventDefault();
         ev.dataTransfer.dropEffect = 'move';
+    }
+
+    undo(category: Category, term: Term) {
+        this.termUndo.emit({
+            id: category.id,
+            termid: term.id
+        });
+        
+        let index = category.groupedterms.indexOf(term,0);
+        category.groupedterms.splice(index,1);
+        term.matched = false;
+        this.grouped--;
     }
 
     _grouped(id: string, droppedid: string) {
