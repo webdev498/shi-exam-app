@@ -6,7 +6,13 @@
             <i class="fa fa-refresh fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
 
-        <div class="row" *ngIf="!processing">
+        <div class="row" *ngIf="examSubmitting">
+            <h3>Your Exam is Being Submitted</h3>
+            <div style="margin-top: 5px"></div>
+            <i class="fa fa-refresh fa-spin fa-2x fa-fw" aria-hidden="true"></i>
+        </div>
+
+        <div class="row" *ngIf="!processing && !examSubmitting">
             <div style="margin-bottom: 6px; text-align: center; font-style: italic">
                 <span>{{currentQuestion.section.instructions}}</span>
             </div>
@@ -22,17 +28,19 @@
                 </multipleChoice>
                 <matching *ngSwitchCase="'Term Matching'" 
                     [terms]="currentQuestion.terms"
-                    (choiceMatched)="choiceSelected($event)">
+                    (choiceMatched)="choiceSelected($event)"
+                    (termUndo)="termDeselected($event)">
                 </matching>
                 <grouping *ngSwitchCase="'Category Matching'" 
                     [categories]="currentQuestion.categories"
                     [terms]="currentQuestion.choices"
-                    (choiceGrouped)="choiceSelected($event)">
+                    (choiceGrouped)="choiceSelected($event)"
+                    (termUndo)="termDeselected($event)">
                 </grouping>
             </div>
-            <div style="margin-top: 15px; text-align: center">
+            <div style="margin-top: 15px; margin-left: 5px; margin-right: 5px">
                 <button class="btn btn-sm examSubmit" 
-                    style="width: 55%"
+                    style="width: 100%"
                     (click)="saveResponse()"
                     [disabled]="nextDisabled()" [innerText]="submitButtonText()">
                 </button>

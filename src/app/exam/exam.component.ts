@@ -30,6 +30,7 @@ export class ExamComponent implements OnInit {
     answer: any;
     questionsComplete: string;
     timePassed: string = '00:00:00';
+    examSubmitting: boolean = false;
     private _seconds: number = 0;
     private _minutes: number = 0; 
     private _hours: number = 0;
@@ -47,6 +48,8 @@ export class ExamComponent implements OnInit {
     }
     
     ngOnInit() {
+      this.examSubmitting = false;
+      
       if (this._examProgress.getProgress() != null) {
         //TODO:  Ask user if they want to continue where they left off
       }
@@ -70,12 +73,16 @@ export class ExamComponent implements OnInit {
 
     saveResponse() {
       this.processing = true;
-      let next = this._examProgress.saveProgress(this.currentQuestion.question.id, 
-      this.currentQuestionType,
-      this.answer);
+      let next = this._examProgress.saveProgress(
+        this.currentQuestion.section.id,
+        this.currentQuestion.question.id, 
+        this.currentQuestionType,
+        this.answer);
 
       if (next)
         this._nextQuestion();
+      else 
+        this.examSubmitting = true;
     }
 
    _add(context: any) {
@@ -132,6 +139,11 @@ export class ExamComponent implements OnInit {
            this.answer.push(event);
         break;
       }
+    }
+
+    termDeselected(event: any) {
+      let index = this.answer.indexOf(event);
+      this.answer.splice(index,1);
     }
 
     nextDisabled() {

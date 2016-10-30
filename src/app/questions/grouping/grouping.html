@@ -17,7 +17,10 @@
             <div *ngIf="c.groupedterms != null && c.groupedterms.length > 0" 
                     class="groupedchoices">
                 <div *ngFor="let g of c.groupedterms" class="groupedtext">
-                    {{g.text}}
+                    <div [innerText]="g.text"></div>
+                    <div class="undo" (click)="undo(c,g)">
+                        undo
+                    </div>
                 </div>
             </div>
         </div>

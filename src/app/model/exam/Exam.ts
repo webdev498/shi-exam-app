@@ -6,6 +6,7 @@ import {Question} from './../question/Question';
 import {Term} from './../question/Term';
 import {Category} from './../question/Category';
 import {Section} from './Section';
+import {GeneralAlias, GeneralCategory} from './../Constants';
 var _ = require('lodash');
 
 import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../Constants';
@@ -18,6 +19,8 @@ export class Exam {
     constructor() {}
 
     mapExam(exam: any):this {
+        //save the exam
+
         let instance = this;
 
         this.id = exam.id;
@@ -79,7 +82,8 @@ export class Exam {
                         let sc = _.shuffle(q.categories);
 
                         for (let g = 0; g < sc.length; g++) {
-                            gq.categories.push(new Category(sc[g].text,
+                            gq.categories.push(new Category(sc[g].text.toLowerCase() === GeneralCategory ? GeneralAlias :
+                                sc[g].text,
                                 sc[g].id));
                         }
 

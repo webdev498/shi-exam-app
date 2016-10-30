@@ -16,6 +16,10 @@ export const ExamShort = 'short';
 export const ExamNormal = 'normal';
 export const ExamLong = 'long';
 export const ExamProgress = 'examprogress';
+export const ExamResponse = 'examresponse';
+export const CurrentExam = 'currentexam';
+export const GeneralAlias = 'Other';
+export const GeneralCategory = 'general';
 
 //question constants
 export const MultipleChoiceQuestionType = 'Multiple Choice';

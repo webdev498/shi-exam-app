@@ -17,6 +17,15 @@ export class MultipleChoice {
     answer(term: Term) {
         this.answerChosen.emit({
             id: term.id
-        })
+        });
+    }
+
+    answerText(term: Term) {
+        this.answerChosen.emit({
+            id: term.id
+        });
+
+        let radioButton = document.getElementById(term.id) as HTMLInputElement;
+        radioButton.checked = true;
     }
 }
