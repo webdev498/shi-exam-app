@@ -43,10 +43,13 @@ export class Exam {
                 switch (q.type) {
                     case MultipleChoiceQuestionType:
                         let mcq = new MultipleChoiceQuestion();
+                        let questionText = question.text;
+                        questionText = questionText.replace('"','<strong><u>').replace('"','</u></strong>');
+                        question.text = questionText;
                         mcq.question = question;
                         mcq.section = section;
                         mcq.type = q.type;
-                        mcq.choices = _.shuffle(q.terms);
+                        mcq.choices = q.terms;
                         this.questions.push(mcq);
                         break;
                     case MatchingQuestionType:
