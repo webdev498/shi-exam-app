@@ -17,9 +17,7 @@
                 <span>{{currentQuestion.section.instructions}}</span>
             </div>
             <div *ngIf="currentQuestion.question.text !== ''">
-                <h3 style="background-color: #eaeaea; padding: 10px">
-                    {{currentQuestion.question.text}}
-                </h3>
+                <h3 style="background-color: #eaeaea; padding: 10px" [innerHTML]="currentQuestion.question.text"></h3>
             </div>    
             <div [ngSwitch]="currentQuestionType">
                 <multipleChoice *ngSwitchCase="'Multiple Choice'" 
