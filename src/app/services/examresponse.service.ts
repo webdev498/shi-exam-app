@@ -16,18 +16,28 @@ export class ExamResponseService {
         let exam = <Exam>JSON.parse(sessionStorage[CurrentExam]);
         let score = new Score();
 
+        score.overallScore = 'Your scored ' + er.pointsAwarded.toString() + ' out of a possible ' + er.pointsPossible.toString() + ' correct answers';
+
         for (let section of er.sections) {
             //find the matching section in the exam
             let examSection = _.filter(exam.sections, function(o) {
-                                return _.equals(o.id, section.sectionId);
+                                return _.equals(o.id, section.id);
                             })[0];
+
+            let percentCorrect = 0;
 
             switch (examSection.type) {
                 case MultipleChoiceQuestionType:
-                
+                    score.mcScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
+                    percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
+                    score.mcPercent = percentCorrect.toString() + '%';
+                    score.mcPassed = percentCorrect < 70 ? false : true;
                 break;
                 case MatchingQuestionType:
-
+                    score.matchingScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
+                    percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
+                    score.matchingPercent = percentCorrect.toString() + '%';
+                    score.matchingPassed = percentCorrect < 70 ? false : true;
                 break;
                 case GroupingQuestionType:
 

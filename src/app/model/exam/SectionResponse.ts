@@ -1,8 +1,11 @@
+import {QuestionResponse} from './QuestionResponse';
+
 export class SectionResponse {
     constructor() {}
 
-    sectionId: string;
-    questionId: string;
-    response: any[];
-    responses: any[];
+    id: string;
+    items: number;
+    possible: number;
+    correct: number;
+    results: QuestionResponse[];
 }
