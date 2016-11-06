@@ -40,7 +40,10 @@ export class ExamResponseService {
                     score.matchingPassed = percentCorrect < 70 ? false : true;
                 break;
                 case GroupingQuestionType:
-
+                    score.groupingScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
+                    percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
+                    score.groupingPercent = percentCorrect.toString() + '%';
+                    score.groupingPassed = percentCorrect < 70 ? false : true;
                 break;
             }
         }
