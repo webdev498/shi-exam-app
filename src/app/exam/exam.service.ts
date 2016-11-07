@@ -16,7 +16,7 @@ export class ExamService {
     var headers = new Headers();
     headers.append('Content-Type','application/json');
     headers.append(AuthHeaderKey,this._authService.getToken());
-    var payload = JSON.stringify({tier: 1, type: examType});
+    let payload = JSON.stringify({tier: 1, type: examType});
     
       return this._http.post(RootApiUrl + '/exams',payload, {
         headers: headers
