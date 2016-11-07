@@ -1,5 +1,7 @@
 export class QuestionResponse {
-    questionId: string;
-    possible: number;
-    correct: number;
+    constructor() {}
+
+    public questionId: string;
+    public possible: number;
+    public correct: number;
 }

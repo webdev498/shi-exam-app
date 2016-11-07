@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
 import { ExamResponse } from './../model/exam/ExamResponse';
 import { ExamSubmission } from './../model/exam/ExamSubmission';
+import { Feedback } from './../model/exam/Feedback';
 import { AnswerInterface } from './../model/interface/Answer.interface';
 import { AuthService } from './../services/auth.service';
 
@@ -13,7 +14,7 @@ export class ExamService {
              private _authService: AuthService) { }
 
   createExam(userid: string, examType: string) {
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Content-Type','application/json');
     headers.append(AuthHeaderKey,this._authService.getToken());
     let payload = JSON.stringify({tier: 1, type: examType});
@@ -27,16 +28,30 @@ export class ExamService {
   }
   
   submitExam(submission: ExamSubmission) {
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Content-Type','application/json');
     headers.append(AuthHeaderKey,this._authService.getToken());
-    var payload = JSON.stringify(submission);
+    let payload = JSON.stringify(submission);
     let userId = this._authService.getUser().id;
     
     return this._http.post(RootApiUrl + '/users/' + userId + '/exams/' + submission.examId + '/submissions', payload, {
       headers: headers
     })
       .map((response: Response) => <ExamResponse>response.json())
+      .catch(this.handleError);
+  }
+
+  submitFeedback(feedback: Feedback) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    headers.append(AuthHeaderKey,this._authService.getToken());
+    let payload = JSON.stringify(feedback);
+    let userId = this._authService.getUser().id;
+    
+    return this._http.post(RootApiUrl + '/users/' + userId + '/exams/' + feedback.examId + '/feedback', payload, {
+        headers: headers
+      })
+      .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }
 
