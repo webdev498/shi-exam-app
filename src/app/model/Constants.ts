@@ -20,6 +20,7 @@ export const ExamResponse = 'examresponse';
 export const CurrentExam = 'currentexam';
 export const GeneralAlias = 'Other';
 export const GeneralCategory = 'general';
+export const PassingScore = 70;
 
 //question constants
 export const MultipleChoiceQuestionType = 'Multiple Choice';

@@ -1,19 +1,21 @@
 export class Score {
     constructor() {}
 
-    overallScore: string;
-    mcScore: string;
-    groupingScore: string;
-    matchingScore: string;
-    categoriesScore: any[];
+    public overallScore: string;
+    public mcScore: string;
+    public groupingScore: string;
+    public matchingScore: string;
+    public categoriesScore: any[];
 
-    overallPercent: string;
-    mcPercent: string;
-    matchingPercent: string;
-    groupingPercent: string;
+    public overallPercent: string;
+    public mcPercent: string;
+    public matchingPercent: string;
+    public groupingPercent: string;
 
-    overallPassed: boolean;
-    mcPassed: boolean;
-    matchingPassed: boolean;
-    groupingPassed: boolean;
+    public overallPassed: boolean;
+    public mcPassed: boolean;
+    public matchingPassed: boolean;
+    public groupingPassed: boolean;
+
+    public overallMessage: string;
 }

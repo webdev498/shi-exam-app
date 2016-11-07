@@ -1,7 +1,8 @@
 import {Exam} from './../model/exam/Exam';
 import {Section} from './../model/exam/Section';
 import {ExamResponse} from './../model/exam/ExamResponse';
-import {ExamResponse as ExamResponseConstant, CurrentExam, MatchingQuestionType, MultipleChoiceQuestionType, GroupingQuestionType} from './../model/Constants';
+import {ExamResponse as ExamResponseConstant, CurrentExam, MatchingQuestionType, 
+    MultipleChoiceQuestionType, GroupingQuestionType, PassingScore} from './../model/Constants';
 import {Score} from './../model/exam/Score';
 
 import {Injectable} from '@angular/core';
@@ -15,8 +16,12 @@ export class ExamResponseService {
         let er = <ExamResponse>JSON.parse(sessionStorage[ExamResponseConstant]);
         let exam = <Exam>JSON.parse(sessionStorage[CurrentExam]);
         let score = new Score();
+        let percentCorrect = 0
 
         score.overallScore = 'Your scored ' + er.pointsAwarded.toString() + ' out of a possible ' + er.pointsPossible.toString() + ' correct answers';
+        percentCorrect = Math.floor((er.pointsAwarded / er.pointsPossible) * 100);
+        score.overallPassed = percentCorrect < PassingScore ? false : true;
+        score.overallMessage = score.overallPassed ? 'You have a passing score!' : 'Your score did not meet the 70% passing requirement';
 
         for (let section of er.sections) {
             //find the matching section in the exam
@@ -24,26 +29,24 @@ export class ExamResponseService {
                                 return _.equals(o.id, section.id);
                             })[0];
 
-            let percentCorrect = 0;
-
             switch (examSection.type) {
                 case MultipleChoiceQuestionType:
                     score.mcScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
                     percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
                     score.mcPercent = percentCorrect.toString() + '%';
-                    score.mcPassed = percentCorrect < 70 ? false : true;
+                    score.mcPassed = percentCorrect < PassingScore ? false : true;
                 break;
                 case MatchingQuestionType:
                     score.matchingScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
                     percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
                     score.matchingPercent = percentCorrect.toString() + '%';
-                    score.matchingPassed = percentCorrect < 70 ? false : true;
+                    score.matchingPassed = percentCorrect < PassingScore ? false : true;
                 break;
                 case GroupingQuestionType:
                     score.groupingScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
                     percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
                     score.groupingPercent = percentCorrect.toString() + '%';
-                    score.groupingPassed = percentCorrect < 70 ? false : true;
+                    score.groupingPassed = percentCorrect < PassingScore ? false : true;
                 break;
             }
         }
