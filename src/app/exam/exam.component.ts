@@ -91,6 +91,7 @@ export class ExamComponent implements OnInit {
 
       this.feedbackSubmitted = false;
       this.feedbackText = null;
+      this.enableFeedback = false;
     }
 
    _add(context: any) {
