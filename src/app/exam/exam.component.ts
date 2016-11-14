@@ -200,7 +200,11 @@ export class ExamComponent implements OnInit {
         feedback.text = this.feedbackText;
         feedback.question = this.currentQuestion;
 
-        this._examService.submitFeedback(feedback);
+        this._examService.submitFeedback(feedback)
+          .subscribe(
+            response => {},
+            error => {}
+        );
       }
     }
 }

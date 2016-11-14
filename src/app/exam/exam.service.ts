@@ -48,7 +48,7 @@ export class ExamService {
     let payload = JSON.stringify(feedback);
     let userId = this._authService.getUser().id;
     
-    return this._http.post(RootApiUrl + '/users/' + userId + '/exams/' + feedback.examId + '/feedback', payload, {
+    return this._http.post(RootApiUrl + '/exams/feedback', payload, {
         headers: headers
       })
       .map((response: Response) => <any>response.json())
