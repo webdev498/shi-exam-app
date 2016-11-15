@@ -6,7 +6,9 @@
                 (dragstart)="dragstart($event, t.id)"
                 (drop)="dropped($event, t.id)"
                 (dragover)="dragover($event)">
-            <div class="text">{{t.text}}</div>
+            <div class="text">
+                <div class="dragbars"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                {{t.text}}</div>
             <div *ngIf="t.matchedchoice != null" class="bottommatchedtext">
                 <div [innerText]="t.matchedchoice.text" style="display: table-cell"></div>
                 <div class="undo" (click)="undo(t)">

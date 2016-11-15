@@ -36,18 +36,46 @@
                     (termUndo)="termDeselected($event)">
                 </grouping>
             </div>
-            <div style="margin-top: 15px; margin-left: 5px; margin-right: 5px">
+            <div style="margin-top: 15px" class="buttonMargin">
                 <button class="btn btn-sm examSubmit" 
                     style="width: 100%"
                     (click)="saveResponse()"
                     [disabled]="nextDisabled()" [innerText]="submitButtonText()">
                 </button>
             </div>
-            <div style="margin-top: 10px; text-align: center" class="progressText">
+            <div style="margin-top: 10px" class="progressText">
                 <span>{{questionsComplete}}</span>
             </div>
-            <div style="margin-top: 3px; text-align: center" class="progressText">
+            <div class="topMargin center" class="progressText">
                 <span>{{timePassed}}</span>
+            </div>
+            <div class="warningwrapper" 
+                    (click)="feedback()" 
+                    *ngIf="!feedbackSubmitted">
+                <img src="../assets/img/warningicon.png" 
+                    class="warningicon"
+                    title="feedback icon" 
+                    alt="feedback icon" />  
+                    feedback or issues with this question?
+            </div>
+            <div style="color: forestgreen; font-weight: bold" class="topMargin"
+                *ngIf="feedbackSubmitted">
+                Your feedback has been submitted.  Thank you!
+            </div>
+            <div class="topMargin" *ngIf="enableFeedback">
+                <textarea class="form-control" 
+                    [(ngModel)]="feedbackText"
+                    placeholder="please enter your feedback" 
+                    rows="5">
+                    
+                </textarea>
+                <div class="buttonMargin topMargin">
+                    <button class="btn btn-sm btn-primary" 
+                            style="width: 100%"
+                            (click)="submitFeedback()">
+                        Submit Feedback
+                    </button>
+                </div>
             </div>
         </div>
     </div>

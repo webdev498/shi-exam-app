@@ -6,6 +6,7 @@ import {AuthService} from './../services/auth.service';
 import {EventService} from './../services/event.service';
 
 import {Exam} from './../model/exam/Exam';
+import {Feedback} from './../model/exam/Feedback';
 import {ExamStartParam, MatchingQuestionType, 
         MultipleChoiceQuestionType, GroupingQuestionType, 
         MatchingTermsShown, GroupingTermsShown} from './../model/Constants';
@@ -31,6 +32,10 @@ export class ExamComponent implements OnInit {
     questionsComplete: string;
     timePassed: string = '00:00:00';
     examSubmitting: boolean = false;
+    enableFeedback: boolean = false;
+    feedbackSubmitted: boolean = false;
+    feedbackText: string;
+
     private _seconds: number = 0;
     private _minutes: number = 0; 
     private _hours: number = 0;
@@ -83,6 +88,10 @@ export class ExamComponent implements OnInit {
         this._nextQuestion();
       else 
         this.examSubmitting = true;
+
+      this.feedbackSubmitted = false;
+      this.feedbackText = null;
+      this.enableFeedback = false;
     }
 
    _add(context: any) {
@@ -175,5 +184,27 @@ export class ExamComponent implements OnInit {
     _handleError(error: any) {
       this._eventService.broadcast('error', 'There was an issue creating your exam');
       console.error(error);
+    }
+
+    feedback() {
+      this.enableFeedback = true;
+    }
+
+    submitFeedback() {
+      this.feedbackSubmitted = true;
+      this.enableFeedback = false;
+
+      if (this.feedbackText != null) {
+        let feedback = new Feedback();
+        feedback.examId = this.exam.id;
+        feedback.text = this.feedbackText;
+        feedback.question = this.currentQuestion;
+
+        this._examService.submitFeedback(feedback)
+          .subscribe(
+            response => {},
+            error => {}
+        );
+      }
     }
 }
