@@ -18,13 +18,17 @@ export class HomeComponent implements OnInit {
   }
 
   examIconText: string;
+  studyIconText: string;
+  scoreIconText: string;
 
   ngOnInit() {
     //navigate to login screen if not logged in
     if (!this._cgiAuth.loggedIn())
       this._router.navigate(['login']);
 
-   this.examIconText = "Take Another Test";
+   this.examIconText = "TAKE ANOTHER TEST";
+   this.studyIconText = "PURCHASE STUDY";
+   this.scoreIconText = "MOST RECENT RESULT";
   }
 
 }
