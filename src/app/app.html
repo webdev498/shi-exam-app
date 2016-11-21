@@ -18,10 +18,10 @@
 
     <div class="collapse navbar-collapse" id="navbarLinks">
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="loggedIn()" class="nav-link"><a routerLink="examstart">Exams</a></li>
-        <li *ngIf="loggedIn()" class="nav-link"><a routerLink="study">Study</a></li>
-        <li *ngIf="!loggedIn()" class="nav-link"><a routerLink="login">Login</a></li>
-        <li *ngIf="!loggedIn()" class="nav-link"><a routerLink="registerstart">Sign Up</a></li>
+        <li *ngIf="!loggedIn()" class="nav-link"><a routerLink="login">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+        <li *ngIf="!loggedIn()" class="nav-link"><a routerLink="registerstart">
+          <i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a></li>
         <li *ngIf="loggedIn()" class="nav-link"><a routerLink="account">
               <i class="fa fa-user" aria-hidden="true"></i> {{loggedInUser()}}
           </a>
