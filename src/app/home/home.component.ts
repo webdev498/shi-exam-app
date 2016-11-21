@@ -31,4 +31,15 @@ export class HomeComponent implements OnInit {
    this.scoreIconText = "MOST RECENT RESULT";
   }
 
+  takeTest() {
+    this._router.navigate(['examstart']);
+  }
+  
+  study() {
+    this._router.navigate(['study']);
+  }
+
+  mostRecent() {
+    this._router.navigate(['examstart']);
+  }
 }

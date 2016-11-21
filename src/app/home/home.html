@@ -2,8 +2,8 @@
  <div class="row" style="margin-bottom: 25px">
          <div class="col-md-12">
              <div class="row">
-                 <div style="text-align: center; width: 100%"> 
-                    <h2 class="fontSizeLarge headerWidth">Dashboard</h2>
+                 <div style="width: 100%"> 
+                    <h2 class="fontSizeLarge headerWidth">Exam and Study Dashboard</h2>
                  </div>
              </div>
         </div>
@@ -12,30 +12,39 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="mostRecent">
+                    <div class="mostRecent" (click)="mostRecent()">
                         <div class="centerAlign">
                             <img src="../assets/img/result-screen-graph.png"
+                                class="resultImg"
                                 alt="Last exam score" title="Last exam score" />
+                        </div>
+                        <div class="dTextBreak"></div>
+                        <div class="dTextBottom">
+                            <span>{{scoreIconText}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="anotherExam">
+                    <div class="anotherExam" (click)="takeTest()">
                         <div class="centerAlign">
                             <img src="../assets/img/test-icon.png"
                                 alt="Take a test" title="Take a test" />
                         </div>
                         <div class="dTextBreak"></div>
-                        <div class="dTextCenter">
+                        <div class="dTextBottom">
                             <span>{{examIconText}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="study">
+                    <div class="study" (click)="study()">
                         <div class="centerAlign">
                             <img src="../assets/img/study-icon.png"
                                 alt="Study" title="Study" />
+                        </div>
+                        <div class="dTextBreak"></div>
+                        <div class="dTextBottom">
+                            <span>{{studyIconText}}</span>
                         </div>
                     </div>
                 </div>
