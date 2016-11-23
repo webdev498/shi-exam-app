@@ -17,6 +17,8 @@ import {Matching} from './../questions/matching/matching.component';
 import {Grouping} from './../questions/grouping/grouping.component';
 import {Term} from './../model/question/Term';
 
+declare var iSpeechTTS: any;
+
 @Component({
   selector: 'exam',  
   styles: [ require('./exam.less') ],
@@ -40,6 +42,7 @@ export class ExamComponent implements OnInit {
     private _minutes: number = 0; 
     private _hours: number = 0;
     private _t: any;
+    private _tts: any;
 
     constructor(private _examService: ExamService,
               private _authService: AuthService,
@@ -65,6 +68,12 @@ export class ExamComponent implements OnInit {
           response => this._handleExamResponse(response),
           error => this._handleError(error)
         );
+
+      let audioPlayer = document.getElementById('audioPlayer');
+      this._tts = new iSpeechTTS(audioPlayer, {
+            apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
+            voice: 'ukenglishfemale'
+      });
     }
 
     _handleExamResponse(response: any) {
@@ -188,6 +197,10 @@ export class ExamComponent implements OnInit {
 
     feedback() {
       this.enableFeedback = true;
+    }
+
+    questionAudio(questionChoice: string) {
+      this._tts.speak(questionChoice);
     }
 
     submitFeedback() {
