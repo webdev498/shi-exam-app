@@ -199,8 +199,8 @@ export class ExamComponent implements OnInit {
       this.enableFeedback = true;
     }
 
-    questionAudio(questionChoice: string) {
-      this._tts.speak(questionChoice);
+    questionAudio(questionChoice: any) {
+      this._tts.speak(questionChoice.text);
     }
 
     submitFeedback() {

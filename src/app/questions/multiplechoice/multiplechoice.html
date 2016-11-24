@@ -4,7 +4,9 @@
         <input type="radio" name="question" 
             (click)="answer(t)" id="{{t.id}}" /> &nbsp;&nbsp; 
                 <span (click)="answerText(t)" [innerText]="t.text"></span> 
-                <span (click)="audio(t)"><i class="fa fa-volume-up" aria-hidden="true"></i></span>
+                <span (click)="audio(t)" 
+                    *ngIf="showAudio(t)"
+                    class="audio"><i class="fa fa-volume-up" aria-hidden="true"></i></span>
         </div>
     </div>
 </div>

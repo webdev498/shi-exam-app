@@ -35,4 +35,8 @@ export class MultipleChoice {
             text: term.text
         });
     }
+
+    showAudio(term: Term) {
+        return term.text.toLowerCase() !== 'none of the above';
+    }
 }
