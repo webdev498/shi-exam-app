@@ -11,7 +11,7 @@
             <div style="margin-top: 5px"></div>
             <i class="fa fa-refresh fa-spin fa-2x fa-fw" aria-hidden="true"></i>
         </div>
-
+        
         <div class="row" *ngIf="!processing && !examSubmitting">
             <div style="margin-bottom: 6px; text-align: center; font-style: italic">
                 <span>{{currentQuestion.section.instructions}}</span>
@@ -22,6 +22,7 @@
             <div [ngSwitch]="currentQuestionType">
                 <multipleChoice *ngSwitchCase="'Multiple Choice'" 
                     (answerChosen)="choiceSelected($event)"
+                    (playAudio)="questionAudio($event)"
                     [terms]="currentQuestion.choices">
                 </multipleChoice>
                 <matching *ngSwitchCase="'Term Matching'" 
@@ -36,6 +37,7 @@
                     (termUndo)="termDeselected($event)">
                 </grouping>
             </div>
+            
             <div style="margin-top: 15px" class="buttonMargin">
                 <button class="btn btn-sm examSubmit" 
                     style="width: 100%"
@@ -43,6 +45,7 @@
                     [disabled]="nextDisabled()" [innerText]="submitButtonText()">
                 </button>
             </div>
+            
             <div style="margin-top: 10px" class="progressText">
                 <span>{{questionsComplete}}</span>
             </div>

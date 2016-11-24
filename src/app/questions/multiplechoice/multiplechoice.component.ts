@@ -9,6 +9,7 @@ import {Term} from './../../model/question/Term';
 export class MultipleChoice {
     @Input() terms : Term[];
     @Output() answerChosen = new EventEmitter();
+    @Output() playAudio = new EventEmitter();
     
     constructor() {
         
@@ -27,5 +28,15 @@ export class MultipleChoice {
 
         let radioButton = document.getElementById(term.id) as HTMLInputElement;
         radioButton.checked = true;
+    }
+
+    audio(term: Term) {
+        this.playAudio.emit({
+            text: term.text
+        });
+    }
+
+    showAudio(term: Term) {
+        return term.text.toLowerCase() !== 'none of the above';
     }
 }
