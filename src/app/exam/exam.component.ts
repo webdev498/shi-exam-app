@@ -72,7 +72,7 @@ export class ExamComponent implements OnInit {
       let audioPlayer = document.getElementById('audioPlayer');
       this._tts = new iSpeechTTS(audioPlayer, {
             apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
-            voice: 'ukenglishfemale'
+            voice: 'usspanishfemale'
       });
     }
 

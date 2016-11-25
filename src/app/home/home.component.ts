@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
     if (error.status == 404) {
       this.hasLastExam = false;
       this.scoreIconText = 'NO PREVIOUS RESULT';
+      this.examIconText = 'TAKE A TEST';
     }
   }
 
