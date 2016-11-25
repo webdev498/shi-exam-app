@@ -27,4 +27,12 @@ export class ExamCompleteComponent implements OnInit {
    textColor() {
      return this.examScore.overallPassed ? 'examSuccess' : 'examFail';
    }
+
+   didPass() {
+     return this.examScore.overallPassed;
+   }
+
+   didFail() {
+     return this.examScore.overallPassed === false;
+   }
 }
