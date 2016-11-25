@@ -77,7 +77,7 @@ export class ExamProgressService {
             case GroupingQuestionType:
                 newAnswer.responses = new Array();
                 for (let i = 0; i < answer.length; i++) {
-                    newAnswer.response.push(new GroupingResponse(answer[i].groupedid,
+                    newAnswer.responses.push(new GroupingResponse(answer[i].groupedid,
                         answer[i].id));
                 }
             break;

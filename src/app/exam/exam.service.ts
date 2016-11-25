@@ -26,6 +26,19 @@ export class ExamService {
       .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }
+
+  lastExamScore() {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    headers.append(AuthHeaderKey,this._authService.getToken());
+    let userId = this._authService.getUser().id;
+
+    return this._http.get(`${RootApiUrl}/users/${userId}/examination-results/latest`, {
+      headers: headers
+    })
+      .map((response: Response) => response != null ? <any>response.json() : null)
+      .catch(this.handleError);
+  }
   
   submitExam(submission: ExamSubmission) {
     let headers = new Headers();
@@ -34,7 +47,7 @@ export class ExamService {
     let payload = JSON.stringify(submission);
     let userId = this._authService.getUser().id;
     
-    return this._http.post(RootApiUrl + '/users/' + userId + '/exams/' + submission.examId + '/submissions', payload, {
+    return this._http.post(`${RootApiUrl}/exams/${submission.examId}/users/${userId}/submissions`, payload, {
       headers: headers
     })
       .map((response: Response) => <ExamResponse>response.json())
@@ -57,6 +70,6 @@ export class ExamService {
 
   private handleError(error: Response) {
     console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw('Server error');
   }
 }

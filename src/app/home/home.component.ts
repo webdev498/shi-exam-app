@@ -29,6 +29,12 @@ export class HomeComponent implements OnInit {
    this.examIconText = "TAKE ANOTHER TEST";
    this.studyIconText = "PURCHASE STUDY";
    this.scoreIconText = "MOST RECENT RESULT";
+
+   this._examService.lastExamScore()
+      .subscribe(
+          response => {console.log(response);},
+          error => {console.error(error);}
+        );
   }
 
   takeTest() {
