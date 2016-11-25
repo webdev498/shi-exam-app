@@ -20,21 +20,29 @@ export class HomeComponent implements OnInit {
   examIconText: string;
   studyIconText: string;
   scoreIconText: string;
+  hasLastExam: boolean = true;
 
   ngOnInit() {
     //navigate to login screen if not logged in
     if (!this._cgiAuth.loggedIn())
       this._router.navigate(['login']);
 
-   this.examIconText = "TAKE ANOTHER TEST";
-   this.studyIconText = "PURCHASE STUDY";
-   this.scoreIconText = "MOST RECENT RESULT";
+   this.examIconText = 'TAKE ANOTHER TEST';
+   this.studyIconText = 'PURCHASE STUDY';
+   this.scoreIconText = 'MOST RECENT RESULT';
 
    this._examService.lastExamScore()
       .subscribe(
           response => {console.log(response);},
-          error => {console.error(error);}
+          error => this._handleLastExamError(error)
         );
+  }
+
+  _handleLastExamError(error) {
+    if (error.status == 404) {
+      this.hasLastExam = false;
+      this.scoreIconText = 'NO PREVIOUS RESULT';
+    }
   }
 
   takeTest() {

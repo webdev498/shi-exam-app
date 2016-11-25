@@ -36,8 +36,8 @@ export class ExamService {
     return this._http.get(`${RootApiUrl}/users/${userId}/examination-results/latest`, {
       headers: headers
     })
-      .map((response: Response) => response != null ? <any>response.json() : null)
-      .catch(this.handleError);
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleLastExamError);
   }
   
   submitExam(submission: ExamSubmission) {
@@ -71,5 +71,9 @@ export class ExamService {
   private handleError(error: Response) {
     console.error(error);
     return Observable.throw('Server error');
+  }
+
+  private handleLastExamError(error: Response) {
+    return Observable.throw(error);
   }
 }

@@ -54,6 +54,14 @@ export class Matching {
         term.matchedchoice = null;
     }
 
+    isEnglish(term: Term) {
+        return term.language === 'english';
+    }
+
+    isSpanish(term: Term) {
+        return term.language === 'spanish';
+    }
+
     _getChoice(id) {
         return _.find(this.terms, {id: id});
     }
