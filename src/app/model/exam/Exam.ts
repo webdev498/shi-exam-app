@@ -63,11 +63,15 @@ export class Exam {
                         //randomize english and spanish choices into one array
                         mq.terms = new Array();
                         for (let i = 0; i < mq.english.length; i++) {
-                            mq.terms.push(new Term(mq.english[i].text, mq.english[i].id));
+                            let mt = new Term(mq.english[i].text, mq.english[i].id);
+                            mt.language = 'english';
+                            mq.terms.push(mt);
                         }
     
                         for (let i = 0; i < mq.spanish.length; i++) {
-                            mq.terms.push(new Term(mq.spanish[i].text, mq.spanish[i].id));
+                            let mt = new Term(mq.spanish[i].text, mq.spanish[i].id);
+                            mt.language = 'spanish';
+                            mq.terms.push(mt);
                         }
     
                         //lodash randomize
