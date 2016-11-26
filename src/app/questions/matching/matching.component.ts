@@ -65,11 +65,11 @@ export class Matching {
     }
 
     isEnglish(term: Term) {
-        return term.language === 'english';
+        return term.language === 'english' && !this.pressed;
     }
 
     isSpanish(term: Term) {
-        return term.language === 'spanish';
+        return term.language === 'spanish' && !this.pressed;
     }
 
     _getChoice(id) {
