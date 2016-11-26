@@ -27,6 +27,7 @@ export class Matching {
         ev.preventDefault();
         let droppedid = ev.dataTransfer.getData('choice');
         this._matched(id, droppedid);
+        this.pressed = false;
     }
 
     dragover(ev) {
