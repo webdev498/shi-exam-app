@@ -13,6 +13,8 @@ export class Matching {
     @Output() choiceMatched = new EventEmitter();
     @Output() termUndo = new EventEmitter();
 
+    pressed: boolean = false;
+
     constructor() {
         
     }
@@ -52,6 +54,14 @@ export class Matching {
 
         term.matchedchoice.matched = false;
         term.matchedchoice = null;
+    }
+
+    pressdown() {
+        this.pressed = true;
+    }
+
+    pressoff() {
+        this.pressed = false;
     }
 
     isEnglish(term: Term) {

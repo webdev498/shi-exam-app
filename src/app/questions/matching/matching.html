@@ -5,8 +5,10 @@
                 draggable="true"
                 (dragstart)="dragstart($event, t.id)"
                 (drop)="dropped($event, t.id)"
-                (dragover)="dragover($event)">
-            <div [ngClass]="{text: isEnglish(t), spanishtext: isSpanish(t)}">
+                (dragover)="dragover($event)"
+                (mousedown)="pressdown()"
+                (mouseup)="pressoff()">
+            <div [ngClass]="{text: isEnglish(t), spanishtext: isSpanish(t), pressdown: isPressed}">
                 <div class="dragbars"><i class="fa fa-bars" aria-hidden="true"></i></div>
                 {{t.text}}</div>
             <div *ngIf="t.matchedchoice != null" class="bottommatchedtext">
