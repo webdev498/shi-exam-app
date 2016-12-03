@@ -20,10 +20,11 @@
                 <h3 style="background-color: #eaeaea; padding: 10px" [innerHTML]="currentQuestion.question.text"></h3>
             </div>    
             <div [ngSwitch]="currentQuestionType">
-                <multipleChoice *ngSwitchCase="'Multiple Choice'" 
+                <multipleChoice *ngSwitchCase="'Multiple Choice English'" 
                     (answerChosen)="choiceSelected($event)"
                     (playAudio)="questionAudio($event)"
-                    [terms]="currentQuestion.choices">
+                    [terms]="currentQuestion.choices"
+                    [questionType]="currentQuestionType">
                 </multipleChoice>
                 <matching *ngSwitchCase="'Term Matching'" 
                     [terms]="currentQuestion.terms"

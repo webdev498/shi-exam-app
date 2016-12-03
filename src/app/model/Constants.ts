@@ -23,7 +23,8 @@ export const GeneralCategory = 'general';
 export const PassingScore = 70;
 
 //question constants
-export const MultipleChoiceQuestionType = 'Multiple Choice';
+export const MultipleChoiceEnglishQuestionType = 'Multiple Choice English';
+export const MultipleChoiceSpanishQuestionType = 'Multiple Choice Spanish';
 export const MatchingQuestionType = 'Term Matching';
 export const GroupingQuestionType = 'Category Matching';
 export const MatchingTermsShown = 5;

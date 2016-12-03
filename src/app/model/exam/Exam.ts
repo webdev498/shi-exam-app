@@ -9,7 +9,9 @@ import {Section} from './Section';
 import {GeneralAlias, GeneralCategory} from './../Constants';
 var _ = require('lodash');
 
-import {MultipleChoiceQuestionType, MatchingQuestionType, GroupingQuestionType} from './../Constants';
+import {MultipleChoiceEnglishQuestionType, 
+        MultipleChoiceSpanishQuestionType,
+        MatchingQuestionType, GroupingQuestionType} from './../Constants';
 
 export class Exam {
     public id: string;
@@ -41,7 +43,8 @@ export class Exam {
                 section.type = s.type;
     
                 switch (q.type) {
-                    case MultipleChoiceQuestionType:
+                    case MultipleChoiceEnglishQuestionType:
+                    case MultipleChoiceSpanishQuestionType:
                         let mcq = new MultipleChoiceQuestion();
                         let questionText = question.text;
                         questionText = questionText.replace('"','<strong><u>').replace('"','</u></strong>');

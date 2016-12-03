@@ -8,7 +8,9 @@ import {EventService} from './../services/event.service';
 import {Exam} from './../model/exam/Exam';
 import {Feedback} from './../model/exam/Feedback';
 import {ExamStartParam, MatchingQuestionType, 
-        MultipleChoiceQuestionType, GroupingQuestionType, 
+        MultipleChoiceEnglishQuestionType, 
+        MultipleChoiceSpanishQuestionType,
+        GroupingQuestionType, 
         MatchingTermsShown, GroupingTermsShown} from './../model/Constants';
 import {ExamProgressService} from './../services/examprogress.service';
 
@@ -160,7 +162,8 @@ export class ExamComponent implements OnInit {
 
       switch (this.currentQuestionType)
       {
-        case MultipleChoiceQuestionType:
+        case MultipleChoiceEnglishQuestionType:
+        case MultipleChoiceSpanishQuestionType:
           this.answer = null;
         case MatchingQuestionType:
         case GroupingQuestionType:
@@ -174,7 +177,8 @@ export class ExamComponent implements OnInit {
     choiceSelected(event: any) {
       switch (this.currentQuestionType)
       {
-        case MultipleChoiceQuestionType:
+        case MultipleChoiceEnglishQuestionType:
+        case MultipleChoiceSpanishQuestionType:
           this.answer = event;
           break;
         case MatchingQuestionType:
@@ -194,7 +198,8 @@ export class ExamComponent implements OnInit {
 
       switch (this.currentQuestionType)
       {
-        case MultipleChoiceQuestionType:
+        case MultipleChoiceEnglishQuestionType:
+        case MultipleChoiceSpanishQuestionType:
           disabled = this.answer == undefined || this.answer.length == 0 ? true : false;
           break;
         case MatchingQuestionType:

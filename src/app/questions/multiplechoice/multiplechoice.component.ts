@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Term} from './../../model/question/Term';
+import {MultipleChoiceEnglishQuestionType} from './../../model/Constants';
  
 @Component({ 
     selector: 'multipleChoice', 
@@ -8,6 +9,7 @@ import {Term} from './../../model/question/Term';
 })
 export class MultipleChoice {
     @Input() terms : Term[];
+    @Input() questionType: string;
     @Output() answerChosen = new EventEmitter();
     @Output() playAudio = new EventEmitter();
     
@@ -36,7 +38,13 @@ export class MultipleChoice {
         });
     }
 
-    showAudio(term: Term) {
-        return term.text.toLowerCase() !== 'none of the above';
+    showAudio(term: Term):boolean {
+        if (this.questionType === MultipleChoiceEnglishQuestionType)
+            return false;
+        
+        if (term.text.toLowerCase() === 'none of the above')
+            return false;
+
+        return true;
     }
 }

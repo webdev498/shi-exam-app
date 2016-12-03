@@ -2,7 +2,8 @@ import {Exam} from './../model/exam/Exam';
 import {Section} from './../model/exam/Section';
 import {ExamResponse} from './../model/exam/ExamResponse';
 import {ExamResponse as ExamResponseConstant, CurrentExam, MatchingQuestionType, 
-    MultipleChoiceQuestionType, GroupingQuestionType, PassingScore} from './../model/Constants';
+     MultipleChoiceEnglishQuestionType,MultipleChoiceSpanishQuestionType,
+     GroupingQuestionType, PassingScore} from './../model/Constants';
 import {Score} from './../model/exam/Score';
 
 import {Injectable} from '@angular/core';
@@ -30,7 +31,8 @@ export class ExamResponseService {
                             })[0];
 
             switch (examSection.type) {
-                case MultipleChoiceQuestionType:
+                case MultipleChoiceEnglishQuestionType:
+                case MultipleChoiceSpanishQuestionType:
                     score.mcScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
                     percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
                     score.mcPercent = percentCorrect.toString() + '%';
