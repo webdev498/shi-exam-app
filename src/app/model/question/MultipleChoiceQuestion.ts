@@ -10,6 +10,7 @@ export class MultipleChoiceQuestion implements QuestionInterface {
     public type: string;
     public id: string;
     public text: string;
+    public textTerm: string;
     
     constructor() {}
                 

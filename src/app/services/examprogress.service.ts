@@ -9,7 +9,8 @@ import {ExamCompleteComponent} from './../exam/examcomplete.component';
 import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {QuestionInterface} from './../model/interface/Question.interface';
-import {MultipleChoiceQuestionType, MatchingQuestionType, ExamResponse,
+import {MultipleChoiceEnglishQuestionType, MultipleChoiceSpanishQuestionType, 
+     MatchingQuestionType, ExamResponse,
      GroupingQuestionType, ExamProgress, CurrentExam} from './../model/Constants';
 
 import {ExamService} from './../exam/exam.service';
@@ -63,7 +64,8 @@ export class ExamProgressService {
 
         switch (questionType)
         {
-            case MultipleChoiceQuestionType:
+            case MultipleChoiceEnglishQuestionType:
+            case MultipleChoiceSpanishQuestionType:
                 newAnswer.response = new Array();
                 newAnswer.response.push(new MultipleChoiceResponse(answer.id));
             break;

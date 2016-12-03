@@ -8,7 +8,9 @@ import {EventService} from './../services/event.service';
 import {Exam} from './../model/exam/Exam';
 import {Feedback} from './../model/exam/Feedback';
 import {ExamStartParam, MatchingQuestionType, 
-        MultipleChoiceQuestionType, GroupingQuestionType, 
+        MultipleChoiceEnglishQuestionType, 
+        MultipleChoiceSpanishQuestionType,
+        GroupingQuestionType, 
         MatchingTermsShown, GroupingTermsShown} from './../model/Constants';
 import {ExamProgressService} from './../services/examprogress.service';
 
@@ -74,7 +76,32 @@ export class ExamComponent implements OnInit {
             apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
             voice: 'usspanishfemale'
       });
+      
+
+      //touch drag and drop
+      document.addEventListener("touchstart", this._touchHandler, true);
+      document.addEventListener("touchmove", this._touchHandler, true);
+      document.addEventListener("touchend", this._touchHandler, true);
+      document.addEventListener("touchcancel", this._touchHandler, true);
     }
+
+     _touchHandler(event) {
+      var touch = event.changedTouches[0];
+  
+      var simulatedEvent = document.createEvent("MouseEvent");
+          simulatedEvent.initMouseEvent({
+          touchstart: "mousedown",
+          touchmove: "mousemove",
+          touchend: "mouseup"
+      }[event.type], true, true, window, 1,
+          touch.screenX, touch.screenY,
+          touch.clientX, touch.clientY, false,
+          false, false, false, 0, null);
+  
+      touch.target.dispatchEvent(simulatedEvent);
+      event.preventDefault();
+    }
+
 
     _handleExamResponse(response: any) {
       this.exam = new Exam();
@@ -135,7 +162,8 @@ export class ExamComponent implements OnInit {
 
       switch (this.currentQuestionType)
       {
-        case MultipleChoiceQuestionType:
+        case MultipleChoiceEnglishQuestionType:
+        case MultipleChoiceSpanishQuestionType:
           this.answer = null;
         case MatchingQuestionType:
         case GroupingQuestionType:
@@ -149,7 +177,8 @@ export class ExamComponent implements OnInit {
     choiceSelected(event: any) {
       switch (this.currentQuestionType)
       {
-        case MultipleChoiceQuestionType:
+        case MultipleChoiceEnglishQuestionType:
+        case MultipleChoiceSpanishQuestionType:
           this.answer = event;
           break;
         case MatchingQuestionType:
@@ -169,7 +198,8 @@ export class ExamComponent implements OnInit {
 
       switch (this.currentQuestionType)
       {
-        case MultipleChoiceQuestionType:
+        case MultipleChoiceEnglishQuestionType:
+        case MultipleChoiceSpanishQuestionType:
           disabled = this.answer == undefined || this.answer.length == 0 ? true : false;
           break;
         case MatchingQuestionType:
@@ -219,5 +249,18 @@ export class ExamComponent implements OnInit {
             error => {}
         );
       }
+    }
+
+    eitherMultipleChoice() {
+      return this.currentQuestionType === 'Multiple Choice English' || 
+        this.currentQuestionType === 'Multiple Choice Spanish';
+    }
+
+    showQuestionAudio() {
+      return this.currentQuestionType === MultipleChoiceEnglishQuestionType;
+    }
+
+    playQuestionAudio() {
+      this._tts.speak(this.currentQuestion.termText);
     }
 }
