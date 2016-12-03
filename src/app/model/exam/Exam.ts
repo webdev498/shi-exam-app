@@ -48,6 +48,10 @@ export class Exam {
                         let mcq = new MultipleChoiceQuestion();
                         let questionText = question.text;
                         questionText = questionText.replace('"','<strong><u>').replace('"','</u></strong>');
+
+                        let termStart = questionText.search('<u>');
+                        let termEnd = questionText.search('</u>');
+                        mcq.textTerm = questionText.substring(termStart, termEnd);
                         question.text = questionText;
                         mcq.question = question;
                         mcq.section = section;

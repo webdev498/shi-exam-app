@@ -17,9 +17,19 @@
                 <span>{{currentQuestion.section.instructions}}</span>
             </div>
             <div *ngIf="currentQuestion.question.text !== ''">
-                <h3 style="background-color: #eaeaea; padding: 10px" [innerHTML]="currentQuestion.question.text"></h3>
+                <h3 style="background-color: #eaeaea; padding: 10px" 
+                    [innerHTML]="currentQuestion.question.text"></h3>
+                    <span (click)="playQuestionAudio()" 
+                    *ngIf="showQuestionAudio()"
+                    class="audio"><i class="fa fa-volume-up" aria-hidden="true"></i></span>
             </div>    
             <div [ngSwitch]="currentQuestionType">
+                <multipleChoice *ngSwitchCase="'Multiple Choice Spanish'" 
+                    (answerChosen)="choiceSelected($event)"
+                    (playAudio)="questionAudio($event)"
+                    [terms]="currentQuestion.choices"
+                    [questionType]="currentQuestionType">
+                </multipleChoice>
                 <multipleChoice *ngSwitchCase="'Multiple Choice English'" 
                     (answerChosen)="choiceSelected($event)"
                     (playAudio)="questionAudio($event)"

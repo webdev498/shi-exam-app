@@ -250,4 +250,17 @@ export class ExamComponent implements OnInit {
         );
       }
     }
+
+    eitherMultipleChoice() {
+      return this.currentQuestionType === 'Multiple Choice English' || 
+        this.currentQuestionType === 'Multiple Choice Spanish';
+    }
+
+    showQuestionAudio() {
+      return this.currentQuestionType === MultipleChoiceEnglishQuestionType;
+    }
+
+    playQuestionAudio() {
+      this._tts.speak(this.currentQuestion.termText);
+    }
 }
