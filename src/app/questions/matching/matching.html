@@ -6,8 +6,9 @@
                 (dragstart)="dragstart($event, t.id)"
                 (drop)="dropped($event, t.id)"
                 (dragover)="dragover($event)">
-            <div [ngClass]="{text: isEnglish(t), spanishtext: isSpanish(t), pressdown: isPressed}">
+            <div [ngClass]="{text: isEnglish(t), spanishtext: isSpanish(t)}">
                 <div class="dragbars"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                <div class="checkterm"><input type="checkbox" [(ngModel)]="t.checked" (change)="checkChanged(t)" /></div>
                 {{t.text}}</div>
             <div *ngIf="t.matchedchoice != null" class="bottommatchedtext">
                 <div [innerText]="t.matchedchoice.text" style="display: table-cell"></div>

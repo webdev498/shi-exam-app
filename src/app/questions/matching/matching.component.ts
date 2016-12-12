@@ -13,8 +13,6 @@ export class Matching {
     @Output() choiceMatched = new EventEmitter();
     @Output() termUndo = new EventEmitter();
 
-    pressed: boolean = false;
-
     constructor() {
         
     }
@@ -27,7 +25,6 @@ export class Matching {
         ev.preventDefault();
         let droppedid = ev.dataTransfer.getData('choice');
         this._matched(id, droppedid);
-        this.pressed = false;
     }
 
     dragover(ev) {
@@ -57,20 +54,33 @@ export class Matching {
         term.matchedchoice = null;
     }
 
-    pressdown() {
-        this.pressed = true;
-    }
-
-    pressoff() {
-        this.pressed = false;
+    checkChanged(term: Term) {
+        if (term.checked) {
+            //uncheck all other like language terms
+            for (let i = 0; i < this.terms.length; i++) {
+                if (term.language === this.terms[i].language &&
+                    term.id !== this.terms[i].id) {
+                    term.checked = false;
+                }
+            }
+            //check if the opposite term has been checked
+            for (let i = 0; i < this.terms.length; i++) {
+                if (term.language !== this.terms[i].language &&
+                    this.terms[i].checked) {
+                    //match them up!
+                    this._matched(term.id,this.terms[i].id);
+                    break;
+                }
+            }
+        }
     }
 
     isEnglish(term: Term) {
-        return term.language === 'english' && !this.pressed;
+        return term.language === 'english';
     }
 
     isSpanish(term: Term) {
-        return term.language === 'spanish' && !this.pressed;
+        return term.language === 'spanish';
     }
 
     _getChoice(id) {
