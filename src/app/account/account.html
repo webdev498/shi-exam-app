@@ -1,5 +1,33 @@
 <div class="container-fluid">
     <div class="col-md-4 col-md-offset-4">
+
+        <div class="premierContainer">
+          <div class="premierTitle">
+            <div *ngIf="premieruser">
+                <i class="fa fa-star-o" aria-hidden="true"></i> Your account has premier status and unrestricted access
+                
+                <div class="premierdeactivate">
+                  Premier status is provided through a monthly $4.99 fee 
+                  
+                  <div class="premiercancel" (click)="cancel()">cancel subscription</div>
+                </div>
+            </div>
+            <div *ngIf="!premieruser">
+                <i class="fa fa-star-half-o" aria-hidden="true"></i> Your account has standard status and restricted access
+            
+                <div class="premiersubscribe">
+                    For premier status and unrestricted access membership is $4.99 / month
+                </div>
+
+                <div class="premieractivate">
+                    <button class="btn btn-sm btn-default" (click)="activate()">
+                      <i class="fa fa-star-o" aria-hidden="true"></i> Activate Premier Subscription
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+
         <form #f="ngForm" role="form" style="max-width: 400px; border: none">
       <div class="form-group">
         <label for="email">Email *</label>

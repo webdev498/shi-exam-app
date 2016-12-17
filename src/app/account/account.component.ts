@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { UserInfoKey } from './../model/Constants';
 import { User } from './../model/User';
@@ -32,7 +32,7 @@ import {Address} from './../model/Address';
   styles: [ require('./account.less'), require('./../app.less') ],
   template: require('./account.html')
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
   registration: Registration;
   updatePassword: boolean = false;
   countryCodes: CountryCode[];
@@ -40,6 +40,7 @@ export class AccountComponent {
   states: string[];
   months: Month[];
   nationalities: any[];
+  premieruser: boolean = false;
   days: Day[];
   emailValid: boolean = true;
   accountMessage: string;
@@ -62,6 +63,16 @@ export class AccountComponent {
       this.states = _stateService.states();
       this.registration = new Registration();
       this.accountMessage = '';
+  }
+
+  ngOnInit() {
+      this.premieruser = this._authService.premierUser();
+
+      this._nationalityService.getNationalities()
+      .subscribe(
+          response => this._handleNationalityResponse(response),
+          error => this._handleError(error, 'There was an error retrieving the nationalities')
+      );
   }
 
   submitButtonState() {
@@ -155,13 +166,4 @@ export class AccountComponent {
       user.email, user.gender, user.dateOfBirth, user.relations);
     this.registration = userRegistration.getRegistration();
   }
-  
-  ngOnInit() {
-       this._nationalityService.getNationalities()
-        .subscribe(
-            response => this._handleNationalityResponse(response),
-            error => this._handleError(error, 'There was an error retrieving the nationalities')
-        );
-  }
-
 }
