@@ -149,6 +149,15 @@ export class AccountComponent implements OnInit {
       this._router.navigate(['home']);
   }
 
+  /* Account Status */
+  activate() {
+
+  }
+
+  cancel() {
+    
+  }
+
   _validation(message) {
     this._eventService.broadcast('error',message);
   }
