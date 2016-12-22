@@ -37,6 +37,14 @@ export class AccountService {
       .catch(this.handleError);
   }
 
+  premierActivate() {
+
+  }
+
+  premierCancel() {
+    
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error);
   }
