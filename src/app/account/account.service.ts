@@ -49,7 +49,14 @@ export class AccountService {
   }
 
   premierStudyCancel() {
-    
+    let header = new Headers();
+    header.append(AuthHeaderKey,this._authService.getToken());
+    header.append('Content-Type','application/json');
+    return this._http.post(RootApiUrl + '/study/cancel', {
+      headers: header
+    })
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleError);    
   }
 
   premierStudyFinalize(token: string) {

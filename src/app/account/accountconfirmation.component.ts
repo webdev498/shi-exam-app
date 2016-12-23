@@ -1,16 +1,13 @@
 import {Component} from '@angular/core';
+import {AccountService} from './account.service';
 
 @Component({
-  providers: [
-    
-  ],
   styles: [ ],
+  providers: [AccountService],
   template: require('./accountconfirmation.html')
 })
 export class AccountConfirmationComponent {
 
-  constructor() {
-
-  }
+  constructor(private _accountService: AccountService) {}
 
 }

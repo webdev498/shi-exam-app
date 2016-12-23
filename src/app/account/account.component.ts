@@ -33,6 +33,7 @@ import {Address} from './../model/Address';
   template: require('./account.html')
 })
 export class AccountComponent implements OnInit {
+  activatingStudy: boolean = false;
   registration: Registration;
   updatePassword: boolean = false;
   countryCodes: CountryCode[];
@@ -151,11 +152,20 @@ export class AccountComponent implements OnInit {
 
   /* Account Status */
   activate() {
-
+    this.activatingStudy = true;
+    this._accountService.premierStudyActivate()
+      .subscribe(
+        response => this._handleStudyActivateResponse(response),
+        error => this._handleError(error, 'There was an error upgrading your account')
+      );
   }
 
   cancel() {
-    
+      this._accountService.premierStudyCancel()
+        .subscribe(
+        response => {},
+        error => this._handleError(error, 'There was an error upgrading your account')
+      );  
   }
 
   _validation(message) {
@@ -163,8 +173,14 @@ export class AccountComponent implements OnInit {
   }
 
  _handleError(error, message) {
+    this.activatingStudy = false;
     this._eventService.broadcast('error', message);
     console.error(error);
+  }
+
+  _handleStudyActivateResponse(response) {
+    this.activatingStudy = false;
+    window.location.href = response.redirectUrl;
   }
 
   _handleNationalityResponse(response) {
