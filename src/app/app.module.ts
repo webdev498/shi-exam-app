@@ -31,6 +31,7 @@ import {ExamComponent} from './exam/exam.component';
 import {ExamCompleteComponent} from './exam/examcomplete.component';
 import {ExamHistoryComponent} from './examhistory/examhistory.component';
 import {StudyComponent} from './study/study.component';
+import {AgreementComponent} from './study/agreement.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
@@ -55,7 +56,7 @@ export class MyAuthConfig extends CustomConfig {
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
                     ExamHistoryComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
-                    RegisterConfirmComponent,
+                    RegisterConfirmComponent, AgreementComponent,
                     MultipleChoice, Matching, Grouping, App],
     providers: [
     ...APP_PROVIDERS,
