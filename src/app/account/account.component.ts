@@ -164,7 +164,7 @@ export class AccountComponent implements OnInit {
       this._accountService.premierStudyCancel()
         .subscribe(
         response => {},
-        error => this._handleError(error, 'There was an error upgrading your account')
+        error => this._handleError(error, 'There was an error downgrading your account')
       );  
   }
 
