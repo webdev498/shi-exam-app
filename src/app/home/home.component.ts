@@ -24,8 +24,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     //navigate to login screen if not logged in
-    if (!this._cgiAuth.loggedIn())
+    if (!this._cgiAuth.loggedIn()) {
       this._router.navigate(['login']);
+      return;
+    }
 
    this.examIconText = 'TAKE ANOTHER TEST';
    this.studyIconText = 'PURCHASE STUDY';
