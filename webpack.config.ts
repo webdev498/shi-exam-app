@@ -12,7 +12,7 @@ const {
 
 } = require('webpack');
 const { ConcatSource } = require('webpack-sources');
-const { ForkCheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const AssetsPlugin = require('assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
@@ -121,7 +121,6 @@ const FACEBOOK_CLIENT_ID = '"228791194154793"';
 
       new TsConfigPathsPlugin(/* { tsconfig, compiler } */),
       new HotModuleReplacementPlugin(),
-      new ForkCheckerPlugin(),
       new DefinePlugin(CONSTANTS),
       new ProgressPlugin({})
     ],

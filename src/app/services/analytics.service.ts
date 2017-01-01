@@ -1,17 +1,23 @@
 import {Injectable} from '@angular/core';
-var ga = require('autotrack');
+require('autotrack');
 
 @Injectable()
 export class AnalyticsService {
     constructor() {
-        ga('create', 'UA-89637758-1', 'auto');
-        ga('require', 'cleanUrlTracker');
-        ga('require', 'outboundLinkTracker');
-        ga('require', 'urlChangeTracker');
+        (<any>window).ga=(<any>window).ga||function(){((<any>window).ga.q=(<any>window).ga.q||[]).push(arguments)};(<any>window).ga.l=+new Date;
+
+        (<any>window).ga('create', 'UA-89637758-1', 'auto');
+        (<any>window).ga('require', 'cleanUrlTracker');
+        (<any>window).ga('require', 'eventTracker');
+        (<any>window).ga('require', 'outboundLinkTracker');
+        (<any>window).ga('require', 'urlChangeTracker');
     }
 
     pageView(url: string) {
-        ga('set', 'page', url);
-        ga('send', 'pageview');
+        (<any>window).ga('set', 'page', url);
+        (<any>window).ga('send', 'pageview');
     }
+
+    //to track clicks on html attributes
+    //ga-on="click"
 }
