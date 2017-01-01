@@ -6,6 +6,7 @@ import {Response} from '@angular/http';
 import {LoginService} from './login.service';
 import {UserService} from './../services/user.service';
 import {AuthService as CGIAuth} from './../services/auth.service';
+import {AnalyticsService} from './../services/analytics.service';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserTokenKey} from './../model/Constants';
 import {UserInfoKey} from './../model/Constants';
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
               private _userService: UserService,
               private _authService: CGIAuth,
               private _router: Router,
-              private _oauth: AuthService) {
+              private _oauth: AuthService,
+              private _analytics: AnalyticsService) {
     this.errorMessage = '';
   }
 
@@ -96,7 +98,7 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnInit() {
-
+    this._analytics.pageView('/login.html');
   }
 
 }
