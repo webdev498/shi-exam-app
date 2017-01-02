@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService as CGIAuth} from './../services/auth.service';
 import {ExamService} from './../exam/exam.service';
+import {AnalyticsService} from './../services/analytics.service';
 
 @Component({
-  selector: 'home',  // <home></home>
+  selector: 'home',  
   styles: [ require('./home.less') ],
   providers: [ExamService],
   template: require('./home.html')
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private _router: Router,
               private _cgiAuth: CGIAuth,
-              private _examService: ExamService) {
+              private _examService: ExamService,
+              private _analytics: AnalyticsService) {
       
   }
 
@@ -24,8 +26,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     //navigate to login screen if not logged in
-    if (!this._cgiAuth.loggedIn())
+    if (!this._cgiAuth.loggedIn()) {
       this._router.navigate(['login']);
+      return;
+    }
 
    this.examIconText = 'TAKE ANOTHER TEST';
    this.studyIconText = 'PURCHASE STUDY';
@@ -36,6 +40,8 @@ export class HomeComponent implements OnInit {
           response => {console.log(response);},
           error => this._handleLastExamError(error)
         );
+
+   this._analytics.pageView('/home.html');
   }
 
   _handleLastExamError(error) {

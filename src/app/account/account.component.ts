@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { UserInfoKey } from './../model/Constants';
 import { User } from './../model/User';
@@ -32,7 +32,8 @@ import {Address} from './../model/Address';
   styles: [ require('./account.less'), require('./../app.less') ],
   template: require('./account.html')
 })
-export class AccountComponent {
+export class AccountComponent implements OnInit {
+  activatingStudy: boolean = false;
   registration: Registration;
   updatePassword: boolean = false;
   countryCodes: CountryCode[];
@@ -40,6 +41,7 @@ export class AccountComponent {
   states: string[];
   months: Month[];
   nationalities: any[];
+  premieruser: boolean = false;
   days: Day[];
   emailValid: boolean = true;
   accountMessage: string;
@@ -62,6 +64,16 @@ export class AccountComponent {
       this.states = _stateService.states();
       this.registration = new Registration();
       this.accountMessage = '';
+  }
+
+  ngOnInit() {
+      this.premieruser = this._authService.premierUser();
+
+      this._nationalityService.getNationalities()
+      .subscribe(
+          response => this._handleNationalityResponse(response),
+          error => this._handleError(error, 'There was an error retrieving the nationalities')
+      );
   }
 
   submitButtonState() {
@@ -138,13 +150,37 @@ export class AccountComponent {
       this._router.navigate(['home']);
   }
 
+  /* Account Status */
+  activate() {
+    this.activatingStudy = true;
+    this._accountService.premierStudyActivate()
+      .subscribe(
+        response => this._handleStudyActivateResponse(response),
+        error => this._handleError(error, 'There was an error upgrading your account')
+      );
+  }
+
+  cancel() {
+      this._accountService.premierStudyCancel()
+        .subscribe(
+        response => {},
+        error => this._handleError(error, 'There was an error downgrading your account')
+      );  
+  }
+
   _validation(message) {
     this._eventService.broadcast('error',message);
   }
 
  _handleError(error, message) {
+    this.activatingStudy = false;
     this._eventService.broadcast('error', message);
     console.error(error);
+  }
+
+  _handleStudyActivateResponse(response) {
+    this.activatingStudy = false;
+    window.location.href = response.redirectUrl;
   }
 
   _handleNationalityResponse(response) {
@@ -155,13 +191,4 @@ export class AccountComponent {
       user.email, user.gender, user.dateOfBirth, user.relations);
     this.registration = userRegistration.getRegistration();
   }
-  
-  ngOnInit() {
-       this._nationalityService.getNationalities()
-        .subscribe(
-            response => this._handleNationalityResponse(response),
-            error => this._handleError(error, 'There was an error retrieving the nationalities')
-        );
-  }
-
 }

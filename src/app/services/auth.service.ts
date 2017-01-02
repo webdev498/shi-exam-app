@@ -37,6 +37,10 @@ export class AuthService {
     getUser() :User {
         return <User>JSON.parse(localStorage[UserInfoKey]);
     }
+
+    premierUser() : boolean {
+        return false;
+    }
     
     saveToken(token) {
         localStorage.setItem(UserTokenKey, JSON.stringify(token));

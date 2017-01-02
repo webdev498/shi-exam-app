@@ -15,6 +15,7 @@ import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
 import {RegistrationService} from './register.service';
 import {AuthService} from './../services/auth.service';
+import {AnalyticsService} from './../services/analytics.service';
 import {EventService} from './../services/event.service';
 import {UserService} from './../services/user.service';
 
@@ -61,6 +62,7 @@ export class RegisterComponent implements OnInit {
               private _regService: RegistrationService,
               private _router: Router,
               private _authService: AuthService,
+              private _analytics: AnalyticsService,
               private _eventService: EventService,
               private _userService: UserService) {
       this.ur = new Registration();
@@ -131,6 +133,8 @@ export class RegisterComponent implements OnInit {
     } else {
       this._router.navigateByUrl('registerstart');
     }
+
+    this._analytics.pageView('/register.html');
   }
 
   goToExam() {
