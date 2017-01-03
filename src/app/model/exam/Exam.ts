@@ -94,10 +94,10 @@ export class Exam {
 
                         gq.categories = new Array();
                         let sc = _.shuffle(q.categories);
-
+                        sc = _.uniqBy(sc, "id"); //unique list of categories
+                        
                         for (let g = 0; g < sc.length; g++) {
-                            gq.categories.push(new Category(sc[g].text.toLowerCase() === GeneralCategory ? GeneralAlias :
-                                sc[g].text,
+                            gq.categories.push(new Category(sc[g].text,
                                 sc[g].id));
                         }
 

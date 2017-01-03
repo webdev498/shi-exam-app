@@ -63,6 +63,8 @@ export class Grouping {
             //check if a term is checked
             for (let i = 0; i < this.terms.length; i++) {
                 if (this.terms[i].checked) {
+                    let catObject = document.getElementById(category.id);
+                    (<HTMLInputElement>catObject).checked = false;
                     category.checked = false;
                     this.terms[i].checked = false;
                     this._grouped(category.id, this.terms[i].id);
@@ -85,6 +87,8 @@ export class Grouping {
             //check if a category is checked
             for (let i = 0; i < this.categories.length; i++) {
                 if (this.categories[i].checked) {
+                    let catObject = document.getElementById(this.categories[i].id);
+                    (<HTMLInputElement>catObject).checked = false;
                     this.categories[i].checked = false;
                     term.checked = false;
                     this._grouped(this.categories[i].id, term.id);
