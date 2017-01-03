@@ -19,10 +19,10 @@ export class ExamService {
     headers.append(AuthHeaderKey,this._authService.getToken());
     let payload = JSON.stringify({tier: 1, type: examType});
     
-      //return this._http.post(RootApiUrl + '/exams',payload, {
-      //  headers: headers
-      //})
-      return this._http.get('/exam.json')
+      return this._http.post(RootApiUrl + '/exams',payload, {
+        headers: headers
+      })
+      //return this._http.get('/exam.json')
       .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }
