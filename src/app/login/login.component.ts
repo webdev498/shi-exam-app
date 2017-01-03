@@ -16,7 +16,7 @@ import {User} from './../model/User';
   providers: [
     LoginService, UserService, CGIAuth, AuthService
   ],
-  styles: [ require('./login.less') ] ,
+  styles: [ require('./login.less') ],
   template: require('./login.html')
 })
 export class LoginComponent implements OnInit {
@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   processing: boolean = false;
   
-  // TypeScript public modifiers
   constructor(private _loginService: LoginService,
               private _userService: UserService,
               private _authService: CGIAuth,
