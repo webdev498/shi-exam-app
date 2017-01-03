@@ -1,5 +1,4 @@
-import {UserTokenKey} from './../model/Constants';
-import {UserInfoKey} from './../model/Constants';
+import {UserTokenKey, UserInfoKey, GlobalAdministrator, StudyUser} from './../model/Constants';
 import {User} from './../model/User';
 import {JwtHelper} from 'angular2-jwt';
 import {Injectable} from '@angular/core';
@@ -39,7 +38,10 @@ export class AuthService {
     }
 
     premierUser() : boolean {
-        return false;
+        let userInfo = <any>JSON.parse(localStorage[UserInfoKey]);
+        let currentRole = userInfo.relations.role.name;
+        return (currentRole === GlobalAdministrator ||
+            currentRole === StudyUser);
     }
     
     saveToken(token) {

@@ -29,3 +29,7 @@ export const MatchingQuestionType = 'Term Matching';
 export const GroupingQuestionType = 'Category Matching';
 export const MatchingTermsShown = 5;
 export const GroupingTermsShown = 5;
+
+//role constants
+export const GlobalAdministrator = 'Global Administrator';
+export const StudyUser = 'Study User';
