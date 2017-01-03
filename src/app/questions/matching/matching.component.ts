@@ -60,7 +60,7 @@ export class Matching {
             for (let i = 0; i < this.terms.length; i++) {
                 if (term.language === this.terms[i].language &&
                     term.id !== this.terms[i].id) {
-                    term.checked = false;
+                    this.terms[i].checked = false;
                 }
             }
             //check if the opposite term has been checked
@@ -69,6 +69,8 @@ export class Matching {
                     this.terms[i].checked) {
                     //match them up!
                     this._matched(term.id,this.terms[i].id);
+                    term.checked = false;
+                    this.terms[i].checked = false;
                     break;
                 }
             }

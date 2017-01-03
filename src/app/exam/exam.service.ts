@@ -22,7 +22,7 @@ export class ExamService {
       return this._http.post(RootApiUrl + '/exams',payload, {
         headers: headers
       })
-      //return this._http.get('/realexam.json')
+      //return this._http.get('/exam.json')
       .map((response: Response) => <any>response.json())
       .catch(this.handleError);
   }

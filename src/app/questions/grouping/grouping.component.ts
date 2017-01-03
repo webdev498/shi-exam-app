@@ -50,6 +50,54 @@ export class Grouping {
         this.grouped--;
     }
 
+    categoryCheckChanged(category: Category) {
+        if (category.checked) {
+            //uncheck any other categories
+            for (let i = 0; i < this.categories.length; i++) {
+                if (category.id !== this.categories[i].id &&
+                    this.categories[i].checked) {
+                        this.categories[i].checked = false;
+                    }
+            }       
+
+            //check if a term is checked
+            for (let i = 0; i < this.terms.length; i++) {
+                if (this.terms[i].checked) {
+                    let catObject = document.getElementById(category.id);
+                    (<HTMLInputElement>catObject).checked = false;
+                    category.checked = false;
+                    this.terms[i].checked = false;
+                    this._grouped(category.id, this.terms[i].id);
+                    break;
+                }
+            }
+        }
+    }
+
+    termCheckChanged(term: Term) {
+        if (term.checked) {
+            //uncheck any other terms
+            for (let i = 0; i < this.terms.length; i++) {
+                if (term.id !== this.terms[i].id &&
+                    this.terms[i].checked) {
+                        this.terms[i].checked = false;
+                    }
+            }
+        
+            //check if a category is checked
+            for (let i = 0; i < this.categories.length; i++) {
+                if (this.categories[i].checked) {
+                    let catObject = document.getElementById(this.categories[i].id);
+                    (<HTMLInputElement>catObject).checked = false;
+                    this.categories[i].checked = false;
+                    term.checked = false;
+                    this._grouped(this.categories[i].id, term.id);
+                    break;
+                }
+            }
+        }
+    }
+
     _grouped(id: string, droppedid: string) {
         this.choiceGrouped.emit({
             id: id,

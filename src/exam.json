@@ -1,103 +1,355 @@
-
-  {
-    "id": "1004",
-    "time": "Tue Aug 09 2016 20:33:10 GMT-0600 (MDT)",
-    "questions": [
-            {
-        "type": "3",
-        "id": "1",
-        "text": "Group each term into its related category",
-        "choices": [
-          {
-            "id": "1",
-            "text": "text1"
-          },
-          {
-            "id": "2",
-            "text": "text2"
-          },
-          {
-            "id": "3",
-            "text": "text3"
-          },{
-            "id": "4",
-            "text": "text4"
-          },
-          {
-            "id": "5",
-            "text": "text5"
-          }
-        ],
-        "categories": [
-          {
-            "id": "1",
-            "text": "category 1"
-          },
-          {
-            "id": "2",
-            "text": "category 2"
-          },
-          {
-            "id": "3",
-            "text": "category 3"
-          }
-        ]
-      },
-      {
-        "type": "1",
-        "id": "2",
-        "text": "Choose the Spanish term for house",
-        "choices": [
-          {
-            "id": "10",
-            "text": "art"
-          },
-          {
-            "id": "11",
-            "text": "casa"
-          },
-                    {
-            "id": "12",
-            "text": "bano"
-          },
-                    {
-            "id": "13",
-            "text": "java"
-          }
-        ]
-      },
-      {
-        "type": "2",
-        "id": "3",
-        "text": "The matching questions / instructions",
-        "english": [
-          {
-            "id": "1",
-            "text": "house"
-          },
-          {
-            "id": "2",
-            "text": "bathroom"
-          },
-          {
-            "id": "3",
-            "text": "tree"
-          }
-        ],
-        "spanish": [
-          {
-            "id": "4",
-            "text": "casa"
-          },
-          {
-            "id": "5",
-            "text": "baño"
-          },
-          {
-            "id": "6",
-            "text": "árbol"
-          }
-        ]
-      }
+{
+    "id": "cb8140a2-080d-42df-bb6a-4204d863438f",
+    "sections": [
+        {
+            "id": "fe01927e-4f06-43ee-96f3-a9e52ab70e91",
+            "type": "Category Matching",
+            "instructions": "Group each term into a category by dragging the term from the top to category on the bottom",
+            "questions": [
+                {
+                    "id": "fae28643-3afd-44f0-8f45-1eaf694540b7",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "3a828b17-7859-4bae-a44c-218045a1302f",
+                            "text": "Gastroenterology"
+                        },
+                        {
+                            "id": "62684f10-11bd-4359-83de-30bf86a73329",
+                            "text": "Tools"
+                        },
+                        {
+                            "id": "2e85e4c4-e984-45a9-8b66-c3b05a16c972",
+                            "text": "OB/GYN"
+                        },
+                        {
+                            "id": "c86a56ed-2051-4e5d-9ef7-cf33cb0ca93d",
+                            "text": "Diseases & Conditions"
+                        },
+                        {
+                            "id": "c9293be1-bfe8-4a93-b117-1fec37f65f52",
+                            "text": "Orthopedics"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "6f093409-eaa2-4dc4-862b-9fba8d07501c",
+                            "text": "agruras"
+                        },
+                        {
+                            "id": "25ff939f-c1f6-445b-b84f-c879ba61e5b8",
+                            "text": "cronómetro"
+                        },
+                        {
+                            "id": "c3be2e58-8ead-41a6-a569-0cb97613b8d0",
+                            "text": "tristeza después del parto"
+                        },
+                        {
+                            "id": "7fe26330-aa5a-45f8-a3ba-47938cb6d775",
+                            "text": "enfermedad renal terminal"
+                        },
+                        {
+                            "id": "2441e213-850e-4865-9d32-b56925b4628a",
+                            "text": "injerto óseo"
+                        }
+                    ]
+                },
+                {
+                    "id": "7defe6f0-19ae-42fb-8c51-70ff6d4b3cfa",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "853ef8b9-cd03-4ce4-918c-5a5feb44c1a2",
+                            "text": "Other"
+                        },
+                        {
+                            "id": "853ef8b9-cd03-4ce4-918c-5a5feb44c1a2",
+                            "text": "Other"
+                        },
+                        {
+                            "id": "81282b62-5668-4c18-a272-29cf08b5a47a",
+                            "text": "Signs & Symptoms"
+                        },
+                        {
+                            "id": "d36e5f19-3821-4219-bdbc-72c01fe7e85b",
+                            "text": "Surgery"
+                        },
+                        {
+                            "id": "c9293be1-bfe8-4a93-b117-1fec37f65f52",
+                            "text": "Orthopedics"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "3f5d8337-1f01-4bed-8b5b-2ae534153a6e",
+                            "text": "vacuna de refuerzo"
+                        },
+                        {
+                            "id": "a1a49cea-912f-40c3-9c02-abe52ba716da",
+                            "text": "quebrar"
+                        },
+                        {
+                            "id": "314ba32e-29b8-48ba-aa24-e5d989711457",
+                            "text": "dolor irradiado"
+                        },
+                        {
+                            "id": "d261a778-ed57-4751-8499-b0e58478d29a",
+                            "text": "artroscopía"
+                        },
+                        {
+                            "id": "0b42d69e-8ebb-45b8-b5a3-3f913a4efafe",
+                            "text": "tornillos"
+                        }
+                    ]
+                },
+                {
+                    "id": "04e45ea9-72cd-4830-a1d5-d8bebf702284",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "4d9fefc3-ba56-4a8a-9083-0f9346b433c7",
+                            "text": "Professions"
+                        },
+                        {
+                            "id": "62684f10-11bd-4359-83de-30bf86a73329",
+                            "text": "Tools"
+                        },
+                        {
+                            "id": "8a04f381-7e46-44f6-b6cf-db6715d9bfd4",
+                            "text": "Oncology"
+                        },
+                        {
+                            "id": "70050a7a-eeec-4186-87fd-937e4c5395b0",
+                            "text": "Neurology"
+                        },
+                        {
+                            "id": "a36aa979-44e0-4fa7-a699-b719ef6233a8",
+                            "text": "ENT"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "66827ed4-36e0-472a-96db-cdde0da12fc3",
+                            "text": "enfermera de clasificación"
+                        },
+                        {
+                            "id": "3aea9545-b7fe-4135-b4b7-8731fabfe408",
+                            "text": "sisema de resección para endoscoía"
+                        },
+                        {
+                            "id": "3edd62c5-b681-4ee5-b328-36342f1552d3",
+                            "text": "reincidencia"
+                        },
+                        {
+                            "id": "1ba7d888-181e-4f8d-ac56-29efb8ee4f9e",
+                            "text": "tálamo"
+                        },
+                        {
+                            "id": "8d993615-3d08-428f-b6dd-ae8cfd8908ac",
+                            "text": "infección de los senos nasales"
+                        }
+                    ]
+                },
+                {
+                    "id": "0467f262-925a-45b1-a208-b0534ee2b222",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "a0695dbe-d5e5-4e1c-8649-dc67114aaa09",
+                            "text": "Anatomy"
+                        },
+                        {
+                            "id": "853ef8b9-cd03-4ce4-918c-5a5feb44c1a2",
+                            "text": "Other"
+                        },
+                        {
+                            "id": "8a04f381-7e46-44f6-b6cf-db6715d9bfd4",
+                            "text": "Oncology"
+                        },
+                        {
+                            "id": "5d80c25a-085d-413f-a54b-a5ca0ff5d6ab",
+                            "text": "Diabetes"
+                        },
+                        {
+                            "id": "94b7f58d-58db-4411-beda-70d32910f8fc",
+                            "text": "Radiology"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "2386e0a0-5e91-4a2d-80bf-fd1b13faa360",
+                            "text": "talón"
+                        },
+                        {
+                            "id": "4d597348-37b1-42a0-8b79-604b6fb15b47",
+                            "text": "acostar"
+                        },
+                        {
+                            "id": "df6a9e71-de95-47f6-9ad6-2abe4c19acaf",
+                            "text": "nódulo"
+                        },
+                        {
+                            "id": "14aa8570-0b2d-446e-9470-d34c9dc2d7d9",
+                            "text": "hiperglucemia"
+                        },
+                        {
+                            "id": "2470eb82-3f7e-4b10-b181-9afb88c1f92f",
+                            "text": "angiocardiografía"
+                        }
+                    ]
+                },
+                {
+                    "id": "9e2e607c-6d1f-445b-ac98-522cb4579d63",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "62684f10-11bd-4359-83de-30bf86a73329",
+                            "text": "Tools"
+                        },
+                        {
+                            "id": "853ef8b9-cd03-4ce4-918c-5a5feb44c1a2",
+                            "text": "Other"
+                        },
+                        {
+                            "id": "8f21b1c4-a10e-43d1-8f8f-a232c8075efa",
+                            "text": "Mental Health"
+                        },
+                        {
+                            "id": "8a04f381-7e46-44f6-b6cf-db6715d9bfd4",
+                            "text": "Oncology"
+                        },
+                        {
+                            "id": "81282b62-5668-4c18-a272-29cf08b5a47a",
+                            "text": "Signs & Symptoms"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "f21c59bb-3e17-41dd-9eee-81c65d0532fb",
+                            "text": "vaporizador"
+                        },
+                        {
+                            "id": "b26359bf-4b8b-47c9-a3a5-b55b39c0be5a",
+                            "text": "escribir"
+                        },
+                        {
+                            "id": "5e59e380-0c6c-4b0d-b745-23a61ad90baa",
+                            "text": "paranoia"
+                        },
+                        {
+                            "id": "f7806a80-051b-40df-8928-991d0e1ae108",
+                            "text": "reaparición"
+                        },
+                        {
+                            "id": "a31e4003-a9cc-4ffc-b77e-565a55b8859d",
+                            "text": "fractura múltiple"
+                        }
+                    ]
+                },
+                {
+                    "id": "88ba7df1-6ed7-49b1-9a2b-65d6a8293109",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "81282b62-5668-4c18-a272-29cf08b5a47a",
+                            "text": "Signs & Symptoms"
+                        },
+                        {
+                            "id": "b67aa828-eb59-4794-a19d-f810db500498",
+                            "text": "Family"
+                        },
+                        {
+                            "id": "a82c7e2b-c67a-4741-b10d-07f616828eb5",
+                            "text": "Treatments & Instructions"
+                        },
+                        {
+                            "id": "4d9fefc3-ba56-4a8a-9083-0f9346b433c7",
+                            "text": "Professions"
+                        },
+                        {
+                            "id": "853ef8b9-cd03-4ce4-918c-5a5feb44c1a2",
+                            "text": "Other"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "a7dd5c2f-efa9-4293-b8af-f43ebb321990",
+                            "text": "mareo"
+                        },
+                        {
+                            "id": "0ee42b9e-e99f-4a36-ac46-aebf611bd549",
+                            "text": "padre"
+                        },
+                        {
+                            "id": "89186c86-8f45-438a-bebd-8076da62dc5d",
+                            "text": "por la mañana"
+                        },
+                        {
+                            "id": "b91b3b48-5520-4e12-a6d4-d2ca3f3dd2fc",
+                            "text": "la reumatóloga"
+                        },
+                        {
+                            "id": "d4f2791f-5eb5-4a3b-82e4-b4a3595b29e6",
+                            "text": "delgado"
+                        }
+                    ]
+                },
+                {
+                    "id": "e63719af-757f-44c5-ac2f-4cecb6f85d06",
+                    "type": "Category Matching",
+                    "text": "",
+                    "categories": [
+                        {
+                            "id": "c86a56ed-2051-4e5d-9ef7-cf33cb0ca93d",
+                            "text": "Diseases & Conditions"
+                        },
+                        {
+                            "id": "776786a3-76c3-4798-a946-969de30ae9c1",
+                            "text": "Eye"
+                        },
+                        {
+                            "id": "853ef8b9-cd03-4ce4-918c-5a5feb44c1a2",
+                            "text": "Other"
+                        },
+                        {
+                            "id": "78097218-e182-446e-83bb-7db633f622ec",
+                            "text": "Urology"
+                        },
+                        {
+                            "id": "c9293be1-bfe8-4a93-b117-1fec37f65f52",
+                            "text": "Orthopedics"
+                        }
+                    ],
+                    "terms": [
+                        {
+                            "id": "4e4df134-f6ad-4a08-951a-6a0fb41dc08b",
+                            "text": "sistema esqueleto muscular"
+                        },
+                        {
+                            "id": "b0e61fe0-a147-4888-8f57-a64b17a44d5b",
+                            "text": "humor vítreo"
+                        },
+                        {
+                            "id": "8b61fab7-4961-4386-a7a5-8754b0b793e6",
+                            "text": "empezar"
+                        },
+                        {
+                            "id": "ddaddec3-ee4e-4d37-9b67-f5926fcc7e7d",
+                            "text": "adenocarcinoma"
+                        },
+                        {
+                            "id": "4a60baa4-1a42-4367-9d36-200f3d7ba19e",
+                            "text": "sustitución de la articulación"
+                        }
+                    ]
+                }
+            ]
+        }
     ]
-  }
+}
