@@ -29,8 +29,6 @@ build/Release
 ehthumbs.db
 Icon?
 Thumbs.db
-/.awcache
-.awcache
 
 # Node Files #
 /node_modules
@@ -54,6 +52,7 @@ npm-debug.log
 /src/*/dist/
 /dist/**
 .webpack.json
+.awcache
 
 # Doc #
 /doc/
