@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import { CommonModule }      from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule} from '@angular/forms';
@@ -50,7 +51,8 @@ export class MyAuthConfig extends CustomConfig {
 @NgModule({
     bootstrap: [App],
     imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing, 
-    Ng2UiAuthModule.getWithConfig(MyAuthConfig),
+    Ng2UiAuthModule.getWithConfig(MyAuthConfig), 
+    CommonModule
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,

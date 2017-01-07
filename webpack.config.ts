@@ -27,7 +27,7 @@ function root(__path = '.') {
 function webpackConfig(options: EnvOptions = {}): WebpackConfig {
 
 const API_HOST = '"http://localhost:3000"';
-const PROD_API_HOST = '"http://cgi-she-server-d412b26a.6f78d14c.svc.dockerapp.io:8001"';
+const PROD_API_HOST = '"https://api.certifiedspanish.com"';
 const GOOGLE_CLIENT_ID = '"584302945146-hf91k8glaa97agv0mbi5d61mm2kglkau.apps.googleusercontent.com"';
 const FACEBOOK_CLIENT_ID = '"228791194154793"';
 
