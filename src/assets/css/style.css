@@ -91,13 +91,13 @@ HEADER
 .header{
     background: url('../img/bg-banner02.jpg') no-repeat fixed;
     background-size: cover;
-    min-height: 650px;
     position: relative;
+    margin-bottom: 20px
 }
 .bg-color
 {
     background-color: rgba(0, 0, 0, 0.5);
-    min-height: 650px;
+    min-height: 75px;
 }
 #main-header
 {
