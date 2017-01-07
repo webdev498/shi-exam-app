@@ -11,11 +11,7 @@ export class NationalityService {
   getNationalities() {    
     return this._http.get(RootApiUrl + '/nationalities')
       .map((response: Response) => <Nationality>response.json())
-      .do(data => {
-        localStorage.setItem(NationalitiesKey, JSON.stringify(data))
-      })
-      .catch(this.handleError)
-      .cache();
+      .catch(this.handleError);
   }
 
   private handleError(error: Response) {

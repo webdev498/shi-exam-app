@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import { CommonModule }      from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule} from '@angular/forms';
@@ -20,21 +21,24 @@ import { APP_PROVIDERS } from './index';
 import { AppStore } from './app.store';
 
 import {App} from './app.component';
+import {AboutComponent} from './info/about.component';
+import {AgreementComponent} from './study/agreement.component';
+import {AccountComponent} from './account/account.component';
+import {AccountConfirmationComponent} from './account/accountconfirmation.component';
+import {ContactComponent} from './info/contact.component';
+import {ExamStartComponent} from './exam/examstart.component';
+import {ExamComponent} from './exam/exam.component';
+import {ExamCompleteComponent} from './exam/examcomplete.component';
+import {ExamHistoryComponent} from './examhistory/examhistory.component';
+import {FAQComponent} from './info/faq.component';
+import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterConfirmComponent} from './register/registerconfirm.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
-import {ExamStartComponent} from './exam/examstart.component';
-import {ExamComponent} from './exam/exam.component';
-import {ExamCompleteComponent} from './exam/examcomplete.component';
-import {ExamHistoryComponent} from './examhistory/examhistory.component';
 import {StudyComponent} from './study/study.component';
-import {AgreementComponent} from './study/agreement.component';
-import {AccountComponent} from './account/account.component';
-import {AccountConfirmationComponent} from './account/accountconfirmation.component';
-import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
 import {Matching} from './questions/matching/matching.component';
 import {Grouping} from './questions/grouping/grouping.component';
 
@@ -50,13 +54,15 @@ export class MyAuthConfig extends CustomConfig {
 @NgModule({
     bootstrap: [App],
     imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing, 
-    Ng2UiAuthModule.getWithConfig(MyAuthConfig),
+    Ng2UiAuthModule.getWithConfig(MyAuthConfig), 
+    CommonModule
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
                     ExamHistoryComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
-                    RegisterConfirmComponent, AgreementComponent,
+                    RegisterConfirmComponent, AgreementComponent, ContactComponent,
+                    FAQComponent, AboutComponent,
                     MultipleChoice, Matching, Grouping, App],
     providers: [
     ...APP_PROVIDERS,
