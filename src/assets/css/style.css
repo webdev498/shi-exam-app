@@ -89,8 +89,6 @@ HEADER
 ************************************
 ***********************************/
 .header{
-    background: url('../img/bg-banner02.jpg') no-repeat fixed;
-    background-size: cover;
     position: relative;
     margin-bottom: 20px
 }
