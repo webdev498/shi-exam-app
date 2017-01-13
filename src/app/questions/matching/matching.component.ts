@@ -61,7 +61,9 @@ export class Matching {
                 if (term.language === this.terms[i].language &&
                     term.id !== this.terms[i].id) {
                     let termObject = document.getElementById(this.terms[i].id);
-                    (<HTMLInputElement>termObject).checked = false;
+                    if (termObject != null)
+                        (<HTMLInputElement>termObject).checked = false;
+                   
                     this.terms[i].checked = false;
                 }
             }
