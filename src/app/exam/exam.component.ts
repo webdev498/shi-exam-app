@@ -261,6 +261,6 @@ export class ExamComponent implements OnInit {
     }
 
     playQuestionAudio() {
-      this._tts.speak(this.currentQuestion.termText);
+      this._tts.speak(this.currentQuestion.textTerm);
     }
 }
