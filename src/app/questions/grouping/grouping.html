@@ -26,6 +26,7 @@
                 <div class="checkterm">
                     <input type="checkbox" 
                     id="{{c.id}}"
+                    *ngIf="c.groupedterms == null"
                     [(ngModel)]="c.checked" 
                     [checked]="c.checked"
                     (ngModelChange)="categoryCheckChanged(c)" />

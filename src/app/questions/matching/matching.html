@@ -11,6 +11,7 @@
                 <div class="checkterm">
                     <input type="checkbox" 
                     id="{{t.id}}"
+                    *ngIf="t.matchedchoice == null"
                     [(ngModel)]="t.checked" 
                     [checked]="t.checked"
                     (ngModelChange)="checkChanged(t)" />
