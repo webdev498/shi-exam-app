@@ -51,7 +51,7 @@ export class Exam {
 
                         let termStart = questionText.search('<u>');
                         let termEnd = questionText.search('</u>');
-                        mcq.textTerm = questionText.substring(termStart, termEnd);
+                        mcq.textTerm = questionText.substring(termStart, termEnd).replace('<u>','');
                         question.text = questionText;
                         mcq.question = question;
                         mcq.section = section;

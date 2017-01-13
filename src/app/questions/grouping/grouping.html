@@ -3,7 +3,7 @@
         <div *ngIf="!t.matched">
             <div class="group" 
                     draggable="true"
-                    (dragstart)="dragstart(t.id)">
+                    (dragstart)="dragstart($event, t.id)">
                 <div class="text">
                     <div class="groupdragbars"><i class="fa fa-bars" aria-hidden="true"></i></div>
                     <div class="checkterm">
@@ -19,13 +19,14 @@
     <hr *ngIf="grouped != termsshown"/>
     <div *ngFor="let c of categories" class="g">
         <div class="groupcategory" 
-                (drop)="dropped(c.id)"
+                (drop)="dropped($event, c.id)"
                 (dragover)="dragover($event)">
             <div class="categorytext">
                 <div class="categorydragbars"><i class="fa fa-bars" aria-hidden="true"></i></div>
                 <div class="checkterm">
                     <input type="checkbox" 
                     id="{{c.id}}"
+                    *ngIf="c.groupedterms == null"
                     [(ngModel)]="c.checked" 
                     [checked]="c.checked"
                     (ngModelChange)="categoryCheckChanged(c)" />
