@@ -10,7 +10,9 @@
                 <div class="dragbars"><i class="fa fa-bars" aria-hidden="true"></i></div>
                 <div class="checkterm">
                     <input type="checkbox" 
+                    id="{{t.id}}"
                     [(ngModel)]="t.checked" 
+                    [checked]="t.checked"
                     (ngModelChange)="checkChanged(t)" />
                 </div>
                 {{t.text}}</div>

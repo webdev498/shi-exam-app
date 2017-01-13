@@ -60,6 +60,8 @@ export class Matching {
             for (let i = 0; i < this.terms.length; i++) {
                 if (term.language === this.terms[i].language &&
                     term.id !== this.terms[i].id) {
+                    let termObject = document.getElementById(this.terms[i].id);
+                    (<HTMLInputElement>termObject).checked = false;
                     this.terms[i].checked = false;
                 }
             }
@@ -69,6 +71,8 @@ export class Matching {
                     this.terms[i].checked) {
                     //match them up!
                     this._matched(term.id,this.terms[i].id);
+                    let termObject = document.getElementById(term.id);
+                    (<HTMLInputElement>termObject).checked = false;
                     term.checked = false;
                     this.terms[i].checked = false;
                     break;
