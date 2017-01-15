@@ -41,7 +41,7 @@ export class AccountService {
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());
     header.append('Content-Type','application/json');
-    return this._http.post(RootApiUrl + '/study/process', {
+    return this._http.post(RootApiUrl + '/payments/study/process',null, {
       headers: header
     })
       .map((response: Response) => <any>response.json())
@@ -52,7 +52,7 @@ export class AccountService {
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());
     header.append('Content-Type','application/json');
-    return this._http.post(RootApiUrl + '/study/cancel', {
+    return this._http.post(RootApiUrl + '/payments/study/cancel',null, {
       headers: header
     })
       .map((response: Response) => <any>response.json())
@@ -64,7 +64,7 @@ export class AccountService {
     header.append(AuthHeaderKey,this._authService.getToken());
     header.append('Content-Type','application/json');
     let body = {token: token}
-    return this._http.post(RootApiUrl + '/study/finalize', body, {
+    return this._http.post(RootApiUrl + '/payments/study/finalize', body, {
       headers: header
     })
       .map((response: Response) => <any>response.json())
