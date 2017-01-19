@@ -92,8 +92,10 @@ export class LoginComponent implements OnInit {
   _oauthAuthenticate(provider: string) {
       let context = this;
       this._oauth.authenticate(provider)
-        .subscribe(
-            (response: Response) => context._handleLoginResponse(response.json()));
+          .subscribe(
+                  (response: Response) => context._handleLoginResponse(response.json()),
+                  (error: any) => console.log(`Error through handler: ${error.toString()}`)
+               )
   }
   
   ngOnInit() {

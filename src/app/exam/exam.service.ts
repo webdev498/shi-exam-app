@@ -27,6 +27,19 @@ export class ExamService {
       .catch(this.handleError);
   }
 
+  allExamScores() {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    headers.append(AuthHeaderKey,this._authService.getToken());
+    let userId = this._authService.getUser().id;
+
+    return this._http.get(`${RootApiUrl}/users/${userId}/examination-results/all`, {
+      headers: headers
+    })
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleLastExamError);
+  }
+
   lastExamScore() {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
