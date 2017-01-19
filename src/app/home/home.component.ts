@@ -61,6 +61,6 @@ export class HomeComponent implements OnInit {
   }
 
   mostRecent() {
-    this._router.navigate(['examstart']);
+    this._router.navigate(['premiumupgrade']);
   }
 }
