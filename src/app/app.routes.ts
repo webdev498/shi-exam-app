@@ -35,7 +35,7 @@ const routes: Routes =[
   { path: 'examstart', component: ExamStartComponent, canActivate: [AuthGuardService]},
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuardService]},
   { path: 'examcomplete', component: ExamCompleteComponent, canActivate: [AuthGuardService]},
-  { path: 'premiumupgrade', component: PremiumUpgradeComponent },
+  { path: 'premiumupgrade', component: PremiumUpgradeComponent, canActivate: [AuthGuardService]},
   { path: 'examhistory', component: ExamHistoryComponent, canActivate: [AuthGuardService]},
   { path: 'study', component: StudyComponent, canActivate: [AuthGuardService]},
   { path: 'studyagreement', component: AgreementComponent, canActivate: [AuthGuardService]},

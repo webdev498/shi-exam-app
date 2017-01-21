@@ -69,7 +69,10 @@ export class HomeComponent implements OnInit {
   }
 
   mostRecent() {
-    this._router.navigate(['premiumupgrade']);
+    if (!this._cgiAuth.premierUser())
+      this._router.navigate(['premiumupgrade']);
+    else
+      this._router.navigate(['examhistory']);
   }
 
   scoreClass(length: number) {
