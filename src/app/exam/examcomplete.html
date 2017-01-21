@@ -5,8 +5,7 @@
                 Your have successfully finished the exam!
             </h3>
             <div style="margin-top: 3px; text-align: center">
-                <i class="fa fa-check-circle fa-2x" aria-hidden="true" 
-                [ngClass]="{examSuccessIcon: didPass(), examFailIcon: didFail()}"></i>
+                <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
             </div>
         </div>
         <div class="row">
@@ -16,15 +15,28 @@
             <span [ngClass]="{examSuccess: didPass(), examFail: didFail()}">{{examScore.overallMessage}}</span>
         </div>
         <div class="questionScoreGroup">
-            <div class="row">
-                <span>{{examScore.mcScore}}</span> <span>({{examScore.mcPercent}})</span>
-            </div>
-            <div class="row">
-                <span>{{examScore.groupingScore}}</span> <span>({{examScore.groupingPercent}})</span>
-            </div>
-            <div class="row">
-                <span>{{examScore.matchingScore}}</span> <span>({{examScore.matchingPercent}})</span>
-            </div>
+            <table>
+                <tr>
+                    <td>English Multiple Choice: </td>
+                    <td style="width: 4px">&nbsp;</td>
+                    <td><span>{{examScore.mcScore}}</span> <span>({{examScore.mcPercent}})</span></td>
+                </tr>
+                <tr>
+                    <td>Spanish Multiple Choice: </td>
+                    <td style="width: 4px">&nbsp;</td>
+                    <td><span>{{examScore.mcSpanishScore}}</span> <span>({{examScore.mcSpanishPercent}})</span></td>
+                </tr>
+                 <tr>
+                    <td>Grouping: </td>
+                    <td style="width: 4px">&nbsp;</td>
+                    <td><span>{{examScore.groupingScore}}</span> <span>({{examScore.groupingPercent}})</span></td>
+                </tr>
+                <tr>
+                    <td>Matching: </td>
+                    <td style="width: 4px">&nbsp;</td>
+                    <td><span>{{examScore.matchingScore}}</span> <span>({{examScore.matchingPercent}})</span></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

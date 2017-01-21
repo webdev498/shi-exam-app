@@ -27,26 +27,30 @@ export class ExamResponseService {
         for (let section of er.sections) {
             //find the matching section in the exam
             let examSection = _.filter(exam.sections, function(o) {
-                                return _.equals(o.id, section.id);
+                                return _.isEqual(o.id, section.id);
                             })[0];
 
             switch (examSection.type) {
                 case MultipleChoiceEnglishQuestionType:
-                case MultipleChoiceSpanishQuestionType:
-                    score.mcScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
-                    percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
+                    score.mcScore = section.correct.toString() + ' out of ' + section.possible.toString();
+                    percentCorrect = Math.floor((section.correct / section.possible) * 100);
                     score.mcPercent = percentCorrect.toString() + '%';
                     score.mcPassed = percentCorrect < PassingScore ? false : true;
+                case MultipleChoiceSpanishQuestionType:
+                    score.mcSpanishScore = section.correct.toString() + ' out of ' + section.possible.toString();
+                    percentCorrect = Math.floor((section.correct / section.possible) * 100);
+                    score.mcSpanishPercent = percentCorrect.toString() + '%';
+                    score.mcSpanishPassed = percentCorrect < PassingScore ? false : true;
                 break;
                 case MatchingQuestionType:
-                    score.matchingScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
-                    percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
+                    score.matchingScore = section.correct.toString() + ' out of ' + section.possible.toString();
+                    percentCorrect = Math.floor((section.correct / section.possible) * 100);
                     score.matchingPercent = percentCorrect.toString() + '%';
                     score.matchingPassed = percentCorrect < PassingScore ? false : true;
                 break;
                 case GroupingQuestionType:
-                    score.groupingScore = examSection.correct.toString() + ' out of ' + examSection.possible.toString();
-                    percentCorrect = Math.floor((examSection.correct / examSection.possible) * 100);
+                    score.groupingScore = section.correct.toString() + ' out of ' + section.possible.toString();
+                    percentCorrect = Math.floor((section.correct / section.possible) * 100);
                     score.groupingPercent = percentCorrect.toString() + '%';
                     score.groupingPassed = percentCorrect < PassingScore ? false : true;
                 break;

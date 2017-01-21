@@ -34,6 +34,7 @@ import {FAQComponent} from './info/faq.component';
 import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
+import {PremiumUpgradeComponent} from './premiumupgrade/premiumupgrade.component';
 import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterConfirmComponent} from './register/registerconfirm.component';
@@ -60,7 +61,7 @@ export class MyAuthConfig extends CustomConfig {
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
-                    ExamHistoryComponent,
+                    ExamHistoryComponent, PremiumUpgradeComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, ContactComponent,
                     FAQComponent, AboutComponent,

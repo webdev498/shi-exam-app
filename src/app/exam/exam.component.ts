@@ -122,8 +122,10 @@ export class ExamComponent implements OnInit {
 
       if (next)
         this._nextQuestion();
-      else 
+      else {
         this.examSubmitting = true;
+        this.processing = false;
+      }
 
       this.feedbackSubmitted = false;
       this.feedbackText = null;
