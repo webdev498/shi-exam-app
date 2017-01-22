@@ -11,7 +11,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 
 import { ApplicationRef }      from '@angular/core';
 
-import {Ng2UiAuthModule, CustomConfig, JwtHttp} from 'ng2-ui-auth';
+import {Ng2UiAuthModule, CustomConfig} from 'ng2-ui-auth';
 
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
@@ -34,6 +34,7 @@ import {FAQComponent} from './info/faq.component';
 import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
+import {PremiumUpgradeComponent} from './premiumupgrade/premiumupgrade.component';
 import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterConfirmComponent} from './register/registerconfirm.component';
@@ -46,20 +47,21 @@ import { routing } from './app.routes';
 
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
+    baseUrl = API_HOST;
     providers = {
-          google: {clientId: GOOGLE_CLIENT_ID, url: API_HOST + '/login/google'}, 
-          facebook: {clientId: FACEBOOK_CLIENT_ID, url: API_HOST + '/login/facebook'}}
+          google: {clientId: GOOGLE_CLIENT_ID, url: '/login/google'}, 
+          facebook: {clientId: FACEBOOK_CLIENT_ID, url: '/login/facebook'}}
 }
 
 @NgModule({
     bootstrap: [App],
     imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing, 
-    Ng2UiAuthModule.getWithConfig(MyAuthConfig), 
+    Ng2UiAuthModule.forRoot(MyAuthConfig), 
     CommonModule
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
-                    ExamHistoryComponent,
+                    ExamHistoryComponent, PremiumUpgradeComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, ContactComponent,
                     FAQComponent, AboutComponent,

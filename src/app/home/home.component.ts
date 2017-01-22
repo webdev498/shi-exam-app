@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   studyIconText: string;
   scoreIconText: string;
   hasLastExam: boolean = true;
+  lastScore: string = "";
 
   ngOnInit() {
     //navigate to login screen if not logged in
@@ -35,9 +36,16 @@ export class HomeComponent implements OnInit {
    this.studyIconText = 'PURCHASE STUDY';
    this.scoreIconText = 'MOST RECENT RESULT';
 
+   const context = this;
+
    this._examService.lastExamScore()
       .subscribe(
-          response => {console.log(response);},
+          response => {
+            if (response.pointsAwarded === 0)
+              context.lastScore = "0";
+            else
+              context.lastScore = Math.round(response.pointsAwarded / response.pointsPossible).toString();
+          },
           error => this._handleLastExamError(error)
         );
 
@@ -61,6 +69,13 @@ export class HomeComponent implements OnInit {
   }
 
   mostRecent() {
-    this._router.navigate(['examstart']);
+    if (!this._cgiAuth.premierUser())
+      this._router.navigate(['premiumupgrade']);
+    else
+      this._router.navigate(['examhistory']);
+  }
+
+  scoreClass(length: number) {
+    return this.lastScore.length == length;
   }
 }
