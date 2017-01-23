@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthService} from './../services/auth.service';
 import {ExamService} from './../exam/exam.service';
 import {EventService} from './../services/event.service';
+import {ExamResponse} from './../model/exam/ExamResponse';
 
 @Component({
   selector: 'examhistory',  
@@ -20,7 +21,7 @@ export class ExamHistoryComponent implements OnInit {
 
                 }
 
-    results: any;
+    results: ExamResponse[];
     
     ngOnInit() {
       if (!this._authService.premierUser()) {
@@ -37,8 +38,9 @@ export class ExamHistoryComponent implements OnInit {
         );
     }
 
-    _handleAllExamResponse(exams: any) {
-      console.log(exams);
+    _handleAllExamResponse(examResults: ExamResponse[]) {
+      console.log(examResults);
+      this.results = examResults;
     }
 
     _handleAllExamError(error: any) {
