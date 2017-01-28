@@ -8,5 +8,6 @@ export class ExamResponse {
     itemCount: number;
     pointsPossible: number;
     pointsAwarded: number;
+    createdAt: string;
     sections: SectionResponse[];
 }

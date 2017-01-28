@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
 import { ExamResponse } from './../model/exam/ExamResponse';
 import { ExamSubmission } from './../model/exam/ExamSubmission';
+import { Exam } from './../model/exam/Exam';
 import { Feedback } from './../model/exam/Feedback';
 import { AnswerInterface } from './../model/interface/Answer.interface';
 import { AuthService } from './../services/auth.service';
@@ -12,6 +13,19 @@ import { AuthService } from './../services/auth.service';
 export class ExamService {
   constructor(private _http: Http,
              private _authService: AuthService) { }
+
+  allExamScores() {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    headers.append(AuthHeaderKey,this._authService.getToken());
+    let userId = this._authService.getUser().id;
+
+    return this._http.get(`${RootApiUrl}/users/${userId}/examination-results/all`, {
+      headers: headers
+    })
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleLastExamError);
+  }
 
   createExam(userid: string, examType: string) {
     let headers = new Headers();
@@ -27,17 +41,16 @@ export class ExamService {
       .catch(this.handleError);
   }
 
-  allExamScores() {
+  exam(examid: string) {
     let headers = new Headers();
-    headers.append('Content-Type','application/json');
     headers.append(AuthHeaderKey,this._authService.getToken());
-    let userId = this._authService.getUser().id;
-
-    return this._http.get(`${RootApiUrl}/users/${userId}/examination-results/all`, {
-      headers: headers
-    })
-      .map((response: Response) => <any>response.json())
-      .catch(this.handleLastExamError);
+    
+      return this._http.get(`${RootApiUrl}/exams/{examid}`, {
+        headers: headers
+      })
+      //return this._http.get('/exam.json')
+      .map((response: Response) => <Exam>response.json())
+      .catch(this.handleError);   
   }
 
   lastExamScore() {
