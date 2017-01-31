@@ -26,7 +26,7 @@ import {AgreementComponent} from './study/agreement.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 import {ContactComponent} from './info/contact.component';
-import {CategoriesComponent} from './category/categories.component';
+import {CategoriesComponent} from './study/category/categories.component';
 import {ExamStartComponent} from './exam/examstart.component';
 import {ExamComponent} from './exam/exam.component';
 import {ExamCompleteComponent} from './exam/examcomplete.component';

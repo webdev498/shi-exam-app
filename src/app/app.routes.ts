@@ -2,7 +2,6 @@ import { Routes, RouterModule} from '@angular/router';
 
 import {AboutComponent} from './info/about.component';
 import {ContactComponent} from './info/contact.component';
-import {CategoriesComponent} from './category/categories.component';
 import {FAQComponent} from './info/faq.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
@@ -27,7 +26,6 @@ const routes: Routes =[
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
-  { path: 'categorychoice', component: CategoriesComponent, canActivate: [AuthGuardService]},
   { path: 'faq', component: FAQComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registerstart', component: RegisterStartComponent},

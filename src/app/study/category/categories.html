@@ -1,0 +1,21 @@
+<div style="width: 75%; margin: auto 0px">
+
+<input type="text" placeholder="search"
+ [ngModel]="searchText" 
+ (keyup)="searchChanged()"
+ class="form-control"  />
+<div style="margin-top: 5px"></div>
+    <div class="categorySelector">
+        <div *ngFor="let c of categories" class="categoryrow">
+            <div class="categoryselect">
+                
+            </div>
+            <div class="categoryname">
+                {{c.name}}
+            </div>
+        </div>
+    </div>
+    <div class="submitcategories">
+        <button class="btn-info" (click)="submit()">Submit</button>
+    </div>
+</div>
