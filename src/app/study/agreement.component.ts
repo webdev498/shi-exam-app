@@ -1,37 +1,38 @@
 import {Subscription } from 'rxjs';
 import {Router, ActivatedRoute} from '@angular/router';
-import {Component, OnInit, OnDestroy, AfterContentInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AccountService} from './../account/account.service';
 import {EventService} from './../services/event.service';
+import {AuthService} from './../services/auth.service';
 
 @Component({
   selector: 'studyagreement',  
   styles: [ require('./agreement.less'), require('./../app.less') ],
+  providers: [AccountService],
   template: require('./agreement.html')
 })
-export class AgreementComponent implements OnInit, OnDestroy, AfterContentInit {
+export class AgreementComponent implements OnInit, OnDestroy {
     constructor(private _activatedRoute: ActivatedRoute,
               private _router: Router,
               private _eventService: EventService,
-              private _accountService: AccountService) {}
+              private _accountService: AccountService,
+              private _authService: AuthService) {}
     
     private subscription: Subscription;
     private _token: string;
 
     ngOnInit() {
         // subscribe to router event
-        this.subscription = this._activatedRoute.params.subscribe(
+        this.subscription = this._activatedRoute.queryParams.subscribe(
           (param: any) => {
             this._token = param['token'];
-          });
-    }
 
-    ngAfterContentInit() {
-      this._accountService.premierStudyFinalize(this._token)        
-        .subscribe(
-            response => this._handleAccountResponse(response),
-            error => this._handleError(error, 'There was an error updating your account')
-        );
+            this._accountService.premierStudyFinalize(this._token)        
+              .subscribe(
+                  response => this._handleAccountResponse(response),
+                  error => this._handleError(error, 'There was an error updating your account')
+              );
+          });
     }
 
     ngOnDestroy() {
@@ -40,7 +41,10 @@ export class AgreementComponent implements OnInit, OnDestroy, AfterContentInit {
    }
 
    _handleAccountResponse(response: any) {
-     //success!  Go back to home page
+     //success!  Logout and go back to home page
+      this._authService.logout();
+      event.preventDefault();
+      event.stopPropagation();
       this._router.navigate(['home']);
    }
 
