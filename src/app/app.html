@@ -37,6 +37,11 @@
                   <i class="fa fa-laptop" aria-hidden="true"></i> Take an Exam
                 </a>
               </li>
+              <li *ngIf="studyAccess()" class="nav-link">
+                <a routerLink="study">
+                  <i class="fa fa-graduation-cap" aria-hidden="true"></i> Study Guide
+                </a>
+              </li>
               <li *ngIf="loggedIn()" class="nav-link">
                 <a routerLink="account">
                   <i class="fa fa-user" aria-hidden="true"></i> {{loggedInUser()}}
