@@ -25,6 +25,10 @@ export class App implements OnInit {
     return this._authService.loggedIn();
   }
 
+  studyAccess() {
+    return this._authService.loggedIn() && this._authService.premierUser();
+  }
+
     loggedInUser() {
       var user = this._authService.tokenUserInfo();
       if (user !== null)

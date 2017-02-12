@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-   this.examIconText = 'TAKE ANOTHER TEST';
+  this.examIconText = 'TAKE ANOTHER TEST';
    this.studyIconText = 'PURCHASE STUDY';
    this.scoreIconText = 'MOST RECENT RESULT';
 
@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit {
           },
           error => this._handleLastExamError(error)
         );
+
+   if (this._cgiAuth.premierUser()) {
+     this.studyIconText = "STUDY GUIDE";
+   }
 
    this._analytics.pageView('/home.html');
   }

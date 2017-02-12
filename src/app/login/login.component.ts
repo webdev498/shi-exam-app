@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   _handleUserResponse(user) {
     this.processing = false;  
     this._authService.saveUser(user);   
-    this._router.navigate(['examstart']);
+    this._router.navigate(['home']);
   }
   
   _handleError(e) {
