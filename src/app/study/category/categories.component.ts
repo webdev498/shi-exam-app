@@ -15,10 +15,10 @@ export class CategoriesComponent implements OnInit {
               private _eventService: EventService) {}
 
     categories: Category[] = new Array();
-    ids: string[] = new Array();
     searchtext: string;
 
     private _allCategories: Category[] = new Array();
+    private _ids: string[] = new Array();
 
      @Output() categoriesChosen = new EventEmitter();
 
@@ -48,15 +48,20 @@ export class CategoriesComponent implements OnInit {
     }
 
     selectCategory(category: Category) {
-      if (category.selected)
+      if (category.selected) {
         category.selected = false;
-      else
+        const catIndex = this._ids.indexOf(category.id);
+        this._ids.splice(catIndex,1);
+      }
+      else {
         category.selected = true;
+        this._ids.push(category.id);
+      }
     }
 
     submit() {
         this.categoriesChosen.emit({
-            ids: this.ids,
+            ids: this._ids,
         });
     }
 
