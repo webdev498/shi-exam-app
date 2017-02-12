@@ -18,24 +18,50 @@ export class CategoriesComponent implements OnInit {
     ids: string[] = new Array();
     searchtext: string;
 
+    private _allCategories: Category[] = new Array();
+
      @Output() categoriesChosen = new EventEmitter();
 
     ngOnInit() {
       this._categoryService.categories()
       .subscribe(
-          response => {this.categories = response},
+          response => {
+            this.categories = <Category[]>_.sortBy(response, function(o) { return o.name; });
+            this._allCategories = _.clone(this.categories);
+          },
           error => this._handleError(error, 'There was an error retrieving the categories')
       );
     }
 
     searchChanged() {
+      const instance = this;
 
+      if (this.searchtext === null || this.searchtext.length == 0) {
+            this.categories = _.clone(this._allCategories);
+        return;
+      }
+      
+      this.categories = _.filter(this._allCategories, function(o) {
+                                return _.startsWith(o.name.toLowerCase(), 
+                                    instance.searchtext.toLowerCase());
+                            });
+    }
+
+    selectCategory(category: Category) {
+      if (category.selected)
+        category.selected = false;
+      else
+        category.selected = true;
     }
 
     submit() {
         this.categoriesChosen.emit({
             ids: this.ids,
         });
+    }
+
+    submitDisabled() {
+      return false;
     }
 
    _handleError(error, message) {

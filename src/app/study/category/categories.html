@@ -1,21 +1,29 @@
-<div style="width: 75%; margin: auto 0px">
+<div style="width: 100%; margin: auto 0px">
 
-<input type="text" placeholder="search"
- [ngModel]="searchText" 
- (keyup)="searchChanged()"
- class="form-control"  />
-<div style="margin-top: 5px"></div>
-    <div class="categorySelector">
-        <div *ngFor="let c of categories" class="categoryrow">
-            <div class="categoryselect">
-                
-            </div>
-            <div class="categoryname">
-                {{c.name}}
+    <input type="text" placeholder="search" [ngModel]="searchText" (keyup)="searchChanged()" class="form-control" />
+    <div class="categorycontainer">
+        <div class="categorySelector">
+            <div *ngFor="let c of categories" class="categoryrow" (click)="selectCategory(c)">
+                <div class="categoryselect">
+                    <i class="fa fa-check-square-o" 
+                        aria-hidden="true"
+                        *ngIf="c.selected">
+                    </i>
+                    <i class="fa fa-square-o" 
+                        aria-hidden="true"
+                        *ngIf="!c.selected">
+                    </i>
+                </div>
+                <div class="categoryname">
+                    {{c.name}}
+                </div>
             </div>
         </div>
     </div>
     <div class="submitcategories">
-        <button class="btn-info" (click)="submit()">Submit</button>
+        <button class="btn-info" 
+         style="width: 100%"
+         [disabled]="submitDisabled()"
+         (click)="submit()">Submit</button>
     </div>
 </div>
