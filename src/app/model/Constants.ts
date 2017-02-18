@@ -22,6 +22,9 @@ export const GeneralAlias = 'Other';
 export const GeneralCategory = 'general';
 export const PassingScore = 70;
 
+//study constants
+export const CategorySelections = 'categoryselections';
+
 //question constants
 export const MultipleChoiceEnglishQuestionType = 'Multiple Choice English';
 export const MultipleChoiceSpanishQuestionType = 'Multiple Choice Spanish';

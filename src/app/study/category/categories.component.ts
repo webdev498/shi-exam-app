@@ -19,6 +19,7 @@ export class CategoriesComponent implements OnInit {
 
     private _allCategories: Category[] = new Array();
     private _ids: string[] = new Array();
+    private _chosenCategories: Category[] = new Array();
 
      @Output() categoriesChosen = new EventEmitter();
 
@@ -52,16 +53,18 @@ export class CategoriesComponent implements OnInit {
         category.selected = false;
         const catIndex = this._ids.indexOf(category.id);
         this._ids.splice(catIndex,1);
+        this._chosenCategories.splice(catIndex,1);
       }
       else {
         category.selected = true;
         this._ids.push(category.id);
+        this._chosenCategories.push(category);
       }
     }
 
     submit() {
         this.categoriesChosen.emit({
-            ids: this._ids,
+            cats: this._chosenCategories,
         });
     }
 
