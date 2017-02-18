@@ -66,7 +66,7 @@ export class CategoriesComponent implements OnInit {
     }
 
     submitDisabled() {
-      return false;
+      return this._ids.length === 0;
     }
 
    _handleError(error, message) {

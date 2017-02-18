@@ -15,11 +15,13 @@ import {ExamCompleteComponent} from './exam/examcomplete.component';
 import {ExamHistoryComponent} from './examhistory/examhistory.component';
 import {PremiumUpgradeComponent} from './premiumupgrade/premiumupgrade.component';
 import {StudyComponent} from './study/study.component';
+import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {AgreementComponent} from './study/agreement.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
 import {AuthGuardService} from './services/authguard.service';
+import {StudyGuardService} from './services/studyguard.service';
 
 const routes: Routes =[
   { path: '', component: HomeComponent},
@@ -37,7 +39,8 @@ const routes: Routes =[
   { path: 'examcomplete', component: ExamCompleteComponent, canActivate: [AuthGuardService]},
   { path: 'premiumupgrade', component: PremiumUpgradeComponent, canActivate: [AuthGuardService]},
   { path: 'examhistory', component: ExamHistoryComponent, canActivate: [AuthGuardService]},
-  { path: 'study', component: StudyComponent, canActivate: [AuthGuardService]},
+  { path: 'study', component: StudyComponent, canActivate: [StudyGuardService]},
+  { path: 'studyquestionchoice', component: StudyQuestionChoiceComponent, canActivate: [StudyGuardService]},
   { path: 'studyagreement', component: AgreementComponent, canActivate: [AuthGuardService]},
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }

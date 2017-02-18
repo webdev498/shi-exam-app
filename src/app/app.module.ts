@@ -40,7 +40,9 @@ import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterConfirmComponent} from './register/registerconfirm.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
+
 import {StudyComponent} from './study/study.component';
+import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {Matching} from './questions/matching/matching.component';
 import {Grouping} from './questions/grouping/grouping.component';
 
@@ -63,6 +65,7 @@ export class MyAuthConfig extends CustomConfig {
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
                     ExamHistoryComponent, PremiumUpgradeComponent,
+                    StudyQuestionChoiceComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, ContactComponent,
                     FAQComponent, AboutComponent, CategoriesComponent,
