@@ -16,6 +16,7 @@ export class CategoriesComponent implements OnInit {
 
     categories: Category[] = new Array();
     searchtext: string;
+    loading: boolean = true;
 
     private _allCategories: Category[] = new Array();
     private _ids: string[] = new Array();
@@ -29,6 +30,7 @@ export class CategoriesComponent implements OnInit {
           response => {
             this.categories = <Category[]>_.sortBy(response, function(o) { return o.name; });
             this._allCategories = _.clone(this.categories);
+            this.loading = false;
           },
           error => this._handleError(error, 'There was an error retrieving the categories')
       );
