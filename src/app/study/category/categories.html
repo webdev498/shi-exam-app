@@ -1,6 +1,6 @@
 <div style="width: 100%; margin: auto 0px">
 
-    <input type="text" placeholder="search" [ngModel]="searchText" (keyup)="searchChanged()" class="form-control" />
+    <input type="text" placeholder="search" [(ngModel)]="searchtext" (keyup)="searchChanged()" class="form-control" />
     <div class="categorycontainer">
         <div class="categorySelector">
             <div *ngFor="let c of categories" class="categoryrow" (click)="selectCategory(c)">

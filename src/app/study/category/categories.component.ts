@@ -37,7 +37,7 @@ export class CategoriesComponent implements OnInit {
     searchChanged() {
       const instance = this;
 
-      if (this.searchtext === null || this.searchtext.length == 0) {
+      if (this.searchtext == null || this.searchtext.length == 0) {
             this.categories = _.clone(this._allCategories);
         return;
       }
