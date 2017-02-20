@@ -64,7 +64,7 @@ export class ExamComponent implements OnInit {
         //TODO:  Ask user if they want to continue where they left off
       }
 
-      let typeParam = this._route.snapshot.params["ExamStartParam"];
+      const typeParam = this._route.snapshot.params["ExamStartParam"];
       this._examService.createExam(this._authService.getUser().id,typeParam)
           .subscribe(
           response => this._handleExamResponse(response),

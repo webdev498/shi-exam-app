@@ -45,7 +45,7 @@ export class AgreementComponent implements OnInit, OnDestroy {
       this._authService.logout();
       event.preventDefault();
       event.stopPropagation();
-      this._router.navigate(['home']);
+      this._router.navigate(['login', {'Message': 'Your account has been upgraded.  Please login again'}]);
    }
 
    _handleError(error, message) {
