@@ -12,6 +12,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { ApplicationRef }      from '@angular/core';
 
 import {Ng2UiAuthModule, CustomConfig} from 'ng2-ui-auth';
+import {ChartsModule} from 'ng2-charts';
 
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
@@ -60,7 +61,7 @@ export class MyAuthConfig extends CustomConfig {
     bootstrap: [App],
     imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing, 
     Ng2UiAuthModule.forRoot(MyAuthConfig), 
-    CommonModule
+    CommonModule, ChartsModule
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
