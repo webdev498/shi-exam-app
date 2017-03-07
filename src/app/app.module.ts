@@ -46,6 +46,8 @@ import {StudyComponent} from './study/study.component';
 import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {Matching} from './questions/matching/matching.component';
 import {Grouping} from './questions/grouping/grouping.component';
+import {FillInBlankComponent} from './questions/fillinblank/fillinblank.component';
+import {FlashcardComponent} from './questions/flashcard/flashcard.component';
 
 import { routing } from './app.routes';
 
@@ -65,7 +67,7 @@ export class MyAuthConfig extends CustomConfig {
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
-                    ExamHistoryComponent, PremiumUpgradeComponent,
+                    ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
                     StudyQuestionChoiceComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, ContactComponent,
