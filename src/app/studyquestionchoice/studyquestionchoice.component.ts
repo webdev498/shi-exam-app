@@ -6,6 +6,8 @@ import {Grouping} from './../questions/grouping/grouping.component';
 import {FillInBlankComponent} from './../questions/fillinblank/fillinblank.component';
 import {FlashcardComponent} from './../questions/flashcard/flashcard.component';
 import {Term} from './../model/question/Term';
+import {SelectionComponent} from './../study/category/selection.component';
+
 
 @Component({
   selector: 'studyquestionchoice',  
@@ -19,10 +21,11 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public fetching: boolean;
 
     ngOnInit() {
-      this.fetching = true;
+
     }
 
     start(questionType: string) {
+      this.fetching = true;
       this.currentQuestionType = questionType;   
     }
 }
