@@ -6,8 +6,9 @@ import {Grouping} from './../questions/grouping/grouping.component';
 import {FillInBlankComponent} from './../questions/fillinblank/fillinblank.component';
 import {FlashcardComponent} from './../questions/flashcard/flashcard.component';
 import {Term} from './../model/question/Term';
+import {Category} from './../model/Category';
 import {SelectionComponent} from './../study/category/selection.component';
-
+import {SessionService} from './../services/session.service';
 
 @Component({
   selector: 'studyquestionchoice',  
@@ -15,13 +16,14 @@ import {SelectionComponent} from './../study/category/selection.component';
   template: require('./studyquestionchoice.html'),
 })
 export class StudyQuestionChoiceComponent implements OnInit {  
-    constructor() {} 
+    constructor(private _sessionService: SessionService) {} 
 
     public currentQuestionType: string;
     public fetching: boolean;
+    public categoriesChosen: Category[] = new Array();
 
     ngOnInit() {
-
+      this.categoriesChosen = this._sessionService.SelectedCategories;
     }
 
     start(questionType: string) {
