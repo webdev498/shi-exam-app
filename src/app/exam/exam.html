@@ -63,19 +63,11 @@
             <div class="topMargin center" class="progressText">
                 <span>{{timePassed}}</span>
             </div>
-            <div class="warningwrapper" 
-                    (click)="feedback()" 
-                    *ngIf="!feedbackSubmitted">
-                <img src="../assets/img/warningicon.png" 
-                    class="warningicon"
-                    title="feedback icon" 
-                    alt="feedback icon" />  
-                    feedback or issues with this question?
-            </div>
-            <div style="color: forestgreen; font-weight: bold" class="topMargin"
-                *ngIf="feedbackSubmitted">
-                Your feedback has been submitted.  Thank you!
-            </div>
+            <feedback [enableFeedback]="enableFeedback"
+            [feedbackSubmitted]="feedbackSumitted"
+            [feedbackText]="feedbackText"
+            [examid]="exam.id"
+            [currentQuestion]="currentQuestion"></feedback>
             <div class="topMargin" *ngIf="enableFeedback">
                 <textarea class="form-control" 
                     [(ngModel)]="feedbackText"

@@ -12,9 +12,10 @@ export class TermService {
   termsByCategory(categories: any[], language: string, count: number) {    
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());
+    
     let catarray : string = categories
-            .map(function (c) {return c.id; })
-            .reduce(function (prev, curr) {
+            .map((c) => {return c.id; })
+            .reduce((prev, curr) => {
         return `${prev}&categories[]=${curr}`;
     });   
 

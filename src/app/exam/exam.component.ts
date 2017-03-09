@@ -17,6 +17,7 @@ import {ExamProgressService} from './../services/examprogress.service';
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
 import {Matching} from './../questions/matching/matching.component';
 import {Grouping} from './../questions/grouping/grouping.component';
+import {FeedbackComponent} from './../questions/feedback/feedback.component';
 import {Term} from './../model/question/Term';
 
 declare var iSpeechTTS: any;
@@ -227,30 +228,8 @@ export class ExamComponent implements OnInit {
       console.error(error);
     }
 
-    feedback() {
-      this.enableFeedback = true;
-    }
-
     questionAudio(questionChoice: any) {
       this._tts.speak(questionChoice.text);
-    }
-
-    submitFeedback() {
-      this.feedbackSubmitted = true;
-      this.enableFeedback = false;
-
-      if (this.feedbackText != null) {
-        let feedback = new Feedback();
-        feedback.examId = this.exam.id;
-        feedback.text = this.feedbackText;
-        feedback.question = this.currentQuestion;
-
-        this._examService.submitFeedback(feedback)
-          .subscribe(
-            response => {},
-            error => {}
-        );
-      }
     }
 
     eitherMultipleChoice() {
