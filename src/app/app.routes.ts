@@ -23,7 +23,7 @@ import {AccountConfirmationComponent} from './account/accountconfirmation.compon
 import {AuthGuardService} from './services/authguard.service';
 import {StudyGuardService} from './services/studyguard.service';
 
-const routes: Routes =[
+export const ROUTES: Routes =[
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
   { path: 'about', component: AboutComponent},
@@ -45,7 +45,3 @@ const routes: Routes =[
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];
-
-export const routing = RouterModule.forRoot(routes, {
-      useHash: true
-    });

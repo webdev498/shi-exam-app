@@ -1,15 +1,29 @@
-import { NgModule }      from '@angular/core';
-import { CommonModule }      from '@angular/common';
-
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule} from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import {
+  NgModule,
+  ApplicationRef
+} from '@angular/core';
+import {
+  removeNgStyles,
+  createNewHosts,
+  createInputTransfer
+} from '@angularclass/hmr';
+import {
+  RouterModule,
+  PreloadAllModules
+} from '@angular/router';
 
-import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+/*
+ * Platform and Environment providers/directives/pipes
+ */
+import { ENV_PROVIDERS } from './environment';
+// App is our top level component
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppState, InternalStateType } from './app.service';
 
-import { ApplicationRef }      from '@angular/core';
+import { CommonModule }      from '@angular/common';
 
 import {Ng2UiAuthModule, CustomConfig} from 'ng2-ui-auth';
 import {ChartsModule} from 'ng2-charts';
@@ -18,7 +32,6 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
 };
 
-import { APP_PROVIDERS } from './index';
 import { AppStore } from './app.store';
 
 import {App} from './app.component';
@@ -49,19 +62,33 @@ import {Grouping} from './questions/grouping/grouping.component';
 import {FillInBlankComponent} from './questions/fillinblank/fillinblank.component';
 import {FlashcardComponent} from './questions/flashcard/flashcard.component';
 
-import { routing } from './app.routes';
+import { ROUTES } from './app.routes';
 
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
-    baseUrl = API_HOST;
+    baseUrl = api_host;
     providers = {
-          google: {clientId: GOOGLE_CLIENT_ID, url: '/login/google'}, 
-          facebook: {clientId: FACEBOOK_CLIENT_ID, url: '/login/facebook'}}
+          google: {clientId: google_client_id, url: '/login/google'}, 
+          facebook: {clientId: facebook_client_id, url: '/login/facebook'}}
 }
+
+// Application wide providers
+const APP_PROVIDERS = [
+  ...APP_RESOLVER_PROVIDERS,
+  AppState
+];
+
+type StoreType = {
+  state: InternalStateType,
+  restoreInputValues: () => void,
+  disposeOldHosts: () => void
+};
 
 @NgModule({
     bootstrap: [App],
-    imports:      [ BrowserModule, FormsModule, RouterModule, HttpModule, routing, 
+    imports:      [ BrowserModule, FormsModule, 
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    , HttpModule, 
     Ng2UiAuthModule.forRoot(MyAuthConfig), 
     CommonModule, ChartsModule
     ],
@@ -75,33 +102,49 @@ export class MyAuthConfig extends CustomConfig {
                     MultipleChoice, Matching, Grouping, App],
     providers: [
     ...APP_PROVIDERS,
-    AppStore
+    AppStore,
+    ENV_PROVIDERS
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, public appStore: AppStore) {}
-  hmrOnInit(store) {
-    if (!store || !store.state) return;
+
+  constructor(
+    public appRef: ApplicationRef,
+    public appState: AppState
+  ) {}
+
+  public hmrOnInit(store: StoreType) {
+    if (!store || !store.state) {
+      return;
+    }
     console.log('HMR store', JSON.stringify(store, null, 2));
-    // restore state
-    this.appStore.setState(store.state);
-    // restore input values
-    if ('restoreInputValues' in store) { store.restoreInputValues(); }
+    // set state
+    this.appState._state = store.state;
+    // set input values
+    if ('restoreInputValues' in store) {
+      let restoreInputValues = store.restoreInputValues;
+      setTimeout(restoreInputValues);
+    }
+
     this.appRef.tick();
-    Object.keys(store).forEach(prop => delete store[prop]);
+    delete store.state;
+    delete store.restoreInputValues;
   }
-  hmrOnDestroy(store) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    const currentState = this.appStore.getState();
-    store.state = currentState;
-    // recreate elements
+
+  public hmrOnDestroy(store: StoreType) {
+    const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
+    // save state
+    const state = this.appState._state;
+    store.state = state;
+    // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // save input values
     store.restoreInputValues  = createInputTransfer();
     // remove styles
     removeNgStyles();
   }
-  hmrAfterDestroy(store) {
+
+  public hmrAfterDestroy(store: StoreType) {
     // display new elements
     store.disposeOldHosts();
     delete store.disposeOldHosts;
