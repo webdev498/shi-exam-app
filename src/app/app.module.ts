@@ -32,8 +32,6 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
 };
 
-import { AppStore } from './app.store';
-
 import {App} from './app.component';
 import {AboutComponent} from './info/about.component';
 import {AgreementComponent} from './study/agreement.component';
@@ -61,6 +59,7 @@ import {Matching} from './questions/matching/matching.component';
 import {Grouping} from './questions/grouping/grouping.component';
 import {FillInBlankComponent} from './questions/fillinblank/fillinblank.component';
 import {FlashcardComponent} from './questions/flashcard/flashcard.component';
+import {FeedbackComponent} from './questions/feedback/feedback.component';
 
 import { ROUTES } from './app.routes';
 
@@ -88,13 +87,14 @@ type StoreType = {
     bootstrap: [App],
     imports:      [ BrowserModule, FormsModule, 
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    , HttpModule, 
+    HttpModule, 
     Ng2UiAuthModule.forRoot(MyAuthConfig), 
     CommonModule, ChartsModule
     ],
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
                     ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
+                    FeedbackComponent,
                     StudyQuestionChoiceComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, ContactComponent,
@@ -102,7 +102,6 @@ type StoreType = {
                     MultipleChoice, Matching, Grouping, App],
     providers: [
     ...APP_PROVIDERS,
-    AppStore,
     ENV_PROVIDERS
   ]
 })

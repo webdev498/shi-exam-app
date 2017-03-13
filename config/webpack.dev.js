@@ -133,10 +133,17 @@ module.exports = function (options) {
           include: [helpers.root('src', 'styles')]
         },
 
-        { test: /\.less$/, 
-          use: ['style-loader', 'css-loader', 'less-loader'],
-          include: [helpers.root('src')] 
-        },
+        {
+          test: /\.less$/,
+            use: [{
+                loader: "raw-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "less-loader" // compiles Less to CSS
+            }],
+            include: [helpers.root('src','app')]
+        }
       ]
 
     },
@@ -156,6 +163,9 @@ module.exports = function (options) {
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'api_host': METADATA.API_HOST,
+        'google_client_id': METADATA.GOOGLE_CLIENT_ID,
+        'facebook_client_id': METADATA.FACEBOOK_CLIENT_ID,
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),

@@ -179,12 +179,17 @@ module.exports = function (options) {
           exclude: [helpers.root('src/index.html')]
         },
 
-
-        { test: /\.less$/, 
-          use: ['to-string-loader', 'css-loader', 'less-loader'],
-          exclude: [helpers.root('src', 'styles')]
+        {
+          test: /\.less$/,
+            use: [{
+                loader: "to-string-loader"
+            }, {
+                loader: "css-loader"
+            }, {
+                loader: "less-loader"
+            }],
+            exclude: [helpers.root('src','app')]
         },
-
         /* 
          * File loader for supporting images, for example, in CSS files.
          */

@@ -18,6 +18,11 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 
+const extractLess = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
 /**
  * Webpack Constants
  */
@@ -122,12 +127,17 @@ module.exports = function (env) {
         },
 
         {
-          test: /\.less$/,
-          loader: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'raw-loader!less-loader'
-          }),
-          include: [helpers.root('src')]
+            test: /\.less$/,
+            use: extractLess.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "less-loader"
+                }],
+                // use style-loader in development
+                fallback: "raw-loader"
+            }),
+            include: [helpers.root('src','app')]  
         }
       ]
 
@@ -139,7 +149,7 @@ module.exports = function (env) {
      * See: http://webpack.github.io/docs/configuration.html#plugins
      */
     plugins: [
-
+      extractLess,
       /**
        * Webpack plugin to optimize a JavaScript file for faster initial load
        * by wrapping eagerly-invoked functions.
@@ -172,6 +182,9 @@ module.exports = function (env) {
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'api_host': METADATA.API_HOST,
+        'google_client_id': METADATA.GOOGLE_CLIENT_ID,
+        'facebook_client_id': METADATA.FACEBOOK_CLIENT_ID,
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
