@@ -59,5 +59,5 @@ export const ENV_PROVIDERS = [
 ];
 
 export const CUSTOM_ENV = {
-    API_HOST: api_host
+    API_HOST: API_HOST
 };

@@ -10,27 +10,41 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="row" [disabled]="fetching">
+            <div class="row">
                 <div class="col-sm-2">
-                    <button class="btn guideBtn" (click)="start('Multiple Choice English')">Multiple Choice in English</button>
+                    <button class="btn guideBtn"
+                    [disabled]="fetching"
+                     (click)="start('Multiple Choice English')">Multiple Choice in English</button>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn guideBtn" (click)="start('Multiple Choice Spanish')">Multiple Choice in Spanish</button>
+                    <button class="btn guideBtn" 
+                    [disabled]="fetching"
+                    (click)="start('Multiple Choice Spanish')">Multiple Choice in Spanish</button>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn guideBtn" (click)="start('Matching')">Matching</button>
+                    <button class="btn guideBtn" 
+                    [disabled]="fetching"
+                    (click)="start('Matching')">Matching</button>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn guideBtn" (click)="start('Grouping')">Grouping</button>
+                    <button class="btn guideBtn" 
+                    [disabled]="fetching"
+                    (click)="start('Grouping')">Grouping</button>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn guideBtn" (click)="start('FlashCard')">Flash Cards</button>
+                    <button class="btn guideBtn" 
+                    [disabled]="fetching"
+                    (click)="start('FlashCard')">Flash Cards</button>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn guideBtn" (click)="start('Translate')">Translate</button>
+                    <button class="btn guideBtn" 
+                    [disabled]="fetching"
+                    (click)="start('Translate')">Translate</button>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn guideBtn" (click)="start('Download')">Download Terms</button>
+                    <button class="btn guideBtn" 
+                    [disabled]="fetching"
+                    (click)="start('Download')">Download Terms</button>
                 </div>
             </div>
         </div>

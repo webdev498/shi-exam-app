@@ -40,9 +40,9 @@ const METADATA = webpackMerge(commonConfig({
   port: PORT,
   ENV: ENV,
   HMR: false,
-  api_host: API_HOST,
-  google_client_id: GOOGLE_CLIENT_ID,
-  facebook_client_id: FACEBOOK_CLIENT_ID
+  API_HOST: API_HOST,
+  GOOGLE_CLIENT_ID: GOOGLE_CLIENT_ID,
+  FACEBOOK_CLIENT_ID: FACEBOOK_CLIENT_ID
 });
 
 module.exports = function (env) {
@@ -183,15 +183,15 @@ module.exports = function (env) {
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
         'api_host': METADATA.API_HOST,
-        'google_client_id': METADATA.GOOGLE_CLIENT_ID,
-        'facebook_client_id': METADATA.FACEBOOK_CLIENT_ID,
+        'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID,
+        'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID,
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
           'HMR': METADATA.HMR,
           'api_host': METADATA.API_HOST,
-          'google_client_id': METADATA.GOOGLE_CLIENT_ID,
-          'facebook_client_id': METADATA.FACEBOOK_CLIENT_ID
+          'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID,
+          'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID
         }
       }),
 

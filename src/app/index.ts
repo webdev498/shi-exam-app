@@ -10,7 +10,7 @@ import {LoggingService} from './services/logging.service';
 import {SessionService} from './services/session.service';
 
 // Application wide providers
-export const APP_PROVIDERS = [
+export const CUSTOM_APP_PROVIDERS = [
   EventService,
   AnalyticsService,
   AuthService,

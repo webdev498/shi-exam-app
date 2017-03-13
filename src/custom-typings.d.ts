@@ -60,7 +60,7 @@ declare module 'modern-lru' {
 declare var ENV: string;
 declare var HMR: boolean;
 declare var System: SystemJS;
-declare var api_host: string;
+declare var API_HOST: string;
 declare var google_client_id: string;
 declare var facebook_client_id: string;
 
@@ -73,9 +73,9 @@ interface GlobalEnvironment {
   HMR: boolean;
   SystemJS: SystemJS;
   System: SystemJS;
-  api_host: string;
-  google_client_id: string;
-  facebook_client_id: string;
+  API_HOST;
+  google_client_id;
+  facebook_client_id;
 }
 
 interface Es6PromiseLoader {

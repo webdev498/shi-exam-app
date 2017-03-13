@@ -60,20 +60,26 @@ import {Grouping} from './questions/grouping/grouping.component';
 import {FillInBlankComponent} from './questions/fillinblank/fillinblank.component';
 import {FlashcardComponent} from './questions/flashcard/flashcard.component';
 import {FeedbackComponent} from './questions/feedback/feedback.component';
+import {SelectionComponent} from './study/category/selection.component';
 
 import { ROUTES } from './app.routes';
 
 export class MyAuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
-    baseUrl = api_host;
+    baseUrl = API_HOST;
     providers = {
-          google: {clientId: google_client_id, url: '/login/google'}, 
-          facebook: {clientId: facebook_client_id, url: '/login/facebook'}}
+          google: {clientId: GOOGLE_CLIENT_ID, url: '/login/google'}, 
+          facebook: {clientId: FACEBOOK_CLIENT_ID, url: '/login/facebook'}}
 }
+
+import '../styles/app.less';
+
+import {CUSTOM_APP_PROVIDERS} from './index';
 
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
+  ...CUSTOM_APP_PROVIDERS,
   AppState
 ];
 
@@ -94,7 +100,7 @@ type StoreType = {
     declarations: [ HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
                     ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
-                    FeedbackComponent,
+                    FeedbackComponent, SelectionComponent,
                     StudyQuestionChoiceComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, ContactComponent,

@@ -6,7 +6,7 @@ import { AppState } from './app.service';
 @Component({
   selector: 'app',
   template: require('./app.html'),
-  styles: [ require('./app.less') ]
+  styles: [ ]
 })
 
 export class App implements OnInit {
