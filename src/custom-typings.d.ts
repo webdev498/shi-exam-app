@@ -61,8 +61,8 @@ declare var ENV: string;
 declare var HMR: boolean;
 declare var System: SystemJS;
 declare var API_HOST: string;
-declare var google_client_id: string;
-declare var facebook_client_id: string;
+declare var GOOGLE_CLIENT_ID: string;
+declare var FACEBOOK_CLIENT_ID: string;
 
 interface SystemJS {
   import: (path?: string) => Promise<any>;
@@ -74,8 +74,8 @@ interface GlobalEnvironment {
   SystemJS: SystemJS;
   System: SystemJS;
   API_HOST;
-  google_client_id;
-  facebook_client_id;
+  GOOGLE_CLIENT_ID;
+  FACEBOOK_CLIENT_ID;
 }
 
 interface Es6PromiseLoader {
