@@ -7,5 +7,7 @@ import {Component} from '@angular/core';
   template: require('./flashcard.html')
 })
 export class FlashcardComponent {
+  
+  term: any;
 
 }
