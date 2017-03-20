@@ -10,4 +10,12 @@ export class FlashcardComponent {
   
   term: any;
 
+  tapped() {
+    
+  }
+
+  play() {
+
+  }
+
 }
