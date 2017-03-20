@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
+declare var iSpeechTTS: any;
 
 @Component({
   selector: 'flashcard',
@@ -6,16 +8,25 @@ import {Component} from '@angular/core';
   providers: [],
   template: require('./flashcard.html')
 })
-export class FlashcardComponent {
+export class FlashcardComponent implements OnInit {
   
-  term: any;
+  @Input() term: any;
+  private _tts: any;
+
+  ngOnInit() {
+      let audioPlayer = document.getElementById('audioPlayer');
+      this._tts = new iSpeechTTS(audioPlayer, {
+            apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
+            voice: 'usspanishfemale'
+      });
+  }
 
   tapped() {
-    
+    this.term.display = true;
   }
 
   play() {
-
+    this._tts.speak(this.term.text);
   }
 
 }
