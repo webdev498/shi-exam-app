@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Term} from './../../model/question/Term';
 
 @Component({
   selector: 'fillinblank',
@@ -8,4 +9,5 @@ import {Component} from '@angular/core';
 })
 export class FillInBlankComponent {
 
+  @Input() term: Term;
 }

@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {Term} from './../../model/question/Term';
 
 declare var iSpeechTTS: any;
 
@@ -10,7 +11,7 @@ declare var iSpeechTTS: any;
 })
 export class FlashcardComponent implements OnInit {
   
-  @Input() term: any;
+  @Input() term: Term;
   private _tts: any;
 
   ngOnInit() {
