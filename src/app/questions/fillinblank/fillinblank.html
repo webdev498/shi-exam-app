@@ -1,0 +1,11 @@
+<div style="display: table">
+    <div style="display: table-row">
+        <div style="display: table-cell">
+            {{term.text}}
+        </div>
+        <div style="display: table-cell">
+            <input type="text" class="form-control" [(ngModel)]="termInput" (keydown)="inputKey($event)" />
+        </div>
+    </div>
+
+</div>

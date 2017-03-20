@@ -15,9 +15,14 @@ export class FillInBlankComponent {
   public success: boolean = false;
   public complete: boolean = false;
 
+  inputKey(e) {
+    if (e.keyCode === 13)
+      this.entered();
+  }
+
   entered() {
     this.success = false;
-    
+
     for (let i = 0; i < this.term.translations.length; i++) {
       if (this.term.translations[i].text == this.termInput) {
         this.success = true;
