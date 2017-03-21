@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'faq',  
-  styles: [ require('./../app.less') ],
+  styles: [ ],
   template: require('./faq.html')
 })
 export class FAQComponent {

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'about',  
-  styles: [ require('./../app.less') ],
+  styles: [ ],
   template: require('./about.html')
 })
 export class AboutComponent {
