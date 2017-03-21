@@ -124,10 +124,9 @@ module.exports = function (env) {
         {
           test: /\.less$/,
           loader: ExtractTextPlugin.extract({
-            fallback: 'raw-loader',
+            fallback: 'style-loader',
             use: 'css-loader!less-loader'
-          }),
-            include: [helpers.root('src','styles')]
+          })
         }
       ]
 
