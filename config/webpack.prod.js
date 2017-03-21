@@ -123,13 +123,10 @@ module.exports = function (env) {
 
         {
           test: /\.less$/,
-            use: [{
-                loader: "raw-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "less-loader" // compiles Less to CSS
-            }],
+          loader: ExtractTextPlugin.extract({
+            fallback: 'raw-loader',
+            use: 'css-loader!less-loader'
+          }),
             include: [helpers.root('src','styles')]
         }
       ]
