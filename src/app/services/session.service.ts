@@ -5,5 +5,13 @@ import { Category } from './../model/Category';
 export class SessionService {
   constructor() { }
 
-  public SelectedCategories: Category[];
+  private selectedCategories: Category[];
+
+  public getCategories() {
+    return this.selectedCategories;
+  }
+
+  public setCategories(categories: Category[]) {
+    this.selectedCategories = categories;
+  }
 }

@@ -16,8 +16,7 @@ export class StudyComponent {
                 private _sessionService: SessionService) {}
 
     selected(categories: Category[]) {
-      console.log(categories);
-      this._sessionService.SelectedCategories = categories;
+      this._sessionService.setCategories(categories);
       this._router.navigate(['studyquestionchoice']);
     }   
 }

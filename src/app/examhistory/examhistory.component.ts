@@ -7,7 +7,7 @@ import {ExamResponse} from './../model/exam/ExamResponse';
 
 @Component({
   selector: 'examhistory',  
-  styles: [ require('./examhistory.less'), require('./../app.less') ],
+  styles: [ require('./examhistory.less') ],
   providers: [ExamService],
   template: require('./examhistory.html')
 })

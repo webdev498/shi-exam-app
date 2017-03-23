@@ -159,7 +159,7 @@
     "ie-shim": "^0.1.0",
     "ignore-loader": "^0.1.1",
     "less": "2.7.2",
-    "less-loader": "^4.0.0",
+    "less-loader": "^4.0.2",
     "ts-helpers": "github:gdi2290/ts-helpers",
     "ts-loader": "^2.0.2",
     "webpack-dashboard": "0.3.0"

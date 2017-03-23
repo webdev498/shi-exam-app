@@ -19,7 +19,12 @@ export class TermService {
         return `${prev}&categories[]=${curr}`;
     });   
 
-    const url = `${RootApiUrl}/languages/language/translations?count=${count.toString()}${catarray}`;
+    let url = '';
+    if (language != null)
+      url = `${RootApiUrl}/terms/languages/${language}?count=${count.toString()}${catarray}`;
+    else
+      url = `${RootApiUrl}/terms/?count=${count.toString()}${catarray}`;
+
     return this._http.get(url, {
       headers: header
     })

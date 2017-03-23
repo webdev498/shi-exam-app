@@ -6,7 +6,7 @@ const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const webpackMergeDll = webpackMerge.strategy({plugins: 'replace'});
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
-
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 /**
  * Webpack Plugins
  */
@@ -135,14 +135,8 @@ module.exports = function (options) {
 
         {
           test: /\.less$/,
-            use: [{
-                loader: "raw-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "less-loader" // compiles Less to CSS
-            }],
-            include: [helpers.root('src','styles')]
+          use: ['style-loader', 'css-loader', 'less-loader'],
+          include: [helpers.root('src', 'styles')]
         }
       ]
 

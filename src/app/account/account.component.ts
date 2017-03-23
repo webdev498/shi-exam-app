@@ -29,7 +29,7 @@ import {Address} from './../model/Address';
     DayService, MonthService, YearService, EventService,
     ValidationService, AccountService
   ],
-  styles: [ require('./account.less'), require('./../app.less') ],
+  styles: [ require('./account.less') ],
   template: require('./account.html')
 })
 export class AccountComponent implements OnInit {

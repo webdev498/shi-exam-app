@@ -7,7 +7,6 @@ import {AuthService} from './../services/auth.service';
 
 @Component({
   selector: 'studyagreement',  
-  styles: [ require('./agreement.less'), require('./../app.less') ],
   providers: [AccountService],
   template: require('./agreement.html')
 })

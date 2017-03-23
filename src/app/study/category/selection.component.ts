@@ -10,8 +10,13 @@ import {Category} from './../../model/Category';
 })
 export class SelectionComponent {
   constructor(private _router: Router) {}
+  
+  public selectedCategories: Category[];
 
-  @Input() categories: Category[];
+  @Input() 
+    get categories() { 
+      return this.selectedCategories; 
+    }
 
   resetCategories() {
     this._router.navigate(['study']);
