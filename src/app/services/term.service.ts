@@ -23,7 +23,7 @@ export class TermService {
     if (language != null)
       url = `${RootApiUrl}/terms/languages/${language}?count=${count.toString()}${catarray}`;
     else
-      url = `${RootApiUrl}/terms/?count=${count.toString()}${catarray}`;
+      url = `${RootApiUrl}/terms?count=${count.toString()}&categories[]=${catarray}`;
 
     return this._http.get(url, {
       headers: header

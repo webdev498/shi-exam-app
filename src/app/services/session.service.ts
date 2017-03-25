@@ -5,13 +5,22 @@ import { Category } from './../model/Category';
 export class SessionService {
   constructor() { }
 
-  private selectedCategories: Category[];
+  private static selectedCategories: Category[];
+  private static allCategories: Category[];
 
   public getCategories() {
-    return this.selectedCategories;
+    return SessionService.selectedCategories;
   }
 
-  public setCategories(categories: Category[]) {
-    this.selectedCategories = categories;
+  public setCategories(categories: any) {
+    SessionService.selectedCategories = categories.cats;
+  }
+
+  public getAllCategories() {
+    return SessionService.allCategories;
+  }
+
+  public setAllCategories(categories: any) {
+    SessionService.allCategories = categories;
   }
 }
