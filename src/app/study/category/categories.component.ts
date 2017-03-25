@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {CategoryService} from './../../services/category.service';
 import {EventService} from './../../services/event.service';
 import {Category} from './../../model/Category';
+import {SessionService} from './../../services/session.service';
 var _ = require('lodash');
 
 @Component({
@@ -12,7 +13,8 @@ var _ = require('lodash');
 })
 export class CategoriesComponent implements OnInit {
   constructor(private _categoryService: CategoryService,
-              private _eventService: EventService) {}
+              private _eventService: EventService,
+              private _sessionService: SessionService) {}
 
     categories: Category[] = new Array();
     searchtext: string;
@@ -25,10 +27,19 @@ export class CategoriesComponent implements OnInit {
      @Output() categoriesChosen = new EventEmitter();
 
     ngOnInit() {
+
+      if (this._sessionService.getAllCategories() !== undefined) {
+        this.categories = this._sessionService.getAllCategories();
+        this._allCategories = _.clone(this.categories);
+        this.loading = false;
+        return;
+      }
+
       this._categoryService.categories()
       .subscribe(
           response => {
             this.categories = <Category[]>_.sortBy(response, function(o) { return o.name; });
+            this._sessionService.setAllCategories(this.categories);
             this._allCategories = _.clone(this.categories);
             this.loading = false;
           },
