@@ -6,7 +6,7 @@ export class AnalyticsService {
     constructor() {
         (<any>window).ga=(<any>window).ga||function(){((<any>window).ga.q=(<any>window).ga.q||[]).push(arguments)};(<any>window).ga.l=+new Date;
 
-        (<any>window).ga('create', 'UA-89637758-1', 'auto');
+        (<any>window).ga('create', 'UA-96124291-1', 'auto');
         (<any>window).ga('require', 'cleanUrlTracker');
         (<any>window).ga('require', 'eventTracker');
         (<any>window).ga('require', 'outboundLinkTracker');

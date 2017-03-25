@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
 import {Matching} from './../questions/matching/matching.component';
@@ -21,13 +22,18 @@ import {EventService} from './../services/event.service';
 export class StudyQuestionChoiceComponent implements OnInit {  
     constructor(private _sessionService: SessionService,
       private _termService: TermService,
-      private _eventService: EventService) {} 
+      private _eventService: EventService,
+      private _router: Router) {} 
 
     public currentQuestionType: string;
     public fetching: boolean;
     public categoriesChosen: Category[] = new Array();
 
     ngOnInit() {
+      if (this._sessionService.getCategories() === undefined) {
+        this._router.navigate(['study']);
+        return;
+      }
       this.categoriesChosen = this._sessionService.getCategories();
     }
 
