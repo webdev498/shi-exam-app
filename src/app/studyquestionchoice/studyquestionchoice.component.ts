@@ -12,6 +12,7 @@ import {SelectionComponent} from './../study/category/selection.component';
 import {SessionService} from './../services/session.service';
 import {TermService} from './../services/term.service';
 import {EventService} from './../services/event.service';
+import {StudyTerm} from './../model/question/StudyTerm';
 
 @Component({
   selector: 'studyquestionchoice',  
@@ -29,6 +30,8 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public fetching: boolean;
     public categoriesChosen: Category[] = new Array();
 
+    private _studyTerms: StudyTerm[];
+
     ngOnInit() {
       if (this._sessionService.getCategories() === undefined) {
         this._router.navigate(['study']);
@@ -38,18 +41,26 @@ export class StudyQuestionChoiceComponent implements OnInit {
     }
 
     start(questionType: string) {
-      this.fetching = true;
       this.currentQuestionType = questionType;   
 
-      this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
-          .subscribe(
-          response => this._handleTermResponse(response),
-          error => this._handleError(error)
-        );
+      switch (this.currentQuestionType) {
+        case 'FlashCard':
+          this.fetching = true;
+          this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
+              .subscribe(
+              response => this._handleTermResponse(response),
+              error => this._handleError(error)
+            );
+        break;
+      }
     }
 
     _handleTermResponse(response: any) {
-      
+      this.fetching = false;
+
+      switch (this.currentQuestionType) {
+        
+      }
     }
 
     _handleError(error: any) {
