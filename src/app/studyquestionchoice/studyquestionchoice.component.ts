@@ -41,7 +41,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
       this.fetching = true;
       this.currentQuestionType = questionType;   
 
-      this._termService.termsByCategory(this.categoriesChosen, null,500)
+      this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
           .subscribe(
           response => this._handleTermResponse(response),
           error => this._handleError(error)

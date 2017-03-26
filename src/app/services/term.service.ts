@@ -21,7 +21,7 @@ export class TermService {
 
     let url = '';
     if (language != null)
-      url = `${RootApiUrl}/terms/languages/${language}?count=${count.toString()}${catarray}`;
+      url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&categories[]=${catarray}`;
     else
       url = `${RootApiUrl}/terms?count=${count.toString()}&categories[]=${catarray}`;
 
