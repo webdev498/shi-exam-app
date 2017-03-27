@@ -5,4 +5,5 @@ export class StudyTerm implements StudyTermInterface {
     public value: string;
     public sourcelanguage: string;
     public translations: StudyTerm[];
+    public display: boolean = false;
 }
