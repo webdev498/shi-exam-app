@@ -28,6 +28,7 @@
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
+                    [term]="studyTerm"
                     [disabled]="fetching"
                     (click)="start('FlashCard')">Flash Cards</button>
                 </div>

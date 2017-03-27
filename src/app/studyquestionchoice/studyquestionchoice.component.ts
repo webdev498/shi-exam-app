@@ -31,6 +31,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public categoriesChosen: Category[] = new Array();
 
     private _studyTerms: StudyTerm[];
+    public studyTerm: StudyTerm;
 
     ngOnInit() {
       if (this._sessionService.getCategories() === undefined) {
@@ -57,9 +58,12 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
     _handleTermResponse(response: any) {
       this.fetching = false;
+      this._studyTerms = this._termService.studyTermCollection(response);
 
       switch (this.currentQuestionType) {
-        
+        case 'FlashCard':
+          this.studyTerm = this._studyTerms[0];
+          break;
       }
     }
 

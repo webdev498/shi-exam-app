@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Term} from './../../model/question/Term';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {StudyTerm} from './../../model/question/StudyTerm';
 
 declare var iSpeechTTS: any;
 
@@ -11,7 +11,11 @@ declare var iSpeechTTS: any;
 })
 export class FlashcardComponent implements OnInit {
   
-  @Input() term: Term;
+  @Input() term: StudyTerm;
+  
+  private _translations: StudyTerm[];
+  public currentTranslation: StudyTerm;
+
   private _tts: any;
 
   ngOnInit() {
@@ -21,6 +25,13 @@ export class FlashcardComponent implements OnInit {
             voice: 'usspanishfemale'
       });
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+        if(changes['term']) {
+            this._translations = this.term.translations;
+            this.currentTranslation = this._translations[0];
+        }
+    }
 
   tapped() {
     this.term.display = true;
