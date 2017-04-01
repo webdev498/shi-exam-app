@@ -29,6 +29,8 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public currentQuestionType: string;
     public fetching: boolean;
     public categoriesChosen: Category[] = new Array();
+    public picked: boolean = false;
+    public studyType: string;
 
     private _studyTerms: StudyTerm[];
     public studyTerm: StudyTerm;
@@ -48,6 +50,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
       switch (this.currentQuestionType) {
         case 'FlashCard':
           this.fetching = true;
+          this.studyType = 'Flash Cards';
           this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
               .subscribe(
               response => this._handleTermResponse(response),
@@ -57,6 +60,11 @@ export class StudyQuestionChoiceComponent implements OnInit {
       }
     }
 
+    resetStudyType() {
+      this.picked = false;
+      this.currentQuestionType = null;
+    }
+
     _handleTermResponse(response: any) {
       this.fetching = false;
       this._studyTerms = this._termService.studyTermCollection(response);
@@ -64,6 +72,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
       switch (this.currentQuestionType) {
         case 'FlashCard':
           this.studyTerms = this._studyTerms;
+          this.picked = true;
           break;
       }
     }

@@ -1,4 +1,4 @@
-.headerWidth {}
+@import '../../styles/app.less';
 
 @media only screen and (max-width: 998px) {
     .headerWidth {
@@ -23,4 +23,8 @@
     width: 100%;
     background-color: gainsboro;
     color: black;
+}
+
+.undoSelection {.center; .point; .italic; color: @app-light-blue; font-size: 9pt;
+&hover {color: @app-beige; .underline}
 }
