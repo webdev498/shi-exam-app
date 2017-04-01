@@ -124,7 +124,7 @@ module.exports = function (env) {
         {
           test: /\.less$/,
           loader: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
+            fallback: 'raw-loader',
             use: 'css-loader!less-loader'
           })
         }
