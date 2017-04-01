@@ -72,8 +72,6 @@ export class MyAuthConfig extends CustomConfig {
           facebook: {clientId: FACEBOOK_CLIENT_ID, url: '/login/facebook'}}
 }
 
-import '../styles/app.less';
-
 import {CUSTOM_APP_PROVIDERS} from './index';
 
 // Application wide providers
