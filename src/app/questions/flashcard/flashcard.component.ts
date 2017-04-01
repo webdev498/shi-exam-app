@@ -17,6 +17,8 @@ export class FlashcardComponent implements OnInit {
   public currentTranslation: StudyTerm;
   public showCards: boolean = false;
   public term: StudyTerm;
+  enableFeedback: boolean = false;
+  feedbackSubmitted: boolean = false;
 
   private _tts: any;
   private _count = 0;
@@ -39,6 +41,9 @@ export class FlashcardComponent implements OnInit {
               this._translations = this.term.translations;
               this.currentTranslation = this._translations[0];
               this.showCards = true;
+
+              this.enableFeedback = false;
+              this.feedbackSubmitted = false;
             }
         }
     }
@@ -53,6 +58,9 @@ export class FlashcardComponent implements OnInit {
     this._translations = this.term.translations;
     this.currentTranslation = this._translations[0];
     this.terms[this._count - 1].display = false;
+
+    this.enableFeedback = false;
+    this.feedbackSubmitted = false;
   }
 
   displayNext() {

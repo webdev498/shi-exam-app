@@ -39,7 +39,6 @@ export class ExamComponent implements OnInit {
     examSubmitting: boolean = false;
     enableFeedback: boolean = false;
     feedbackSubmitted: boolean = false;
-    feedbackText: string;
 
     private _seconds: number = 0;
     private _minutes: number = 0; 
@@ -129,7 +128,6 @@ export class ExamComponent implements OnInit {
       }
 
       this.feedbackSubmitted = false;
-      this.feedbackText = null;
       this.enableFeedback = false;
     }
 
