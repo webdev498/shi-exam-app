@@ -14,10 +14,11 @@ export class FeedbackComponent {
 
     @Input() enableFeedback: boolean = false;
     @Input() feedbackSubmitted: boolean = false;
-    @Input() feedbackText: string;
     @Input() examid: string;
     @Input() currentQuestion: any;
 
+    public feedbackText: string;
+    
     feedback() {
       this.enableFeedback = true;
     }

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {StudyTerm} from './../../model/question/StudyTerm';
+import {FeedbackComponent} from './../feedback/feedback.component';
 
 declare var iSpeechTTS: any;
 
@@ -10,14 +11,15 @@ declare var iSpeechTTS: any;
   template: require('./flashcard.html')
 })
 export class FlashcardComponent implements OnInit {
-  
-  @Input() term: StudyTerm;
   @Input() terms: StudyTerm[];
   
   private _translations: StudyTerm[];
   public currentTranslation: StudyTerm;
+  public showCards: boolean = false;
+  public term: StudyTerm;
 
   private _tts: any;
+  private _count = 0;
 
   ngOnInit() {
       let audioPlayer = document.getElementById('audioPlayer');
@@ -28,17 +30,33 @@ export class FlashcardComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-        if(changes['term']) {
-          if (this.term === undefined)
+        if(changes['terms']) {
+          if (this.terms === undefined)
             return;
-            
-            this._translations = this.term.translations;
-            this.currentTranslation = this._translations[0];
+
+            if (this.terms.length > 0) {
+              this.term = this.terms[0];
+              this._translations = this.term.translations;
+              this.currentTranslation = this._translations[0];
+              this.showCards = true;
+            }
         }
     }
 
   tapped() {
     this.term.display = true;
+  }
+
+  next() {
+    this._count++;
+    this.term = this.terms[this._count];
+    this._translations = this.term.translations;
+    this.currentTranslation = this._translations[0];
+    this.terms[this._count - 1].display = false;
+  }
+
+  displayNext() {
+    return this._count < this.terms.length - 1;
   }
 
   play() {

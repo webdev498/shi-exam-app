@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
 import { AuthService } from './../services/auth.service';
 import { StudyTerm } from './../model/question/StudyTerm';
+var _ = require('lodash');
 
 @Injectable()
 export class TermService {
@@ -57,8 +58,10 @@ export class TermService {
         ts.sourcelanguage = translation.relations.language.name;
         studyTerm.translations.push(ts);
       }
+
+      studyTerms.push(studyTerm);
     }
 
-    return studyTerms;
+    return _.shuffle(studyTerms);
   }
 }

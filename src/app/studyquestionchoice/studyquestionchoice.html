@@ -82,8 +82,7 @@
                     (termUndo)="termDeselected($event)">
                 </grouping>
             <flashcard *ngSwitchCase="'FlashCard'" 
-                [terms]="studyTerms"
-                [term]="studyTerm">
+                [terms]="studyTerms">
             </flashcard>
             <fillinblank *ngSwitchCase="'Translate'"></fillinblank>
         </div>
