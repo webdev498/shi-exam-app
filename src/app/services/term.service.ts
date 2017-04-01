@@ -18,14 +18,14 @@ export class TermService {
     let catarray : string = categories
             .map((c) => {return c.id; })
             .reduce((prev, curr) => {
-        return `${prev}&categories[]=${curr}`;
+        return `${prev}&categories=${curr}`;
     });   
 
     let url = '';
     if (language != null)
-      url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&categories[]=${catarray}`;
+      url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&categories=${catarray}`;
     else
-      url = `${RootApiUrl}/terms?count=${count.toString()}&categories[]=${catarray}`;
+      url = `${RootApiUrl}/terms?count=${count.toString()}&categories=${catarray}`;
 
     return this._http.get(url, {
       headers: header
