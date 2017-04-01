@@ -121,20 +121,13 @@ module.exports = function (env) {
           include: [helpers.root('src', 'styles')]
         },
 
-          {
-            test: /\.less$/,
-            use: [{
-                loader: "style-loader"
-            }, {
-                loader: "css-loader"
-            }, {
-                loader: "less-loader", options: {
-                    paths: [
-                        path.resolve(__dirname, "node_modules")
-                    ]
-                }
-            }],
-          }
+        {
+          test: /\.less$/,
+          loader: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader!less-loader'
+          })
+        }
       ]
 
     },
