@@ -42,15 +42,15 @@ export class TermService {
     let studyTerms: StudyTerm[] = new Array();
 
     for (let i = 0; i < terms.length; i++) {
-      let source = terms[i].term;
+      let source = terms[i];
       let studyTerm = new StudyTerm();
       studyTerm.id = source.id;
       studyTerm.value = source.value;
       studyTerm.sourcelanguage = source.relations.language.name;
       studyTerm.translations = new Array();
 
-      for (let j = 0; j < terms[i].translations.length; j++) {
-        let translation = terms[i].translations[j];
+      for (let j = 0; j < terms[i].relations.englishTranslations.length; j++) {
+        let translation = terms[i].relations.englishTranslations[j];
         let ts = new StudyTerm();
         ts.id = translation.id;
         ts.value = translation.value;

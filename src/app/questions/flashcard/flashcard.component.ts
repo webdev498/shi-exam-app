@@ -12,6 +12,7 @@ declare var iSpeechTTS: any;
 export class FlashcardComponent implements OnInit {
   
   @Input() term: StudyTerm;
+  @Input() terms: StudyTerm[];
   
   private _translations: StudyTerm[];
   public currentTranslation: StudyTerm;
@@ -28,6 +29,9 @@ export class FlashcardComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
         if(changes['term']) {
+          if (this.term === undefined)
+            return;
+            
             this._translations = this.term.translations;
             this.currentTranslation = this._translations[0];
         }
@@ -38,7 +42,7 @@ export class FlashcardComponent implements OnInit {
   }
 
   play() {
-    this._tts.speak(this.term.text);
+    this._tts.speak(this.term.value);
   }
 
 }

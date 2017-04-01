@@ -32,6 +32,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
     private _studyTerms: StudyTerm[];
     public studyTerm: StudyTerm;
+    public studyTerms: StudyTerm[];
 
     ngOnInit() {
       if (this._sessionService.getCategories() === undefined) {
@@ -62,6 +63,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
       switch (this.currentQuestionType) {
         case 'FlashCard':
+          this.studyTerms = this._studyTerms;
           this.studyTerm = this._studyTerms[0];
           break;
       }

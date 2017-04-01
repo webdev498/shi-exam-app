@@ -28,7 +28,6 @@
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
-                    [term]="studyTerm"
                     [disabled]="fetching"
                     (click)="start('FlashCard')">Flash Cards</button>
                 </div>
@@ -82,7 +81,10 @@
                     (choiceGrouped)="choiceSelected($event)"
                     (termUndo)="termDeselected($event)">
                 </grouping>
-            <flashcard *ngSwitchCase="'FlashCard'"></flashcard>
+            <flashcard *ngSwitchCase="'FlashCard'" 
+                [terms]="studyTerms"
+                [term]="studyTerm">
+            </flashcard>
             <fillinblank *ngSwitchCase="'Translate'"></fillinblank>
         </div>
     </div>
