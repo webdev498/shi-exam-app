@@ -1,4 +1,4 @@
-@import '../../../styles/app.less';
+@import 'app';
 
 .m {margin-bottom: 2.5px}
 
@@ -14,12 +14,12 @@
 }
 
 .spanishtext {
-    .mtext;
+    @extend .mtext;
             background-color: blanchedalmond; color: #231f20
 }
 
 .text {
-    .mtext;
+    @extend .mtext;
             background-color: lightblue; color: #231f20
 }
 
@@ -27,7 +27,7 @@
 .checkterm {float: left; vertical-align: middle; margin-left: 4px}
 
 .bottommatchedtext {
-    .mtext;
+    @extend .mtext;
     background-color: forestgreen; color: white; cursor: default
 }
 

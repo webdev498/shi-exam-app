@@ -6,7 +6,7 @@ import {AnalyticsService} from './../services/analytics.service';
 
 @Component({
   selector: 'home',  
-  styles: [ require('./home.less') ],
+  styles: [ require('./home.scss') ],
   providers: [ExamService],
   template: require('./home.html')
 })

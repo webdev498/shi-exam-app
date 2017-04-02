@@ -1,4 +1,4 @@
-@import '../../styles/app.less';
+@import 'app';
 
 .bottomMargin { margin-bottom: 20px }
 
@@ -7,9 +7,9 @@
     border: 1px;
     border-radius: 4px;
     font-size: 18px;
-    font-family: @app-font-medium-large;
-    .margincenter;
-    .bottomMargin;
+    font-family: $app-font-medium-large;
+    @extend .margincenter;
+    @extend .bottomMargin;
 }
 
 .iconDimensions {
@@ -19,23 +19,23 @@
 
 .mostRecent {
     background-color: rgb(0,97,126);
-    .iconDimensions;
-    .iconCommon;
-    .dIcon;
+    @extend .iconDimensions;
+    @extend .iconCommon;
+    @extend .dIcon;
 }
 
 .anotherExam {
     background-color: rgb(71,177,225);
-    .iconDimensions;
-    .iconCommon;
-    .dIcon;
+    @extend .iconDimensions;
+    @extend .iconCommon;
+    @extend .dIcon;
 }
 
 .study {
     background-color: rgb(116,171,80);
-    .iconDimensions;
-    .iconCommon;
-    .dIcon;
+    @extend .iconDimensions;
+    @extend .iconCommon;
+    @extend .dIcon;
 }
 
 .centerAlign {

@@ -1,4 +1,4 @@
-@import '../../styles/app.less';
+@import 'app';
 
 .premierContainer {
     max-width: 400px; 
@@ -12,27 +12,27 @@
 
 .premierTitle {
     padding-bottom: 6px;
-    color: @app-dark-gray
+    color: $app-dark-gray
 }
 
 .premiersubscribe {
     margin-bottom: 3px; 
-    color: @app-green;
+    color: $app-green;
     font-weight: bold
 }
 
 .premieractivate {
-    color: @app-dark-gray;
+    color: $app-dark-gray;
     width: 200px
 }
 
 .premierdeactivate {
-    color: @app-tan;
+    color: $app-tan;
     margin-top: 3px
 }
 
 .premiercancel {
-    color: @app-main-gray;
+    color: $app-main-gray;
     font-style: italic;
     margin-top: 3px;
     cursor: pointer;

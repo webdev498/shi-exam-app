@@ -1,4 +1,4 @@
-@import '../../../styles/app.less';
+@import 'app';
 
 .categoryrow {
     display: table;
@@ -7,7 +7,7 @@
 }
 
 .categoryrowSel {
-    .categoryrow;
+    @extend .categoryrow;
     width: 100%;
     background-color: azure;
     font-weight: bold

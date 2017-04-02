@@ -1,16 +1,16 @@
-@import '../../styles/app.less';
+@import 'app';
 
-.progressText {color: @app-main-gray}
+.progressText {color: $app-main-gray}
 
 .examSubmit {
-    background-color: @app-teal-blue;
+    background-color: $app-teal-blue;
     color: white;
     &:hover {
-        color: @app-tan
+        color: $app-tan
     }
 }
 
-.questionAudio {.point}
+.questionAudio {@extend .point}
 
 .buttonMargin {margin-left: 5px; margin-right: 5px}
 .topMargin {margin-top: 3px}

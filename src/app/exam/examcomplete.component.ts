@@ -4,7 +4,7 @@ import {ExamResponseService} from './../services/examresponse.service';
 import {Score} from './../model/exam/Score';
 
 @Component({
-  styles: [ require('./examcomplete.less') ],
+  styles: [ require('./examcomplete.scss') ],
   template: require('./examcomplete.html'),
   providers: [ExamResponseService]
 })

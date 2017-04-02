@@ -1,4 +1,4 @@
-@import '../../../styles/app.less';
+@import 'app';
 
 .g {margin-bottom: 2.5px}
 
@@ -7,7 +7,7 @@
 .gtext {display: table-cell; vertical-align: middle; padding: 4px; cursor: pointer}
 
 .standardgroup {display: table; text-align: center; width: 100%}
-.group {margin-bottom: 7px; .standardgroup;
+.group {margin-bottom: 7px; @extend .standardgroup;
     &:hover {
         opacity: .5;
     }
@@ -17,20 +17,20 @@
 .categorydragbars {float: left; vertical-align: middle; background-color: transparent}
 .checkterm {float: left; vertical-align: middle; margin-left: 4px}
 
-.groupcategory {margin-bottom: 12px; .standardgroup}
+.groupcategory {margin-bottom: 12px; @extend .standardgroup}
 
 .text {
-    .gtext;
+    @extend .gtext;
             background-color: lightblue; color: #231f20
 }
 
 .categorytext {
-    .gtext;
+    @extend .gtext;
             background-color: palegoldenrod; color: #231f20; cursor: default;
 }
 
 .groupedtext {
-    .gtext;
+    @extend .gtext;
     background-color: forestgreen; color: white; display: block; margin-top: 3px; cursor: default
 }
 

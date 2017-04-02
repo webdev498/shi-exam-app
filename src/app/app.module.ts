@@ -33,17 +33,14 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
 };
 
 import {App} from './app.component';
-import {AboutComponent} from './info/about.component';
 import {AgreementComponent} from './study/agreement.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
-import {ContactComponent} from './info/contact.component';
 import {CategoriesComponent} from './study/category/categories.component';
 import {ExamStartComponent} from './exam/examstart.component';
 import {ExamComponent} from './exam/exam.component';
 import {ExamCompleteComponent} from './exam/examcomplete.component';
 import {ExamHistoryComponent} from './examhistory/examhistory.component';
-import {FAQComponent} from './info/faq.component';
 import {MultipleChoice} from './questions/multiplechoice/multiplechoice.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
@@ -87,6 +84,8 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
+import '../styles/app.scss';
+
 @NgModule({
     bootstrap: [App],
     imports:      [ BrowserModule, FormsModule, 
@@ -101,8 +100,7 @@ type StoreType = {
                     FeedbackComponent, SelectionComponent,
                     StudyQuestionChoiceComponent,
                     StudyComponent, AccountComponent, AccountConfirmationComponent, 
-                    RegisterConfirmComponent, AgreementComponent, ContactComponent,
-                    FAQComponent, AboutComponent, CategoriesComponent,
+                    RegisterConfirmComponent, AgreementComponent, CategoriesComponent,
                     MultipleChoice, Matching, Grouping, App],
     providers: [
     ...APP_PROVIDERS,

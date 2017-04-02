@@ -1,44 +1,44 @@
-@app-red-orange:   #d0493d;
-@app-teal-blue: #00617f;
-@app-beige: #d3d3c4;
-@app-light-blue: #46b1e1;
-@app-main-gray: #808284;
-@app-tan: #a89968;
-@app-dark-gray: #585858;
-@app-green: #74aa50;
-@app-black: #231f20;
-@app-brown: #693f23;
+$app-red-orange:   #d0493d;
+$app-teal-blue: #00617f;
+$app-beige: #d3d3c4;
+$app-light-blue: #46b1e1;
+$app-main-gray: #808284;
+$app-tan: #a89968;
+$app-dark-gray: #585858;
+$app-green: #74aa50;
+$app-black: #231f20;
+$app-brown: #693f23;
 
-@app-font-small: helvetica;
-@app-font-medium-large: 'cabin';
+$app-font-small: helvetica;
+$app-font-medium-large: 'cabin';
 
-@app-font-size-xtra-small: 1.8vm;
-@app-font-size-small: 2.2vm;
-@app-font-size-medium: 2.8vm;
-@app-font-size-large: 3.5vm;
+$app-font-size-xtra-small: 1.8vm;
+$app-font-size-small: 2.2vm;
+$app-font-size-medium: 2.8vm;
+$app-font-size-large: 3.5vm;
 
 body
 {
-    font-family: @app-font-small;    
+    font-family: $app-font-small;    
 }
 
 h3 
 {
-    font-family: @app-font-medium-large;
-    color: @app-dark-gray;        
+    font-family: $app-font-medium-large;
+    color: $app-dark-gray;        
 }
 
 h2
 {
-    font-family: @app-font-medium-large;
-    font-size: @app-font-size-large;
-    color: @app-dark-gray;        
+    font-family: $app-font-medium-large;
+    font-size: $app-font-size-large;
+    color: $app-dark-gray;        
 }
 
 h5 
 {
-    font-family: @app-font-size-small;
-    color: @app-dark-gray;        
+    font-family: $app-font-size-small;
+    color: $app-dark-gray;        
 }
 
 form {
@@ -46,17 +46,17 @@ form {
 }
 
 //text colors
-.greenText {color: @app-green;}
-.lightBlueText {color: @app-light-blue;}
-.tealBlueText {color: @app-teal-blue;}
-.mainGrayText {color: @app-main-gray;}
+.greenText {color: $app-green;}
+.lightBlueText {color: $app-light-blue;}
+.tealBlueText {color: $app-teal-blue;}
+.mainGrayText {color: $app-main-gray;}
 
 //text size
-.fontSizeSmall {font-size: @app-font-size-small;}
-.fontSizeLarge {font-size: @app-font-size-large;}
+.fontSizeSmall {font-size: $app-font-size-small;}
+.fontSizeLarge {font-size: $app-font-size-large;}
 
 .nav-link a {color: white;
-        &hover {text-decoration: underline}
+        &:hover {text-decoration: underline}
         }
         
 .navbar-custom {
@@ -67,7 +67,7 @@ form {
 
 .row {margin-top: 5px}
 .margincenter {margin: 0 auto}
-.autocenter {.margincenter;
+.autocenter {@extend .margincenter;
     width:80% }
 .center {text-align: center}
 .point {cursor: pointer}
@@ -77,10 +77,10 @@ form {
 .cgiLogo {height: 50px; margin-top: -30px}
 
 .socialButton {
-    .imgLink;
+    @extend .imgLink;
     height: 50px
 }
-.imgLink {.point}
+.imgLink {@extend .point}
 
 //Validation
 .ng-valid[required] {
@@ -91,7 +91,7 @@ form {
   border-left: 5px solid #a94442; /* red */
 }
 
-.errorMessage {color: @app-red-orange; font-size: @app-font-size-small; 
+.errorMessage {color: $app-red-orange; font-size: $app-font-size-small; 
         padding: 5px; font-weight: bold}
 
 .cgiModal {
@@ -130,7 +130,7 @@ form {
 }
 
 .updateSuccess {
-    .greenText;
+    @extend .greenText;
     font-weight: bold;
     
 }

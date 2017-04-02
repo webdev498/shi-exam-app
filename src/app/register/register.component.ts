@@ -35,7 +35,7 @@ var _ = require('lodash');
     UserService
     ],
 
-  styles: [ require('./register.less')],
+  styles: [ require('./register.scss')],
 
   template: require('./register.html')
 })

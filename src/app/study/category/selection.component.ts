@@ -4,7 +4,7 @@ import {Category} from './../../model/Category';
 
 @Component({
   selector: 'selection',
-  styles: [require('./selection.less')],
+  styles: [require('./selection.scss')],
   providers: [],
   template: require('./selection.html')
 })

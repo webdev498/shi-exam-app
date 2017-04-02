@@ -24,7 +24,7 @@ declare var iSpeechTTS: any;
 
 @Component({
   selector: 'exam',  
-  styles: [ require('./exam.less') ],
+  styles: [ require('./exam.scss') ],
   template: require('./exam.html'),
   providers: [ExamService, ExamProgressService]
 })

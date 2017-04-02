@@ -16,7 +16,7 @@ import {User} from './../model/User';
   providers: [
     LoginService, UserService, CGIAuth, AuthService
   ],
-  styles: [ require('./login.less') ],
+  styles: [ require('./login.scss') ],
   template: require('./login.html')
 })
 export class LoginComponent implements OnInit {
