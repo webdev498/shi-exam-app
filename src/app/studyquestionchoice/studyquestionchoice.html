@@ -88,7 +88,9 @@
             <flashcard *ngSwitchCase="'FlashCard'" 
                 [terms]="studyTerms">
             </flashcard>
-            <fillinblank *ngSwitchCase="'Translate'"></fillinblank>
+            <fillinblank *ngSwitchCase="'Translate'"
+                [terms]="studyTerms">
+            </fillinblank>
         </div>
     </div>
 </div>
