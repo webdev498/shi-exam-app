@@ -12,7 +12,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
-const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+//const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 //const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
@@ -228,15 +228,15 @@ module.exports = function (env) {
        * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
        */
 
-      new NormalModuleReplacementPlugin(
-        /angular2-hmr/,
-        helpers.root('config/empty.js')
-      ),
+      //new NormalModuleReplacementPlugin(
+        ///angular2-hmr/,
+       // helpers.root('config/empty.js')
+      //),
 
-      new NormalModuleReplacementPlugin(
-        /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,
-        helpers.root('config/empty.js')
-      ),
+     // new NormalModuleReplacementPlugin(
+       // /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,
+       // helpers.root('config/empty.js')
+      //),
 
 
       // AoT
@@ -287,31 +287,34 @@ module.exports = function (env) {
        *
        * See: https://gist.github.com/sokra/27b24881210b56bbaff7
        */
+
       new LoaderOptionsPlugin({
-        minimize: true,
         debug: false,
         options: {
 
-          /**
-           * Html loader advanced options
-           *
-           * See: https://github.com/webpack/html-loader#advanced-options
-           */
-          // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-          htmlLoader: {
-            minimize: true,
-            removeAttributeQuotes: false,
-            caseSensitive: true,
-            customAttrSurround: [
-              [/#/, /(?:)/],
-              [/\*/, /(?:)/],
-              [/\[?\(?/, /(?:)/]
-            ],
-            customAttrAssign: [/\)?\]?=/]
-          },
-
         }
       }),
+
+      //new LoaderOptionsPlugin({
+        //minimize: true,
+        //debug: false,
+        //options: {
+
+          // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) 
+          //htmlLoader: {
+            //minimize: true,
+            //removeAttributeQuotes: false,
+            //caseSensitive: true,
+            //customAttrSurround: [
+             // [/#/, /(?:)/],
+              //[/\*/, /(?:)/],
+              //[/\[?\(?/, /(?:)/]
+            //],
+            //customAttrAssign: [/\)?\]?=/]
+          //},
+
+        //}
+      //}),
 
       /**
        * Plugin: BundleAnalyzerPlugin
