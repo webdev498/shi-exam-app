@@ -10,6 +10,16 @@ export class StudyDashboardComponent {
     constructor(private _router: Router) {}
 
     selected(nav: string) {
-      this._router.navigate(['studyquestionchoice']);
+        switch (nav) {
+            case 'category':
+              this._router.navigate(['study']);
+            break;
+            case 'random':
+              this._router.navigate(['studyquestionchoice']);
+            break;
+            case 'performance':
+              this._router.navigate(['examhistory']);
+            break;
+        }
     }   
 }
