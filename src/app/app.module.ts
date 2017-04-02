@@ -85,6 +85,27 @@ type StoreType = {
 };
 
 import '../styles/app.scss';
+import '../styles/account.scss';
+import '../styles/categories.scss';
+import '../styles/exam.scss';
+import '../styles/examcomplete.scss';
+import '../styles/examhistory.scss';
+import '../styles/examstart.scss';
+import '../styles/feedback.scss';
+import '../styles/fillinblank.scss';
+import '../styles/flashcard.scss';
+import '../styles/forgotpassword.scss';
+import '../styles/grouping.scss';
+import '../styles/headings.scss';
+import '../styles/home.scss';
+import '../styles/login.scss';
+import '../styles/matching.scss';
+import '../styles/multiplechoice.scss';
+import '../styles/premiumupgrade.scss';
+import '../styles/register.scss';
+import '../styles/selection.scss';
+import '../styles/study.scss';
+import '../styles/studyquestionchoice.scss';
 
 @NgModule({
     bootstrap: [App],
