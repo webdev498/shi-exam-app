@@ -2,7 +2,15 @@
 <html lang="">
 <head>
 
-  <title>Spanish Healthcare Exam and Study Application</title>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+
+  <% if (webpackConfig.htmlElements.headTags) { %>
+  <!-- Configured Head Tags  -->
+  <%= webpackConfig.htmlElements.headTags %>
+  <% } %>
+
+  <!-- base url -->
+  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,9 +37,6 @@
   <meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   
-  <!-- base url -->
-  <base href="/">
-  
   <!-- CDN References -->
 <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/assets/css/jquery.bxslider.css" />
@@ -54,15 +59,18 @@
       Loading Common Ground International<br /> Exam and Study Application
       </div>
   </app>
+
+  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/js/jquery.easing.min.js"></script>
   <script src="/assets/js/bootstrap.min.js"></script>
   <script src="/assets/js/wow.js"></script>
   <script src="/assets/js/jquery.bxslider.min.js"></script>
   <script src="/assets/js/custom.js"></script>
-  <script src="/dll/polyfills.js"></script>
-  <script src="/dll/vendors.js"></script>
-  <script src="/main.bundle.js"></script>
   <script src="/assets/js/tts.js"></script>
   <audio id="audioPlayer" style="display: none"></audio>
 </body>

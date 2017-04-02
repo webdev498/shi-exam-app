@@ -22,9 +22,27 @@
                     <td><span>{{examScore.mcScore}}</span> <span>({{examScore.mcPercent}})</span></td>
                 </tr>
                 <tr>
+                    <td colspan="3">
+                        <canvas baseChart
+                            [data]="englishMCChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType">
+                        </canvas>
+                    </td>
+                </tr>
+                <tr>
                     <td>Spanish Multiple Choice: </td>
                     <td style="width: 4px">&nbsp;</td>
                     <td><span>{{examScore.mcSpanishScore}}</span> <span>({{examScore.mcSpanishPercent}})</span></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <canvas baseChart
+                            [data]="spanishMCChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType">
+                        </canvas>
+                    </td>
                 </tr>
                  <tr>
                     <td>Grouping: </td>
@@ -32,9 +50,27 @@
                     <td><span>{{examScore.groupingScore}}</span> <span>({{examScore.groupingPercent}})</span></td>
                 </tr>
                 <tr>
+                    <td colspan="3">
+                        <canvas baseChart
+                            [data]="groupingChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType">
+                        </canvas>
+                    </td>
+                </tr>
+                <tr>
                     <td>Matching: </td>
                     <td style="width: 4px">&nbsp;</td>
                     <td><span>{{examScore.matchingScore}}</span> <span>({{examScore.matchingPercent}})</span></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <canvas baseChart
+                            [data]="matchingChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType">
+                        </canvas>
+                    </td>
                 </tr>
             </table>
         </div>

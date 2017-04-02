@@ -4,6 +4,10 @@
             <h3>Please login to continue</h3>
             <div style="margin-top: 10px">
         </div>
+        <div class="row" *ngIf="notification.length > 0">
+            <h3 color="orange">{{notification}}</h3>
+            <div style="margin-top: 10px">
+        </div>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="input-group margin-bottom-sm">

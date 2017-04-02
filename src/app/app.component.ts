@@ -1,12 +1,12 @@
 import {Component, ViewEncapsulation, OnInit, Inject} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {EventService} from './services/event.service';
-import { AppStore } from './app.store';
+import { AppState } from './app.service';
 
 @Component({
   selector: 'app',
   template: require('./app.html'),
-  styles: [ require('./app.less') ]
+  styles: [ ]
 })
 
 export class App implements OnInit {
@@ -17,7 +17,7 @@ export class App implements OnInit {
 
   constructor(private _authService: AuthService,
               private _eventService: EventService,
-              public appStore: AppStore) {
+              public appState: AppState) {
     
               }
 
@@ -41,6 +41,8 @@ export class App implements OnInit {
             appInstance.showErrorModal = true;
             appInstance.errorMessage = message;
         });
+
+    console.log('Initial App State', appInstance.appState.state);
   }
 
   closeErrorModal() {

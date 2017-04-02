@@ -1,6 +1,6 @@
-import {ENV_PROVIDERS} from './../../platform/environment';
+import {CUSTOM_ENV} from './../environment';
 
-export const RootApiUrl = ENV_PROVIDERS.API_HOST;
+export const RootApiUrl = CUSTOM_ENV.API_HOST;
 export const UserTokenKey = 'userToken';
 export const UserInfoKey = 'userInfo';
 export const RegistrationStartInfo = 'rsStartInfo';
@@ -21,6 +21,9 @@ export const CurrentExam = 'currentexam';
 export const GeneralAlias = 'Other';
 export const GeneralCategory = 'general';
 export const PassingScore = 70;
+
+//study constants
+export const CategorySelections = 'categoryselections';
 
 //question constants
 export const MultipleChoiceEnglishQuestionType = 'Multiple Choice English';

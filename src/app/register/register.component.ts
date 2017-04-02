@@ -35,8 +35,6 @@ var _ = require('lodash');
     UserService
     ],
 
-  styles: [ require('./register.less')],
-
   template: require('./register.html')
 })
 export class RegisterComponent implements OnInit {

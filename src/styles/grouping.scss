@@ -1,0 +1,41 @@
+@import 'app';
+
+.g {margin-bottom: 2.5px}
+
+.gFrame {border: 1px solid lightgray; padding: 8px; border-radius: 4px; margin-top: 15px}
+
+.gtext {display: table-cell; vertical-align: middle; padding: 4px; cursor: pointer}
+
+.standardgroup {display: table; text-align: center; width: 100%}
+.group {margin-bottom: 7px; @extend .standardgroup;
+    &:hover {
+        opacity: .5;
+    }
+}
+
+.groupdragbars {float: left; vertical-align: middle; background-color: transparent}
+.categorydragbars {float: left; vertical-align: middle; background-color: transparent}
+.checkterm {float: left; vertical-align: middle; margin-left: 4px}
+
+.groupcategory {margin-bottom: 12px; @extend .standardgroup}
+
+.text {
+    @extend .gtext;
+            background-color: lightblue; color: #231f20
+}
+
+.categorytext {
+    @extend .gtext;
+            background-color: palegoldenrod; color: #231f20; cursor: default;
+}
+
+.groupedtext {
+    @extend .gtext;
+    background-color: forestgreen; color: white; display: block; margin-top: 3px; cursor: default
+}
+
+.undo {color: cadetblue; cursor: pointer}
+
+.groupedchoices {
+    display: table-row; margin-top: 2px;
+}

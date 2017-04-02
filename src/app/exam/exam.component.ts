@@ -17,13 +17,13 @@ import {ExamProgressService} from './../services/examprogress.service';
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';
 import {Matching} from './../questions/matching/matching.component';
 import {Grouping} from './../questions/grouping/grouping.component';
+import {FeedbackComponent} from './../questions/feedback/feedback.component';
 import {Term} from './../model/question/Term';
 
 declare var iSpeechTTS: any;
 
 @Component({
   selector: 'exam',  
-  styles: [ require('./exam.less') ],
   template: require('./exam.html'),
   providers: [ExamService, ExamProgressService]
 })
@@ -38,7 +38,6 @@ export class ExamComponent implements OnInit {
     examSubmitting: boolean = false;
     enableFeedback: boolean = false;
     feedbackSubmitted: boolean = false;
-    feedbackText: string;
 
     private _seconds: number = 0;
     private _minutes: number = 0; 
@@ -64,7 +63,7 @@ export class ExamComponent implements OnInit {
         //TODO:  Ask user if they want to continue where they left off
       }
 
-      let typeParam = this._route.snapshot.params["ExamStartParam"];
+      const typeParam = this._route.snapshot.params["ExamStartParam"];
       this._examService.createExam(this._authService.getUser().id,typeParam)
           .subscribe(
           response => this._handleExamResponse(response),
@@ -128,7 +127,6 @@ export class ExamComponent implements OnInit {
       }
 
       this.feedbackSubmitted = false;
-      this.feedbackText = null;
       this.enableFeedback = false;
     }
 
@@ -227,30 +225,8 @@ export class ExamComponent implements OnInit {
       console.error(error);
     }
 
-    feedback() {
-      this.enableFeedback = true;
-    }
-
     questionAudio(questionChoice: any) {
       this._tts.speak(questionChoice.text);
-    }
-
-    submitFeedback() {
-      this.feedbackSubmitted = true;
-      this.enableFeedback = false;
-
-      if (this.feedbackText != null) {
-        let feedback = new Feedback();
-        feedback.examId = this.exam.id;
-        feedback.text = this.feedbackText;
-        feedback.question = this.currentQuestion;
-
-        this._examService.submitFeedback(feedback)
-          .subscribe(
-            response => {},
-            error => {}
-        );
-      }
     }
 
     eitherMultipleChoice() {

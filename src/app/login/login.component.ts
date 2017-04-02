@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {AuthService} from 'ng2-ui-auth';
 import {Response} from '@angular/http';
 
@@ -16,7 +16,6 @@ import {User} from './../model/User';
   providers: [
     LoginService, UserService, CGIAuth, AuthService
   ],
-  styles: [ require('./login.less') ],
   template: require('./login.html')
 })
 export class LoginComponent implements OnInit {
@@ -25,11 +24,13 @@ export class LoginComponent implements OnInit {
   password: string;
   errorMessage: string;
   processing: boolean = false;
+  notification: string = "";
   
   constructor(private _loginService: LoginService,
               private _userService: UserService,
               private _authService: CGIAuth,
               private _router: Router,
+              private _route: ActivatedRoute,
               private _oauth: AuthService,
               private _analytics: AnalyticsService) {
     this.errorMessage = '';
@@ -99,6 +100,11 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnInit() {
+    const message = this._route.snapshot.params["Message"];
+    if (message != null) {
+      this.notification = message;
+    }
+
     this._analytics.pageView('/login.html');
   }
 

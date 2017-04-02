@@ -3,13 +3,13 @@
     <form #f="ngForm" role="form" style="max-width: 400px">
       <div class="form-group">
         <label for="firstName">First Name *</label>
-        <input type="text" [(ngModel)]="ur.firstName" class="form-control" id="firstName"
+        <input type="text" [(ngModel)]="ur.firstName" class="form-control control-width" id="firstName"
             name="firstName"
             placeholder="required" required>
       </div>
       <div class="form-group">
         <label for="firstName">Last Name *</label>
-        <input type="text" [(ngModel)]="ur.lastName" class="form-control" id="firstName"
+        <input type="text" [(ngModel)]="ur.lastName" class="form-control control-width" id="firstName"
           name="lastName"
           placeholder="required" required>
       </div>
@@ -17,7 +17,7 @@
         <label for="phone">Phone</label>
         <div class="form-inline">
           <div class="form-group">
-            <select class="form-control" [(ngModel)]="ur.countryCode" name="countryCode" style="width: 73px">
+            <select class="form-control control-width" [(ngModel)]="ur.countryCode" name="countryCode" style="width: 73px">
         <option *ngFor="let country of countryCodes" value="{{country.code}}">
         {{country.name}}
       </option>
@@ -25,7 +25,7 @@
             <input type="text" style="width: 220px" [(ngModel)]="ur.phone" 
             maxlength="10"
             placeholder="10 digit phone"
-            class="form-control"
+            class="form-control control-width"
               id="phone" name="10 digit phone">
           </div>
         </div>
@@ -33,14 +33,14 @@
       <div class="form-group">
         <label for="address">Address</label>
         <input type="text" [(ngModel)]="ur.address.street" name="address"
-        placeholder="street" class="form-control" id="address">
+        placeholder="street" class="form-control control-width" id="address">
       </div>
       <div style="margin-bottom: 15px">
         <div class="form-inline">
           <div class="form-group">
             <input type="text" [(ngModel)]="ur.address.city" 
             name="city"
-            class="form-control" style="width: 100px" placeholder="city">
+            class="form-control control-width" style="width: 100px" placeholder="city">
             <select class="form-control" name="state" [(ngModel)]="ur.address.state" 
             style="width: 48px">
       <option *ngFor="let state of states" value="{{state}}">
@@ -49,7 +49,7 @@
       </select>
             <input type="text" [(ngModel)]="ur.address.postalCode" 
             name="zip"
-            class="form-control" style="width: 80px" placeholder="zip">
+            class="form-control control-width" style="width: 80px" placeholder="zip">
           </div>
         </div>
       </div>
@@ -59,19 +59,19 @@
           <div class="form-group">
             <select [(ngModel)]="ur.dobMonth" 
             name="month"
-            class="form-control" style="width: 100px" id="month">
+            class="form-control control-width" style="width: 100px" id="month">
             <option *ngFor="let month of months" value="{{month.index}}">
               {{month.name}}
             </option>
           </select>
-            <select [(ngModel)]="ur.dobDay" class="form-control" style="width: 60px" 
+            <select [(ngModel)]="ur.dobDay" class="form-control control-width" style="width: 60px" 
             name="day"
             id="day">
             <option *ngFor="let day of days" value="{{day.index}}">
               {{day.name}}
             </option>
           </select>
-            <select [(ngModel)]="ur.dobYear" class="form-control" style="width: 60px" 
+            <select [(ngModel)]="ur.dobYear" class="form-control control-width" style="width: 60px" 
             name="year"
             id="year">
             <option *ngFor="let year of years" value="{{year}}">
@@ -83,7 +83,7 @@
       </div>
       <div class="form-group">
         <label for="gender">Gender</label>
-        <select [(ngModel)]="ur.gender" class="form-control" style="width: 85px" 
+        <select [(ngModel)]="ur.gender" class="form-control control-width" style="width: 85px" 
         name="gender"
         id="gender">
         <option value=""></option>
@@ -93,7 +93,7 @@
       </div>
       <div class="form-group">
         <label for="nationality">Nationality</label>
-        <select class="form-control" [(ngModel)]="ur.nationality"
+        <select class="form-control control-width" [(ngModel)]="ur.nationality"
          name="nationality"
          id="nationality">    
        <option *ngFor="let nat of nationalities" value="{{nat.id}}">

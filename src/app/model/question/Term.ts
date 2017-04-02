@@ -8,6 +8,7 @@ export class Term implements TermInterface {
     public text: string;
     public id: string;
     public matched: boolean = false;
+    public translations: Term[] = new Array();
 
     constructor(text: string, id: string)
      {
