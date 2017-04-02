@@ -119,14 +119,6 @@ module.exports = function (env) {
             use: 'css-loader!sass-loader'
           }),
           include: [helpers.root('src', 'styles')]
-        },
-
-        {
-          test: /\.less$/,
-          loader: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: 'css-loader!less-loader'
-          })
         }
       ]
 
