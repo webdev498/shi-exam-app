@@ -51,6 +51,7 @@ import {RegisterConfirmComponent} from './register/registerconfirm.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 
 import {StudyComponent} from './study/study.component';
+import {StudyDashboardComponent} from './study/studydashboard.component';
 import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {Matching} from './questions/matching/matching.component';
 import {Grouping} from './questions/grouping/grouping.component';
@@ -119,7 +120,7 @@ import '../styles/studyquestionchoice.scss';
                     ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
                     FeedbackComponent, SelectionComponent,
                     StudyQuestionChoiceComponent,
-                    StudyComponent, AccountComponent, AccountConfirmationComponent, 
+                    StudyComponent, StudyDashboardComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, CategoriesComponent,
                     MultipleChoice, Matching, Grouping, App],
     providers: [

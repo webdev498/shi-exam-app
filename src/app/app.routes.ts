@@ -14,6 +14,7 @@ import {PremiumUpgradeComponent} from './premiumupgrade/premiumupgrade.component
 import {StudyComponent} from './study/study.component';
 import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {AgreementComponent} from './study/agreement.component';
+import {StudyDashboardComponent} from './study/studydashboard.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
@@ -36,6 +37,7 @@ export const ROUTES: Routes =[
   { path: 'study', component: StudyComponent, canActivate: [StudyGuardService]},
   { path: 'studyquestionchoice', component: StudyQuestionChoiceComponent, canActivate: [StudyGuardService]},
   { path: 'studyagreement', component: AgreementComponent, canActivate: [AuthGuardService]},
+  { path: 'studydashboard', component: StudyDashboardComponent, canActivate: [StudyGuardService]},
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardService] },
   { path: 'confirmation', component: AccountConfirmationComponent, canActivate: [AuthGuardService] }
 ];
