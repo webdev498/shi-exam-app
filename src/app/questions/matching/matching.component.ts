@@ -4,8 +4,7 @@ var _ = require('lodash');
  
 @Component({ 
     selector: 'matching', 
-    template: require('./matching.html'),
-    styles: [require('./../../../styles/matching.scss')]
+    template: require('./matching.html')
 })
 export class Matching {
     @Input() terms : Term[];

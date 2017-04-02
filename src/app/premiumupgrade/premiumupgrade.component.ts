@@ -7,7 +7,6 @@ import {AccountService} from './../account/account.service';
 
 @Component({
   selector: 'premiumupgrade',  
-  styles: [ require('./../../styles/premiumupgrade.scss')],
   template: require('./premiumupgrade.html')
 })
 export class PremiumUpgradeComponent implements OnInit {

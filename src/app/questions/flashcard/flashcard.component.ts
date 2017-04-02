@@ -6,7 +6,6 @@ declare var iSpeechTTS: any;
 
 @Component({
   selector: 'flashcard',
-  styles: [require('./../../../styles/flashcard.scss')],
   providers: [],
   template: require('./flashcard.html')
 })

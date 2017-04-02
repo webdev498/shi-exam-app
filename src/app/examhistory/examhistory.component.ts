@@ -7,7 +7,6 @@ import {ExamResponse} from './../model/exam/ExamResponse';
 
 @Component({
   selector: 'examhistory',  
-  styles: [ require('./../../styles/examhistory.scss') ],
   providers: [ExamService],
   template: require('./examhistory.html')
 })

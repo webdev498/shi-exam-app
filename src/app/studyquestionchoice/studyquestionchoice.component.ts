@@ -16,7 +16,6 @@ import {StudyTerm} from './../model/question/StudyTerm';
 
 @Component({
   selector: 'studyquestionchoice',  
-  styles: [ require('./../../styles/studyquestionchoice.scss') ],
   providers: [TermService],
   template: require('./studyquestionchoice.html'),
 })

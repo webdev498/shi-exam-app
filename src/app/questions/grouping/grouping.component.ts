@@ -7,7 +7,6 @@ var _ = require('lodash');
 @Component({ 
     selector: 'grouping', 
     template: require('./grouping.html'),
-    styles: [require('./../../../styles/grouping.scss')]
 })
 export class Grouping {
     @Input() terms : Term[];
