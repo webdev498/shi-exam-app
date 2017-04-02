@@ -6,7 +6,7 @@ import {StudyTerm} from './../../model/question/StudyTerm';
 
 @Component({
   selector: 'feedback',  
-  styles: [ require('./feedback.scss') ],
+  styles: [ require('./../../../styles/feedback.scss') ],
   template: require('./feedback.html'),
   providers: [ExamService]
 })

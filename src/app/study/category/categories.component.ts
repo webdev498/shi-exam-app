@@ -7,7 +7,7 @@ var _ = require('lodash');
 
 @Component({
   selector: 'categories',
-  styles: [require('./categories.scss')],
+  styles: [require('./../../../styles/categories.scss')],
   providers: [CategoryService, EventService],
   template: require('./categories.html')
 })

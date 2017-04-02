@@ -1,8 +1,5 @@
 import { Routes, RouterModule} from '@angular/router';
 
-import {AboutComponent} from './info/about.component';
-import {ContactComponent} from './info/contact.component';
-import {FAQComponent} from './info/faq.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterStartComponent} from './register/registerstart.component';
@@ -26,9 +23,6 @@ import {StudyGuardService} from './services/studyguard.service';
 export const ROUTES: Routes =[
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: 'faq', component: FAQComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registerstart', component: RegisterStartComponent},
   { path: 'register', component: RegisterComponent},

@@ -7,7 +7,7 @@ import {SessionService} from './../services/session.service';
 
 @Component({
   selector: 'study',  
-  styles: [ require('./study.scss') ],
+  styles: [ require('./../../styles/study.scss') ],
   template: require('./study.html'),
 })
 export class StudyComponent {

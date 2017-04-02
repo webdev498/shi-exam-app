@@ -5,7 +5,7 @@ import {MultipleChoiceEnglishQuestionType} from './../../model/Constants';
 @Component({ 
     selector: 'multipleChoice', 
     template: require('./multiplechoice.html'),
-    styles: [require('./multiplechoice.scss')]
+    styles: [require('./../../../styles/multiplechoice.scss')]
 })
 export class MultipleChoice {
     @Input() terms : Term[];

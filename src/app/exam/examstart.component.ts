@@ -5,7 +5,7 @@ import {ExamService} from './exam.service';
 import {ExamStartParam, ExamShort, ExamNormal, ExamLong} from './../model/Constants';
 
 @Component({
-  styles: [ require('./examstart.scss') ],
+  styles: [ require('./../../styles/examstart.scss') ],
   template: require('./examstart.html'),
   providers: [ExamService]
 })

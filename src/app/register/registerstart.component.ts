@@ -15,7 +15,7 @@ import {Response} from '@angular/http';
 
 @Component({
   providers: [RegistrationService, ValidationService, CGIAuth, AuthService, UserService],
-  styles: [ require('./register.less') ],
+  styles: [ require('./../../styles/register.scss') ],
   template: require('./registerstart.html')
 })
 export class RegisterStartComponent implements OnInit {

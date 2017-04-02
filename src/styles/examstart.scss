@@ -1,4 +1,4 @@
-@import '../../styles/app.less';
+@import 'app';
 
 .centerAlign {
     text-align: center;
@@ -59,7 +59,7 @@
 .examtextCenter {
     margin: 0 auto;
     width: 100%;
-    .centerTextAlign;
+    @extend .centerTextAlign;
 }
 
 

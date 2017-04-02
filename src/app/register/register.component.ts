@@ -35,7 +35,7 @@ var _ = require('lodash');
     UserService
     ],
 
-  styles: [ require('./register.scss')],
+  styles: [ require('./../../styles/register.scss')],
 
   template: require('./register.html')
 })

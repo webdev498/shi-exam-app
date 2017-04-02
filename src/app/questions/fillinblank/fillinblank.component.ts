@@ -3,7 +3,7 @@ import {Term} from './../../model/question/Term';
 
 @Component({
   selector: 'fillinblank',
-  styles: [require('./fillinblank.scss')],
+  styles: [require('./../../../styles/fillinblank.scss')],
   providers: [],
   template: require('./fillinblank.html')
 })
