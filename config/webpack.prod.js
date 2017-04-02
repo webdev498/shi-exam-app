@@ -15,7 +15,7 @@ const IgnorePlugin = require('webpack/lib/IgnorePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+//const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 
 /**
@@ -183,7 +183,7 @@ module.exports = function (env) {
        * See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
        */
       // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
-      new UglifyJsPlugin({
+      /*new UglifyJsPlugin({
         // beautify: true, //debug
         // mangle: false, //debug
         // dead_code: false, //debug
@@ -219,7 +219,7 @@ module.exports = function (env) {
           join_vars: true,
           negate_iife: false // we need this for lazy v8
         },
-      }),
+      }),*/
 
       /**
        * Plugin: NormalModuleReplacementPlugin
