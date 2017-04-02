@@ -96,7 +96,6 @@ import '../styles/fillinblank.scss';
 import '../styles/flashcard.scss';
 import '../styles/forgotpassword.scss';
 import '../styles/grouping.scss';
-import '../styles/headings.scss';
 import '../styles/home.scss';
 import '../styles/login.scss';
 import '../styles/matching.scss';
