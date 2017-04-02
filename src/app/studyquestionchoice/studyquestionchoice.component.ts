@@ -56,6 +56,15 @@ export class StudyQuestionChoiceComponent implements OnInit {
               error => this._handleError(error)
             );
         break;
+        case 'Translate':
+          this.fetching = true;
+          this.studyType = 'Translation';
+          this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
+              .subscribe(
+              response => this._handleTermResponse(response),
+              error => this._handleError(error)
+            );
+        break;
       }
     }
 
@@ -70,10 +79,11 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
       switch (this.currentQuestionType) {
         case 'FlashCard':
+        case 'Translation':
           this.studyTerms = this._studyTerms;
           this.picked = true;
           break;
-      }
+     }
     }
 
     _handleError(error: any) {
