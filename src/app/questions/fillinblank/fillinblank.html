@@ -1,4 +1,4 @@
-<div *ngIf="view">
+<div *ngIf="viewTranslate">
 <div style="display: table; width: 100%">
     <div style="display: table-row">
         <div style="display: table-cell">
@@ -6,9 +6,14 @@
         </div>
         <div style="display: table-cell">
             <input type="text" class="form-control" [(ngModel)]="termInput" (keydown)="inputKey($event)" /> 
+        </div>
+    </div>
+    <div style="display: table-row">
+        <div style="display: table-cell"></div>
+        <div style="display: table-cell; padding-top: 15px">
             <button class="btn guideBtn"
-                     [disabled]="termInput == null || termInput.length == 0"
-                     (click)="enter()">Submit</button>
+            [disabled]="termInput == null || termInput.length == 0"
+            (click)="entered()">Submit</button>
         </div>
     </div>
     <div style="display: table-row">

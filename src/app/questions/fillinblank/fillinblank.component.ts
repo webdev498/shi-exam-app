@@ -12,7 +12,7 @@ export class FillInBlankComponent {
 
   @Input() terms: StudyTerm[];
   
-  public view: boolean = false;
+  public viewTranslate: boolean = false;
   public termInput: string;
   public success: boolean = false;
   public complete: boolean = false;
@@ -32,6 +32,8 @@ export class FillInBlankComponent {
             apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
             voice: 'usspanishfemale'
       });
+
+      this.viewTranslate = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -39,9 +41,11 @@ export class FillInBlankComponent {
           if (this.terms === undefined)
             return;
 
+            console.log(this.terms);
+
             if (this.terms.length > 0) {
               this.term = this.terms[0];
-              this.view = true;
+              this.viewTranslate = true;
 
               this.enableFeedback = false;
               this.feedbackSubmitted = false;
@@ -89,7 +93,7 @@ export class FillInBlankComponent {
     this._count = 0;
 
     this.term = this.terms[0];
-    this.view = true;
+    this.viewTranslate = true;
     this.complete = false;
 
     this.enableFeedback = false;

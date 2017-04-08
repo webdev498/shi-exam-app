@@ -29,6 +29,8 @@ export class FlashcardComponent implements OnInit {
             apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
             voice: 'usspanishfemale'
       });
+
+      this.showCards = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

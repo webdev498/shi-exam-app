@@ -79,7 +79,10 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
       switch (this.currentQuestionType) {
         case 'FlashCard':
-        case 'Translation':
+          this.studyTerms = this._studyTerms;
+          this.picked = true;
+          break;
+        case 'Translate':
           this.studyTerms = this._studyTerms;
           this.picked = true;
           break;
