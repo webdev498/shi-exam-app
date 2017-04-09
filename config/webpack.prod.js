@@ -162,14 +162,14 @@ module.exports = function (env) {
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
-        'api_host': METADATA.API_HOST,
+        'API_HOST': METADATA.API_HOST,
         'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID,
         'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID,
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
           'HMR': METADATA.HMR,
-          'api_host': METADATA.API_HOST,
+          'API_HOST': METADATA.API_HOST,
           'GOOGLE_CLIENT_ID': METADATA.GOOGLE_CLIENT_ID,
           'FACEBOOK_CLIENT_ID': METADATA.FACEBOOK_CLIENT_ID
         }
