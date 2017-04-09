@@ -24,7 +24,7 @@ const OptimizeJsPlugin = require('optimize-js-plugin');
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
-const API_HOST = '"https://api.certifiedspanish.com';
+const API_HOST = '"https://api.certifiedspanish.com"';
 const GOOGLE_CLIENT_ID = '"584302945146-hf91k8glaa97agv0mbi5d61mm2kglkau.apps.googleusercontent.com"';
 const FACEBOOK_CLIENT_ID = '"228791194154793"';
 
