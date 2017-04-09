@@ -24,11 +24,11 @@
                              fibFail: !success}">
                     <i *ngIf="!success"
                         class="fa fa-times-circle-o fa-2x" 
-                        aria-hidden="true">
+                        aria-hidden="true"> <span *ngIf="!success">incorrect</span>
                     </i>
                     <i *ngIf="success"
                         class="fa fa-check-circle-o fa-2x" 
-                        aria-hidden="true">
+                        aria-hidden="true"> <span *ngIf="success">Correct!</span>
                     </i>
             </div>
         </div>

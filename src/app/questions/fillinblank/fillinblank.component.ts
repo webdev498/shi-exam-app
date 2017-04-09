@@ -83,6 +83,7 @@ export class FillInBlankComponent {
     this.feedbackSubmitted = false;
     this.complete = false;
     this._translationCount = 0;
+    this.termInput = null;
   }
 
   displayNext() {
