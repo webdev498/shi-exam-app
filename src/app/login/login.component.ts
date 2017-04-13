@@ -4,6 +4,7 @@ import {AuthService} from 'ng2-ui-auth';
 import {Response} from '@angular/http';
 
 import {LoginService} from './login.service';
+import {SessionService} from './../services/session.service';
 import {UserService} from './../services/user.service';
 import {AuthService as CGIAuth} from './../services/auth.service';
 import {AnalyticsService} from './../services/analytics.service';
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   notification: string = "";
   
   constructor(private _loginService: LoginService,
+              private _sessionService: SessionService,
               private _userService: UserService,
               private _authService: CGIAuth,
               private _router: Router,
@@ -64,6 +66,7 @@ export class LoginComponent implements OnInit {
   
   _handleUserResponse(user) {
     this.processing = false;  
+    this._sessionService.setUser(user);
     this._authService.saveUser(user);   
     this._router.navigate(['home']);
   }
