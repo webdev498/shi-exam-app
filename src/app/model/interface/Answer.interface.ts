@@ -1,6 +1,6 @@
 export interface AnswerInterface {
-    questionid: string;
-    sectionid: string;
+    questionId: string;
+    sectionId: string;
     response: any[];
     responses: any[];
 }
