@@ -99,8 +99,8 @@ export class Grouping {
 
     _grouped(id: string, droppedid: string) {
         this.choiceGrouped.emit({
-            id: id,
-            groupedid: droppedid
+            id: droppedid,
+            groupedid: id
         });
 
         let choice = <Term>this._getChoice(droppedid);
