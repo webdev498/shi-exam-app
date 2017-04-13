@@ -6,6 +6,7 @@ export class UserRelations {
     public addresses: Address[];
     public telephones: Telephone[];
     public nationality: Nationality;
+    public role: any;
     
     constructor() {}
 }

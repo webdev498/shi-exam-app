@@ -59,8 +59,8 @@ export class ExamProgressService {
 
     saveProgress(sectionId: string, questionId: string, questionType: string, answer: any):boolean {
         let newAnswer = new QuestionResponse();
-        newAnswer.questionid = questionId;
-        newAnswer.sectionid = sectionId;
+        newAnswer.questionId = questionId;
+        newAnswer.sectionId = sectionId;
 
         switch (questionType)
         {
