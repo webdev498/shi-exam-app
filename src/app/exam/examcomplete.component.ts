@@ -19,11 +19,16 @@ export class ExamCompleteComponent implements OnInit {
     public spanishMCChartData: number[] = new Array();
     public groupingChartData: number[] = new Array();
     public matchingChartData: number[] = new Array();
+    public overallData: number[] = new Array();
+    public overallLabels: string[] = ['Correct','Missed'];
+
+    public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.2)']}];
 
     public examScore: Score;
 
    ngOnInit() {
      this.examScore = this._examResponse.examResults();
+     this.overallData.push(this.examScore.overallRight, this .examScore.overallMissed);
    }   
 
    iconStyle() {

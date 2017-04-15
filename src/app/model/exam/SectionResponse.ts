@@ -8,4 +8,5 @@ export class SectionResponse {
     possible: number;
     correct: number;
     results: QuestionResponse[];
+    categoryResults: any;
 }

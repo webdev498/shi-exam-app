@@ -17,6 +17,8 @@ export class Exam {
     public id: string;
     public sections: Section[];
     public questions : QuestionInterface[];
+    public length: number;
+    public categories: any[];
 
     constructor() {}
 
@@ -28,6 +30,9 @@ export class Exam {
         this.id = exam.id;
         this.sections = exam.sections;
         this.questions = new Array();
+        this.length = exam.length;
+        this.categories = exam.categoriesCovered;
+        
         //randomize the questions from the server
         //exam.questions = _.shuffle(exam.questions);
 

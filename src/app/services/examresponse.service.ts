@@ -17,12 +17,14 @@ export class ExamResponseService {
         let er = <ExamResponse>JSON.parse(sessionStorage[ExamResponseConstant]);
         let exam = <Exam>JSON.parse(sessionStorage[CurrentExam]);
         let score = new Score();
-        let percentCorrect = 0
+        let percentCorrect = 0;
 
-        score.overallScore = 'Your scored ' + er.pointsAwarded.toString() + ' out of a possible ' + er.pointsPossible.toString() + ' correct answers';
-        percentCorrect = Math.floor((er.pointsAwarded / er.pointsPossible) * 100);
+        percentCorrect = Math.floor((er.pointsAwarded / (er.pointsAwarded == 0 ? 0 : er.pointsPossible)) * 100);
+        score.overallScore = `You scored  ${er.pointsAwarded.toString()} out of a possible ${er.pointsPossible.toString()} correct answers (${percentCorrect.toString()}%)`;
         score.overallPassed = percentCorrect < PassingScore ? false : true;
         score.overallMessage = score.overallPassed ? 'You have a passing score!' : 'Your score did not meet the 70% passing requirement';
+        score.overallRight = er.pointsAwarded;
+        score.overallMissed = er.pointsPossible - er.pointsAwarded;
 
         for (let section of er.sections) {
             //find the matching section in the exam

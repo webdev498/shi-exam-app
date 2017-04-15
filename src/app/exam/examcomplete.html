@@ -8,12 +8,22 @@
                 <i class="fa fa-check-circle fa-2x" aria-hidden="true"></i>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 15px">
             <span>{{examScore.overallScore}}</span>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 15px">
             <span [ngClass]="{examSuccess: didPass(), examFail: didFail()}">{{examScore.overallMessage}}</span>
         </div>
+
+        <div class="row" style="margin-top: 15px">
+            <canvas baseChart
+                [data]="overallData"
+                [labels]="overallLabels"
+                [colors]="chartcolors"
+                [chartType]="doughnutChartType">
+            </canvas>
+        </div>
+
         <div class="questionScoreGroup">
             <table>
                 <tr>
@@ -82,7 +92,7 @@
             </div>
             <div class="row">
                 <a routerLink="examhistory">
-                    <i class="fa fa-laptop" aria-hidden="true"></i> Take Another Exam
+                    <i class="fa fa-laptop" aria-hidden="true"></i> Your Exam History
                 </a>
             </div>
         </div>
