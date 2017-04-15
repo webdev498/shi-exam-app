@@ -3,6 +3,7 @@ export class CategoryScore {
 
     public name: string;
     public id: string;
-    public right: number;
-    public wrong: number;
+    public data: number[];
+    public correct: string;
+    public total: string;
 }

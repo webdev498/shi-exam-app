@@ -32,14 +32,14 @@
             *ngFor="let c of categores">
             <table>
                 <tr>
-                    <td>English Multiple Choice: </td>
+                    <td>{{c.name}} </td>
                     <td style="width: 4px">&nbsp;</td>
-                    <td><span>{{examScore.mcScore}}</span> <span>({{examScore.mcPercent}})</span></td>
+                    <td><span>{{c.correct}}</span> / <span>({{c.total}})</span></td>
                 </tr>
                 <tr>
                     <td colspan="3">
                         <canvas baseChart
-                            [data]="englishMCChartData"
+                            [data]="c.data"
                             [labels]="overallLabels"
                             [colors]="chartcolors"
                             [chartType]="doughnutChartType">
@@ -48,7 +48,7 @@
                 </tr>
             </table>
         </div>
-        <div class="questionScoreGroup" style="margin-top: 20px">
+        <div class="questionScoreGroup" style="margin-top: 10px">
             <div class="row">
                 <a routerLink="examstart">
                     <i class="fa fa-laptop" aria-hidden="true"></i> Take Another Exam

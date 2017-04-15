@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ExamResponseService} from './../services/examresponse.service';
 import {Score} from './../model/exam/Score';
+import {CategoryScore} from './../model/exam/CategoryScore';
 
 @Component({
   template: require('./examcomplete.html'),
@@ -15,7 +16,7 @@ export class ExamCompleteComponent implements OnInit {
     public doughnutChartType: string = 'doughnut';
 
     public doughnutChartLabels: string[] = ['Percent Wrong', 'Percent Correct'];
-    public categories: string[] = new Array();
+    public categories: CategoryScore[] = new Array();
     public overallData: number[] = new Array();
     public overallLabels: string[] = ['Correct','Missed'];
 
