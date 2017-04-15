@@ -15,10 +15,7 @@ export class ExamCompleteComponent implements OnInit {
     public doughnutChartType: string = 'doughnut';
 
     public doughnutChartLabels: string[] = ['Percent Wrong', 'Percent Correct'];
-    public englishMCChartData: number[] = new Array();
-    public spanishMCChartData: number[] = new Array();
-    public groupingChartData: number[] = new Array();
-    public matchingChartData: number[] = new Array();
+    public categories: string[] = new Array();
     public overallData: number[] = new Array();
     public overallLabels: string[] = ['Correct','Missed'];
 
