@@ -32,7 +32,7 @@ export class ExamResponseService {
         for (let section of er.sections) {
               for (var id in section.categoryResults) {
                   const examCategory = _.filter(categoriesUsed, { 'id': id })[0];
-                  const scoreCategory = _.filter(score.categoriesScore, { 'id': id });
+                  let scoreCategory = _.filter(score.categoriesScore, { 'id': id });
 
                   if (scoreCategory.length === 0) {
                       let cs = new CategoryScore();
@@ -41,6 +41,10 @@ export class ExamResponseService {
                       cs.name = examCategory.name;
                       cs.id = id;
                       score.categoriesScore.push(cs);
+                  } else {
+                      scoreCategory.correct = section.categoryResults[id].correct + parseInt(scoreCategory.correct);
+                      scoreCategory.total = scoreCategory.total + parseInt(section.categoryResults[id].correct) + 
+                          parseInt(section.categoryResults[id].incorrect); 
                   }
               }
         }
