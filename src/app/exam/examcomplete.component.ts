@@ -27,6 +27,8 @@ export class ExamCompleteComponent implements OnInit {
    ngOnInit() {
      this.examScore = this._examResponse.examResults();
      this.overallData.push(this.examScore.overallRight, this .examScore.overallMissed);
+     this.categories = this.examScore.categoriesScore;
+     console.log(this.categories);
    }   
 
    iconStyle() {

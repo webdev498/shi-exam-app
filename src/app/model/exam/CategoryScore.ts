@@ -3,7 +3,9 @@ export class CategoryScore {
 
     public name: string;
     public id: string;
-    public data: number[];
+    get data(): any[] {
+        return [this.correct, parseInt(this.total) - parseInt(this.correct)];
+    }
     public correct: string;
     public total: string;
 }

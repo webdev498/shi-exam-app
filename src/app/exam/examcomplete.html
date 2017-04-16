@@ -24,20 +24,20 @@
             </canvas>
         </div>
 
-        <div class="row" style="margin-top: 15px">
+        <div class="row" style="margin-top: 15px; margin-bottom: 20px">
             <h3 style="text-align: center">Score by Category</h3>
         </div>
 
         <div class="questionScoreGroup" 
-            *ngFor="let c of categores">
+            *ngFor="let c of categories">
             <table>
                 <tr>
-                    <td>{{c.name}} </td>
-                    <td style="width: 4px">&nbsp;</td>
-                    <td><span>{{c.correct}}</span> / <span>({{c.total}})</span></td>
+                    <td style="text-align: center">
+                        <strong>{{c.name}}</strong>: <span>{{c.correct}}</span> / <span>{{c.total}}</span>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="3">
+                    <td>
                         <canvas baseChart
                             [data]="c.data"
                             [labels]="overallLabels"
@@ -48,7 +48,7 @@
                 </tr>
             </table>
         </div>
-        <div class="questionScoreGroup" style="margin-top: 10px">
+        <div class="questionScoreGroup" style="margin-top: 25px; text-align: center">
             <div class="row">
                 <a routerLink="examstart">
                     <i class="fa fa-laptop" aria-hidden="true"></i> Take Another Exam
