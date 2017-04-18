@@ -38,7 +38,6 @@ export class ExamHistoryComponent implements OnInit {
     }
 
     _handleAllExamResponse(examResults: ExamResponse[]) {
-      console.log(examResults);
       this.results = examResults;
     }
 

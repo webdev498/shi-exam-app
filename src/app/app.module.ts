@@ -26,7 +26,7 @@ import { AppState, InternalStateType } from './app.service';
 import { CommonModule }      from '@angular/common';
 
 import {Ng2UiAuthModule, CustomConfig} from 'ng2-ui-auth';
-import {ChartsModule} from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
 
 const DEFAULT_POST_HEADER: {[name: string]: string} = {
   'Content-Type': 'application/json'
@@ -51,6 +51,7 @@ import {RegisterConfirmComponent} from './register/registerconfirm.component';
 import {ForgotPasswordComponent} from './forgotpassword/forgotpassword.component';
 
 import {StudyComponent} from './study/study.component';
+import {StudyDashboardComponent} from './study/studydashboard.component';
 import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {Matching} from './questions/matching/matching.component';
 import {Grouping} from './questions/grouping/grouping.component';
@@ -119,7 +120,7 @@ import '../styles/studyquestionchoice.scss';
                     ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
                     FeedbackComponent, SelectionComponent,
                     StudyQuestionChoiceComponent,
-                    StudyComponent, AccountComponent, AccountConfirmationComponent, 
+                    StudyComponent, StudyDashboardComponent, AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, CategoriesComponent,
                     MultipleChoice, Matching, Grouping, App],
     providers: [

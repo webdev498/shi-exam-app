@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ExamResponseService} from './../services/examresponse.service';
 import {Score} from './../model/exam/Score';
+import {CategoryScore} from './../model/exam/CategoryScore';
 
 @Component({
   template: require('./examcomplete.html'),
@@ -15,15 +16,18 @@ export class ExamCompleteComponent implements OnInit {
     public doughnutChartType: string = 'doughnut';
 
     public doughnutChartLabels: string[] = ['Percent Wrong', 'Percent Correct'];
-    public englishMCChartData: number[] = new Array();
-    public spanishMCChartData: number[] = new Array();
-    public groupingChartData: number[] = new Array();
-    public matchingChartData: number[] = new Array();
+    public categories: CategoryScore[] = new Array();
+    public overallData: number[] = new Array();
+    public overallLabels: string[] = ['Correct','Missed'];
+
+    public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.2)']}];
 
     public examScore: Score;
 
    ngOnInit() {
      this.examScore = this._examResponse.examResults();
+     this.overallData.push(this.examScore.overallRight, this.examScore.overallMissed);
+     this.categories = this.examScore.categoriesScore;
    }   
 
    iconStyle() {

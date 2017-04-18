@@ -3,8 +3,8 @@ import { AnswerInterface } from './../../interface/Answer.interface';
 export class QuestionResponse implements AnswerInterface {
     constructor() {}
 
-    questionid: string;
-    sectionid: string;
+    questionId: string;
+    sectionId: string;
     response: any[];
     responses: any[];
 }

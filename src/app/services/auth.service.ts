@@ -3,11 +3,13 @@ import {User} from './../model/User';
 import {JwtHelper} from 'angular2-jwt';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {SessionService} from './session.service';
 
 @Injectable()
 export class AuthService {
     jwt = new JwtHelper();
-    constructor(private _router: Router) {}
+    constructor(private _router: Router,
+                private _sessionService: SessionService) {}
     
     loggedIn() {
         if (localStorage[UserTokenKey] != null) {
@@ -38,7 +40,15 @@ export class AuthService {
     }
 
     premierUser() : boolean {
-        let userInfo = <any>JSON.parse(localStorage[UserInfoKey]);
+        let userInfo: User;
+        userInfo = this._sessionService.getUser();
+
+      if (userInfo === undefined && localStorage[UserInfoKey]) 
+          userInfo = <any>JSON.parse(localStorage[UserInfoKey]);
+      else 
+          return false;
+        
+
         let currentRole = userInfo.relations.role.name;
         return (currentRole === GlobalAdministrator ||
             currentRole === StudyUser);

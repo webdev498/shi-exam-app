@@ -1,19 +1,54 @@
-<div *ngIf="view">
-<div style="display: table">
+<div *ngIf="viewTranslate">
+<div style="display: table; width: 100%">
     <div style="display: table-row">
         <div style="display: table-cell">
             {{term.value}}
         </div>
         <div style="display: table-cell">
-            <input type="text" class="form-control" [(ngModel)]="termInput" (keydown)="inputKey($event)" />
+            <input type="text" class="form-control" [(ngModel)]="termInput" (keydown)="inputKey($event)" /> 
+        </div>
+    </div>
+    <div style="display: table-row">
+        <div style="display: table-cell"></div>
+        <div style="display: table-cell; padding-top: 15px">
+            <button class="btn guideBtn"
+            [disabled]="termInput == null || termInput.length == 0"
+            (click)="entered()">Submit</button>
+        </div>
+    </div>
+    <div style="display: table-row">
+        <div style="display: table-cell"></div>
+        <div style="display: table-cell">
+            <div *ngIf="complete" 
+                [ngClass]="{fibSuccess: success, 
+                             fibFail: !success}">
+                    <i *ngIf="!success"
+                        class="fa fa-times-circle-o fa-2x" 
+                        aria-hidden="true"> <span *ngIf="!success">incorrect</span>
+                    </i>
+                    <i *ngIf="success"
+                        class="fa fa-check-circle-o fa-2x" 
+                        aria-hidden="true"> <span *ngIf="success">Correct!</span>
+                    </i>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="complete && !success" 
+        style="display: table-row">
+        <div style="display: table-cell"></div>
+        <div style="display: table-cell">
+            <span class="undoSelection" (click)="showAnswer()">Show Answer {{translationText}}</span>
         </div>
     </div>
 </div>
 
-    <div *ngIf="complete"
+    <div *ngIf="complete && displayNext()"
         (click)="next()"
         style="margin-top: 20px; text-align: center; width: 90%; cursor: pointer">
         <i class="fa fa-caret-square-o-right fa-3x" aria-hidden="true"></i>
+    </div>
+    <div *ngIf="!displayNext()" style="margin-top: 20px; text-align: center; width: 90%">
+        You've reached the end of the terms.  <span class="undoSelection" (click)="resetTerms()">reset</span>
     </div>
     <section style="margin-top: 50px">
         <feedback [enableFeedback]="enableFeedback"

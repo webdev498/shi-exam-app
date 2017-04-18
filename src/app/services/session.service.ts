@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Category } from './../model/Category';
+import { User } from './../model/User';
 
 @Injectable()
 export class SessionService {
@@ -7,6 +8,7 @@ export class SessionService {
 
   private static selectedCategories: Category[];
   private static allCategories: Category[];
+  private static currentUser: User;
 
   public getCategories() {
     return SessionService.selectedCategories;
@@ -22,5 +24,13 @@ export class SessionService {
 
   public setAllCategories(categories: any) {
     SessionService.allCategories = categories;
+  }
+
+  public getUser() : User {
+    return SessionService.currentUser;
+  }
+
+  public setUser(user: User) {
+    SessionService.currentUser = user;
   }
 }

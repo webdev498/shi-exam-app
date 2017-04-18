@@ -16,6 +16,7 @@ export class FlashcardComponent implements OnInit {
   public currentTranslation: StudyTerm;
   public showCards: boolean = false;
   public term: StudyTerm;
+  public showAnswer: boolean = false;
   enableFeedback: boolean = false;
   feedbackSubmitted: boolean = false;
 
@@ -28,6 +29,8 @@ export class FlashcardComponent implements OnInit {
             apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
             voice: 'usspanishfemale'
       });
+
+      this.showCards = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -70,4 +73,10 @@ export class FlashcardComponent implements OnInit {
     this._tts.speak(this.term.value);
   }
 
+  showHideAnswer() {
+    if (this.showAnswer)
+      this.showAnswer = false;
+    else
+      this.showAnswer = true;
+  }
 }

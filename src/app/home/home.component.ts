@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
   }
   
   study() {
-    this._router.navigate(['study']);
+    this._router.navigate(['studydashboard']);
   }
 
   mostRecent() {
