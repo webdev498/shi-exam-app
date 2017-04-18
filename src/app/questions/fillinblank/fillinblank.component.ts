@@ -41,8 +41,6 @@ export class FillInBlankComponent {
           if (this.terms === undefined)
             return;
 
-            console.log(this.terms);
-
             if (this.terms.length > 0) {
               this.term = this.terms[0];
               this.viewTranslate = true;

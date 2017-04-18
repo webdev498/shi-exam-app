@@ -74,7 +74,6 @@ export class FlashcardComponent implements OnInit {
   }
 
   showHideAnswer() {
-    console.log(this.showAnswer);
     if (this.showAnswer)
       this.showAnswer = false;
     else
