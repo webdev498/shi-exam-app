@@ -4,28 +4,38 @@ import { Observable } from 'rxjs/Rx';
 import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
 import { AuthService } from './../services/auth.service';
 import { StudyTerm } from './../model/question/StudyTerm';
+import { SessionService } from './session.service';
 var _ = require('lodash');
 
 @Injectable()
 export class TermService {
   constructor(private _http: Http,
-              private _authService: AuthService) { }
+              private _authService: AuthService,
+              private _sessionService: SessionService) { }
 
   termsByCategory(categories: any[], language: string, count: number) {    
     let header = new Headers();
-    header.append(AuthHeaderKey,this._authService.getToken());
-    
-    let catarray : string = categories
+    header.append(AuthHeaderKey,this._authService.getToken());  
+
+    let url = '';
+    if (this._sessionService.getStudyRandom()) {
+      if (language != null)
+        url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&randomByCategory=true`;
+      else
+        url = `${RootApiUrl}/terms?count=${count.toString()}&randomByCategory=true`;      
+    }
+    else {
+      let catarray : string = categories
             .map((c) => {return c.id; })
             .reduce((prev, curr) => {
         return `${prev}&categories=${curr}`;
-    });   
+      }); 
 
-    let url = '';
-    if (language != null)
-      url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&categories=${catarray}`;
-    else
-      url = `${RootApiUrl}/terms?count=${count.toString()}&categories=${catarray}`;
+      if (language != null)
+        url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&categories=${catarray}`;
+      else
+        url = `${RootApiUrl}/terms?count=${count.toString()}&categories=${catarray}`;
+    }
 
     return this._http.get(url, {
       headers: header
