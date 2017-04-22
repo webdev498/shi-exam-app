@@ -4,8 +4,8 @@ export class CategoryScore {
     public name: string;
     public id: string;
     get data(): any[] {
-        return [this.correct, parseInt(this.total) - parseInt(this.correct)];
+        return [this.correct, this.total - this.correct];
     }
-    public correct: string;
-    public total: string;
+    public correct: number;
+    public total: number;
 }

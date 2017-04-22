@@ -9,6 +9,8 @@ export class Score {
     public groupingScore: string;
     public matchingScore: string;
     public categoriesScore: CategoryScore[];
+    public dateTaken: string;
+    public percent: number;
 
     public overallPercent: string;
     public mcPercent: string;

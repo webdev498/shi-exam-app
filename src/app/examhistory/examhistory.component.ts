@@ -2,25 +2,37 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './../services/auth.service';
 import {ExamService} from './../exam/exam.service';
+import {ExamResponseService} from './../services/examresponse.service';
 import {EventService} from './../services/event.service';
+import {CategoryService} from './../services/category.service';
+import {SessionService} from './../services/session.service';
 import {ExamResponse} from './../model/exam/ExamResponse';
+import {Category} from './../model/Category';
+import {Score} from './../model/exam/Score';
 
 @Component({
   selector: 'examhistory',  
-  providers: [ExamService],
+  providers: [ExamResponseService, ExamService, CategoryService],
   template: require('./examhistory.html')
 })
 export class ExamHistoryComponent implements OnInit {
     
     constructor(private _router: Router,
                 private _authService: AuthService,
+                private _examresponseService: ExamResponseService,
                 private _examService: ExamService,
-                private _eventService: EventService) 
+                private _eventService: EventService,
+                private _categoryService: CategoryService,
+                private _sessionService: SessionService) 
                 {
 
                 }
 
-    results: ExamResponse[];
+    private _results: ExamResponse[];
+    public loading: boolean = true;
+    public scores: Score[] = new Array();
+
+    private _categories: Category[];
     
     ngOnInit() {
       if (!this._authService.premierUser()) {
@@ -28,7 +40,24 @@ export class ExamHistoryComponent implements OnInit {
         return;
       }
 
-      this._examService.allExamScores()
+      if (this._sessionService.getAllCategories() !== undefined) {
+        this._categories = this._sessionService.getAllCategories();
+        this._scores();
+      } else {
+        this._categoryService.categories()
+          .subscribe(
+            response => {
+              this._categories = <Category[]>response;
+              this._sessionService.setAllCategories(this._categories);
+              this._scores();
+            },
+            error => this._handleAllExamError(error)
+        );
+      }
+    }
+
+    _scores() {
+          this._examService.allExamScores()
             .subscribe(
           response => {
             this._handleAllExamResponse(response);
@@ -38,7 +67,15 @@ export class ExamHistoryComponent implements OnInit {
     }
 
     _handleAllExamResponse(examResults: ExamResponse[]) {
-      this.results = examResults;
+      this._results = examResults;
+      let scoreTemp: Score[] = new Array();
+      for (let result of this._results) {
+        scoreTemp.push(this._examresponseService.examHistoryResult(result));
+      }
+
+      this.scores = scoreTemp;
+      console.log(this.scores);
+      this.loading = false;
     }
 
     _handleAllExamError(error: any) {

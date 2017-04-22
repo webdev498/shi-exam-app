@@ -5,9 +5,10 @@ export class ExamResponse {
 
     id: string;
     examId: string;
+    createdAt: Date;
     itemCount: number;
     pointsPossible: number;
     pointsAwarded: number;
-    createdAt: string;
     sections: SectionResponse[];
+    relations: any;
 }
