@@ -32,6 +32,21 @@ export class ExamHistoryComponent implements OnInit {
     public loading: boolean = true;
     public scores: Score[] = new Array();
 
+    public lineChartData:Array<any> = [{data: []}];
+
+    public lineChartLabels:Array<any> = new Array();
+    public lineChartOptions:any = {
+      responsive: true,
+        scales: { yAxes: [{
+              ticks: {
+                  min: 0,
+                  max: 100,
+                  stepSize: 5
+              }
+          }]
+        }
+    };
+
     private _categories: Category[];
     
     ngOnInit() {
@@ -74,7 +89,12 @@ export class ExamHistoryComponent implements OnInit {
       }
 
       this.scores = scoreTemp;
-      console.log(this.scores);
+
+      this.lineChartLabels = this.scores.map(label => label.dateTaken);
+      const lineScores = this.scores.map(s => s.percent);
+      console.log(lineScores);
+      this.lineChartData = [{data: lineScores, label: 'Percent Correct'}];
+
       this.loading = false;
     }
 
@@ -82,4 +102,12 @@ export class ExamHistoryComponent implements OnInit {
       this._eventService.broadcast('error', 'There was an issue retrieving your history');
       console.error(error);
     }
+
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
 }

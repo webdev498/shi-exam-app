@@ -58,7 +58,9 @@ export class ExamResponseService {
         let percentCorrect = 0;
         const categoriesUsed = this._sessionService.getAllCategories();
 
-        percentCorrect = Math.floor((er.pointsAwarded / (er.pointsAwarded == 0 ? 0 : er.pointsPossible)) * 100);
+        if (er.pointsAwarded > 0)
+            percentCorrect = Math.floor((er.pointsAwarded / (er.pointsPossible)) * 100);
+        
         score.overallPassed = percentCorrect < PassingScore ? false : true;
         score.overallRight = er.pointsAwarded;
         score.overallMissed = er.pointsPossible - er.pointsAwarded;
