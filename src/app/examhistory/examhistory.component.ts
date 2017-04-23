@@ -44,16 +44,19 @@ export class ExamHistoryComponent implements OnInit {
               ticks: {
                   min: 0,
                   max: 100,
-                  stepSize: 5
+                  stepSize: 10
               }
           }]
         }
     };
 
     public doughnutChartLabels: string[] = ['Percent Wrong', 'Percent Correct'];
-    public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.2)']}];
+    public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.6)']}];
     public lineChartColors: any[] = [{backgroundColor: ['rgba(26,184,223,0.6)']}];
     public chartLabels: string[] = ['Correct','Missed'];
+
+    public categoryLabelAll: any[] = [];
+    public categoryDataAll: Array<any> = [];
 
     private _categories: Category[];
     
@@ -141,6 +144,9 @@ export class ExamHistoryComponent implements OnInit {
       for (let cd of categoryTemp) {
         cd.chartData.push(cd.correct, cd.total - cd.correct);
       }
+
+      this.categoryLabelAll = categoryTemp.map(l => l.name);
+      this.categoryDataAll = categoryTemp.map(a => a.total);
 
       this.categoryHistory = categoryTemp;
 
