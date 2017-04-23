@@ -50,6 +50,11 @@ export class ExamHistoryComponent implements OnInit {
         }
     };
 
+    public doughnutChartLabels: string[] = ['Percent Wrong', 'Percent Correct'];
+    public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.2)']}];
+    public lineChartColors: any[] = [{backgroundColor: ['rgba(26,184,223,0.6)']}];
+    public chartLabels: string[] = ['Correct','Missed'];
+
     private _categories: Category[];
     
     ngOnInit() {
@@ -91,7 +96,7 @@ export class ExamHistoryComponent implements OnInit {
         scoreTemp.push(this._examresponseService.examHistoryResult(result));
       }
 
-      this.scores = scoreTemp;
+      this.scores = scoreTemp.reverse();
 
       this.lineChartLabels = this.scores.map(label => label.dateTaken);
       const lineScores = this.scores.map(s => s.percent);
@@ -114,9 +119,9 @@ export class ExamHistoryComponent implements OnInit {
             newCat.total = cs.total;
             
             if (cs.correct === 0)
-              newCat.percent = 0;
+              newCat.percent = '0';
             else
-              newCat.percent = (cs.correct / cs.total) * 100;
+              newCat.percent = Math.round((cs.correct / cs.total) * 100).toString();
 
             categoryTemp.push(newCat);
           } else {
@@ -128,10 +133,16 @@ export class ExamHistoryComponent implements OnInit {
             if (cs.correct === 0)
               newCat.percent = 0;
             else
-              newCat.percent = (cs.correct / cs.total) * 100;
+              newCat.percent = Math.round((newCat.correct / newCat.total) * 100).toString();
           }
         }
       }
+
+      for (let cd of categoryTemp) {
+        cd.chartData.push(cd.correct, cd.total - cd.correct);
+      }
+
+      this.categoryHistory = categoryTemp;
 
       this.loading = false;
     }
