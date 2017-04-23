@@ -10,6 +10,8 @@ import {ExamResponse} from './../model/exam/ExamResponse';
 import {Category} from './../model/Category';
 import {Score} from './../model/exam/Score';
 
+var _ = require('lodash');
+
 @Component({
   selector: 'examhistory',  
   providers: [ExamResponseService, ExamService, CategoryService],
@@ -31,6 +33,7 @@ export class ExamHistoryComponent implements OnInit {
     private _results: ExamResponse[];
     public loading: boolean = true;
     public scores: Score[] = new Array();
+    public categoryHistory: Category[] = new Array();
 
     public lineChartData:Array<any> = [{data: []}];
 
@@ -92,8 +95,43 @@ export class ExamHistoryComponent implements OnInit {
 
       this.lineChartLabels = this.scores.map(label => label.dateTaken);
       const lineScores = this.scores.map(s => s.percent);
-      console.log(lineScores);
+      
       this.lineChartData = [{data: lineScores, label: 'Percent Correct'}];
+
+      //get aggregrate category score
+      let categoryTemp: Category[] = new Array();
+      for (let s of this.scores) {
+        for (let cs of s.categoriesScore) {
+          const exists = _.some(categoryTemp, function (c) {
+            return c.id === cs.id;
+          });
+
+          if (!exists) {
+            let newCat = new Category();
+            newCat.id = cs.id;
+            newCat.name = cs.name;
+            newCat.correct = cs.correct;
+            newCat.total = cs.total;
+            
+            if (cs.correct === 0)
+              newCat.percent = 0;
+            else
+              newCat.percent = (cs.correct / cs.total) * 100;
+
+            categoryTemp.push(newCat);
+          } else {
+            let newCat = _.filter(categoryTemp, { 'id': cs.id })[0];
+
+            newCat.correct += cs.correct;
+            newCat.total += cs.total;
+            
+            if (cs.correct === 0)
+              newCat.percent = 0;
+            else
+              newCat.percent = (cs.correct / cs.total) * 100;
+          }
+        }
+      }
 
       this.loading = false;
     }
@@ -104,10 +142,10 @@ export class ExamHistoryComponent implements OnInit {
     }
 
   public chartClicked(e:any):void {
-    console.log(e);
+    //console.log(e);
   }
  
   public chartHovered(e:any):void {
-    console.log(e);
+    //console.log(e);
   }
 }
