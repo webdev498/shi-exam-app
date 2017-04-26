@@ -45,6 +45,8 @@ export class AccountComponent implements OnInit {
   emailValid: boolean = true;
   accountMessage: string;
 
+  _loading: boolean = false;
+
   constructor(private _authService: AuthService,
              private _nationalityService: NationalityService,
              private _countryCodeService: CountryCodeService,
@@ -76,6 +78,9 @@ export class AccountComponent implements OnInit {
   }
 
   submitButtonState() {
+    if (this._loading)
+        return true;
+
     if (this.registration.email.length > 0 &&
         this.registration.firstName.length > 0 &&
         this.registration.lastName.length > 0) {
@@ -114,6 +119,8 @@ export class AccountComponent implements OnInit {
       return;
     }
 
+    this._loading = true;
+
       let userAccount = new UserAccount().setPayload(this.registration);
       let payload = userAccount.getPayload();
       this._accountService.putUser(payload)
@@ -122,16 +129,20 @@ export class AccountComponent implements OnInit {
             error => this._handleError(error, 'There was an error updating your account')
         );
 
+      if (payload.telephones !== undefined && payload.telephones.length > 0) {
       this._accountService.putUserTelephone(payload.telephones[0])
         .subscribe(
             response => {},
             error => this._handleError(error, 'There was an error updating your account')
         );
+      }
   }
 
   _handleAccountResponse(user) {
     this._authService.saveUser(user);   
     this.accountMessage = 'Account updated successfully';
+
+    this._loading = false;
   }
 
   updatePasswordClick() {

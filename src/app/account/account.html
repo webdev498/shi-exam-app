@@ -176,7 +176,7 @@
       <div class="form-group">
         <button type="button" [disabled]="submitButtonState()" (click)="submitAccount()" 
             class="btn btn-sm btn-primary">Update Account</button>
-            <span class="updateSuccess" [innerText]="accountMessage"></span>
+            <div class="updateSuccess" [innerText]="accountMessage"></div>
       </div>
       <div class="form-group">
         <button type="button" (click)="logout($event)" 
