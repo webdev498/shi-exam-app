@@ -55,10 +55,8 @@ npm-debug.log
 .awcache
 
 # Dll #
-/dll/polyfills.dll.js
-/dll/polyfills.dll.js.map
-/dll/vendor.dll.js
-/dll/vendo.dll.js.map
+/dll/**/*.js
+/dll/**/*.map
 
 # Doc #
 /doc/
