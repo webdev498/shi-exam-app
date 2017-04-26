@@ -6,9 +6,10 @@ import { User } from './../model/User';
 export class SessionService {
   constructor() { }
 
-  private static selectedCategories: Category[];
   private static allCategories: Category[];
   private static currentUser: User;
+  private static selectedCategories: Category[];
+  private static studyRandom: boolean = false;
 
   public getCategories() {
     return SessionService.selectedCategories;
@@ -24,6 +25,14 @@ export class SessionService {
 
   public setAllCategories(categories: any) {
     SessionService.allCategories = categories;
+  }
+
+  public getStudyRandom() {
+    return SessionService.studyRandom;
+  }
+
+  public setStudyRandom(random: boolean) {
+    SessionService.studyRandom = random;
   }
 
   public getUser() : User {

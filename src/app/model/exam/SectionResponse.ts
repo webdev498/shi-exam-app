@@ -1,12 +1,7 @@
-import {QuestionResponse} from './QuestionResponse';
+import {CategoryResponse} from './CategoryResponse';
 
 export class SectionResponse {
     constructor() {}
 
-    id: string;
-    items: number;
-    possible: number;
-    correct: number;
-    results: QuestionResponse[];
-    categoryResults: any;
+    categoryResults: CategoryResponse[];
 }

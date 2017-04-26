@@ -35,12 +35,17 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public studyTerm: StudyTerm;
     public studyTerms: StudyTerm[];
 
+    public termsRandom: boolean;
+
     ngOnInit() {
-      if (this._sessionService.getCategories() === undefined) {
+      if (this._sessionService.getCategories() === undefined && !this._sessionService.getStudyRandom()) {
         this._router.navigate(['study']);
         return;
       }
-      this.categoriesChosen = this._sessionService.getCategories();
+      this.termsRandom = this._sessionService.getStudyRandom();
+
+      if (!this.termsRandom)
+        this.categoriesChosen = this._sessionService.getCategories();
     }
 
     start(questionType: string) {
@@ -50,7 +55,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
         case 'FlashCard':
           this.fetching = true;
           this.studyType = 'Flash Cards';
-          this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
+          this._termService.termsByCategory(this.categoriesChosen, 'Spanish',100)
               .subscribe(
               response => this._handleTermResponse(response),
               error => this._handleError(error)
@@ -59,7 +64,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
         case 'Translate':
           this.fetching = true;
           this.studyType = 'Translation';
-          this._termService.termsByCategory(this.categoriesChosen, 'Spanish',500)
+          this._termService.termsByCategory(this.categoriesChosen, 'Spanish',100)
               .subscribe(
               response => this._handleTermResponse(response),
               error => this._handleError(error)

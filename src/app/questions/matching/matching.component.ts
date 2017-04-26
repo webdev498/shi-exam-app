@@ -32,6 +32,11 @@ export class Matching {
     }
 
     _matched(id: string, droppedid: string) {
+        if (!this.isEnglishById(id)) {
+            const did = droppedid;
+            droppedid = id;
+            id = did;
+        }
         this.choiceMatched.emit({
             id: id,
             matchedid: droppedid
@@ -84,6 +89,14 @@ export class Matching {
 
     isEnglish(term: Term) {
         return term.language === 'english';
+    }
+
+    isEnglishById(id: string) {
+        const result = _.some(this.terms, function (t) {
+          return t.id === id && t.language === 'english';
+        });
+
+        return result;
     }
 
     isSpanish(term: Term) {
