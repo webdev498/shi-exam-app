@@ -34,15 +34,16 @@ export class SessionService {
       return `0/${SessionService.studyOverall} (0%)`;
     else {
       const percent = Math.floor((SessionService.studyCorrect / SessionService.studyOverall) * 100);
-      `${SessionService.studyCorrect}/${SessionService.studyOverall} (${percent}%)`;
+      return `${SessionService.studyCorrect}/${SessionService.studyOverall} (${percent}%)`;
     }
   }
 
-  public setStudyCorrect(correct: boolean):void {
+  public setStudyCorrect(correct: boolean, addToTotal: boolean = true):void {
     if (correct)
       SessionService.studyCorrect++;
 
-   SessionService.studyOverall++;
+   if (addToTotal)
+     SessionService.studyOverall++;
   }
 
   public getStudyRandom() {
