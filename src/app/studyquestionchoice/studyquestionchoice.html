@@ -73,21 +73,21 @@
                     (playAudio)="playAudio($event)"
                     [questionType]="'Multiple Choice English'"
                     [mcTerms]="studyMCTerms"
-                    [mode]="'study''">
+                    [mode]="'study'">
                 </multipleChoice>
             <multipleChoice *ngSwitchCase="'Multiple Choice Spanish'" 
                     (playAudio)="playAudio($event)"
                     [mcTerms]="studyMCTerms"
                     [questionType]="'Multiple Choice Spanish'"
-                    [mode]="'study''">
+                    [mode]="'study'">
                 </multipleChoice>
             <matching *ngSwitchCase="'Matching'" 
                     [mTerms]="studyMTerms"
-                    [mode]="'study''">
+                    [mode]="'study'">
                 </matching>
             <grouping *ngSwitchCase="'Grouping'" 
                     [gTerms]="studyGTerms"
-                    [mode]="'study''">
+                    [mode]="'study'">
                 </grouping>
             <flashcard *ngSwitchCase="'FlashCard'" 
                 [terms]="studyTerms">

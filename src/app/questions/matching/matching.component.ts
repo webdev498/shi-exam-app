@@ -1,6 +1,8 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Term} from './../../model/question/Term';
 import {MatchingQuestion} from './../../model/question/MatchingQuestion';
+import {AppModeStudy} from './../../model/Constants';
+import {SessionService} from './../../services/session.service';
 var _ = require('lodash');
  
 @Component({ 
@@ -10,11 +12,19 @@ var _ = require('lodash');
 export class Matching {
     @Input() terms : Term[];
     @Input() mTerms: MatchingQuestion[];
+    @Input() mode: string;
 
     @Output() choiceMatched = new EventEmitter();
     @Output() termUndo = new EventEmitter();
 
-    constructor() {
+    public complete: boolean = false;
+    public success: boolean = false;
+    public currentQuestion: MatchingQuestion;
+
+    public enableFeedback: boolean = false;
+    public feedbackSubmitted: boolean = false;
+
+    constructor(private _sessionService: SessionService) {
         
     }
 
@@ -107,6 +117,10 @@ export class Matching {
 
     _getChoice(id) {
         return _.find(this.terms, {id: id});
+    }
+
+    next() {
+        
     }
     
 }

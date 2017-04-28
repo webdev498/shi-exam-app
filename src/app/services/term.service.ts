@@ -13,14 +13,20 @@ export class TermService {
               private _authService: AuthService,
               private _sessionService: SessionService) { }
 
-  mcByCategory(categories: any[], language: string, count: number) {
+  questionsByType(categories: any[], qType: string, count: number) {
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());  
+
+    if (qType === 'Grouping')
+      qType = 'Category Matching';
+
+    if (qType === 'Matching')
+      qType = 'Term Matching';
 
     let url = '';
     let body = {
       'length': 100,
-      'sections': language,
+      'sections': qType,
       'categories': []
     }
 

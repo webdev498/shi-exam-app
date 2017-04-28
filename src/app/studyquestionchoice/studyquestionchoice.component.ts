@@ -89,9 +89,11 @@ export class StudyQuestionChoiceComponent implements OnInit {
         break;
         case 'Multiple Choice English':
         case 'Multiple Choice Spanish':
+        case 'Grouping':
+        case 'Matching':
           this.fetching = true;
           this.studyType = questionType;
-          this._termService.mcByCategory(this.categoriesChosen, questionType,100)
+          this._termService.questionsByType(this.categoriesChosen, questionType,100)
               .subscribe(
               response => this._handleTermResponse(response),
               error => this._handleError(error)
@@ -121,6 +123,15 @@ export class StudyQuestionChoiceComponent implements OnInit {
         case 'Multiple Choice English':
         case 'Multiple Choice Spanish':
           console.log(response);
+          this.picked = true;
+        break;
+        case 'Grouping':
+          console.log(response);
+          this.picked = true;
+        break;
+        case 'Matching':
+          console.log(response);
+          this.picked = true;
         break;
      }
     }

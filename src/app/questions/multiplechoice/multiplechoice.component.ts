@@ -19,7 +19,7 @@ export class MultipleChoice {
 
     public complete: boolean = false;
     public success: boolean = false;
-    private currentQuestion: MultipleChoiceQuestion;
+    public currentQuestion: MultipleChoiceQuestion;
 
     public enableFeedback: boolean = false;
     public feedbackSubmitted: boolean = false;
