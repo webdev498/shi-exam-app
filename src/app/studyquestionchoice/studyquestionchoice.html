@@ -63,27 +63,24 @@
     <div class="col-md-4 col-md-offset-4">
         <div [ngSwitch]="currentQuestionType">
             <multipleChoice *ngSwitchCase="'Multiple Choice English'" 
-                    (answerChosen)="choiceSelected($event)"
-                    (playAudio)="questionAudio($event)"
-                    [terms]="currentQuestion.choices"
-                    [questionType]="currentQuestionType">
+                    (playAudio)="playAudio($event)"
+                    [questionType]="'Multiple Choice English'"
+                    [mcTerms]="studyMCTerms"
+                    [mode]="'study''">
                 </multipleChoice>
             <multipleChoice *ngSwitchCase="'Multiple Choice Spanish'" 
-                    (answerChosen)="choiceSelected($event)"
-                    (playAudio)="questionAudio($event)"
-                    [terms]="currentQuestion.choices"
-                    [questionType]="currentQuestionType">
+                    (playAudio)="playAudio($event)"
+                    [mcTerms]="studyMCTerms"
+                    [questionType]="'Multiple Choice Spanish'"
+                    [mode]="'study''">
                 </multipleChoice>
             <matching *ngSwitchCase="'Matching'" 
-                    [terms]="currentQuestion.terms"
-                    (choiceMatched)="choiceSelected($event)"
-                    (termUndo)="termDeselected($event)">
+                    [mTerms]="studyMTerms"
+                    [mode]="'study''">
                 </matching>
             <grouping *ngSwitchCase="'Grouping'" 
-                    [categories]="currentQuestion.categories"
-                    [terms]="currentQuestion.choices"
-                    (choiceGrouped)="choiceSelected($event)"
-                    (termUndo)="termDeselected($event)">
+                    [gTerms]="studyGTerms"
+                    [mode]="'study''">
                 </grouping>
             <flashcard *ngSwitchCase="'FlashCard'" 
                 [terms]="studyTerms">

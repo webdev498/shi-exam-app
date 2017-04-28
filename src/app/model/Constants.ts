@@ -24,6 +24,7 @@ export const PassingScore = 70;
 
 //study constants
 export const CategorySelections = 'categoryselections';
+export const AppModeStudy = 'study'; 
 
 //question constants
 export const MultipleChoiceEnglishQuestionType = 'Multiple Choice English';

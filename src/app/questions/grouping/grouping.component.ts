@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Term} from './../../model/question/Term';
+import {GroupingQuestion} from './../../model/question/GroupingQuestion';
 import {Category} from './../../model/question/Category';
 import {GroupingTermsShown} from './../../model/Constants';
 var _ = require('lodash');
@@ -11,6 +12,7 @@ var _ = require('lodash');
 export class Grouping {
     @Input() terms : Term[];
     @Input() categories: Category[];
+    @Input() gTerms: GroupingQuestion[];
 
     @Output() choiceGrouped = new EventEmitter();
     @Output() termUndo = new EventEmitter();

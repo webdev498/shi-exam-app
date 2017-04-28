@@ -1,5 +1,8 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Term} from './../../model/question/Term';
+import {MultipleChoiceQuestion} from './../../model/question/MultipleChoiceQuestion';
+import {AppModeStudy} from './../../model/Constants';
+import {SessionService} from './../../services/session.service';
 import {MultipleChoiceEnglishQuestionType} from './../../model/Constants';
  
 @Component({ 
@@ -8,24 +11,41 @@ import {MultipleChoiceEnglishQuestionType} from './../../model/Constants';
 })
 export class MultipleChoice {
     @Input() terms : Term[];
+    @Input() mcTerms: MultipleChoiceQuestion[];
     @Input() questionType: string;
+    @Input() mode: string;
     @Output() answerChosen = new EventEmitter();
     @Output() playAudio = new EventEmitter();
+
+    public complete: boolean = false;
+    public success: boolean = false;
+    private currentQuestion: MultipleChoiceQuestion;
     
-    constructor() {
+    constructor(private _sessionService: SessionService) {
         
     }    
     
     answer(term: Term) {
-        this.answerChosen.emit({
-            id: term.id
-        });
+
+        if (this.mode !== AppModeStudy) {
+            this.answerChosen.emit({
+                id: term.id
+            });
+        } else if (this.mode === AppModeStudy) {
+            if (term.id === this.currentQuestion.correctId) {
+                this.success = true;
+            }
+
+            this.complete = true;
+        }
     }
 
     answerText(term: Term) {
-        this.answerChosen.emit({
-            id: term.id
-        });
+        if (this.mode !== AppModeStudy) {
+            this.answerChosen.emit({
+                id: term.id
+            });
+        }
 
         let radioButton = document.getElementById(term.id) as HTMLInputElement;
         radioButton.checked = true;
@@ -45,5 +65,14 @@ export class MultipleChoice {
             return false;
 
         return true;
+    }
+
+    next() {
+        this.complete = false;
+        this.success = false;
+    }
+
+    showAnswer() {
+        return this.complete && !this.success;
     }
 }

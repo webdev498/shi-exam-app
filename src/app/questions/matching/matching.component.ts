@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Term} from './../../model/question/Term';
+import {MatchingQuestion} from './../../model/question/MatchingQuestion';
 var _ = require('lodash');
  
 @Component({ 
@@ -8,6 +9,7 @@ var _ = require('lodash');
 })
 export class Matching {
     @Input() terms : Term[];
+    @Input() mTerms: MatchingQuestion[];
 
     @Output() choiceMatched = new EventEmitter();
     @Output() termUndo = new EventEmitter();

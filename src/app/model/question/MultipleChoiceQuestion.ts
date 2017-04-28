@@ -5,6 +5,7 @@ import {QuestionInterface} from './../interface/Question.interface';
 
 export class MultipleChoiceQuestion implements QuestionInterface {
     public choices: Term[];
+    public correctId: string;
     public question: Question;
     public section: Section;
     public type: string;
