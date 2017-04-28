@@ -20,6 +20,9 @@ export class MultipleChoice {
     public complete: boolean = false;
     public success: boolean = false;
     private currentQuestion: MultipleChoiceQuestion;
+
+    public enableFeedback: boolean = false;
+    public feedbackSubmitted: boolean = false;
     
     constructor(private _sessionService: SessionService) {
         
@@ -70,6 +73,8 @@ export class MultipleChoice {
     next() {
         this.complete = false;
         this.success = false;
+        this.enableFeedback = false;
+        this.feedbackSubmitted = false;
     }
 
     showAnswer() {

@@ -13,6 +13,31 @@ export class TermService {
               private _authService: AuthService,
               private _sessionService: SessionService) { }
 
+  mcByCategory(categories: any[], language: string, count: number) {
+    let header = new Headers();
+    header.append(AuthHeaderKey,this._authService.getToken());  
+
+    let url = '';
+    let body = {
+      'length': 100,
+      'sections': language,
+      'categories': []
+    }
+
+    body.categories = new Array();
+
+    for (let i = 0; i < categories.length; i++) {
+      body.categories.push(categories[i].id);
+    }
+
+    url = `${RootApiUrl}`;
+    return this._http.post(url, body, {
+      headers: header
+    })
+    .map((response: Response) => <any>response.json())
+    .catch(this.handleError);
+  }
+
   termsByCategory(categories: any[], language: string, count: number) {    
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());  
@@ -25,11 +50,7 @@ export class TermService {
         url = `${RootApiUrl}/terms?count=${count.toString()}&randomByCategory=true`;      
     }
     else {
-      let catarray : string = categories
-            .map((c) => {return c.id; })
-            .reduce((prev, curr) => {
-        return `${prev}&categories=${curr}`;
-      }); 
+      const catarray = this.catArray(categories);
 
       if (language != null)
         url = `${RootApiUrl}/terms/languages/${language}?withTranslations=true&count=${count.toString()}&categories=${catarray}`;
@@ -43,6 +64,16 @@ export class TermService {
       .map((response: Response) => <any>response.json())
       //.do(data => console.log(data))
       .catch(this.handleError);
+  }
+
+  private catArray(categories: any): string {
+      let catarray : string = categories
+            .map((c) => {return c.id; })
+            .reduce((prev, curr) => {
+        return `${prev}&categories=${curr}`;
+      }); 
+
+      return catarray;
   }
 
   private handleError(error: Response) {

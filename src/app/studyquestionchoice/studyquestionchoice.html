@@ -14,7 +14,14 @@
                 <div class="col-md-2">
                     <button class="btn guideBtn"
                     [disabled]="fetching"
-                     (click)="start('Multiple Choice English')">Multiple Choice</button>
+                     (click)="start('Multiple Choice English')"
+                     title="Multiple Choice Questions with answers in English">Multiple Choice English</button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn guideBtn"
+                    [disabled]="fetching"
+                     (click)="start('Multiple Choice Spanish')"
+                     title="Multiple Choice Questions with answers in Spanish">Multiple Choice Spanish</button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 

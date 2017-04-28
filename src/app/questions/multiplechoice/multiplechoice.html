@@ -33,6 +33,16 @@
                 <i class="fa fa-caret-square-o-right fa-3x" aria-hidden="true"></i>
                 <span class="nextQuestion">Next Question</span>
             </div>
+
+                <section>
+                    <studyscore></studyscore>
+                </section>
+                <section style="margin-top: 50px">
+                    <feedback [enableFeedback]="enableFeedback"
+                        [feedbackSubmitted]="feedbackSumitted"
+                        [term]="term">
+                    </feedback>
+                </section>
         </div>
     </div>
 </div>
