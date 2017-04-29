@@ -1,7 +1,7 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import {Term} from './../../model/question/Term';
 import {MatchingQuestion} from './../../model/question/MatchingQuestion';
-import {AppModeStudy} from './../../model/Constants';
+import {AppModeStudy,MatchingTermsShown} from './../../model/Constants';
 import {SessionService} from './../../services/session.service';
 var _ = require('lodash');
  
@@ -26,9 +26,28 @@ export class Matching {
     public enableFeedback: boolean = false;
     public feedbackSubmitted: boolean = false;
 
+    private _count: number = 0;
+    private _matches: number = 0;
+
     constructor(private _sessionService: SessionService) {
         
     }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if(changes['mTerms']) {
+          if (this.mTerms === undefined)
+            return;
+
+            if (this.mTerms.length > 0) {
+              this.terms= this.mTerms[0].terms;
+              this.ready = true;
+              this.currentQuestion = this.mTerms[0];
+
+              this.enableFeedback = false;
+              this.feedbackSubmitted = false;
+            }
+        }
+    } 
 
     dragstart(ev, id) {
         ev.dataTransfer.setData('choice', id);
@@ -58,6 +77,26 @@ export class Matching {
 
         let choice = <Term>this._getChoice(id);
         let droppedChoice = <Term>this._getChoice(droppedid);
+
+        if (this.mode === AppModeStudy) {
+            for (let i = 0; i < this.currentQuestion.correctResponses.length; i++) {
+                if (this.currentQuestion.correctResponses[i].candidateId === id &&
+                    this.currentQuestion.correctResponses[i].termId === droppedid) {
+                        choice.success = true;
+                        break;
+                    }
+            }
+    
+            if (choice.success === undefined)
+                choice.success = false;
+
+            this._sessionService.setStudyCorrect(choice.success,true);
+
+            this._matches++;
+            if (this._matches == MatchingTermsShown)
+                this.complete = true;
+        }
+
         choice.matchedchoice = droppedChoice;
         droppedChoice.matched = true;
     }
@@ -70,6 +109,10 @@ export class Matching {
 
         term.matchedchoice.matched = false;
         term.matchedchoice = null;
+
+        if (this.mode === AppModeStudy) {
+            this._matches--;
+        }
     }
 
     checkChanged(term: Term) {
@@ -122,7 +165,14 @@ export class Matching {
     }
 
     next() {
-        
+        this._count++;
+        this.currentQuestion = this.mTerms[this._count];
+        this.terms = this.currentQuestion.terms;
+
+        this.complete = false;
+        this.success = false;
+        this.enableFeedback = false;
+        this.feedbackSubmitted = false;     
     }
     
 }

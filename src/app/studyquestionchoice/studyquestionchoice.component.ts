@@ -143,7 +143,17 @@ export class StudyQuestionChoiceComponent implements OnInit {
           this.picked = true;
         break;
         case 'Matching':
-          console.log(response);
+          const mSection = response.sections[0];
+          this.instructions = mSection.instructions;
+          let mQuestions : MatchingQuestion[] = new Array();
+
+          for (let i = 0; i < mSection.questions.length; i++) {
+            const question = mSection.questions[i];
+            let m = new MatchingQuestion();
+            mQuestions.push(m.mapPractice(question));
+          }
+
+          this.studyMTerms = mQuestions;
           this.picked = true;
         break;
      }
