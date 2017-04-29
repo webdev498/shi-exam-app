@@ -22,6 +22,7 @@ go to [http://0.0.0.0:3001](http://0.0.0.0:3001) or [http://localhost:3001](http
 * [Contributing](#contributing)
 * [TypeScript](#typescript)
 * [Typings](#typings)
+* [Build Automation](#building)
 * [Frequently asked questions](#frequently-asked-questions)
 * [Support, Questions, or Feedback](#support-questions-or-feedback)
 * [License](#license)
@@ -223,6 +224,9 @@ see [typings/registry](https://github.com/typings/registry)
  * please see [How to include or create custom type definitions](https://github.com/AngularClass/angular2-webpack-starter/wiki/How-to-include-or-create-custom-type-definitions) and [custom-typings.d.ts](https://github.com/AngularClass/angular2-webpack-starter/blob/master/src/custom-typings.d.ts)
 * How do I async load a component?
  * see wiki [How-do-I-async-load-a-component-with-AsyncRoute](https://github.com/AngularClass/angular2-webpack-starter/wiki/How-do-I-async-load-a-component-with-AsyncRoute)
+
+# Building
+This project ships with an executable shell script that is designed to build the production packages for this application. This script is typically consumed by CI automation, but it may be used directly by typing `./bin/build-production` from this project's root directory.
 
 # Support, Questions, or Feedback
 > Contact us anytime for anything about this repo or Angular 2
