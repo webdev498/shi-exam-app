@@ -26,9 +26,11 @@ export class TermService {
     let url = '';
     let body = {
       'length': 100,
-      'sections': qType,
+      'sections': [],
       'categories': []
     }
+
+    body.sections.push(qType);
 
     body.categories = new Array();
 
@@ -36,7 +38,7 @@ export class TermService {
       body.categories.push(categories[i].id);
     }
 
-    url = `${RootApiUrl}`;
+    url = `${RootApiUrl}/exams/practice`;
     return this._http.post(url, body, {
       headers: header
     })

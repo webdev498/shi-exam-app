@@ -16,10 +16,12 @@ export class Grouping {
     @Input() categories: Category[];
     @Input() gTerms: GroupingQuestion[];
     @Input() mode: string;
+    @Input() instructions: string;
 
     @Output() choiceGrouped = new EventEmitter();
     @Output() termUndo = new EventEmitter();
 
+    public ready: boolean = false;
     public complete: boolean = false;
     public success: boolean = false;
     public currentQuestion: GroupingQuestion;
@@ -110,12 +112,20 @@ export class Grouping {
     }
 
     _grouped(id: string, droppedid: string) {
+
+        if (droppedid === undefined)
+            return;
+
         this.choiceGrouped.emit({
             id: droppedid,
             groupedid: id
         });
 
         let choice = <Term>this._getChoice(droppedid);
+
+        if (choice === undefined)
+            return;    
+
         if (!choice.hasOwnProperty('matched')) {
             choice['matched'] = false;
         }
@@ -140,7 +150,7 @@ export class Grouping {
     }
 
     next() {
-        
+
     }
     
 }

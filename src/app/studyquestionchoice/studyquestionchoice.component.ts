@@ -43,6 +43,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public studyMCTerms: MultipleChoiceQuestion[];
     public studyMTerms: MatchingQuestion[];
     public studyGTerms: GroupingQuestion[];
+    public instructions: string;
 
     public termsRandom: boolean;
 
@@ -109,20 +110,32 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
     _handleTermResponse(response: any) {
       this.fetching = false;
-      this._studyTerms = this._termService.studyTermCollection(response);
 
       switch (this.currentQuestionType) {
         case 'FlashCard':
+          this._studyTerms = this._termService.studyTermCollection(response);
           this.studyTerms = this._studyTerms;
           this.picked = true;
           break;
         case 'Translate':
+          this._studyTerms = this._termService.studyTermCollection(response);
           this.studyTerms = this._studyTerms;
           this.picked = true;
           break;
         case 'Multiple Choice English':
         case 'Multiple Choice Spanish':
           console.log(response);
+          const section = response.sections[0];
+          this.instructions = section.instructions;
+          let mcQuestions : MultipleChoiceQuestion[] = new Array();
+
+          for (let i = 0; i < section.questions.length; i++) {
+            const question = section.questions[i];
+            let mc = new MultipleChoiceQuestion();
+            mcQuestions.push(mc.mapPractice(question));
+          }
+
+          this.studyMCTerms = mcQuestions;
           this.picked = true;
         break;
         case 'Grouping':

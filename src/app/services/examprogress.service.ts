@@ -66,8 +66,8 @@ export class ExamProgressService {
         {
             case MultipleChoiceEnglishQuestionType:
             case MultipleChoiceSpanishQuestionType:
-                newAnswer.response = new Array();
-                newAnswer.response.push(new MultipleChoiceResponse(answer.id));
+                newAnswer.responses = new Array();
+                newAnswer.responses.push(new MultipleChoiceResponse(answer.id));
             break;
             case MatchingQuestionType:
                 newAnswer.responses = new Array();

@@ -13,10 +13,12 @@ export class Matching {
     @Input() terms : Term[];
     @Input() mTerms: MatchingQuestion[];
     @Input() mode: string;
+    @Input() instructions: string;
 
     @Output() choiceMatched = new EventEmitter();
     @Output() termUndo = new EventEmitter();
 
+    public ready: boolean = false;
     public complete: boolean = false;
     public success: boolean = false;
     public currentQuestion: MatchingQuestion;
