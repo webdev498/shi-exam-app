@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "Installing requisite Node.js and NPM versions...\n\n"
+nvm install && nvm use
+
+echo "Installing application dependencies...\n\n"
+
+echo "Bulding production packages...\n\n"
+npm run build:prod
