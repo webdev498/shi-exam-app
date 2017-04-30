@@ -7,12 +7,17 @@ import {Grouping} from './../questions/grouping/grouping.component';
 import {FillInBlankComponent} from './../questions/fillinblank/fillinblank.component';
 import {FlashcardComponent} from './../questions/flashcard/flashcard.component';
 import {Term} from './../model/question/Term';
+import {MultipleChoiceQuestion} from './../model/question/MultipleChoiceQuestion';
+import {GroupingQuestion} from './../model/question/GroupingQuestion';
+import {MatchingQuestion} from './../model/question/MatchingQuestion';
 import {Category} from './../model/Category';
 import {SelectionComponent} from './../study/category/selection.component';
 import {SessionService} from './../services/session.service';
 import {TermService} from './../services/term.service';
 import {EventService} from './../services/event.service';
 import {StudyTerm} from './../model/question/StudyTerm';
+
+declare var iSpeechTTS: any;
 
 @Component({
   selector: 'studyquestionchoice',  
@@ -35,7 +40,14 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public studyTerm: StudyTerm;
     public studyTerms: StudyTerm[];
 
+    public studyMCTerms: MultipleChoiceQuestion[];
+    public studyMTerms: MatchingQuestion[];
+    public studyGTerms: GroupingQuestion[];
+    public instructions: string;
+
     public termsRandom: boolean;
+
+    private _tts: any;
 
     ngOnInit() {
       if (this._sessionService.getCategories() === undefined && !this._sessionService.getStudyRandom()) {
@@ -46,6 +58,12 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
       if (!this.termsRandom)
         this.categoriesChosen = this._sessionService.getCategories();
+
+      let audioPlayer = document.getElementById('audioPlayer');
+      this._tts = new iSpeechTTS(audioPlayer, {
+            apiKey: 'a4bf1a576382f5e3d671243e5fbbc072',
+            voice: 'usspanishfemale'
+      });
     }
 
     start(questionType: string) {
@@ -70,6 +88,18 @@ export class StudyQuestionChoiceComponent implements OnInit {
               error => this._handleError(error)
             );
         break;
+        case 'Multiple Choice English':
+        case 'Multiple Choice Spanish':
+        case 'Grouping':
+        case 'Matching':
+          this.fetching = true;
+          this.studyType = questionType;
+          this._termService.questionsByType(this.categoriesChosen, questionType,100)
+              .subscribe(
+              response => this._handleTermResponse(response),
+              error => this._handleError(error)
+            );
+        break;
       }
     }
 
@@ -80,22 +110,61 @@ export class StudyQuestionChoiceComponent implements OnInit {
 
     _handleTermResponse(response: any) {
       this.fetching = false;
-      this._studyTerms = this._termService.studyTermCollection(response);
 
       switch (this.currentQuestionType) {
         case 'FlashCard':
+          this._studyTerms = this._termService.studyTermCollection(response);
           this.studyTerms = this._studyTerms;
           this.picked = true;
           break;
         case 'Translate':
+          this._studyTerms = this._termService.studyTermCollection(response);
           this.studyTerms = this._studyTerms;
           this.picked = true;
           break;
+        case 'Multiple Choice English':
+        case 'Multiple Choice Spanish':
+          console.log(response);
+          const section = response.sections[0];
+          this.instructions = section.instructions;
+          let mcQuestions : MultipleChoiceQuestion[] = new Array();
+
+          for (let i = 0; i < section.questions.length; i++) {
+            const question = section.questions[i];
+            let mc = new MultipleChoiceQuestion();
+            mcQuestions.push(mc.mapPractice(question));
+          }
+
+          this.studyMCTerms = mcQuestions;
+          this.picked = true;
+        break;
+        case 'Grouping':
+          console.log(response);
+          this.picked = true;
+        break;
+        case 'Matching':
+          const mSection = response.sections[0];
+          this.instructions = mSection.instructions;
+          let mQuestions : MatchingQuestion[] = new Array();
+
+          for (let i = 0; i < mSection.questions.length; i++) {
+            const question = mSection.questions[i];
+            let m = new MatchingQuestion();
+            mQuestions.push(m.mapPractice(question));
+          }
+
+          this.studyMTerms = mQuestions;
+          this.picked = true;
+        break;
      }
     }
 
     _handleError(error: any) {
       this._eventService.broadcast('error', 'There was an issue downloading the terms');
       console.error(error);
+    }
+    
+    playAudio(obj: any) {
+      this._tts.speak(obj.text);
     }
 }

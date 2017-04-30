@@ -25,7 +25,7 @@ export class ExamResponseService {
         percentCorrect = Math.floor((er.pointsAwarded / (er.pointsAwarded == 0 ? 0 : er.pointsPossible)) * 100);
         score.overallScore = `You scored  ${er.pointsAwarded.toString()} out of a possible ${er.pointsPossible.toString()} correct answers (${percentCorrect.toString()}%)`;
         score.overallPassed = percentCorrect < PassingScore ? false : true;
-        score.overallMessage = score.overallPassed ? 'You have a passing score!' : 'Your score did not meet the 70% passing requirement';
+        score.overallMessage = score.overallPassed ? 'You have a passing score!' : 'Your score did not meet the 70% passing requirement. Please review your category results to identify specific areas of improvement.';
         score.overallRight = er.pointsAwarded;
         score.overallMissed = er.pointsPossible - er.pointsAwarded;
         score.categoriesScore = new Array();

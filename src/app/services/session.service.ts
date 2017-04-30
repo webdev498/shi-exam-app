@@ -9,6 +9,8 @@ export class SessionService {
   private static allCategories: Category[];
   private static currentUser: User;
   private static selectedCategories: Category[];
+  private static studyCorrect: number = 0;
+  private static studyOverall: number = 0;
   private static studyRandom: boolean = false;
 
   public getCategories() {
@@ -25,6 +27,28 @@ export class SessionService {
 
   public setAllCategories(categories: any) {
     SessionService.allCategories = categories;
+  }
+
+  public getStudyCorrect() :string {
+    if (SessionService.studyCorrect == 0)
+      return `0/${SessionService.studyOverall} (0%)`;
+    else {
+      const percent = Math.floor((SessionService.studyCorrect / SessionService.studyOverall) * 100);
+      return `${SessionService.studyCorrect}/${SessionService.studyOverall} (${percent}%)`;
+    }
+  }
+
+  public setStudyCorrect(correct: boolean, addToTotal: boolean = true):void {
+    if (correct)
+      SessionService.studyCorrect++;
+
+   if (addToTotal)
+     SessionService.studyOverall++;
+  }
+
+  public resetStudyScore():void {
+      SessionService.studyCorrect--;
+     SessionService.studyOverall--;
   }
 
   public getStudyRandom() {

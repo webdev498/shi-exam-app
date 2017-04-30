@@ -1,5 +1,7 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {StudyTerm} from './../../model/question/StudyTerm';
+import {StudyScoreComponent} from './../../study/studyscore.component';
+import {SessionService} from './../../services/session.service';
 
 declare var iSpeechTTS: any;
 
@@ -9,6 +11,8 @@ declare var iSpeechTTS: any;
   template: require('./fillinblank.html')
 })
 export class FillInBlankComponent {
+
+  constructor(private _sessionService: SessionService) {}
 
   @Input() terms: StudyTerm[];
   
@@ -70,6 +74,7 @@ export class FillInBlankComponent {
     this.complete = true;
     const translationVerbage : string = this.term.translations.length == 1 ? 'translation' : 'translations';
     this.translationText = `${this.term.translations.length.toString()} ${translationVerbage}`;
+    this._sessionService.setStudyCorrect(this.success,true);
   }
 
   next() {
@@ -104,5 +109,10 @@ export class FillInBlankComponent {
 
     if (this._translationCount + 1 < this.term.translations.length)
       this._translationCount++;
+  }
+
+  giveCredit() {
+    this.success = true;
+    this._sessionService.setStudyCorrect(this.success,false);
   }
 }

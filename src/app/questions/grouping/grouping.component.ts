@@ -1,7 +1,10 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Term} from './../../model/question/Term';
+import {GroupingQuestion} from './../../model/question/GroupingQuestion';
 import {Category} from './../../model/question/Category';
 import {GroupingTermsShown} from './../../model/Constants';
+import {AppModeStudy} from './../../model/Constants';
+import {SessionService} from './../../services/session.service';
 var _ = require('lodash');
 
 @Component({ 
@@ -11,14 +14,25 @@ var _ = require('lodash');
 export class Grouping {
     @Input() terms : Term[];
     @Input() categories: Category[];
+    @Input() gTerms: GroupingQuestion[];
+    @Input() mode: string;
+    @Input() instructions: string;
 
     @Output() choiceGrouped = new EventEmitter();
     @Output() termUndo = new EventEmitter();
 
+    public ready: boolean = false;
+    public complete: boolean = false;
+    public success: boolean = false;
+    public currentQuestion: GroupingQuestion;
+
+    public enableFeedback: boolean = false;
+    public feedbackSubmitted: boolean = false;
+
     termsshown : number;
     grouped: number = 0;
     
-    constructor() {
+    constructor(private _sessionService: SessionService) {
         this.termsshown = GroupingTermsShown;
     }
 
@@ -98,12 +112,20 @@ export class Grouping {
     }
 
     _grouped(id: string, droppedid: string) {
+
+        if (droppedid === undefined)
+            return;
+
         this.choiceGrouped.emit({
             id: droppedid,
             groupedid: id
         });
 
         let choice = <Term>this._getChoice(droppedid);
+
+        if (choice === undefined)
+            return;    
+
         if (!choice.hasOwnProperty('matched')) {
             choice['matched'] = false;
         }
@@ -125,6 +147,10 @@ export class Grouping {
 
     _getCategory(id) {
         return _.find(this.categories, {id: id});
+    }
+
+    next() {
+
     }
     
 }

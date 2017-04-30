@@ -24,7 +24,7 @@ export class ExamService {
       headers: headers
     })
       .map((response: Response) => <any>response.json())
-      .catch(this.handleLastExamError);
+      .catch(this.handleError);
   }
 
   createExam(userid: string, examType: string) {
@@ -63,7 +63,7 @@ export class ExamService {
       headers: headers
     })
       .map((response: Response) => <any>response.json())
-      .catch(this.handleLastExamError);
+      .catch(this.handleError);
   }
   
   submitExam(submission: ExamSubmission) {
@@ -95,11 +95,6 @@ export class ExamService {
   }
 
   private handleError(error: Response) {
-    console.error(error);
-    return Observable.throw('Server error');
-  }
-
-  private handleLastExamError(error: Response) {
     return Observable.throw(error);
   }
 }

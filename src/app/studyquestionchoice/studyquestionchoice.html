@@ -14,7 +14,14 @@
                 <div class="col-md-2">
                     <button class="btn guideBtn"
                     [disabled]="fetching"
-                     (click)="start('Multiple Choice English')">Multiple Choice</button>
+                     (click)="start('Multiple Choice English')"
+                     title="Multiple Choice Questions with answers in English">Multiple Choice English</button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn guideBtn"
+                    [disabled]="fetching"
+                     (click)="start('Multiple Choice Spanish')"
+                     title="Multiple Choice Questions with answers in Spanish">Multiple Choice Spanish</button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
@@ -36,7 +43,7 @@
                     [disabled]="fetching"
                     (click)="start('Translate')">Translate</button>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" style="display: none">
                     <button class="btn guideBtn" 
                     [disabled]="fetching"
                     (click)="start('Download')">Download Terms</button>
@@ -44,7 +51,7 @@
             </div>
             <div class="row" style="text-align: center" *ngIf="picked">
                 <h4 style="margin-right: 20px; display: inline">{{studyType}}</h4> 
-                <span class="undoSelection" (click)="resetStudyType()">reset</span>
+                <span class="undoSelection" (click)="resetStudyType()">leave</span>
             </div>
         </div>
     </div>
@@ -63,27 +70,28 @@
     <div class="col-md-4 col-md-offset-4">
         <div [ngSwitch]="currentQuestionType">
             <multipleChoice *ngSwitchCase="'Multiple Choice English'" 
-                    (answerChosen)="choiceSelected($event)"
-                    (playAudio)="questionAudio($event)"
-                    [terms]="currentQuestion.choices"
-                    [questionType]="currentQuestionType">
+                    (playAudio)="playAudio($event)"
+                    [questionType]="'Multiple Choice English'"
+                    [mcTerms]="studyMCTerms"
+                    [instructions]="instructions"
+                    [mode]="'study'">
                 </multipleChoice>
             <multipleChoice *ngSwitchCase="'Multiple Choice Spanish'" 
-                    (answerChosen)="choiceSelected($event)"
-                    (playAudio)="questionAudio($event)"
-                    [terms]="currentQuestion.choices"
-                    [questionType]="currentQuestionType">
+                    (playAudio)="playAudio($event)"
+                    [mcTerms]="studyMCTerms"
+                    [questionType]="'Multiple Choice Spanish'"
+                    [instructions]="instructions"
+                    [mode]="'study'">
                 </multipleChoice>
             <matching *ngSwitchCase="'Matching'" 
-                    [terms]="currentQuestion.terms"
-                    (choiceMatched)="choiceSelected($event)"
-                    (termUndo)="termDeselected($event)">
+                    [mTerms]="studyMTerms"
+                    [instructions]="instructions"
+                    [mode]="'study'">
                 </matching>
             <grouping *ngSwitchCase="'Grouping'" 
-                    [categories]="currentQuestion.categories"
-                    [terms]="currentQuestion.choices"
-                    (choiceGrouped)="choiceSelected($event)"
-                    (termUndo)="termDeselected($event)">
+                    [gTerms]="studyGTerms"
+                    [instructions]="instructions"
+                    [mode]="'study'">
                 </grouping>
             <flashcard *ngSwitchCase="'FlashCard'" 
                 [terms]="studyTerms">
