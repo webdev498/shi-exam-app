@@ -97,6 +97,10 @@ export class ExamHistoryComponent implements OnInit {
       let scoreTemp: Score[] = new Array();
       for (let result of this._results) {
         scoreTemp.push(this._examresponseService.examHistoryResult(result));
+        
+        //only show 5 exams
+        if (scoreTemp.length === 5)
+          break;
       }
 
       this.scores = scoreTemp.reverse();
