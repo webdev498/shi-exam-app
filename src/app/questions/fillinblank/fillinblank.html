@@ -24,12 +24,12 @@
                 [ngClass]="{fibSuccess: success, 
                              fibFail: !success}">
                     <i *ngIf="!success"
-                        class="fa fa-times-circle-o fa-2x" 
-                        aria-hidden="true"> <span *ngIf="!success">incorrect</span>
+                        class="fa fa-meh-o fa-2x" 
+                        aria-hidden="true"> <span *ngIf="!success">oops</span>
                     </i>
                     <i *ngIf="success"
                         class="fa fa-check-circle-o fa-2x" 
-                        aria-hidden="true"> <span *ngIf="success">Correct!</span>
+                        aria-hidden="true"> <span *ngIf="success">Nice!</span>
                     </i>
             </div>
         </div>
