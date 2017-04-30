@@ -43,6 +43,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public studyMCTerms: MultipleChoiceQuestion[];
     public studyMTerms: MatchingQuestion[];
     public studyGTerms: GroupingQuestion[];
+    public groupCatWarning: boolean = false;
     public instructions: string;
 
     public termsRandom: boolean;
@@ -67,6 +68,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
     }
 
     start(questionType: string) {
+      this.groupCatWarning = false;
       this.currentQuestionType = questionType;   
 
       switch (this.currentQuestionType) {
@@ -92,6 +94,13 @@ export class StudyQuestionChoiceComponent implements OnInit {
         case 'Multiple Choice Spanish':
         case 'Grouping':
         case 'Matching':
+          if (questionType === 'Grouping') {
+            if (this.categoriesChosen.length < 5 && !this._sessionService.getStudyRandom()) {
+              this.groupCatWarning = true;
+              return;
+            }
+          }
+
           this.fetching = true;
           this.studyType = questionType;
           this._termService.questionsByType(this.categoriesChosen, questionType,100)
