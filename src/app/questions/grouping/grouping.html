@@ -41,30 +41,31 @@
                     <div class="undo" (click)="undo(c,g)">
                         <i class="fa fa-undo" aria-hidden="true"></i> undo
                     </div>
+
+                    <div *ngIf="ready" style="padding: 5px; margin-top: 5px">
+                        <i *ngIf="!g.success" class="fa fa-meh-o fibFail" aria-hidden="true"> 
+                            <span style="font-size: 10pt">oops</span>
+                        </i>
+                        <i *ngIf="g.success" class="fa fa-check-circle-o  fibSuccess" aria-hidden="true"> 
+                            <span style="font-size: 10pt">nict work!</span>
+                        </i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="margin-top: 25px" *ngIf="complete">
-        <div [ngClass]="{fibSuccess: success, 
-                             fibFail: !success}">
-            <i *ngIf="!success" class="fa fa-meh-o fa-2x" aria-hidden="true"> <span *ngIf="!success">Oops</span>
-                    </i>
-            <i *ngIf="success" class="fa fa-check-circle-o fa-2x" aria-hidden="true"> <span *ngIf="success">Nice!</span>
-                    </i>
-        </div>
-
+    <div style="margin-top: 25px">
         <div *ngIf="complete" (click)="next()" style="margin-top: 20px; text-align: center; width: 90%; cursor: pointer">
             <i class="fa fa-caret-square-o-right fa-3x" aria-hidden="true"></i>
             <span class="nextQuestion">Next Question</span>
         </div>
 
-        <section>
+        <section *ngIf="ready">
             <studyscore></studyscore>
         </section>
-        <section style="margin-top: 50px">
+        <section style="margin-top: 50px" *ngIf="ready">
             <feedback [enableFeedback]="enableFeedback" [feedbackSubmitted]="feedbackSumitted" 
-            [currentQuestion]="term">
+            [currentQuestion]="currentQuestion">
             </feedback>
         </section>
     </div>

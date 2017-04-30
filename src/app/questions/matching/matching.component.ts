@@ -174,6 +174,5 @@ export class Matching {
         this.success = false;
         this.enableFeedback = false;
         this.feedbackSubmitted = false;     
-    }
-    
+    }    
 }

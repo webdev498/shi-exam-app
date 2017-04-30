@@ -10,10 +10,16 @@ export class GroupingQuestion implements QuestionInterface{
     public section: Section;
     public choices: Term[];
     public categories: Category[];
+    public correctResponses: any[];
     public type: string;
     public id: string;
     public text: string;
                 
     constructor() {}
     
+    mapPractice(practice: any):GroupingQuestion {
+        let instance = this;
+
+        return this;
+    }
 }
