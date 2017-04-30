@@ -39,7 +39,7 @@
                 <div *ngFor="let g of c.groupedterms" class="groupedtext">
                     <div [innerText]="g.text"></div>
                     <div class="undo" (click)="undo(c,g)">
-                        undo
+                        <i class="fa fa-undo" aria-hidden="true"></i> undo
                     </div>
                 </div>
             </div>
@@ -48,9 +48,9 @@
     <div style="margin-top: 25px" *ngIf="complete">
         <div [ngClass]="{fibSuccess: success, 
                              fibFail: !success}">
-            <i *ngIf="!success" class="fa fa-times-circle-o fa-2x" aria-hidden="true"> <span *ngIf="!success">incorrect</span>
+            <i *ngIf="!success" class="fa fa-meh-o fa-2x" aria-hidden="true"> <span *ngIf="!success">oops</span>
                     </i>
-            <i *ngIf="success" class="fa fa-check-circle-o fa-2x" aria-hidden="true"> <span *ngIf="success">Correct!</span>
+            <i *ngIf="success" class="fa fa-check-circle-o fa-2x" aria-hidden="true"> <span *ngIf="success">nice work!</span>
                     </i>
         </div>
 

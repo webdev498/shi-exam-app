@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
             if (response.pointsAwarded === 0)
               context.lastScore = "0";
             else
-              context.lastScore = ((response.pointsAwarded / response.pointsPossible) * 100).toString();
+              context.lastScore = Math.floor(((response.pointsAwarded / response.pointsPossible) * 100)).toString();
           },
           error => this._handleLastExamError(error)
         );
