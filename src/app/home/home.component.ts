@@ -68,7 +68,10 @@ export class HomeComponent implements OnInit {
   }
   
   study() {
-    this._router.navigate(['studydashboard']);
+    if (this._cgiAuth.premierUser())
+      this._router.navigate(['studydashboard']);
+    else 
+      this._router.navigate(['premiumupgrade']);
   }
 
   mostRecent() {
