@@ -124,7 +124,6 @@ export class StudyQuestionChoiceComponent implements OnInit {
           break;
         case 'Multiple Choice English':
         case 'Multiple Choice Spanish':
-          console.log(response);
           const section = response.sections[0];
           this.instructions = section.instructions;
           let mcQuestions : MultipleChoiceQuestion[] = new Array();
@@ -139,7 +138,17 @@ export class StudyQuestionChoiceComponent implements OnInit {
           this.picked = true;
         break;
         case 'Grouping':
-          console.log(response);
+          const gSection = response.sections[0];
+          this.instructions = gSection.instructions;
+          let gQuestions : GroupingQuestion[] = new Array();
+
+          for (let i = 0; i < section.questions.length; i++) {
+            const question = section.questions[i];
+            let g = new GroupingQuestion();
+            gQuestions.push(g.mapPractice(question));
+          }
+
+          this.studyGTerms = gQuestions;
           this.picked = true;
         break;
         case 'Matching':

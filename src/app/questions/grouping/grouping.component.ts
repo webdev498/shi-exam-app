@@ -79,6 +79,10 @@ export class Grouping {
         category.groupedterms.splice(index,1);
         term.matched = false;
         this.grouped--;
+
+        if (this.mode === AppModeStudy) {
+            this._sessionService.resetStudyScore(term.success);
+        }
     }
 
     categoryCheckChanged(category: Category) {
@@ -160,7 +164,7 @@ export class Grouping {
 
         if (this.mode === AppModeStudy) {
             for (let i = 0; i < this.currentQuestion.correctResponses.length; i++) {
-                if (this.currentQuestion.correctResponses[i].candidateId === id &&
+                if (this.currentQuestion.correctResponses[i].categoryId === id &&
                     this.currentQuestion.correctResponses[i].termId === droppedid) {
                         choice.success = true;
                         break;
