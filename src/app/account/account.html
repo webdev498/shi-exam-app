@@ -40,11 +40,13 @@
                 </div>
 
                 <div class="premieractivate">
-                    <button class="btn btn-sm btn-default" (click)="activate()">
+                    <button class="btn btn-sm btn-default" (click)="activate()" [disabled]="activatingStudy">
                       <i class="fa fa-star-o" aria-hidden="true"></i> Activate Premier Subscription
                     </button>
 
-                    <i *ngIf="activatingStudy" class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>
+                    <i *ngIf="activatingStudy" class="fa fa-refresh fa-spin fa-fw" aria-hidden="true">
+                      Please wait...
+                    </i>
                 </div>
             </div>
         </div>
