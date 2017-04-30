@@ -142,8 +142,8 @@ export class StudyQuestionChoiceComponent implements OnInit {
           this.instructions = gSection.instructions;
           let gQuestions : GroupingQuestion[] = new Array();
 
-          for (let i = 0; i < section.questions.length; i++) {
-            const question = section.questions[i];
+          for (let i = 0; i < gSection.questions.length; i++) {
+            const question = gSection.questions[i];
             let g = new GroupingQuestion();
             gQuestions.push(g.mapPractice(question));
           }

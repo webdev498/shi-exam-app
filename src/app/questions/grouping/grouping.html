@@ -38,7 +38,7 @@
                     class="groupedchoices">
                 <div *ngFor="let g of c.groupedterms" class="groupedtext">
                     <div [innerText]="g.text"></div>
-                    <div class="undo" (click)="undo(c,g)">
+                    <div class="undoGrouping" (click)="undo(c,g)">
                         <i class="fa fa-undo" aria-hidden="true"></i> undo
                     </div>
 
@@ -47,7 +47,7 @@
                             <span style="font-size: 10pt">oops</span>
                         </i>
                         <i *ngIf="g.success" class="fa fa-check-circle-o  fibSuccess" aria-hidden="true"> 
-                            <span style="font-size: 10pt">nict work!</span>
+                            <span style="font-size: 10pt">Nice work!</span>
                         </i>
                     </div>
                 </div>

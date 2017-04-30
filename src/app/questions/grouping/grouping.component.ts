@@ -45,6 +45,7 @@ export class Grouping {
 
             if (this.gTerms.length > 0) {
               this.terms= this.gTerms[0].choices;
+              this.categories = this.gTerms[0].categories;
               this.ready = true;
               this.currentQuestion = this.gTerms[0];
 
@@ -193,6 +194,7 @@ export class Grouping {
         this._count++;
         this.currentQuestion = this.gTerms[this._count];
         this.terms = this.currentQuestion.choices;
+        this.categories = this.currentQuestion.categories;
 
         this.complete = false;
         this.success = false;
