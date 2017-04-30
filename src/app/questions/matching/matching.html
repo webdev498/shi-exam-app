@@ -23,15 +23,15 @@
             <div *ngIf="t.matchedchoice != null" class="bottommatchedtext">
                 <div [innerText]="t.matchedchoice.text" style="display: table-cell"></div>
                 <div class="undo" (click)="undo(t)">
-                        undo
+                        <i class="fa fa-undo" aria-hidden="true"></i> undo
                 </div>
             </div>
             <div *ngIf="t.matchedchoice != null && ready" style="padding: 5px; margin-top: 5px">
-                <i *ngIf="!t.success" class="fa fa-times-circle-o" aria-hidden="true"> 
-                    <span *ngIf="!success" style="font-size: 10pt">incorrect</span>
+                <i *ngIf="!t.success" class="fa fa-meh-o fibFail" aria-hidden="true"> 
+                    <span *ngIf="!success" style="font-size: 10pt">oops</span>
                 </i>
-                <i *ngIf="t.success" class="fa fa-check-circle-o" aria-hidden="true"> 
-                    <span *ngIf="t.success" style="font-size: 10pt">Correct!</span>
+                <i *ngIf="t.success" class="fa fa-check-circle-o  fibSuccess" aria-hidden="true"> 
+                    <span *ngIf="t.success" style="font-size: 10pt">nict work!</span>
                 </i>
             </div>
         </div>
@@ -43,10 +43,10 @@
             <span class="nextQuestion">Next Question</span>
         </div>
 
-        <section *ngIf="complete">
+        <section *ngIf="ready">
             <studyscore></studyscore>
         </section>
-        <section style="margin-top: 50px">
+        <section style="margin-top: 50px" *ngIf="ready">
             <feedback [enableFeedback]="enableFeedback" [feedbackSubmitted]="feedbackSumitted" 
             [currentQuestion]="currentQuestion">
             </feedback>
