@@ -57,6 +57,7 @@ npm-debug.log
 # Dll #
 /dll/**/*.js
 /dll/**/*.map
+/dll/**/*.json
 
 # Doc #
 /doc/
