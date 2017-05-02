@@ -7,6 +7,7 @@ import {AccountService} from './../account/account.service';
 
 @Component({
   selector: 'premiumupgrade',  
+  providers: [AccountService],
   template: require('./premiumupgrade.html')
 })
 export class PremiumUpgradeComponent implements OnInit {

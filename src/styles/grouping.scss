@@ -31,11 +31,20 @@
 
 .groupedtext {
     @extend .gtext;
-    background-color: forestgreen; color: white; display: block; margin-top: 3px; cursor: default
+    color: black;
+    display: block;
+    margin-top: 3px;
+    cursor: default;
+    border: 2px black solid;
+    border-radius: 4px;
 }
-
-.undo {color: cadetblue; cursor: pointer}
 
 .groupedchoices {
     display: table-row; margin-top: 2px;
+}
+
+.undoGrouping {
+    margin-top: 5px; color: black; font-size: 10pt;
+    cursor: pointer; display: table-cell; padding-left: 20px;
+    &:hover {text-decoration: underline}
 }

@@ -43,9 +43,9 @@ export class ExamResponseService {
                       cs.id = id;
                       score.categoriesScore.push(cs);
                   } else {
-                      scoreCategory.correct = section.categoryResults[id].correct + parseInt(scoreCategory.correct);
-                      scoreCategory.total = scoreCategory.total + section.categoryResults[id].correct + 
-                          section.categoryResults[id].incorrect; 
+                      scoreCategory[0].correct = section.categoryResults[id].correct + parseInt(scoreCategory[0].correct);
+                      scoreCategory[0].total = scoreCategory[0].total + section.categoryResults[id].correct + 
+                          section.categoryResults[id].incorrect;
                   }
               }
         }

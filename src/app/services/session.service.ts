@@ -46,9 +46,11 @@ export class SessionService {
      SessionService.studyOverall++;
   }
 
-  public resetStudyScore():void {
+  public resetStudyScore(removeCorrect: boolean):void {
+    if (removeCorrect)
       SessionService.studyCorrect--;
-     SessionService.studyOverall--;
+    
+    SessionService.studyOverall--;
   }
 
   public getStudyRandom() {

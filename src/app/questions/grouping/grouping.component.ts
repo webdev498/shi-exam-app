@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import {Term} from './../../model/question/Term';
 import {GroupingQuestion} from './../../model/question/GroupingQuestion';
 import {Category} from './../../model/question/Category';
@@ -29,12 +29,31 @@ export class Grouping {
     public enableFeedback: boolean = false;
     public feedbackSubmitted: boolean = false;
 
+    private _count: number = 0;
+
     termsshown : number;
     grouped: number = 0;
     
     constructor(private _sessionService: SessionService) {
         this.termsshown = GroupingTermsShown;
     }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if(changes['gTerms']) {
+          if (this.gTerms === undefined)
+            return;
+
+            if (this.gTerms.length > 0) {
+              this.terms= this.gTerms[0].choices;
+              this.categories = this.gTerms[0].categories;
+              this.ready = true;
+              this.currentQuestion = this.gTerms[0];
+
+              this.enableFeedback = false;
+              this.feedbackSubmitted = false;
+            }
+        }
+    } 
 
     dragstart(ev, id) {
         ev.dataTransfer.setData('choice', id);
@@ -61,6 +80,10 @@ export class Grouping {
         category.groupedterms.splice(index,1);
         term.matched = false;
         this.grouped--;
+
+        if (this.mode === AppModeStudy) {
+            this._sessionService.resetStudyScore(term.success);
+        }
     }
 
     categoryCheckChanged(category: Category) {
@@ -139,6 +162,24 @@ export class Grouping {
 
         category.groupedterms.push(choice);
         this.grouped++;
+
+        if (this.mode === AppModeStudy) {
+            for (let i = 0; i < this.currentQuestion.correctResponses.length; i++) {
+                if (this.currentQuestion.correctResponses[i].categoryId === id &&
+                    this.currentQuestion.correctResponses[i].termId === droppedid) {
+                        choice.success = true;
+                        break;
+                    }
+            }
+    
+            if (choice.success === undefined)
+                choice.success = false;
+
+            this._sessionService.setStudyCorrect(choice.success,true);
+
+            if (this.grouped == GroupingTermsShown)
+                this.complete = true;
+        }
     }
 
     _getChoice(id) {
@@ -150,7 +191,15 @@ export class Grouping {
     }
 
     next() {
+        this._count++;
+        this.currentQuestion = this.gTerms[this._count];
+        this.terms = this.currentQuestion.choices;
+        this.categories = this.currentQuestion.categories;
 
-    }
+        this.complete = false;
+        this.success = false;
+        this.enableFeedback = false;
+        this.feedbackSubmitted = false;     
+    }  
     
 }

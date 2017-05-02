@@ -112,7 +112,7 @@ export class Matching {
 
         if (this.mode === AppModeStudy) {
             this._matches--;
-            this._sessionService.resetStudyScore();
+            this._sessionService.resetStudyScore(term.success);
         }
     }
 
@@ -174,6 +174,5 @@ export class Matching {
         this.success = false;
         this.enableFeedback = false;
         this.feedbackSubmitted = false;     
-    }
-    
+    }    
 }

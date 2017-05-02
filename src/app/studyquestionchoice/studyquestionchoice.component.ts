@@ -43,6 +43,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
     public studyMCTerms: MultipleChoiceQuestion[];
     public studyMTerms: MatchingQuestion[];
     public studyGTerms: GroupingQuestion[];
+    public groupCatWarning: boolean = false;
     public instructions: string;
 
     public termsRandom: boolean;
@@ -67,6 +68,7 @@ export class StudyQuestionChoiceComponent implements OnInit {
     }
 
     start(questionType: string) {
+      this.groupCatWarning = false;
       this.currentQuestionType = questionType;   
 
       switch (this.currentQuestionType) {
@@ -92,6 +94,13 @@ export class StudyQuestionChoiceComponent implements OnInit {
         case 'Multiple Choice Spanish':
         case 'Grouping':
         case 'Matching':
+          if (questionType === 'Grouping') {
+            if (this.categoriesChosen.length < 5 && !this._sessionService.getStudyRandom()) {
+              this.groupCatWarning = true;
+              return;
+            }
+          }
+
           this.fetching = true;
           this.studyType = questionType;
           this._termService.questionsByType(this.categoriesChosen, questionType,100)
@@ -124,7 +133,6 @@ export class StudyQuestionChoiceComponent implements OnInit {
           break;
         case 'Multiple Choice English':
         case 'Multiple Choice Spanish':
-          console.log(response);
           const section = response.sections[0];
           this.instructions = section.instructions;
           let mcQuestions : MultipleChoiceQuestion[] = new Array();
@@ -139,7 +147,17 @@ export class StudyQuestionChoiceComponent implements OnInit {
           this.picked = true;
         break;
         case 'Grouping':
-          console.log(response);
+          const gSection = response.sections[0];
+          this.instructions = gSection.instructions;
+          let gQuestions : GroupingQuestion[] = new Array();
+
+          for (let i = 0; i < gSection.questions.length; i++) {
+            const question = gSection.questions[i];
+            let g = new GroupingQuestion();
+            gQuestions.push(g.mapPractice(question));
+          }
+
+          this.studyGTerms = gQuestions;
           this.picked = true;
         break;
         case 'Matching':

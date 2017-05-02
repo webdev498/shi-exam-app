@@ -59,6 +59,7 @@ export class ExamHistoryComponent implements OnInit {
     public categoryDataAll: Array<any> = [];
 
     private _categories: Category[];
+    private _allScores: Score[] = new Array();
     
     ngOnInit() {
       if (!this._authService.premierUser()) {
@@ -96,7 +97,12 @@ export class ExamHistoryComponent implements OnInit {
       this._results = examResults;
       let scoreTemp: Score[] = new Array();
       for (let result of this._results) {
-        scoreTemp.push(this._examresponseService.examHistoryResult(result));
+        const examResult = this._examresponseService.examHistoryResult(result);
+        
+        if (scoreTemp.length < 5)
+          scoreTemp.push(examResult);
+        
+        this._allScores.push(examResult);
       }
 
       this.scores = scoreTemp.reverse();

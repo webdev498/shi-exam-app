@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
             if (response.pointsAwarded === 0)
               context.lastScore = "0";
             else
-              context.lastScore = ((response.pointsAwarded / response.pointsPossible) * 100).toString();
+              context.lastScore = Math.floor(((response.pointsAwarded / response.pointsPossible) * 100)).toString();
           },
           error => this._handleLastExamError(error)
         );
@@ -68,7 +68,10 @@ export class HomeComponent implements OnInit {
   }
   
   study() {
-    this._router.navigate(['studydashboard']);
+    if (this._cgiAuth.premierUser())
+      this._router.navigate(['studydashboard']);
+    else 
+      this._router.navigate(['premiumupgrade']);
   }
 
   mostRecent() {

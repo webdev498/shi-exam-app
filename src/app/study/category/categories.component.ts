@@ -29,6 +29,9 @@ export class CategoriesComponent implements OnInit {
 
       if (this._sessionService.getAllCategories() !== undefined) {
         this.categories = this._sessionService.getAllCategories();
+        for (let i = 0; i < this.categories.length; i++) {
+          this.categories[0].selected = false;
+        }
         this._allCategories = _.clone(this.categories);
         this.loading = false;
         return;
