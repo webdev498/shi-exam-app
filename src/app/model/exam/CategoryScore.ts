@@ -10,7 +10,7 @@ export class CategoryScore {
     public total: number;
 
     get percent(): string {
-        if (this.correct === 0)
+        if (this.total === 0)
             return '(0%)'
 
         return `(${Math.floor((this.correct / this.total * 100)).toString()})%`;

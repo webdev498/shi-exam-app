@@ -18,7 +18,7 @@ export class GroupingQuestion implements QuestionInterface{
                 
     constructor() {}
     
-    mapPractice(practice: any):GroupingQuestion {
+    mapPractice(practice: any): GroupingQuestion {
         let instance = this;
         instance.correctResponses = practice.correctResponses;
 
