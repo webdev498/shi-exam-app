@@ -24,17 +24,56 @@ export class AccountService {
       .catch(this.handleError);
   }
 
-  putUserTelephone(telephone: any) {
+  updateUserTelephone(telephone: any) {
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());
     header.append('Content-Type','application/json');
     let authUser = this._authService.tokenUserInfo();
     let telData = JSON.stringify(telephone);
-    return this._http.put(RootApiUrl + '/users/' + authUser.id + '/telephones/' + telephone.id, telData, {
+
+    let url = `${RootApiUrl}/users/${authUser.id}/telephones`;
+    if (telephone.hasOwnProperty('id')){
+      url += '/' + telephone.id;
+
+      return this._http.put(url, telData, {
+        headers: header
+    })
+      .map((response: Response) => <User>response.json())
+      .catch(this.handleError);
+    } else {
+
+    return this._http.post(url, telData, {
       headers: header
     })
       .map((response: Response) => <User>response.json())
       .catch(this.handleError);
+    }
+  }
+
+  updateUserAddress(address: any) {
+    let header = new Headers();
+    header.append(AuthHeaderKey,this._authService.getToken());
+    header.append('Content-Type','application/json');
+    let authUser = this._authService.tokenUserInfo();
+    let addressData = JSON.stringify(address);
+
+    let url = `${RootApiUrl}/users/${authUser.id}/addresses`;
+    if (address.hasOwnProperty('id')){
+      url += '/' + address.id;
+
+      return this._http.put(url, addressData, {
+        headers: header
+    })
+      .map((response: Response) => <User>response.json())
+      .catch(this.handleError);
+    } else {
+
+    return this._http.post(url, addressData, {
+      headers: header
+    })
+      .map((response: Response) => <User>response.json())
+      .catch(this.handleError);
+    }
   }
 
   premierStudyActivate() {
