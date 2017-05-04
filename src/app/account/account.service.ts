@@ -32,7 +32,7 @@ export class AccountService {
     let telData = JSON.stringify(telephone);
 
     let url = `${RootApiUrl}/users/${authUser.id}/telephones`;
-    if (telephone.hasOwnProperty('id')){
+    if (telephone.hasOwnProperty('id') && telephone.id !== undefined){
       url += '/' + telephone.id;
 
       return this._http.put(url, telData, {
