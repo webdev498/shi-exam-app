@@ -21,8 +21,12 @@
 .guideBtn {
     margin-bottom: 10px;
     width: 100%;
-    background-color: gainsboro;
+    background-color: transparent;
     color: black;
+}
+
+.guideImg {
+    width: 150px;
 }
 
 .undoSelection {@extend .center; @extend .point; @extend .italic; color: $app-light-blue; font-size: 9pt;
