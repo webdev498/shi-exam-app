@@ -44,26 +44,18 @@
     </div>
 
     <div class="container" style="background-color: #eaeaea">
-        <div class="row" style="margin-bottom: 25px">
-            <div class="col-md-12">
-                <div class="row">
-                    <div style="width: 100%">
-                        <h2 class="fontSizeLarge headerWidth">Study Dashboard</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4 bottomMargin">
                         <div class="mostRecent" (click)="selected('study')">
                             <div class="centerAlign" style="color: white">
-                                <i class="fa fa-bars fa-4x" aria-hidden="true"></i>
+                                 <img src="../assets/img/study-icon.png"
+                                alt="Study" title="Study" />
                             </div>
                             <div class="dTextBreak"></div>
                             <div class="dTextBottom">
-                                <span>Study</span>
+                                <span>Study Guide</span>
                             </div>
                         </div>
                     </div>
@@ -82,8 +74,7 @@
                     <div class="col-md-4 bottomMargin">
                         <div class="study" (click)="selected('performance')">
                             <div class="centerAlign">
-                                 <img src="../assets/img/study-icon.png"
-                                alt="Study" title="Study" />
+                                <i class="fa fa-bar-chart fa-4x" aria-hidden="true"></i>
                             </div>
                             <div class="dTextBreak"></div>
                             <div class="dTextBottom">
