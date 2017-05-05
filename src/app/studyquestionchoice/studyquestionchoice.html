@@ -15,38 +15,45 @@
                     <button class="btn guideBtn"
                     [disabled]="fetching"
                      (click)="start('Multiple Choice English')"
-                     title="Multiple Choice Questions with answers in English">Multiple Choice English</button>
+                     title="Multiple Choice Questions with answers in English">
+                     <img src="/assets/img/Multiple Choice English Icon.png" class="guideImg" title="Mutiple Choice w/English choices" />
+                     </button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn"
                     [disabled]="fetching"
                      (click)="start('Multiple Choice Spanish')"
-                     title="Multiple Choice Questions with answers in Spanish">Multiple Choice Spanish</button>
+                     title="Multiple Choice Questions with answers in Spanish">
+                     <img src="/assets/img/Multiple Choice Spanish Icon.png" class="guideImg" title="Multiple Choice w/Spanish choices" />
+                     </button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
                     [disabled]="fetching"
-                    (click)="start('Matching')">Matching</button>
+                    (click)="start('Matching')">
+                    <img src="/assets/img/Matching Icon.png" class="guideImg" title="Term Matching" />
+                    </button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
                     [disabled]="fetching"
-                    (click)="start('Grouping')">Grouping</button>
+                    (click)="start('Grouping')">
+                    <img src="/assets/img/Grouping Icon.png" class="guideImg" title="Category Grouping" />
+                    </button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
                     [disabled]="fetching"
-                    (click)="start('FlashCard')">Flash Cards</button>
+                    (click)="start('FlashCard')">
+                    <img src="/assets/img/Flashcards Icon.png" class="guideImg" title="Flashcards" />
+                    </button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn guideBtn" 
                     [disabled]="fetching"
-                    (click)="start('Translate')">Translate</button>
-                </div>
-                <div class="col-md-2" style="display: none">
-                    <button class="btn guideBtn" 
-                    [disabled]="fetching"
-                    (click)="start('Download')">Download Terms</button>
+                    (click)="start('Translate')">
+                    <img src="/assets/img/Translate Icon.png" class="guideImg" title="Translation" />
+                    </button>
                 </div>
             </div>
             <div class="row" style="text-align: center" *ngIf="picked">

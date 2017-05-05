@@ -43,10 +43,12 @@ export class AuthService {
         let userInfo: User;
         userInfo = this._sessionService.getUser();
 
-      if (userInfo === undefined && localStorage[UserInfoKey]) 
-          userInfo = <any>JSON.parse(localStorage[UserInfoKey]);
-      else 
-          return false;
+      if (userInfo === undefined) {
+          if (userInfo === undefined && localStorage[UserInfoKey]) 
+              userInfo = <any>JSON.parse(localStorage[UserInfoKey]);
+          else 
+              return false;
+      }
         
 
         let currentRole = userInfo.relations.role.name;

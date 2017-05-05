@@ -16,6 +16,7 @@ import {MonthService} from './../services/month.service';
 import {YearService} from './../services/year.service';
 import {EventService} from './../services/event.service';
 import {ValidationService} from './../services/validation.service';
+import {UserService} from './../services/user.service';
 
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
@@ -27,7 +28,7 @@ import {Address} from './../model/Address';
   providers: [
     NationalityService, CountryCodeService, StateService,
     DayService, MonthService, YearService, EventService,
-    ValidationService, AccountService
+    ValidationService, AccountService, UserService
   ],
   template: require('./account.html')
 })
@@ -45,7 +46,7 @@ export class AccountComponent implements OnInit {
   emailValid: boolean = true;
   accountMessage: string;
 
-  _loading: boolean = false;
+  private _loading: boolean = false;
 
   constructor(private _authService: AuthService,
              private _nationalityService: NationalityService,
@@ -57,6 +58,7 @@ export class AccountComponent implements OnInit {
              private _eventService: EventService,
              private _validationService: ValidationService,
              private _accountService: AccountService,
+             private _userService: UserService,
              private _router: Router) {
       this.countryCodes = _countryCodeService.countryCodes();
       this.years = _yearService.years();
@@ -113,7 +115,7 @@ export class AccountComponent implements OnInit {
       } 
   }
 
-  submitAccount() {
+  submitAccount(): void {
     if (!this.emailValidation()) {
       this._validation('Email address is invalid');
       return;
@@ -130,19 +132,38 @@ export class AccountComponent implements OnInit {
         );
 
       if (payload.telephones !== undefined && payload.telephones.length > 0) {
-      this._accountService.putUserTelephone(payload.telephones[0])
+      this._accountService.updateUserTelephone(payload.telephones[0])
         .subscribe(
-            response => {},
+            response => this._handleUserUpdate(),
+            error => this._handleError(error, 'There was an error updating your account')
+        );
+      }
+
+      if (payload.addresses !== undefined && 
+          payload.addresses.length > 0 &&
+          !payload.addresses[0].hasOwnProperty('id')) {
+      this._accountService.updateUserAddress(payload.addresses[0])
+        .subscribe(
+            response => this._handleUserUpdate(),
             error => this._handleError(error, 'There was an error updating your account')
         );
       }
   }
 
-  _handleAccountResponse(user) {
+  _handleAccountResponse(user: any): void {
     this._authService.saveUser(user);   
+    this._updateRegistrationObject(user);
     this.accountMessage = 'Account updated successfully';
 
     this._loading = false;
+  }
+
+  _handleUserUpdate(): void {
+      this._userService.getUser(this._authService.getUser().id)
+        .subscribe(
+            response => this._handleAccountResponse(response),
+            error => this._handleError(error, 'There was an error updating your account')
+      );
   }
 
   updatePasswordClick() {
@@ -196,7 +217,13 @@ export class AccountComponent implements OnInit {
   _handleNationalityResponse(response) {
     this.nationalities = response;
 
-    let user = this._authService.getUser();
+    this._updateRegistrationObject(null);
+  }
+
+  _updateRegistrationObject(user: User) {
+    if (user == null) 
+      user = this._authService.getUser();
+    
     let userRegistration = new User(user.id, user.firstName, user.lastName,
       user.email, user.gender, user.dateOfBirth, user.relations);
     this.registration = userRegistration.getRegistration();
