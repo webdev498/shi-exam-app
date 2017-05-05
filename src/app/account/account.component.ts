@@ -152,6 +152,7 @@ export class AccountComponent implements OnInit {
 
   _handleAccountResponse(user: any): void {
     this._authService.saveUser(user);   
+    this._updateRegistrationObject(user);
     this.accountMessage = 'Account updated successfully';
 
     this._loading = false;
@@ -216,7 +217,13 @@ export class AccountComponent implements OnInit {
   _handleNationalityResponse(response) {
     this.nationalities = response;
 
-    let user = this._authService.getUser();
+    this._updateRegistrationObject(null);
+  }
+
+  _updateRegistrationObject(user: User) {
+    if (user == null) 
+      user = this._authService.getUser();
+    
     let userRegistration = new User(user.id, user.firstName, user.lastName,
       user.email, user.gender, user.dateOfBirth, user.relations);
     this.registration = userRegistration.getRegistration();
