@@ -125,6 +125,13 @@ HEADER
 {
     color: #be9e21;
 }
+
+@media (max-width: 768px) {
+.navbar-right {
+    background-color: rgba(64,75,97, 0.5)
+    };
+}
+
 .navbar-default .navbar-brand {
     color: #fff;
     font-family: 'Raleway', sans-serif;
