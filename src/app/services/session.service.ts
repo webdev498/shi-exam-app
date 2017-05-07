@@ -8,10 +8,18 @@ export class SessionService {
 
   private static allCategories: Category[];
   private static currentUser: User;
+  private static lastExamResult: any;
+  private static lastExamResultChecked: boolean = false;
   private static selectedCategories: Category[];
   private static studyCorrect: number = 0;
   private static studyOverall: number = 0;
   private static studyRandom: boolean = false;
+
+  public clearSessionInfo(): void {
+    SessionService.lastExamResultChecked = false;
+    SessionService.lastExamResult = undefined;
+    SessionService.currentUser = undefined;
+  }
 
   public getCategories() {
     return SessionService.selectedCategories;
@@ -27,6 +35,22 @@ export class SessionService {
 
   public setAllCategories(categories: any) {
     SessionService.allCategories = categories;
+  }
+
+  public getLastExamResult(): any {
+    return SessionService.lastExamResult;
+  }
+
+  public setLastExamResult(result: any): void {
+    SessionService.lastExamResult = result;
+  }
+
+  public getLastExamResultChecked(): boolean {
+    return SessionService.lastExamResultChecked;
+  }
+
+  public setLastExamResultChecked(): void {
+    SessionService.lastExamResultChecked = true;
   }
 
   public getStudyCorrect() :string {
