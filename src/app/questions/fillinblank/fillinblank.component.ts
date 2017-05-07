@@ -68,7 +68,25 @@ export class FillInBlankComponent {
     for (let i = 0; i < this.term.translations.length; i++) {
       if (this.term.translations[i].value == this.termInput) {
         this.success = true;
+        break;
+      } else if (this.term.translations[i].value.includes(' ')) {
+        const potentials: any[] = this.term.translations[i].value.split(' ');
+        for (let j = 0; j < potentials.length; j++) {
+          if (potentials[j] === this.termInput) {
+            this.success = true;
+            break;
+          }
+        }
       }
+    }
+
+    if (!this.success) {
+      for (let i = 0; i < this.term.translations.length; i++) {
+        if (this.term.translations[i].value == this.termInput) {
+          this.success = true;
+          break;
+        }
+      }  
     }
 
     this.complete = true;
