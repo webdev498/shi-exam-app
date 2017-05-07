@@ -64,6 +64,7 @@ export class ExamResponseService {
         score.overallPassed = percentCorrect < PassingScore ? false : true;
         score.overallRight = er.pointsAwarded;
         score.overallMissed = er.pointsPossible - er.pointsAwarded;
+        score.overallScore = `You scored  ${er.pointsAwarded.toString()} out of a possible ${er.pointsPossible.toString()} correct answers (${percentCorrect.toString()}%)`;
         score.categoriesScore = new Array();
         score.percent = percentCorrect;
         score.dateTaken = new Date(er.createdAt).toLocaleDateString();

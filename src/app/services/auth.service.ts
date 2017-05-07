@@ -24,6 +24,7 @@ export class AuthService {
 
     logout() {
         localStorage.clear();
+        this._sessionService.clearSessionInfo();
         this._router.navigate['home'];
     }
 

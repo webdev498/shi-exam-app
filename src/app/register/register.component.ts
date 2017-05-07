@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
   days: Day[];
   updatePasswordEnabled: boolean = true;
   showSuccess: boolean = false;
+  working: boolean = false;
 
   // TypeScript public modifiers
   constructor(private _nationalityService: NationalityService,
@@ -73,6 +74,9 @@ export class RegisterComponent implements OnInit {
   }
   
   submitButtonState() {
+    if (this.working)
+      return true;
+
       if (this.ur.firstName.length > 0
           && this.ur.lastName.length > 0)
           return false;
@@ -81,6 +85,7 @@ export class RegisterComponent implements OnInit {
   }
   
   submitRegistration() {
+    this.working = true;
       let userAccount = new UserAccount().setPayload(this.ur);
       let payload = userAccount.getPayload();
       this._regService.postRegistration(payload)
@@ -97,6 +102,8 @@ export class RegisterComponent implements OnInit {
       .subscribe(
           response => this._handleUserResponse(response)
       );
+
+      this.working = false;
   }
 
   _handleUserResponse(user) {
@@ -108,6 +115,8 @@ export class RegisterComponent implements OnInit {
   _handleError(error, message) {
     this._eventService.broadcast('error', message);
     console.error(error);
+
+    this.working = false;
   }
 
   _handleNationalityResponse(response) {

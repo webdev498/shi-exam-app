@@ -52,7 +52,7 @@ export class ExamHistoryComponent implements OnInit {
 
     public doughnutChartLabels: string[] = ['Percent Wrong', 'Percent Correct'];
     public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.6)']}];
-    public lineChartColors: any[] = [{backgroundColor: ['rgba(26,184,223,0.6)']}];
+    public lineChartColors: any = {backgroundColor: 'rgba(26,184,223,0.6)'};
     public chartLabels: string[] = ['Correct','Missed'];
 
     public categoryLabelAll: any[] = [];
@@ -163,6 +163,14 @@ export class ExamHistoryComponent implements OnInit {
       this._eventService.broadcast('error', 'There was an issue retrieving your history');
       console.error(error);
     }
+
+  public examMessage(): string {
+    return this.scores.length > 1 ? '(last 5 exams taken are shown)' : 'You have taken 1 exam';
+  }
+
+  public examTotalMessage(): string {
+    return this.scores.length > 1 ? `You have taken a total of ${this.scores.length.toString()} exams ` : '';
+  }
 
   public chartClicked(e:any):void {
     //console.log(e);

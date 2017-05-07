@@ -6,4 +6,5 @@ export class StudyTerm implements StudyTermInterface {
     public sourcelanguage: string;
     public translations: StudyTerm[];
     public display: boolean = false;
+    public hasPlurals: boolean = false;
 }

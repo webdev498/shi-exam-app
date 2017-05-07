@@ -31,8 +31,20 @@ export class App implements OnInit {
 
     loggedInUser() {
       var user = this._authService.tokenUserInfo();
-      if (user !== null)
-        return user.firstName + ' ' + user.lastName;
+      if (user !== null) {
+        let name = user.firstName;
+        if (name.length <= 10) {
+          if (name.length + user.lastName.length <= 15)
+            return `${user.firstName} ${user.lastName}`;
+          else {
+            if (user.lastName.length >= 4)  
+              return `${user.firstName} ${user.lastName.substr(0,4)}`;
+            else
+              return `${user.firstName}...`;
+          }
+        } else
+          return user.firstName;
+      }
     }
 
   ngOnInit() {

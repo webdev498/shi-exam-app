@@ -14,14 +14,14 @@
                 <div class="col-md-4 bottomMargin">
                     <div class="mostRecent" (click)="mostRecent()">
                         <div class="centerAlign">
-                            <div [ngClass]="{singleScore: scoreClass(1), 
-                                            doubleScore: scoreClass(2), 
-                                            tripleScore: scoreClass(3)}">
-                                {{lastScore}}
-                            </div>
-                            <img src="../assets/img/result-screen-graph.png"
-                                class="resultImg"
-                                alt="Last exam score" title="Last exam score" />
+                            <canvas baseChart width="100%" height="100%" 
+                                [data]="chartData"
+                                [options]="chartOptions"
+                                [colors]="chartColors" 
+                                [labels]="chartLabels"
+                                [legend]="showLegend"
+                                [chartType]="'doughnut'">
+                            </canvas>
                         </div>
                         <div class="dTextBreak"></div>
                         <div class="dTextBottom">

@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ExamResponseService} from './../services/examresponse.service';
 import {Score} from './../model/exam/Score';
 import {CategoryScore} from './../model/exam/CategoryScore';
+import {AuthService as CGIAuth} from './../services/auth.service';
 
 @Component({
   template: require('./examcomplete.html'),
@@ -11,7 +12,8 @@ import {CategoryScore} from './../model/exam/CategoryScore';
 export class ExamCompleteComponent implements OnInit {
     
     constructor(private _router: Router,
-               private _examResponse: ExamResponseService) 
+               private _examResponse: ExamResponseService,
+               private _authService: CGIAuth) 
                {}
     public doughnutChartType: string = 'doughnut';
 
@@ -44,5 +46,25 @@ export class ExamCompleteComponent implements OnInit {
 
    didFail() {
      return this.examScore.overallPassed === false;
+   }
+
+   selected(type: string): void {
+    switch (type) {
+      case 'study':
+      if (this._authService.premierUser())
+          this._router.navigate(['studydashboard']);
+      else 
+        this._router.navigate(['premiumupgrade']);  
+      break;
+      case 'exam':
+        this._router.navigate(['examstart']);
+      break;
+      case 'performance':
+        if (!this._authService.premierUser())
+          this._router.navigate(['premiumupgrade']);
+        else
+          this._router.navigate(['examhistory']);
+      break;
+    }
    }
 }

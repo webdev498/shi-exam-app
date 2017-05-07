@@ -29,6 +29,10 @@
     width: 150px;
 }
 
+.guideTxt {
+    font-size: .9em
+}
+
 .undoSelection {@extend .center; @extend .point; @extend .italic; color: $app-light-blue; font-size: 9pt;
 &:hover {color: $app-beige; @extend .underline}
 }
