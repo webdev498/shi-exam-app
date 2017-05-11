@@ -192,9 +192,10 @@ export class AccountComponent implements OnInit {
   }
 
   cancel() {
+      this.activatingStudy = true;
       this._accountService.premierStudyCancel()
         .subscribe(
-        response => {},
+        response => this._handleStudyCancel(),
         error => this._handleError(error, 'There was an error downgrading your account')
       );  
   }
@@ -212,6 +213,14 @@ export class AccountComponent implements OnInit {
   _handleStudyActivateResponse(response) {
     this.activatingStudy = false;
     window.location.href = response.redirectUrl;
+  }
+
+  private _handleStudyCancel() {
+      //Logout and go back to home page
+      this._authService.logout();
+      event.preventDefault();
+      event.stopPropagation();
+      this._router.navigate(['login', {'Message': 'Your account has been downgraded.  Please login again'}]);
   }
 
   _handleNationalityResponse(response) {
