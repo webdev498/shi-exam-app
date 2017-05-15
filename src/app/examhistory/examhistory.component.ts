@@ -6,6 +6,7 @@ import {ExamResponseService} from './../services/examresponse.service';
 import {EventService} from './../services/event.service';
 import {CategoryService} from './../services/category.service';
 import {SessionService} from './../services/session.service';
+import {AnalyticsService} from './../services/analytics.service';
 import {ExamResponse} from './../model/exam/ExamResponse';
 import {Category} from './../model/Category';
 import {Score} from './../model/exam/Score';
@@ -25,7 +26,8 @@ export class ExamHistoryComponent implements OnInit {
                 private _examService: ExamService,
                 private _eventService: EventService,
                 private _categoryService: CategoryService,
-                private _sessionService: SessionService) 
+                private _sessionService: SessionService,
+                private _analyticsService: AnalyticsService) 
                 {
 
                 }
@@ -81,6 +83,8 @@ export class ExamHistoryComponent implements OnInit {
             error => this._handleAllExamError(error)
         );
       }
+
+      this._analyticsService.pageView('./examhistory.html');
     }
 
     _scores() {

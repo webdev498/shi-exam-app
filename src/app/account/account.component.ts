@@ -17,6 +17,7 @@ import {YearService} from './../services/year.service';
 import {EventService} from './../services/event.service';
 import {ValidationService} from './../services/validation.service';
 import {UserService} from './../services/user.service';
+import {AnalyticsService} from './../services/analytics.service';
 
 import {CountryCode} from './../model/CountryCode';
 import {Day} from './../model/Day';
@@ -59,6 +60,7 @@ export class AccountComponent implements OnInit {
              private _validationService: ValidationService,
              private _accountService: AccountService,
              private _userService: UserService,
+             private _analyticsService: AnalyticsService,
              private _router: Router) {
       this.countryCodes = _countryCodeService.countryCodes();
       this.years = _yearService.years();
@@ -77,6 +79,8 @@ export class AccountComponent implements OnInit {
           response => this._handleNationalityResponse(response),
           error => this._handleError(error, 'There was an error retrieving the nationalities')
       );
+
+      this._analyticsService.pageView('/account.html');
   }
 
   submitButtonState() {

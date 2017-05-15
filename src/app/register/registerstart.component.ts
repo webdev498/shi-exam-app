@@ -7,6 +7,7 @@ import {RegistrationStart} from './../model/RegistrationStart';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserService} from './../services/user.service';
 import {AuthService as CGIAuth} from './../services/auth.service';
+import {AnalyticsService} from './../services/analytics.service';
 
 import {Router} from '@angular/router';
 import {NgForm, Validators} from '@angular/forms';
@@ -27,6 +28,7 @@ export class RegisterStartComponent implements OnInit {
                 private _validator: ValidationService,
                 private _oauth: AuthService,
                 private _userService: UserService,
+                private _analyticsService: AnalyticsService,
                 private _authService: CGIAuth) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
@@ -97,7 +99,7 @@ export class RegisterStartComponent implements OnInit {
   }
   
   ngOnInit() {
-      //Set focus on email address text box
+      this._analyticsService.pageView('/registerstart.html');
   }
 
 }
