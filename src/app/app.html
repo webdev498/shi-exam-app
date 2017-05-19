@@ -68,3 +68,10 @@
     <p class="errorMessage">{{errorMessage}}</p>
   </div>
 </div>
+
+<div *ngIf="showInfoModal" class="cgiModal">
+  <div class="cgiModal-content">
+    <span class="modalClose" (click)="closeInfoModal()">×</span>
+    <p class="infoMessage">{{infoMessage}}</p>
+  </div>
+</div>

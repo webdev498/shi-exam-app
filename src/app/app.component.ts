@@ -10,10 +10,12 @@ import { AppState } from './app.service';
 })
 
 export class App implements OnInit {
-  url = 'http://www.commongroundinternational.com';
-  currentYear = new Date().getFullYear();
-  showErrorModal: boolean = false;
-  errorMessage: string = '';
+  public url = 'http://www.commongroundinternational.com';
+  public currentYear = new Date().getFullYear();
+  public showErrorModal: boolean = false;
+  public errorMessage: string = '';
+  public showInfoModal: boolean = false;
+  public infoMessage: string = '';
 
   constructor(private _authService: AuthService,
               private _eventService: EventService,
@@ -48,16 +50,25 @@ export class App implements OnInit {
     }
 
   ngOnInit() {
-   let appInstance = this;
+   const appInstance = this;
         this._eventService.on('error', function(message) {
             appInstance.showErrorModal = true;
             appInstance.errorMessage = message;
         });
 
+        this._eventService.on('info', function(message) {
+            appInstance.showInfoModal = true;
+            appInstance.infoMessage = message;
+        });
+
     console.log('Initial App State', appInstance.appState.state);
   }
 
-  closeErrorModal() {
+  public closeErrorModal(): void {
     this.showErrorModal = false;
+  }
+
+  public closeInfoModal(): void {
+    this.showInfoModal = false;
   }
 }

@@ -62,6 +62,36 @@
                                 <a [routerLink]=" ['/forgotpassword'] ">Forgot Password</a>
                             </p>
                         </div>
+
+                        <div class="modal fade" role="dialog" id="fpModal">
+                            <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Forgot Password Confirmation</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Would you like to reset your password?</p>
+                                    <p>Enter your email address and press Confirm</p>
+                                    <div>
+                                        <input type="text" 
+                                            [(ngModel)]="resetEmail"
+                                            class="form-control" 
+                                            placeholder="Your email address" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" 
+                                    class="btn btn-primary" data-dismiss="modal" 
+                                    [disabled]="resetConfirmDisabled()"
+                                    (click)="confirmReset()">Confirm</button>
+                                <button type="button" 
+                                    class="btn btn-default" data-dismiss="modal">Cancel
+                                    </button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

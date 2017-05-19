@@ -8,6 +8,8 @@ import {SessionService} from './../services/session.service';
 import {UserService} from './../services/user.service';
 import {AuthService as CGIAuth} from './../services/auth.service';
 import {AnalyticsService} from './../services/analytics.service';
+import {EventService} from './../services/event.service';
+import {AccountService} from './../account/account.service';
 import {LoginResponse} from './../model/LoginResponse';
 import {UserTokenKey} from './../model/Constants';
 import {UserInfoKey} from './../model/Constants';
@@ -15,22 +17,25 @@ import {User} from './../model/User';
 
 @Component({
   providers: [
-    LoginService, UserService, CGIAuth, AuthService
+    LoginService, UserService, CGIAuth, AuthService, AccountService
   ],
   template: require('./login.html')
 })
 export class LoginComponent implements OnInit {
   // Set our default values
-  username: string;
-  password: string;
-  errorMessage: string;
-  processing: boolean = false;
-  notification: string = "";
+  public username: string;
+  public password: string;
+  public errorMessage: string;
+  public processing: boolean = false;
+  public notification: string = "";
+  public resetEmail: string;
   
   constructor(private _loginService: LoginService,
               private _sessionService: SessionService,
               private _userService: UserService,
               private _authService: CGIAuth,
+              private _eventService: EventService,
+              private _accountService: AccountService,
               private _router: Router,
               private _route: ActivatedRoute,
               private _oauth: AuthService,
@@ -99,7 +104,7 @@ export class LoginComponent implements OnInit {
           .subscribe(
                   (response: Response) => context._handleLoginResponse(response.json()),
                   (error: any) => console.error(`Error through handler: ${error.toString()}`)
-               )
+               );
   }
   
   ngOnInit() {
@@ -109,6 +114,31 @@ export class LoginComponent implements OnInit {
     }
 
     this._analytics.pageView('/login.html');
+  }
+
+  public resetConfirmDisabled(): boolean {
+    let disabled: boolean = this.resetEmail === undefined ||
+      this.resetEmail === null ||
+      this.resetEmail.indexOf('@') === -1;
+
+    if (disabled)
+      return true;
+
+    return false;
+  }
+
+  public confirmReset(): void {
+    const context = this;
+    this._accountService.resetPassword(this.resetEmail)
+    .subscribe(
+            (response: Response) => context._handleResetResponse(),
+            (error: any) => this._eventService.broadcast('error', error.toString())
+          );
+  }
+
+  private _handleResetResponse(): void {
+    this._sessionService.clearSessionInfo();
+    this._eventService.broadcast('info', 'You will received an email with instructions to reset your password');
   }
 
 }
