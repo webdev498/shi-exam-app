@@ -10,7 +10,7 @@ export class UserService {
   constructor(private _http: Http,
               private _authService: AuthService) { }
 
-  getUser(id) {    
+  public getUser(id: string) {    
     let header = new Headers();
     header.append(AuthHeaderKey,this._authService.getToken());
 
@@ -20,6 +20,15 @@ export class UserService {
       .map((response: Response) => <User>response.json())
       //.do(data => console.log(data))
       .catch(this.handleError);
+  }
+
+  public resetPassword(newPassword: string, userToken: string) {
+    const pass = {'password': newPassword, 'userToken': userToken}
+     return this._http.put(RootApiUrl + '/users/reset', pass, {
+    })
+      .map((response: Response) => <User>response.json())
+      //.do(data => console.log(data))
+      .catch(this.handleError);     
   }
 
   private handleError(error: Response) {

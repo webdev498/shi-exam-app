@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  formKeyup(e) {
+  public formKeyup(e): void {
     //submit on enter keyCode 
-    if (e.keyCode === 13)
+    if (e.keyCode === 13 && this.loginButtonState())
       this.submitLogin();
   }
   

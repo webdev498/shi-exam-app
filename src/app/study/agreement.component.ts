@@ -1,4 +1,4 @@
-import {Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {AccountService} from './../account/account.service';
@@ -17,12 +17,12 @@ export class AgreementComponent implements OnInit, OnDestroy {
               private _accountService: AccountService,
               private _authService: AuthService) {}
     
-    private subscription: Subscription;
+    private _subscription: Subscription;
     private _token: string;
 
     ngOnInit() {
         // subscribe to router event
-        this.subscription = this._activatedRoute.queryParams.subscribe(
+        this._subscription = this._activatedRoute.queryParams.subscribe(
           (param: any) => {
             this._token = param['token'];
 
@@ -36,7 +36,7 @@ export class AgreementComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         // prevent memory leak by unsubscribing
-        this.subscription.unsubscribe();
+        this._subscription.unsubscribe();
    }
 
    _handleAccountResponse(response: any) {
