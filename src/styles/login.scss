@@ -1,3 +1,8 @@
 @import 'app';
 
 .error {color: red}
+
+.fplink {
+    color: $app-teal-blue;
+    cursor: pointer;
+}
