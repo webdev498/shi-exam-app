@@ -96,6 +96,9 @@ form {
 .errorMessage {color: $app-red-orange; font-size: $app-font-size-small; 
         padding: 5px; font-weight: bold}
 
+.infoMessage {color: $app-green; font-size: $app-font-size-small; 
+        padding: 5px; font-weight: bold}
+
 .cgiModal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */

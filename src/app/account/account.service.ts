@@ -110,6 +110,18 @@ export class AccountService {
       .catch(this.handleError);
   }
 
+  public resetPassword(email: string) {
+    let header = new Headers();
+    header.append(AuthHeaderKey,this._authService.getToken());
+    header.append('Content-Type','application/json');
+    let body = { 'email': email }
+    return this._http.post(RootApiUrl + '/user/resetpassword', body, {
+      headers: header
+    })
+      .map((response: Response) => <any>response.json())
+      .catch(this.handleError);   
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error);
   }

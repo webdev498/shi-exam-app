@@ -18,7 +18,7 @@ import {StudyDashboardComponent} from './study/studydashboard.component';
 import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
-import {BetaFeedbackComponent} from './betafeedback';
+import {BetaFeedbackComponent} from './betafeedback/betafeedback';
 
 import {AuthGuardService} from './services/authguard.service';
 import {StudyGuardService} from './services/studyguard.service';
