@@ -3,6 +3,7 @@
 .error {color: red}
 
 .fplink {
-    color: $app-teal-blue;
+    color: #337ab7;
     cursor: pointer;
+    &:hover {text-decoration: underline; color: navy}
 }
