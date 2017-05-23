@@ -34,7 +34,7 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
 
 import {App} from './app.component';
 
-import {BetaFeedbackComponent} from './betafeedback';
+import {BetaFeedbackComponent} from './betafeedback/betafeedback';
 
 import {AgreementComponent} from './study/agreement.component';
 import {AccountComponent} from './account/account.component';
