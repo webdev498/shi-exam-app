@@ -19,6 +19,7 @@ import {AccountComponent} from './account/account.component';
 import {AccountConfirmationComponent} from './account/accountconfirmation.component';
 
 import {BetaFeedbackComponent} from './betafeedback/betafeedback';
+import {TestFeedbackComponent} from './betafeedback/testfeedback';
 
 import {AuthGuardService} from './services/authguard.service';
 import {StudyGuardService} from './services/studyguard.service';
@@ -26,6 +27,7 @@ import {StudyGuardService} from './services/studyguard.service';
 export const ROUTES: Routes =[
   { path: '', component: HomeComponent},
   { path: 'betafeedback', component: BetaFeedbackComponent},
+  { path: 'testfeedback', component: TestFeedbackComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registerstart', component: RegisterStartComponent},

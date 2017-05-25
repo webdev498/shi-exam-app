@@ -35,6 +35,7 @@ const DEFAULT_POST_HEADER: {[name: string]: string} = {
 import {App} from './app.component';
 
 import {BetaFeedbackComponent} from './betafeedback/betafeedback';
+import {TestFeedbackComponent} from './betafeedback/testfeedback';
 
 import {AgreementComponent} from './study/agreement.component';
 import {AccountComponent} from './account/account.component';
@@ -127,7 +128,7 @@ import '../styles/studyquestionchoice.scss';
                     StudyComponent, StudyScoreComponent, StudyDashboardComponent, 
                     AccountComponent, AccountConfirmationComponent, 
                     RegisterConfirmComponent, AgreementComponent, CategoriesComponent,
-                    MultipleChoice, Matching, Grouping, App, BetaFeedbackComponent],
+                    MultipleChoice, Matching, Grouping, App, BetaFeedbackComponent, TestFeedbackComponent],
     providers: [
     ...APP_PROVIDERS,
     ENV_PROVIDERS
