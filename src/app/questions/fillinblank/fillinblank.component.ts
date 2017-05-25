@@ -66,13 +66,13 @@ export class FillInBlankComponent {
     this.success = false;
 
     for (let i = 0; i < this.term.translations.length; i++) {
-      if (this.term.translations[i].value == this.termInput) {
+      if (this.term.translations[i].value.toLowerCase() == this.termInput.toLowerCase()) {
         this.success = true;
         break;
       } else if (this.term.translations[i].value.includes(' ')) {
         const potentials: any[] = this.term.translations[i].value.split(' ');
         for (let j = 0; j < potentials.length; j++) {
-          if (potentials[j] === this.termInput) {
+          if (potentials[j].toLowerCase() === this.termInput.toLowerCase()) {
             this.success = true;
             break;
           }
@@ -82,11 +82,15 @@ export class FillInBlankComponent {
 
     if (!this.success) {
       for (let i = 0; i < this.term.translations.length; i++) {
-        if (this.term.translations[i].value == this.termInput) {
-          this.success = true;
-          break;
-        }
-      }  
+        if (this.term.translations[i].value.includes('/')) {
+          const potentials: any[] = this.term.translations[i].value.split('/');
+          for (let j = 0; j < potentials.length; j++) {
+            if (potentials[j].toLowerCase() === this.termInput.toLowerCase()) {
+              this.success = true;
+              break;
+            }
+          }
+        }  
     }
 
     this.complete = true;
