@@ -128,6 +128,7 @@ export class LoginComponent implements OnInit {
   }
 
   public confirmReset(): void {
+    this._sessionService.clearSessionInfo();
     const context = this;
     this._accountService.resetPassword(this.resetEmail)
     .subscribe(

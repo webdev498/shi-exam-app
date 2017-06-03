@@ -114,7 +114,7 @@ export class AccountService {
     let body = { 'email': email }
     return this._http.post(`${RootApiUrl}/users/resetpassword`, body, {
     })
-      .map((response: Response) => <any>response.json())
+      .map((response: Response) => <any>response)
       .catch(this.handleError);   
   }
 
