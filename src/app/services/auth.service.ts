@@ -50,6 +50,11 @@ export class AuthService {
           else 
               return false;
       }
+
+      if (!userInfo.hasOwnProperty('relations')) {
+          this._sessionService.clearSessionInfo();
+          return false;
+      }
         
 
         let currentRole = userInfo.relations.role.name;

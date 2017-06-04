@@ -128,12 +128,20 @@ export class LoginComponent implements OnInit {
   }
 
   public confirmReset(): void {
+    this._sessionService.clearSessionInfo();
     const context = this;
     this._accountService.resetPassword(this.resetEmail)
     .subscribe(
             (response: Response) => context._handleResetResponse(),
-            (error: any) => this._eventService.broadcast('error', error.toString())
+            (error: any) => this._handleResetError(error)
           );
+  }
+
+  private _handleResetError(error: any) {
+    if (error.status == 404)
+      this._eventService.broadcast('error', 'Sorry, your email address was not found in our database');
+    else
+      this._eventService.broadcast('error', error.toString());
   }
 
   private _handleResetResponse(): void {

@@ -22,11 +22,11 @@ export class UserService {
       .catch(this.handleError);
   }
 
-  public resetPassword(newPassword: string, userToken: string) {
-    const pass = {'password': newPassword, 'userToken': userToken}
-     return this._http.put(RootApiUrl + '/users/reset', pass, {
+  public resetPassword(newPassword: string, userId: string) {
+    const pass = {'newPassword': newPassword };
+     return this._http.post(`${RootApiUrl}/users/${userId}/resetpassword`, pass, {
     })
-      .map((response: Response) => <User>response.json())
+      .map((response: Response) => <any>response)
       //.do(data => console.log(data))
       .catch(this.handleError);     
   }

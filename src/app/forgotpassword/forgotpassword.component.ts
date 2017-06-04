@@ -28,9 +28,10 @@ export class ForgotPasswordComponent {
     }
 
     ngOnInit() {
+      this._sessionService.clearSessionInfo();
         this._subscription = this._activatedRoute.queryParams.subscribe(
           (param: any) => {
-            this._userIdentifier = param['indentity'];
+            this._userIdentifier = param['user'];
           });
     }
 

@@ -111,14 +111,10 @@ export class AccountService {
   }
 
   public resetPassword(email: string) {
-    let header = new Headers();
-    header.append(AuthHeaderKey,this._authService.getToken());
-    header.append('Content-Type','application/json');
     let body = { 'email': email }
-    return this._http.post(RootApiUrl + '/user/resetpassword', body, {
-      headers: header
+    return this._http.post(`${RootApiUrl}/users/resetpassword`, body, {
     })
-      .map((response: Response) => <any>response.json())
+      .map((response: Response) => <any>response)
       .catch(this.handleError);   
   }
 
