@@ -1,6 +1,7 @@
 // TODO(gdi2290): switch to DLLs
 
 // Polyfills
+import 'mdn-polyfills/Object.assign';
 
 // import 'ie-shim'; // Internet Explorer 9 support
 
