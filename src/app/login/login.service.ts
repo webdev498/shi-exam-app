@@ -12,7 +12,7 @@ export class LoginService {
     let instance = this;
     let header = new Headers();
     header.append('Content-Type','application/json');
-    var credentials = JSON.stringify({email: username, password: password});
+    var credentials = JSON.stringify({email: username.toLowerCase(), password: password});
     
     return this._http.post(RootApiUrl + '/login',credentials, {
       headers: header
