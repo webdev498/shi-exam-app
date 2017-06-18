@@ -23,7 +23,7 @@ const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3001;
 const API_HOST = '"http://localhost:3000"';
 const GOOGLE_CLIENT_ID = '"584302945146-hf91k8glaa97agv0mbi5d61mm2kglkau.apps.googleusercontent.com"';
-const FACEBOOK_CLIENT_ID = '"228791194154793"';
+const FACEBOOK_CLIENT_ID = '"644249422436151"';
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
