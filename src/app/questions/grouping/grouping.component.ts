@@ -177,7 +177,7 @@ export class Grouping {
 
             this._sessionService.setStudyCorrect(choice.success,true);
 
-            if (this.grouped == GroupingTermsShown)
+            if (this.grouped === this.terms.length)
                 this.complete = true;
         }
     }

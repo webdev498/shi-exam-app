@@ -93,7 +93,7 @@ export class Matching {
             this._sessionService.setStudyCorrect(choice.success,true);
 
             this._matches++;
-            if (this._matches == MatchingTermsShown)
+            if (this._matches * 2 === this.terms.length)
                 this.complete = true;
         }
 

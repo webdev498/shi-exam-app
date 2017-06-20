@@ -6,8 +6,8 @@
   var ua = window.navigator.userAgent;
 
   var msie = ua.indexOf('MSIE ');
-  var trident = ua.indexOf('Trident/');
-  if (trident > 0 || msie > 0) {
+  //var trident = ua.indexOf('Trident/');
+  if (msie > 0) {
     window.location.href = "notsupported.html";
     return;
   }
