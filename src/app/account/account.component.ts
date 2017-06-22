@@ -31,7 +31,7 @@ import {Address} from './../model/Address';
     DayService, MonthService, YearService, EventService,
     ValidationService, AccountService, UserService
   ],
-  template: require('./account.html')
+  templateUrl: './account.html'
 })
 export class AccountComponent implements OnInit {
   activatingStudy: boolean = false;

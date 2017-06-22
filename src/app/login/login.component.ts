@@ -19,7 +19,7 @@ import {User} from './../model/User';
   providers: [
     LoginService, UserService, CGIAuth, AuthService, AccountService
   ],
-  template: require('./login.html')
+  templateUrl: './login.html'
 })
 export class LoginComponent implements OnInit {
   // Set our default values

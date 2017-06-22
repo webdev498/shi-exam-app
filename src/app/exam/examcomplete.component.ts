@@ -6,7 +6,7 @@ import {CategoryScore} from './../model/exam/CategoryScore';
 import {AuthService as CGIAuth} from './../services/auth.service';
 
 @Component({
-  template: require('./examcomplete.html'),
+  templateUrl: './examcomplete.html',
   providers: [ExamResponseService]
 })
 export class ExamCompleteComponent implements OnInit {

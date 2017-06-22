@@ -16,7 +16,7 @@ var _ = require('lodash');
 @Component({
   selector: 'examhistory',  
   providers: [ExamResponseService, ExamService, CategoryService],
-  template: require('./examhistory.html')
+  templateUrl: './examhistory.html'
 })
 export class ExamHistoryComponent implements OnInit {
     

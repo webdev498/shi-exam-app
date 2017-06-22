@@ -5,7 +5,7 @@ import {ExamService} from './exam.service';
 import {ExamStartParam, ExamShort, ExamNormal, ExamLong} from './../model/Constants';
 
 @Component({
-  template: require('./examstart.html'),
+  templateUrl: './examstart.html',
   providers: [ExamService]
 })
 export class ExamStartComponent {

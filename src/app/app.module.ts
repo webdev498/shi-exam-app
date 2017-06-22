@@ -93,12 +93,25 @@ import '../styles/studyquestionchoice.scss';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, 
+    HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
+                    ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
+                    ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
+                    FeedbackComponent, SelectionComponent,
+                    StudyQuestionChoiceComponent,
+                    StudyComponent, StudyScoreComponent, StudyDashboardComponent, 
+                    AccountComponent, AccountConfirmationComponent, 
+                    RegisterConfirmComponent, AgreementComponent, CategoriesComponent,
+                    MultipleChoice, Matching, Grouping, BetaFeedbackComponent, TestFeedbackComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule, 
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    HttpModule, 
+    Ng2UiAuthModule.forRoot(MyAuthConfig), 
+    CommonModule, ChartsModule
   ],
-  providers: [],
+  providers: [...APP_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -35,7 +35,7 @@ var _ = require('lodash');
     UserService
     ],
 
-  template: require('./register.html')
+  templateUrl: './register.html'
 })
 export class RegisterComponent implements OnInit {
   // Set default values

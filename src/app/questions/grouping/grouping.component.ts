@@ -9,7 +9,7 @@ var _ = require('lodash');
 
 @Component({ 
     selector: 'grouping', 
-    template: require('./grouping.html'),
+    templateUrl: './grouping.html',
 })
 export class Grouping {
     @Input() terms : Term[];

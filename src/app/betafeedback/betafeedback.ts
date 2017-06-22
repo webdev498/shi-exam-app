@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  template: require('./betafeedback.html')
+  templateUrl: './betafeedback.html'
 })
 export class BetaFeedbackComponent {
     

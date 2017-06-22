@@ -8,7 +8,7 @@ var _ = require('lodash');
 @Component({
   selector: 'categories',
   providers: [CategoryService, EventService],
-  template: require('./categories.html')
+  templateUrl: './categories.html'
 })
 export class CategoriesComponent implements OnInit {
   constructor(private _categoryService: CategoryService,

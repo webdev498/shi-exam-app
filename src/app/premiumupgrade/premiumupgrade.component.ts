@@ -9,7 +9,7 @@ import {AnalyticsService} from './../services/analytics.service';
 @Component({
   selector: 'premiumupgrade',  
   providers: [AccountService],
-  template: require('./premiumupgrade.html')
+  templateUrl: './premiumupgrade.html'
 })
 export class PremiumUpgradeComponent implements OnInit {
     activatingStudy: boolean = false;

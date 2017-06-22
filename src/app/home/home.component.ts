@@ -8,7 +8,7 @@ import {SessionService} from './../services/session.service';
 @Component({
   selector: 'home',  
   providers: [ExamService],
-  template: require('./home.html')
+  templateUrl: './home.html'
 })
 export class HomeComponent implements OnInit {
 

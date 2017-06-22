@@ -7,7 +7,7 @@ declare var iSpeechTTS: any;
 @Component({
   selector: 'flashcard',
   providers: [],
-  template: require('./flashcard.html')
+  templateUrl: './flashcard.html'
 })
 export class FlashcardComponent implements OnInit {
   @Input() terms: StudyTerm[];

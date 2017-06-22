@@ -16,7 +16,7 @@ import {Response} from '@angular/http';
 
 @Component({
   providers: [RegistrationService, ValidationService, CGIAuth, AuthService, UserService],
-  template: require('./registerstart.html')
+  templateUrl: './registerstart.html'
 })
 export class RegisterStartComponent implements OnInit {
   validationMessage: string;

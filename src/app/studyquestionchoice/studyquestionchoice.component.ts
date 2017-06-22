@@ -22,7 +22,7 @@ declare var iSpeechTTS: any;
 @Component({
   selector: 'studyquestionchoice',  
   providers: [TermService],
-  template: require('./studyquestionchoice.html'),
+  templateUrl: './studyquestionchoice.html',
 })
 export class StudyQuestionChoiceComponent implements OnInit {  
     constructor(private _sessionService: SessionService,
