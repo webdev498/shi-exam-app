@@ -5,6 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {EventService} from './../services/event.service';
 import {AccountService} from './../account/account.service';
 import {AnalyticsService} from './../services/analytics.service';
+import {AuthService} from './../services/auth.service';
 
 @Component({
   selector: 'premiumupgrade',  
@@ -13,13 +14,16 @@ import {AnalyticsService} from './../services/analytics.service';
 })
 export class PremiumUpgradeComponent implements OnInit {
     activatingStudy: boolean = false;
+    premiumuser: boolean = false;
     
     constructor(private _eventService: EventService,
              private _accountService: AccountService,
-             private _analyticsService: AnalyticsService) {}
+             private _analyticsService: AnalyticsService,
+             private _authService: AuthService) {}
 
     ngOnInit() {
       this._analyticsService.pageView('/premiumupgrade.html');
+      this.premiumuser = this._authService.premierUser();
     }
 
   activate() {

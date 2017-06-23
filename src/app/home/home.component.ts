@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   public scoreIconText: string;
   public hasLastExam: boolean = true;
   public lastScore: string = "";
-  public chartcolors: any[] = [{backgroundColor: ['rgba(231,76,60,0.2)', 'rgba(39,174,96,0.2)']}];
+  public chartColors: any[] = [{backgroundColor: ['rgba(231,76,60,0.2)', 'rgba(39,174,96,0.2)']}];
   public chartData: number[] = new Array();
   public chartLabels: string[] = ['Missed','Correct'];
   public showLegend: boolean = false;
