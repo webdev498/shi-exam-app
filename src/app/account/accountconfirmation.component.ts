@@ -5,7 +5,7 @@ import {AnalyticsService} from './../services/analytics.service';
 @Component({
   styles: [ ],
   providers: [AccountService],
-  template: require('./accountconfirmation.html')
+  templateUrl: './accountconfirmation.html'
 })
 export class AccountConfirmationComponent implements OnInit {
 
