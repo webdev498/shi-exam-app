@@ -2,15 +2,10 @@
 <html lang="">
 <head>
 
-  <title><%= htmlWebpackPlugin.options.title %></title>
-
-  <% if (webpackConfig.htmlElements.headTags) { %>
-  <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
+  <title>CGI Exam and Study Application</title>
 
   <!-- base url -->
-  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+  <base href="/">
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,11 +60,6 @@
       </div>
   </app>
 
-  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
-
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/js/jquery.easing.min.js"></script>
   <script src="/assets/js/bootstrap.min.js"></script>
@@ -77,6 +67,7 @@
   <script src="/assets/js/jquery.bxslider.min.js"></script>
   <script src="/assets/js/custom.js"></script>
   <script src="/assets/js/tts.js"></script>
+  <script src="/assets/js/autotrack.js"></script>
   <audio id="audioPlayer" style="display: none"></audio>
 </body>
 </html>

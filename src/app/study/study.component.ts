@@ -7,7 +7,7 @@ import {SessionService} from './../services/session.service';
 
 @Component({
   selector: 'study',  
-  template: require('./study.html'),
+  templateUrl: './study.html',
 })
 export class StudyComponent {
     

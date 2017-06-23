@@ -3,7 +3,7 @@ import {SessionService} from './../services/session.service';
 
 @Component({
   selector: 'studyscore',  
-  template: require('./studyscore.html')
+  templateUrl: './studyscore.html'
 })
 export class StudyScoreComponent  {
     constructor(private _sessionService: SessionService) {}

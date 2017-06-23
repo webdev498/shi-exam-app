@@ -4,7 +4,7 @@ import {Category} from './../../model/Category';
 
 @Component({
   selector: 'selection',
-  template: require('./selection.html')
+  templateUrl: './selection.html'
 })
 export class SelectionComponent {
   constructor(private _router: Router) {}

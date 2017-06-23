@@ -6,7 +6,7 @@ import {StudyTerm} from './../../model/question/StudyTerm';
 
 @Component({
   selector: 'feedback',  
-  template: require('./feedback.html'),
+  templateUrl: './feedback.html',
   providers: [ExamService]
 })
 export class FeedbackComponent {  

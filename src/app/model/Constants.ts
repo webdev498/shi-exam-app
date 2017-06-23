@@ -1,6 +1,6 @@
-import {CUSTOM_ENV} from './../environment';
+import {environment} from './../../environments/environment';
 
-export const RootApiUrl = CUSTOM_ENV.API_HOST;
+export const RootApiUrl = environment.API_HOST;
 export const UserTokenKey = 'userToken';
 export const UserInfoKey = 'userInfo';
 export const RegistrationStartInfo = 'rsStartInfo';

@@ -4,7 +4,7 @@ import {SessionService} from './../services/session.service';
 
 @Component({
   selector: 'studydashboard',  
-  template: require('./studydashboard.html'),
+  templateUrl: './studydashboard.html',
 })
 export class StudyDashboardComponent {
     

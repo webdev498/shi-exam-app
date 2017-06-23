@@ -8,7 +8,7 @@ declare var iSpeechTTS: any;
 @Component({
   selector: 'fillinblank',
   providers: [],
-  template: require('./fillinblank.html')
+  templateUrl: './fillinblank.html'
 })
 export class FillInBlankComponent {
 

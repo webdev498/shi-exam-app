@@ -8,7 +8,7 @@ import {AuthService} from './../services/auth.service';
 @Component({
   selector: 'studyagreement',  
   providers: [AccountService],
-  template: require('./agreement.html')
+  templateUrl: './agreement.html'
 })
 export class AgreementComponent implements OnInit, OnDestroy {
     constructor(private _activatedRoute: ActivatedRoute,

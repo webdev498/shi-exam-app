@@ -24,7 +24,7 @@ declare var iSpeechTTS: any;
 
 @Component({
   selector: 'exam',  
-  template: require('./exam.html'),
+  templateUrl: './exam.html',
   providers: [ExamService, ExamProgressService]
 })
 export class ExamComponent implements OnInit {

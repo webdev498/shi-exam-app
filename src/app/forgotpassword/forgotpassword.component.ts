@@ -7,7 +7,7 @@ import {SessionService} from './../services/session.service';
 import {AuthService} from './../services/auth.service';
 
 @Component({
-  template: require('./forgotpassword.html'),
+  templateUrl: './forgotpassword.html',
   providers: [UserService]
 })
 export class ForgotPasswordComponent {
