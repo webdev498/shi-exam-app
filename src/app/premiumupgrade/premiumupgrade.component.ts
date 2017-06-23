@@ -14,7 +14,7 @@ import {AuthService} from './../services/auth.service';
 })
 export class PremiumUpgradeComponent implements OnInit {
     activatingStudy: boolean = false;
-    premiumuser: boolean = false;
+    premieruser: boolean = false;
     
     constructor(private _eventService: EventService,
              private _accountService: AccountService,
@@ -23,7 +23,7 @@ export class PremiumUpgradeComponent implements OnInit {
 
     ngOnInit() {
       this._analyticsService.pageView('/premiumupgrade.html');
-      this.premiumuser = this._authService.premierUser();
+      this.premieruser = this._authService.premierUser();
     }
 
   activate() {
