@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "version": "1",
     "name": "cgi-she-exam-app"
   },
   "apps": [
@@ -19,7 +18,26 @@
       "tsconfig": "tsconfig.app.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles/account.scss",
+        "styles/app.scss",
+        "styles/categories.scss",
+        "styles/exam.scss",
+        "styles/examcomplete.scss",
+        "styles/examhistory.scss",
+        "styles/examstart.scss",
+        "styles/feedback.scss",
+        "styles/fillinblank.scss",
+        "styles/forgotpassword.scss",
+        "styles/grouping.scss",
+        "styles/home.scss",
+        "styles/login.scss",
+        "styles/matching.scss",
+        "styles/multiplechoice.scss",
+        "styles/premiumupgrade.scss",
+        "styles/register.scss",
+        "styles/selection.scss",
+        "styles/study.scss",
+        "styles/studyquestionchoice.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
