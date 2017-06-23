@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-require('autotrack');
 
 @Injectable()
 export class AnalyticsService {
