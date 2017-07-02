@@ -35,6 +35,9 @@ export class ExamResponseService {
                   const examCategory = _.filter(categoriesUsed, { 'id': id })[0];
                   let scoreCategory = _.filter(score.categoriesScore, { 'id': id });
 
+                  if (examCategory === undefined)
+                      continue;
+
                   if (scoreCategory.length === 0) {
                       let cs = new CategoryScore();
                       cs.correct = section.categoryResults[id].correct;

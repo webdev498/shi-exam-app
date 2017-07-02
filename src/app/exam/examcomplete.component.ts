@@ -21,6 +21,8 @@ export class ExamCompleteComponent implements OnInit {
     public categories: CategoryScore[] = new Array();
     public overallData: number[] = new Array();
     public overallLabels: string[] = ['Correct','Missed'];
+    public chartLabels: string[] = ['Correct','Missed'];
+    public categoryChartOptions: any = { tooltips: { enabled: false } }
 
     public chartcolors: any[] = [{backgroundColor: ['rgba(39,174,96,0.2)','rgba(231,76,60,0.2)']}];
 

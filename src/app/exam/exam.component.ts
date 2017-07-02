@@ -203,7 +203,7 @@ export class ExamComponent implements OnInit {
           disabled = this.answer == undefined || this.answer.length == 0 ? true : false;
           break;
         case MatchingQuestionType:
-          disabled = this.answer.length !== this.currentQuestion.choices.length ? true : false;
+          disabled = this.answer.length !== this.currentQuestion.terms.length / 2 ? true : false;
         break;
         case GroupingQuestionType:
           disabled = this.answer.length !== this.currentQuestion.choices.length ? true : false;

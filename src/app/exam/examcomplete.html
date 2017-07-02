@@ -35,7 +35,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <canvas baseChart [data]="c.data" [labels]="overallLabels" [colors]="chartcolors" [chartType]="doughnutChartType">
+                        <canvas baseChart [data]="c.data" 
+                            [labels]="chartLabels" 
+                            [colors]="chartcolors" 
+                            [options]="categoryChartOptions"
+                            [chartType]="doughnutChartType">
                         </canvas>
                     </td>
                 </tr>
@@ -45,7 +49,7 @@
 
     <div class="container" style="background-color: #eaeaea">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: 40px">
                 <div class="row">
                     <div class="col-md-4 bottomMargin">
                         <div class="mostRecent" (click)="selected('study')">
