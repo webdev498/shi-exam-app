@@ -8,8 +8,8 @@ export class MonthService {
   
     }
     
-    months() {
-        var list: Month[] = [];
+    months(): Month[] {
+       let list: Month[] = [];
        list.push({
            name: 'January',
            index: 1 
@@ -59,6 +59,24 @@ export class MonthService {
            index: 12
         });
         
+        return list;
+    }
+
+    CCMonths(): string[] {
+        let list: string[] = new Array();
+        list.push('01');
+        list.push('02');
+        list.push('03');
+        list.push('04');
+        list.push('05');
+        list.push('06');
+        list.push('07');
+        list.push('08');
+        list.push('09');
+        list.push('10');
+        list.push('11');
+        list.push('12');
+
         return list;
     }
 }

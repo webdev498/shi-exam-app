@@ -110,6 +110,17 @@ export class AccountService {
       .catch(this.handleError);
   }
 
+  premierStudyPaymentActivate(info: any) {
+    let header = new Headers();
+    header.append(AuthHeaderKey,this._authService.getToken());
+    header.append('Content-Type','application/json');
+    return this._http.post(RootApiUrl + '/payments/study/payflowprocess',info, {
+      headers: header
+    })
+      .map((response: Response) => <any>response)
+      .catch(this.handleError);
+  }
+
   public resetPassword(email: string) {
     let body = { 'email': email }
     return this._http.post(`${RootApiUrl}/users/resetpassword`, body, {

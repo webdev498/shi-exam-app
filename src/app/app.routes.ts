@@ -10,7 +10,7 @@ import {ExamStartComponent} from './exam/examstart.component';
 import {ExamComponent} from './exam/exam.component';
 import {ExamCompleteComponent} from './exam/examcomplete.component';
 import {ExamHistoryComponent} from './examhistory/examhistory.component';
-import {PremiumUpgradeComponent} from './premiumupgrade/premiumupgrade.component';
+import {PremiumUpgrade} from './premiumupgrade/premiumupgrade';
 import {StudyComponent} from './study/study.component';
 import {StudyQuestionChoiceComponent} from './studyquestionchoice/studyquestionchoice.component';
 import {AgreementComponent} from './study/agreement.component';
@@ -37,7 +37,7 @@ export const ROUTES: Routes =[
   { path: 'examstart', component: ExamStartComponent, canActivate: [AuthGuardService]},
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuardService]},
   { path: 'examcomplete', component: ExamCompleteComponent, canActivate: [AuthGuardService]},
-  { path: 'premiumupgrade', component: PremiumUpgradeComponent, canActivate: [AuthGuardService]},
+  { path: 'premiumupgrade', component: PremiumUpgrade, canActivate: [AuthGuardService]},
   { path: 'examhistory', component: ExamHistoryComponent, canActivate: [AuthGuardService]},
   { path: 'study', component: StudyComponent, canActivate: [StudyGuardService]},
   { path: 'studyquestionchoice', component: StudyQuestionChoiceComponent, canActivate: [StudyGuardService]},

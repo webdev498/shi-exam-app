@@ -35,6 +35,7 @@ import {MultipleChoice} from './questions/multiplechoice/multiplechoice.componen
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {PremiumUpgradeComponent} from './premiumupgrade/premiumupgrade.component';
+import {PremiumUpgrade} from './premiumupgrade/premiumupgrade';
 import {RegisterStartComponent} from './register/registerstart.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterConfirmComponent} from './register/registerconfirm.component';
@@ -96,7 +97,8 @@ import '../styles/studyquestionchoice.scss';
     AppComponent, 
     HomeComponent, LoginComponent, RegisterStartComponent, RegisterComponent,
                     ForgotPasswordComponent, ExamStartComponent, ExamComponent, ExamCompleteComponent,
-                    ExamHistoryComponent, PremiumUpgradeComponent, FillInBlankComponent, FlashcardComponent,
+                    ExamHistoryComponent, PremiumUpgrade, PremiumUpgradeComponent, 
+                    FillInBlankComponent, FlashcardComponent,
                     FeedbackComponent, SelectionComponent,
                     StudyQuestionChoiceComponent,
                     StudyComponent, StudyScoreComponent, StudyDashboardComponent, 
