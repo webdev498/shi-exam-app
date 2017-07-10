@@ -72,7 +72,7 @@ export class PremiumUpgradeComponent implements OnInit {
     this._accountService.premierStudyPaymentActivate(ccInfo)
       .subscribe(
         response => this._handleStudyPaymentActivateResponse(),
-        error => this._handleError(error, 'There was an error upgrading your account')
+        error => this._handlePayflowResponse(error)
       );
   }
 
@@ -110,6 +110,15 @@ export class PremiumUpgradeComponent implements OnInit {
         disabled = false;
 
     return disabled;
+  }
+
+  _handlePayflowResponse(error: any): void {
+    //precondition failed
+    if (error.status == 412) {
+      this._handleError(error,'Your credit card was not authorized');
+    } else {
+      this._handleError(error, 'There was a problem upgrading your account');
+    }
   }
 
    _handleError(error, message) {
