@@ -1,11 +1,13 @@
 import {Component, ViewEncapsulation, OnInit, Inject} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {EventService} from './services/event.service';
+import {TermService} from './services/term.service'
 
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
-  styles: [ ]
+  styles: [ ],
+  providers: [TermService]
 })
 
 export class App implements OnInit {
@@ -17,9 +19,8 @@ export class App implements OnInit {
   public infoMessage: string = '';
 
   constructor(private _authService: AuthService,
-              private _eventService: EventService) {
-    
-              }
+              private _eventService: EventService,
+              private _termService: TermService) {}
 
   loggedIn() {
     return this._authService.loggedIn();
@@ -29,23 +30,23 @@ export class App implements OnInit {
     return this._authService.loggedIn() && this._authService.premierUser();
   }
 
-    loggedInUser() {
-      var user = this._authService.tokenUserInfo();
-      if (user !== null) {
-        let name = user.firstName;
-        if (name.length <= 10) {
-          if (name.length + user.lastName.length <= 15)
-            return `${user.firstName} ${user.lastName}`;
-          else {
-            if (user.lastName.length >= 4)  
-              return `${user.firstName} ${user.lastName.substr(0,4)}`;
-            else
-              return `${user.firstName}...`;
-          }
-        } else
-          return user.firstName;
-      }
+  loggedInUser() {
+    var user = this._authService.tokenUserInfo();
+    if (user !== null) {
+      let name = user.firstName;
+      if (name.length <= 10) {
+        if (name.length + user.lastName.length <= 15)
+          return `${user.firstName} ${user.lastName}`;
+        else {
+          if (user.lastName.length >= 4)  
+            return `${user.firstName} ${user.lastName.substr(0,4)}`;
+          else
+            return `${user.firstName}...`;
+        }
+      } else
+        return user.firstName;
     }
+  }
 
   ngOnInit() {
    const appInstance = this;
@@ -66,5 +67,9 @@ export class App implements OnInit {
 
   public closeInfoModal(): void {
     this.showInfoModal = false;
+  }
+
+  public downloadTerms() {
+    return this._termService.download();
   }
 }

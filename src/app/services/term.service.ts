@@ -74,21 +74,7 @@ export class TermService {
       .catch(this.handleError);
   }
 
-  private catArray(categories: any): string {
-      let catarray : string = categories
-            .map((c) => {return c.id; })
-            .reduce((prev, curr) => {
-        return `${prev}&categories=${curr}`;
-      }); 
-
-      return catarray;
-  }
-
-  private handleError(error: Response) {
-    return Observable.throw(error);
-  }
-
-  studyTermCollection(terms: any) : StudyTerm[] {
+  studyTermCollection(terms: any): StudyTerm[] {
     let studyTerms: StudyTerm[] = new Array();
 
     for (let i = 0; i < terms.length; i++) {
@@ -113,4 +99,44 @@ export class TermService {
 
     return _.shuffle(studyTerms);
   }
+
+  public download() {
+    const headers = new Headers();
+    headers.append(AuthHeaderKey, this._authService.getToken());
+    headers.append('accept', 'application/pdf');
+    return this._http
+      .get(`${RootApiUrl}/terms/export/all`, { headers })
+      .subscribe(response => {
+        if (response.status === 200) {
+          this.saveFile(response);
+        } else {
+          alert('Sorry, we were unable to download the list of terms.');
+        }
+      });
+  }
+
+  private catArray(categories: any): string {
+      let catarray : string = categories
+            .map((c) => {return c.id; })
+            .reduce((prev, curr) => {
+        return `${prev}&categories=${curr}`;
+      }); 
+
+      return catarray;
+  }
+
+  private handleError(error: Response) {
+    return Observable.throw(error);
+  }
+
+  private saveFile(response: Response) {
+    const contentType = 'application/pdf';
+    const blob = new Blob([response.arrayBuffer()], { type: contentType });
+    const downloadUrl = URL.createObjectURL(blob);
+    window.open(downloadUrl)
+    // const blob = new Blob([data], { type: 'application/pdf' });
+    // const url = window.URL.createObjectURL(blob);
+    // window.open(url);
+  }
+
 }

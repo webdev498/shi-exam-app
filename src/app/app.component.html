@@ -34,6 +34,10 @@
                 <a routerLink="registerstart">
                   <i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
               </li>
+              <li *ngIf="studyAccess()" class="nav-link">
+                <a (click)="downloadTerms()" style="cursor: pointer">
+                <i class="fa fa-download" aria-hidden="true"></i> Download Terms</a>
+              </li>
               <li *ngIf="loggedIn()" class="nav-link">
                 <a routerLink="examstart">
                   <i class="fa fa-laptop" aria-hidden="true"></i> Take an Exam

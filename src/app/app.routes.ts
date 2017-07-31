@@ -24,7 +24,7 @@ import {TestFeedbackComponent} from './betafeedback/testfeedback';
 import {AuthGuardService} from './services/authguard.service';
 import {StudyGuardService} from './services/studyguard.service';
 
-export const ROUTES: Routes =[
+export const ROUTES: Routes = [
   { path: '', component: HomeComponent},
   { path: 'betafeedback', component: BetaFeedbackComponent},
   { path: 'testfeedback', component: TestFeedbackComponent},
