@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
 import { AuthService } from './../services/auth.service';
 import { StudyTerm } from './../model/question/StudyTerm';
 import { SessionService } from './session.service';
+import * as FileSaver from 'file-saver';
 var _ = require('lodash');
 
 @Injectable()
@@ -105,10 +106,10 @@ export class TermService {
     headers.append(AuthHeaderKey, this._authService.getToken());
     headers.append('accept', 'application/pdf');
     return this._http
-      .get(`${RootApiUrl}/terms/export/all`, { headers })
+      .get(`${RootApiUrl}/terms/export/all`, { headers, responseType: ResponseContentType.Blob  })
       .subscribe(response => {
         if (response.status === 200) {
-          this.saveFile(response);
+          this.saveFile(new Blob([response.blob()], { type: 'application/pdf' }));
         } else {
           alert('Sorry, we were unable to download the list of terms.');
         }
@@ -129,14 +130,10 @@ export class TermService {
     return Observable.throw(error);
   }
 
-  private saveFile(response: Response) {
-    const contentType = 'application/pdf';
-    const blob = new Blob([response.arrayBuffer()], { type: contentType });
-    const downloadUrl = URL.createObjectURL(blob);
-    window.open(downloadUrl)
-    // const blob = new Blob([data], { type: 'application/pdf' });
-    // const url = window.URL.createObjectURL(blob);
-    // window.open(url);
+  private saveFile(response: any) {
+    FileSaver.saveAs(response, 'terms-list.pdf');
+    const fileURL = URL.createObjectURL(response);
+    window.open(fileURL);
   }
 
 }
