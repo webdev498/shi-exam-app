@@ -102,6 +102,7 @@ export class TermService {
   }
 
   public download() {
+    alert('Your download will begin shortly');
     const headers = new Headers();
     headers.append(AuthHeaderKey, this._authService.getToken());
     headers.append('accept', 'application/pdf');
