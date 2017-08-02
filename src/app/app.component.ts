@@ -1,13 +1,10 @@
 import {Component, ViewEncapsulation, OnInit, Inject} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {EventService} from './services/event.service';
-import {TermService} from './services/term.service'
 
 @Component({
   selector: 'app',
-  templateUrl: './app.component.html',
-  styles: [ ],
-  providers: [TermService]
+  templateUrl: './app.component.html'
 })
 
 export class App implements OnInit {
@@ -19,8 +16,7 @@ export class App implements OnInit {
   public infoMessage: string = '';
 
   constructor(private _authService: AuthService,
-              private _eventService: EventService,
-              private _termService: TermService) {}
+              private _eventService: EventService) {}
 
   loggedIn() {
     return this._authService.loggedIn();
@@ -67,9 +63,5 @@ export class App implements OnInit {
 
   public closeInfoModal(): void {
     this.showInfoModal = false;
-  }
-
-  public downloadTerms() {
-    return this._termService.download();
   }
 }

@@ -5,6 +5,7 @@ import { RootApiUrl, AuthHeaderKey } from './../model/Constants';
 import { AuthService } from './../services/auth.service';
 import { StudyTerm } from './../model/question/StudyTerm';
 import { SessionService } from './session.service';
+import { EventService } from './../services/event.service';
 import * as FileSaver from 'file-saver';
 var _ = require('lodash');
 
@@ -12,7 +13,8 @@ var _ = require('lodash');
 export class TermService {
   constructor(private _http: Http,
               private _authService: AuthService,
-              private _sessionService: SessionService) { }
+              private _sessionService: SessionService,
+              private _eventService: EventService) { }
 
   questionsByType(categories: any[], qType: string, count: number) {
     let header = new Headers();
@@ -101,8 +103,8 @@ export class TermService {
     return _.shuffle(studyTerms);
   }
 
-  public download() {
-    alert('Your download will begin shortly');
+  public download(): any {
+    this._eventService.broadcast('info','Please be patient.  Your download will begin shortly.');
     const headers = new Headers();
     headers.append(AuthHeaderKey, this._authService.getToken());
     headers.append('accept', 'application/pdf');

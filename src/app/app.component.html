@@ -21,8 +21,6 @@
 
           <div class="collapse navbar-collapse" id="navbarLinks">
             <ul class="nav navbar-nav navbar-right" style="margin-right: 0px">
-              <li class="nav-link"><a routerLink="betafeedback" title="Beta Feedback">Aesthetics Feeback</a></li>
-              <li class="nav-link"><a routerLink="testfeedback" title="Content Feedback">Test Feeback</a></li>
               <li class="nav-link"><a href="https://certifiedspanish.com/about-us/" title="About">About</a></li>
               <li class="nav-link"><a href="https://certifiedspanish.com/contact-us/" title="Contact Us">Contact</a></li>
               <li class="nav-link"><a href=" https://certifiedspanish.com/faq/" title="FAQ">FAQ</a></li>
@@ -33,10 +31,6 @@
               <li *ngIf="!loggedIn()" class="nav-link">
                 <a routerLink="registerstart">
                   <i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
-              </li>
-              <li *ngIf="studyAccess()" class="nav-link">
-                <a (click)="downloadTerms()" style="cursor: pointer">
-                <i class="fa fa-download" aria-hidden="true"></i> Download Terms</a>
               </li>
               <li *ngIf="loggedIn()" class="nav-link">
                 <a routerLink="examstart">
@@ -65,6 +59,14 @@
           <router-outlet></router-outlet>
         </main>
       </div>
+      <footer style="margin-top: 25px; margin-left: 10px">
+          <section>
+              <a routerLink="betafeedback" title="Beta Feedback">Aesthetics Feeback</a>
+          </section>
+          <section style="margin-top: 5px">    
+              <a routerLink="testfeedback" title="Content Feedback">Test Feeback</a>
+          </section>
+      </footer>
 </div>
 
 <div *ngIf="showErrorModal" class="cgiModal">
