@@ -1,8 +1,13 @@
 <div *ngIf="viewTranslate">
 <div style="display: table; width: 100%">
     <div style="display: table-row">
-        <div style="display: table-cell">
+        <div *ngIf="SpanishToEnglish" 
+            style="display: table-cell">
             {{term.value}}
+        </div>
+        <div *ngIf="SpanishToEnglish" 
+            style="display: table-cell">
+            {{term.englishTranslation}}
         </div>
         <div style="display: table-cell">
             <input type="text" class="form-control" [(ngModel)]="termInput" (keydown)="inputKey($event)" /> 
@@ -58,6 +63,10 @@
     </div>
     <div *ngIf="!displayNext()" style="margin-top: 20px; text-align: center; width: 90%">
         You've reached the end of the terms.  <span class="undoSelection" (click)="resetTerms()">reset</span>
+    </div>
+    <div style="margin-top: 20px">
+        <div class="spanishEnglishSwitchLink"
+            (click)="switchTerms()">{{termSwitchText()}}</div>
     </div>
     <section>
         <studyscore></studyscore>
