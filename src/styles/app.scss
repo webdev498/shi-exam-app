@@ -134,8 +134,14 @@ form {
     cursor: pointer;
 }
 
+.spanishEnglishSwitchLink {
+    color: $app-main-gray;
+    font-style: italic;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .updateSuccess {
     @extend .greenText;
     font-weight: bold;
-    
 }

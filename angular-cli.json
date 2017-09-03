@@ -27,6 +27,7 @@
         "styles/examstart.scss",
         "styles/feedback.scss",
         "styles/fillinblank.scss",
+        "styles/flashcard.scss",
         "styles/forgotpassword.scss",
         "styles/grouping.scss",
         "styles/home.scss",

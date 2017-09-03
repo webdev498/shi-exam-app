@@ -17,8 +17,10 @@ export class FlashcardComponent implements OnInit {
   public showCards: boolean = false;
   public term: StudyTerm;
   public showAnswer: boolean = false;
-  enableFeedback: boolean = false;
-  feedbackSubmitted: boolean = false;
+  public SpanishToEnglish: boolean = true;
+  
+  public enableFeedback: boolean = false;
+  public feedbackSubmitted: boolean = false;
 
   private _tts: any;
   private _count = 0;
@@ -78,5 +80,13 @@ export class FlashcardComponent implements OnInit {
       this.showAnswer = false;
     else
       this.showAnswer = true;
+  }
+
+  public switchTerms() {
+    this.SpanishToEnglish = !this.SpanishToEnglish;
+  }
+
+  public termSwitchText() {
+    return this.SpanishToEnglish ? 'Spanish -> English' : 'English -> Spanish';
   }
 }
