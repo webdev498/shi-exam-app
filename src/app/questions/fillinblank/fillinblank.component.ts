@@ -2,6 +2,8 @@ import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core'
 import {StudyTerm} from './../../model/question/StudyTerm';
 import {StudyScoreComponent} from './../../study/studyscore.component';
 import {SessionService} from './../../services/session.service';
+var _ = require('lodash');
+//var R = require('ramda');
 
 declare var iSpeechTTS: any;
 
@@ -25,6 +27,7 @@ export class FillInBlankComponent {
 
   public enableFeedback: boolean = false;
   public feedbackSubmitted: boolean = false;
+  public SpanishToEnglish: boolean = true;
 
   private _tts: any;
   private _count = 0;
@@ -65,44 +68,62 @@ export class FillInBlankComponent {
   entered() {
     this.success = false;
 
-    for (let i = 0; i < this.term.translations.length; i++) {
-      if (this.term.translations[i].value.toLowerCase() == this.termInput.toLowerCase()) {
-        this.success = true;
-        break;
-      } else if (this.term.translations[i].value.includes(' ')) {
-        const potentials: any[] = this.term.translations[i].value.split(' ');
-        for (let j = 0; j < potentials.length; j++) {
-          if (potentials[j].toLowerCase() === this.termInput.toLowerCase()) {
-            this.success = true;
-            break;
+    if (this.SpanishToEnglish) {
+      for (let i = 0; i < this.term.translations.length; i++) {
+        if (this.term.translations[i].value.toLowerCase() == this.termInput.toLowerCase()) {
+          this.success = true;
+          break;
+        } else if (this.term.translations[i].value.includes(' ')) {
+          const potentials: any[] = this.term.translations[i].value.split(' ');
+          for (let j = 0; j < potentials.length; j++) {
+            if (potentials[j].toLowerCase() === this.termInput.toLowerCase()) {
+              this.success = true;
+              break;
+            }
           }
         }
       }
-    }
-
-    if (!this.success) {
-        for (let i = 0; i < this.term.translations.length; i++) {
-          if (this.term.translations[i].value.includes('/')) {
-            const potentials: any[] = this.term.translations[i].value.split('/');
-            for (let j = 0; j < potentials.length; j++) {
-              if (potentials[j].toLowerCase() === this.termInput.toLowerCase()) {
-                this.success = true;
-                break;
+  
+      if (!this.success) {
+          for (let i = 0; i < this.term.translations.length; i++) {
+            if (this.term.translations[i].value.includes('/')) {
+              const potentials: any[] = this.term.translations[i].value.split('/');
+              for (let j = 0; j < potentials.length; j++) {
+                if (potentials[j].toLowerCase() === this.termInput.toLowerCase()) {
+                  this.success = true;
+                  break;
+                }
               }
-            }
-          }  
+            }  
+        }
       }
+  } else {
+    if (this.term.value.toLowerCase() === this.termInput.toLowerCase())
+      this.success = true;
+
+    if (!this.success && this.term.value.includes(' ')) {
+      const potentials: any[] = this.term.value.split(' '); 
+      _.forEach(potentials, function(potential) {
+        if (potential.toLowerCase() === this.termInput.toLowerCase()) {
+          this.success = true;
+          return false;
+        }
+      });
     }
+  }
 
     this.complete = true;
-    const translationVerbage : string = this.term.translations.length == 1 ? 'translation' : 'translations';
-    this.translationText = `${this.term.translations.length.toString()} ${translationVerbage}`;
+    const translationVerbage : string = this.term.translations.length == 1
+      || !this.SpanishToEnglish ? 'translation' : 'translations';
+    this.translationText = this.SpanishToEnglish ? 
+      `${this.term.translations.length.toString()} ${translationVerbage}` : `1 ${translationVerbage}`;
     this._sessionService.setStudyCorrect(this.success,true);
   }
 
   next() {
     this._count++;
     this.term = this.terms[this._count];
+    this.term.englishValue = _.shuffle(this.term.translations)[0].value;
     this.terms[this._count - 1].display = false;
 
     this.enableFeedback = false;
@@ -120,22 +141,44 @@ export class FillInBlankComponent {
     this._count = 0;
 
     this.term = this.terms[0];
+    this.term.englishValue = _.shuffle(this.term.translations)[0].value;
     this.viewTranslate = true;
     this.complete = false;
+    this.termInput = null;
+    this._translationCount = 0;
 
     this.enableFeedback = false;
     this.feedbackSubmitted = false;
   }
 
   showAnswer() {
-    this.termInput = this.term.translations[this._translationCount].value;
+    if (this.SpanishToEnglish) {
+      this.termInput = this.term.translations[this._translationCount].value;
 
     if (this._translationCount + 1 < this.term.translations.length)
       this._translationCount++;
+
+    }
+    else {
+      this.termInput = this.term.value;
+    }
   }
 
   giveCredit() {
     this.success = true;
     this._sessionService.setStudyCorrect(this.success,false);
+  }
+
+  public switchTerms() {
+    this.SpanishToEnglish = !this.SpanishToEnglish;
+    
+    if (this._count == 0)
+      this.resetTerms();
+    else
+      this.next();
+  }
+
+  public termSwitchText() {
+    return this.SpanishToEnglish ? 'Spanish -> English' : 'English -> Spanish';
   }
 }
