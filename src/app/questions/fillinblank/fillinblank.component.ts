@@ -3,6 +3,7 @@ import {StudyTerm} from './../../model/question/StudyTerm';
 import {StudyScoreComponent} from './../../study/studyscore.component';
 import {SessionService} from './../../services/session.service';
 var _ = require('lodash');
+//var R = require('ramda');
 
 declare var iSpeechTTS: any;
 
@@ -97,7 +98,18 @@ export class FillInBlankComponent {
         }
       }
   } else {
-    
+    if (this.term.englishValue.toLowerCase() === this.termInput.toLowerCase())
+      this.success = true;
+
+    if (!this.success && this.term.value.includes(' ')) {
+      const potentials: any[] = this.term.value.split(' '); 
+      _.forEach(potentials, function(potential) {
+        if (potential.toLowerCase() === this.termInput.toLowerCase()) {
+          this.success = true;
+          return false;
+        }
+      });
+    }
   }
 
     this.complete = true;
