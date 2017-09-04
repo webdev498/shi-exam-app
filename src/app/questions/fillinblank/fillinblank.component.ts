@@ -98,7 +98,7 @@ export class FillInBlankComponent {
         }
       }
   } else {
-    if (this.term.englishValue.toLowerCase() === this.termInput.toLowerCase())
+    if (this.term.value.toLowerCase() === this.termInput.toLowerCase())
       this.success = true;
 
     if (!this.success && this.term.value.includes(' ')) {
@@ -141,18 +141,27 @@ export class FillInBlankComponent {
     this._count = 0;
 
     this.term = this.terms[0];
+    this.term.englishValue = _.shuffle(this.term.translations)[0].value;
     this.viewTranslate = true;
     this.complete = false;
+    this.termInput = null;
+    this._translationCount = 0;
 
     this.enableFeedback = false;
     this.feedbackSubmitted = false;
   }
 
   showAnswer() {
-    this.termInput = this.term.translations[this._translationCount].value;
+    if (this.SpanishToEnglish) {
+      this.termInput = this.term.translations[this._translationCount].value;
 
     if (this._translationCount + 1 < this.term.translations.length)
       this._translationCount++;
+
+    }
+    else {
+      this.termInput = this.term.value;
+    }
   }
 
   giveCredit() {
@@ -162,6 +171,11 @@ export class FillInBlankComponent {
 
   public switchTerms() {
     this.SpanishToEnglish = !this.SpanishToEnglish;
+    
+    if (this._count == 0)
+      this.resetTerms();
+    else
+      this.next();
   }
 
   public termSwitchText() {
