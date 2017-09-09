@@ -169,7 +169,8 @@ export class ExamHistoryComponent implements OnInit {
     }
 
   public examMessage(): string {
-    return this.scores.length > 1 ? '(last 5 exams taken are shown)' : 'You have taken 1 exam';
+    return this.scores.length > 1 ? '(last 5 exams taken are shown)' : 
+      (this.scores.length === 1 ? 'You have taken 1 exam' : 'You have not taken an exam');
   }
 
   public examTotalMessage(): string {
