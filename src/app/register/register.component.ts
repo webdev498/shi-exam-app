@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
       this._regService.postRegistration(payload)
         .subscribe(
             response => this._handleRegistrationResponse(response),
-            error => this._handleError(error, 'There was an error during the registration process')
+            error => this._handleError(error, 'Use the Reset Password if you already have an account')
         );
   }
 
