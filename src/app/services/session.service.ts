@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Category } from './../model/Category';
 import { User } from './../model/User';
+import { Exam } from './../model/exam/Exam';
+import { ExamResponse } from './../model/exam/ExamResponse';
 
 @Injectable()
 export class SessionService {
@@ -8,6 +10,9 @@ export class SessionService {
 
   private static allCategories: Category[];
   private static currentUser: User;
+  private static exam: Exam;
+  private static examProgress: any;
+  private static examResponse: ExamResponse;
   private static lastExamResult: any;
   private static lastExamResultChecked: boolean = false;
   private static selectedCategories: Category[];
@@ -33,8 +38,32 @@ export class SessionService {
     return SessionService.allCategories;
   }
 
-  public setAllCategories(categories: any) {
+  public setAllCategories(categories: any):void {
     SessionService.allCategories = categories;
+  }
+
+  public getExam():Exam {
+    return SessionService.exam;
+  }
+
+  public setExam(userExam: Exam):void {
+    SessionService.exam = userExam;
+  }
+
+  public getExamResponse():ExamResponse {
+    return SessionService.examResponse;
+  }
+
+  public setExamResponse(er: ExamResponse):void {
+    SessionService.examResponse = er;
+  }
+
+  public getExamProgress():any {
+    return SessionService.examProgress;
+  }
+
+  public setExamProgress(progress: any):void {
+    SessionService.examProgress = progress;
   }
 
   public getLastExamResult(): any {
