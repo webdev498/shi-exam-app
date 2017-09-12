@@ -8,6 +8,7 @@ import {LoginResponse} from './../model/LoginResponse';
 import {UserService} from './../services/user.service';
 import {AuthService as CGIAuth} from './../services/auth.service';
 import {AnalyticsService} from './../services/analytics.service';
+import {SessionService} from './../services/session.service';
 
 import {Router} from '@angular/router';
 import {NgForm, Validators} from '@angular/forms';
@@ -29,7 +30,8 @@ export class RegisterStartComponent implements OnInit {
                 private _oauth: AuthService,
                 private _userService: UserService,
                 private _analyticsService: AnalyticsService,
-                private _authService: CGIAuth) {
+                private _authService: CGIAuth,
+                private _sessionService: SessionService) {
       this.validationMessage = '';
       this.rs = new RegistrationStart();
   }
@@ -91,7 +93,7 @@ export class RegisterStartComponent implements OnInit {
       //Verify email address is unique
       
       //Set data for usage later
-      sessionStorage.setItem(RegistrationStartInfo, JSON.stringify(this.rs));
+      this._sessionService.setRegistrationStart(this.rs);
       //Redirect to register.component
       this._router.navigate(['register']);
       event.preventDefault();

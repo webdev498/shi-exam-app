@@ -3,6 +3,7 @@ import { Category } from './../model/Category';
 import { User } from './../model/User';
 import { Exam } from './../model/exam/Exam';
 import { ExamResponse } from './../model/exam/ExamResponse';
+import { RegistrationStart } from './../model/RegistrationStart';
 
 @Injectable()
 export class SessionService {
@@ -15,6 +16,7 @@ export class SessionService {
   private static examResponse: ExamResponse;
   private static lastExamResult: any;
   private static lastExamResultChecked: boolean = false;
+  private static registrationStart: RegistrationStart;
   private static selectedCategories: Category[];
   private static studyCorrect: number = 0;
   private static studyOverall: number = 0;
@@ -80,6 +82,14 @@ export class SessionService {
 
   public setLastExamResultChecked(): void {
     SessionService.lastExamResultChecked = true;
+  }
+
+  public getRegistrationStart():RegistrationStart {
+    return SessionService.registrationStart;
+  }
+
+  public setRegistrationStart(rs: RegistrationStart):void {
+    SessionService.registrationStart = rs;
   }
 
   public getStudyCorrect() :string {

@@ -17,6 +17,7 @@ import {RegistrationService} from './register.service';
 import {AuthService} from './../services/auth.service';
 import {AnalyticsService} from './../services/analytics.service';
 import {EventService} from './../services/event.service';
+import {SessionService} from './../services/session.service';
 import {UserService} from './../services/user.service';
 
 import {CountryCode} from './../model/CountryCode';
@@ -60,6 +61,7 @@ export class RegisterComponent implements OnInit {
               private _stateService: StateService,
               private _regService: RegistrationService,
               private _router: Router,
+              private _sessionService: SessionService,
               private _authService: AuthService,
               private _analytics: AnalyticsService,
               private _eventService: EventService,
@@ -126,8 +128,8 @@ export class RegisterComponent implements OnInit {
   }
   
   ngOnInit() {
-    if (sessionStorage[RegistrationStartInfo] != null) {
-      const startInfo = <RegistrationStart>JSON.parse(sessionStorage.getItem(RegistrationStartInfo));
+    const startInfo = this._sessionService.getRegistrationStart();
+    if (startInfo != undefined) {
       this.ur.email = startInfo.email;
       this.ur.password = startInfo.password;
       this.ur.passwordConfirmation = startInfo.passwordConfirmation;
