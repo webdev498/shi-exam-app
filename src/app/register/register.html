@@ -35,24 +35,30 @@
         <input type="text" [(ngModel)]="ur.address.street" name="address"
         placeholder="street" class="form-control control-width" id="address">
       </div>
-      <div style="margin-bottom: 15px">
-        <div class="form-inline">
+      <div style="margin-bottom: 15px"></div>
+        
           <div class="form-group">
+              <label for="city">City</label>
             <input type="text" [(ngModel)]="ur.address.city" 
             name="city"
-            class="form-control control-width" style="width: 100px" placeholder="city">
+            class="form-control control-width" style="width: 100px" placeholder="city" />
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
             <select class="form-control" name="state" [(ngModel)]="ur.address.state" 
             style="width: 48px">
       <option *ngFor="let state of states" value="{{state}}">
         {{state}}
       </option>
       </select>
+    </div>
+    <div class="form-group">
+        <label for="zip">Zipcode</label>
             <input type="text" [(ngModel)]="ur.address.postalCode" 
             name="zip"
             class="form-control control-width" style="width: 80px" placeholder="zip">
           </div>
-        </div>
-      </div>
+      
       <div style="margin-bottom: 15px">
         <label for="dob">Date of Birth</label>
         <div class="form-inline">

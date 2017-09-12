@@ -1,7 +1,7 @@
 import {Exam} from './../model/exam/Exam';
 import {Section} from './../model/exam/Section';
 import {ExamResponse} from './../model/exam/ExamResponse';
-import {ExamResponse as ExamResponseConstant, CurrentExam, MatchingQuestionType, 
+import {MatchingQuestionType, 
      MultipleChoiceEnglishQuestionType,MultipleChoiceSpanishQuestionType,
      GroupingQuestionType, PassingScore} from './../model/Constants';
 import {Score} from './../model/exam/Score';
@@ -16,8 +16,8 @@ export class ExamResponseService {
     constructor(private _sessionService: SessionService) {}
 
     examResults():Score {
-        let er = <ExamResponse>JSON.parse(sessionStorage[ExamResponseConstant]);
-        let exam = <Exam>JSON.parse(sessionStorage[CurrentExam]);
+        let er = this._sessionService.getExamResponse();
+        let exam = this._sessionService.getExam();
         let score = new Score();
         let percentCorrect = 0;
         const categoriesUsed = exam.categories;

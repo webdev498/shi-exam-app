@@ -10,11 +10,12 @@ import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {QuestionInterface} from './../model/interface/Question.interface';
 import {MultipleChoiceEnglishQuestionType, MultipleChoiceSpanishQuestionType, 
-     MatchingQuestionType, ExamResponse,
-     GroupingQuestionType, ExamProgress, CurrentExam} from './../model/Constants';
+     MatchingQuestionType,
+     GroupingQuestionType} from './../model/Constants';
 
 import {ExamService} from './../exam/exam.service';
 import {EventService} from './event.service';
+import {SessionService} from './session.service';
 
 @Injectable()
 export class ExamProgressService {
@@ -25,7 +26,8 @@ export class ExamProgressService {
 
     constructor(private _router: Router,
                 private _examService: ExamService,
-                private _eventService: EventService) {
+                private _eventService: EventService,
+                private _sessionService: SessionService) {
         this.answers = new Array();
     }
 
@@ -34,12 +36,12 @@ export class ExamProgressService {
     }
 
     examComplete() {
-        sessionStorage[ExamProgress] = null;
+        this._sessionService.setExamProgress(null);
     }
 
     setCurrentExam(exam: Exam) {
         this.exam = exam;
-        sessionStorage[CurrentExam] = JSON.stringify(this.exam);
+        this._sessionService.setExam(exam);
 
         this.examSubmission = new ExamSubmission();
         this.examSubmission.examId = this.exam.id;
@@ -86,7 +88,7 @@ export class ExamProgressService {
         }
 
         this.answers.push(newAnswer);
-        sessionStorage.setItem(ExamProgress,JSON.stringify(this.answers));
+        this._sessionService.setExamProgress(this.answers);
         this.questionsComplete = this.answers.length;
 
         if (this.exam.questions.length === this.questionsComplete) {
@@ -94,7 +96,7 @@ export class ExamProgressService {
             this._examService.submitExam(this.examSubmission)
                 .subscribe(
                 response => { 
-                    sessionStorage[ExamResponse] = JSON.stringify(response);
+                    this._sessionService.setExamResponse(response);
                     this._router.navigate(['examcomplete']); 
                 },
                 error => this._handleSubmissionError(error)
@@ -111,8 +113,8 @@ export class ExamProgressService {
     }
 
     getProgress() {
-        if (sessionStorage[ExamProgress] != null)
-            return JSON.parse(sessionStorage.getItem(ExamProgress));
+        if (this._sessionService.getExamProgress() != null)
+            return this._sessionService.getExamProgress();
         else
             return null;
     }
