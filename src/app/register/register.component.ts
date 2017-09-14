@@ -7,7 +7,6 @@ import {UserAccount} from './../model/dto/UserAccount';
 
 import {RegistrationStart} from './../model/RegistrationStart';
 
-import {NationalityService} from './../services/nationality.service';
 import {CountryCodeService} from './../services/countrycode.service';
 import {StateService} from './../services/state.service';
 import {DayService} from './../services/day.service';
@@ -30,8 +29,7 @@ var _ = require('lodash');
 @Component({
   selector: 'register', 
 
-  providers: [
-    NationalityService, CountryCodeService, DayService,
+  providers: [CountryCodeService, DayService,
     MonthService, YearService, StateService, RegistrationService,
     UserService
     ],
@@ -53,8 +51,7 @@ export class RegisterComponent implements OnInit {
   working: boolean = false;
 
   // TypeScript public modifiers
-  constructor(private _nationalityService: NationalityService,
-              private _countryCodeService: CountryCodeService,
+  constructor(private _countryCodeService: CountryCodeService,
               private _dayService: DayService,
               private _monthService: MonthService,
               private _yearService: YearService,
@@ -120,12 +117,6 @@ export class RegisterComponent implements OnInit {
 
     this.working = false;
   }
-
-  _handleNationalityResponse(response) {
-    this.nationalities = response;
-    let american = _.find(this.nationalities, function(o) { return o.name === 'American'; });
-    this.ur.nationality = american.id;
-  }
   
   ngOnInit() {
     const startInfo = this._sessionService.getRegistrationStart();
@@ -133,12 +124,6 @@ export class RegisterComponent implements OnInit {
       this.ur.email = startInfo.email;
       this.ur.password = startInfo.password;
       this.ur.passwordConfirmation = startInfo.passwordConfirmation;
-      
-      this._nationalityService.getNationalities()
-        .subscribe(
-            response => this._handleNationalityResponse(response),
-            error => this._handleError(error, 'There was an error retrieving the nationalities')
-        );
     } else {
       this._router.navigateByUrl('registerstart');
     }
