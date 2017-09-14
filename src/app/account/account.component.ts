@@ -8,7 +8,6 @@ import { AccountService } from './account.service';
 
 import {UserAccount} from './../model/dto/UserAccount';
 
-import {NationalityService} from './../services/nationality.service';
 import {CountryCodeService} from './../services/countrycode.service';
 import {StateService} from './../services/state.service';
 import {DayService} from './../services/day.service';
@@ -26,8 +25,7 @@ import {Address} from './../model/Address';
 
 @Component({
   selector: 'account', 
-  providers: [
-    NationalityService, CountryCodeService, StateService,
+  providers: [CountryCodeService, StateService,
     DayService, MonthService, YearService, EventService,
     ValidationService, AccountService, UserService
   ],
@@ -50,7 +48,6 @@ export class AccountComponent implements OnInit {
   private _loading: boolean = false;
 
   constructor(private _authService: AuthService,
-             private _nationalityService: NationalityService,
              private _countryCodeService: CountryCodeService,
              private _stateService: StateService,
              private _dayService: DayService,
@@ -73,13 +70,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
       this.premieruser = this._authService.premierUser();
-
-      this._nationalityService.getNationalities()
-      .subscribe(
-          response => this._handleNationalityResponse(response),
-          error => this._handleError(error, 'There was an error retrieving the nationalities')
-      );
-
+      this._updateRegistrationObject(null);
       this._analyticsService.pageView('/account.html');
   }
 
@@ -225,12 +216,6 @@ export class AccountComponent implements OnInit {
       event.preventDefault();
       event.stopPropagation();
       this._router.navigate(['login', {'Message': 'Your account has been downgraded.  Please login again'}]);
-  }
-
-  _handleNationalityResponse(response) {
-    this.nationalities = response;
-
-    this._updateRegistrationObject(null);
   }
 
   _updateRegistrationObject(user: User) {

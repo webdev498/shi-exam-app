@@ -10,8 +10,7 @@ import {Feedback} from './../model/exam/Feedback';
 import {ExamStartParam, MatchingQuestionType, 
         MultipleChoiceEnglishQuestionType, 
         MultipleChoiceSpanishQuestionType,
-        GroupingQuestionType, 
-        MatchingTermsShown, GroupingTermsShown} from './../model/Constants';
+        GroupingQuestionType} from './../model/Constants';
 import {ExamProgressService} from './../services/examprogress.service';
 
 import {MultipleChoice} from './../questions/multiplechoice/multiplechoice.component';

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   public processing: boolean = false;
   public notification: string = "";
   public resetEmail: string;
+  public oauthLogin: boolean = false;
   
   constructor(private _loginService: LoginService,
               private _sessionService: SessionService,
@@ -91,10 +92,12 @@ export class LoginComponent implements OnInit {
   }
   
   facebook() {
+     this.oauthLogin = true;
      this._oauthAuthenticate('facebook');
   }
   
   google() {
+      this.oauthLogin = true;
       this._oauthAuthenticate('google');
   }
 
