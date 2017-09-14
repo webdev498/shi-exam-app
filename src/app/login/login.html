@@ -53,6 +53,10 @@
                             />
                         </div>
                     </div>
+                    <div class="row" style="margin-top: 10px" *ngIf="oauthLogin">
+                            Please wait for the provider authentication 
+                            <i class="fa fa-refresh fa-spin fa fa-fw" aria-hidden="true"></i>
+                    </div>
                     <div class="row">
                         <div style="margin-top: 25px">
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
