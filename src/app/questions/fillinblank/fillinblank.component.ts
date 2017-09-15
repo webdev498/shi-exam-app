@@ -3,7 +3,6 @@ import {StudyTerm} from './../../model/question/StudyTerm';
 import {StudyScoreComponent} from './../../study/studyscore.component';
 import {SessionService} from './../../services/session.service';
 var _ = require('lodash');
-//var R = require('ramda');
 
 declare var iSpeechTTS: any;
 
