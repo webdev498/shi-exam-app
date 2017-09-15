@@ -33,7 +33,6 @@
     "ng2-ui-auth": "^6.2.0",
     "process-nextick-args": "^1.0.7",
     "reflect-metadata": "^0.1.10",
-    "ramda": "^0.24.1",
     "rxjs": "^5.1.0",
     "util-deprecate": "^1.0.2",
     "webpack": "^3.0.0",
