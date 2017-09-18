@@ -7,8 +7,20 @@
             <div class="row" *ngIf="notification.length > 0">
                 <h3 color="orange">{{notification}}</h3>
             </div>
-                <div style="margin-top: 10px">
-                </div>
+
+            <section *ngIf="notification.length === 0">
+                <button class="btn btn-sm btn-default btn-register" (click)="register()">
+                    I need to register for an account
+                </button>
+
+                <button class="btn btn-sm btn-default btn-login" (click)="showLogin()">
+                    I have a Certified Spanish account
+                </button>
+            </section>
+
+            <section style="margin-top: 10px" id="loginSection" 
+                *ngIf="notification.length > 0 || loginDisplay">
+
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="input-group margin-bottom-sm">
@@ -25,8 +37,7 @@
                             <span class="input-group-addon">
                         <i class="fa fa-key fa-fw" aria-hidden="true"></i>
                     </span>
-                            <input type="password" [(ngModel)]="password" 
-                            class="form-control" placeholder="password" (keyup)="formKeyup($event)" />
+                            <input type="password" [(ngModel)]="password" class="form-control" placeholder="password" (keyup)="formKeyup($event)" />
                         </div>
                     </div>
                 </div>
@@ -55,52 +66,46 @@
                         </div>
                     </div>
                     <div class="row" style="margin-top: 10px" *ngIf="oauthLogin">
-                            Please wait for the provider authentication 
-                            <i class="fa fa-refresh fa-spin fa fa-fw" aria-hidden="true"></i>
+                        Please wait for the provider authentication
+                        <i class="fa fa-refresh fa-spin fa fa-fw" aria-hidden="true"></i>
                     </div>
                     <div class="row">
                         <div style="margin-top: 25px">
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                             <a [routerLink]=" ['/registerstart'] ">Register for an account</a>
                             <div style="margin-top: 15px">
-                             <div data-toggle="modal" data-target="#fpModal">
-                                <i class="fa fa-unlock" aria-hidden="true"></i>
-                                <span class="fplink">Forgot Password</span>
-                             </div>
+                                <div data-toggle="modal" data-target="#fpModal">
+                                    <i class="fa fa-unlock" aria-hidden="true"></i>
+                                    <span class="fplink">Forgot Password</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="modal fade" role="dialog" id="fpModal">
                             <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Forgot Password Confirmation</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Would you like to reset your password?</p>
-                                    <p>Enter your email address and press Confirm</p>
-                                    <div>
-                                        <input type="text" 
-                                            [(ngModel)]="resetEmail"
-                                            class="form-control" 
-                                            placeholder="Your email address" />
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Forgot Password Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Would you like to reset your password?</p>
+                                        <p>Enter your email address and press Confirm</p>
+                                        <div>
+                                            <input type="text" [(ngModel)]="resetEmail" class="form-control" placeholder="Your email address" />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="resetConfirmDisabled()" (click)="confirmReset()">Confirm</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                                    </button>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                <button type="button" 
-                                    class="btn btn-primary" data-dismiss="modal" 
-                                    [disabled]="resetConfirmDisabled()"
-                                    (click)="confirmReset()">Confirm</button>
-                                <button type="button" 
-                                    class="btn btn-default" data-dismiss="modal">Cancel
-                                    </button>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
+</div>

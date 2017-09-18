@@ -1,7 +1,19 @@
+$buttonPaddding: 8px;
+
 .error {color: red}
 
 .fplink {
     color: #337ab7;
     cursor: pointer;
     &:hover {text-decoration: underline; color: navy}
+}
+
+.btn-register {
+    padding: $buttonPaddding;
+    background-color: lightgreen
+}
+
+.btn-login {
+    padding: $buttonPaddding;
+    background-color: lightyellow
 }

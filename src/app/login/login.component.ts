@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
   public errorMessage: string;
+  public loginDisplay: boolean = false;
   public processing: boolean = false;
   public notification: string = "";
   public resetEmail: string;
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
   }
 
-  submitLogin() {
+  public submitLogin():void {
    this.processing = true;
     
    this._loginService.postLogin(this.username, this.password)
@@ -54,13 +55,13 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  public formKeyup(e): void {
+  public formKeyup(e):void {
     //submit on enter keyCode 
     if (e.keyCode === 13 && !this.loginButtonState())
       this.submitLogin();
   }
   
-  _handleLoginResponse(lr: LoginResponse) {
+  private _handleLoginResponse(lr: LoginResponse):void {
     this._authService.saveToken(lr);
     
     this._userService.getUser(this._authService.tokenUserInfo().id)
@@ -70,38 +71,46 @@ export class LoginComponent implements OnInit {
       );
   }
   
-  _handleUserResponse(user) {
+  private _handleUserResponse(user):void {
     this.processing = false;  
     this._sessionService.setUser(user);
     this._authService.saveUser(user);   
     this._router.navigate(['home']);
   }
   
-  _handleError(e) {
+  private _handleError(e):void {
     if (e.status === 401) {
       this.errorMessage = 'Login Failed';
       this.processing = false;
     }
   }
   
-  loginButtonState() {
+  public loginButtonState():boolean {
       return this.password == null ||
         this.password.length < 8 || 
         this.username == null ||
         this.processing;
   }
   
-  facebook() {
+  public facebook():void {
      this.oauthLogin = true;
      this._oauthAuthenticate('facebook');
   }
   
-  google() {
+  public google():void {
       this.oauthLogin = true;
       this._oauthAuthenticate('google');
   }
 
-  _oauthAuthenticate(provider: string) {
+  public register():void {
+    this._router.navigate(['registerstart']);
+  }
+
+  public showLogin():void {
+    this.loginDisplay = true;
+  }
+
+  private _oauthAuthenticate(provider: string) {
       let context = this;
       this._oauth.authenticate(provider)
           .subscribe(
@@ -130,7 +139,7 @@ export class LoginComponent implements OnInit {
     return false;
   }
 
-  public confirmReset(): void {
+  public confirmReset():void {
     this._sessionService.clearSessionInfo();
     const context = this;
     this._accountService.resetPassword(this.resetEmail)
@@ -140,14 +149,14 @@ export class LoginComponent implements OnInit {
           );
   }
 
-  private _handleResetError(error: any) {
+  private _handleResetError(error: any):void {
     if (error.status == 404)
       this._eventService.broadcast('error', 'Sorry, your email address was not found in our database');
     else
       this._eventService.broadcast('error', error.toString());
   }
 
-  private _handleResetResponse(): void {
+  private _handleResetResponse():void {
     this._sessionService.clearSessionInfo();
     this._eventService.broadcast('info', 'You will received an email with instructions to reset your password');
   }
