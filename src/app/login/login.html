@@ -8,7 +8,7 @@
                 <h3 color="orange">{{notification}}</h3>
             </div>
 
-            <section *ngIf="notification.length === 0">
+            <section *ngIf="notification.length === 0 && !loginDisplay">
                 <button class="btn btn-sm btn-default btn-register" (click)="register()">
                     I need to register for an account
                 </button>
