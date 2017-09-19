@@ -41,7 +41,7 @@
             class="form-control" placeholder="password" id="rsPassword">
       </div>
       <div class="form-group">
-        <input type="password" [(ngModel)]="rs.passwordConfirmation" 
+        <input type="password" [(ngModel)]="rs.passwordConfirmation" (keyup)="formKeyup($event)"
             name="passwordConfirmation"
             class="form-control" placeholder="password confirmation">
       </div>

@@ -8,7 +8,7 @@ import { LoginResponse} from './../model/LoginResponse';
 export class LoginService {
   constructor(private _http: Http) { }
 
-  postLogin(username:string, password:string) {
+  public postLogin(username:string, password:string):any {
     let instance = this;
     let header = new Headers();
     header.append('Content-Type','application/json');

@@ -104,4 +104,10 @@ export class RegisterStartComponent implements OnInit {
       this._analyticsService.pageView('/registerstart.html');
   }
 
+  public formKeyup(e): void {
+    //submit on enter keyCode 
+    if (e.keyCode === 13 && !this.submitButtonState())
+      this.register(e);
+  }
+
 }
